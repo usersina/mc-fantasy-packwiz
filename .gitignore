@@ -1,31 +1,31 @@
-# Never commit downloaded mods
+# Never commit downloaded mods/archives
 *.jar
 *.mrpack
 *.zip
 
 # Local packwiz/cache/temp
-.packwiz/
-.cache/
-dist/
-tmp/
+/.packwiz/
+/.cache/
+/dist/
+/tmp/
 
-# Server/runtime files
-world/
-logs/
-crash-reports/
-server.properties
-eula.txt
-usercache.json
-whitelist.json
-ops.json
-banned-players.json
-banned-ips.json
+# Server/runtime files generated when running from the repo root
+/world/
+/logs/
+/crash-reports/
+/server.properties
+/eula.txt
+/usercache.json
+/whitelist.json
+/ops.json
+/banned-players.json
+/banned-ips.json
 
 # Launcher/runtime
-.minecraft/
-minecraft/
-versions/
-libraries/
+/.minecraft/
+/minecraft/
+/versions/
+/libraries/
 
 # OS/editor
 .DS_Store

@@ -1,18 +1,26 @@
 version: '3'
+silent: true
 
 vars:
-  REPO_DIR: /home/sina/Documents/github/usersina/mc-fantasy-packwiz
+  REPO_DIR: '{{.TASKFILE_DIR}}'
   SERVER_DIR: /data/games/servers/minecraft/fantasy-lan
   PACK_URL: http://127.0.0.1:8080/pack.toml
+  JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
 
 tasks:
-  refresh:
+  server:setup:
+    desc: Create/install the server runtime from repo templates
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - SERVER_DIR="{{.SERVER_DIR}}" JAVA21="{{.JAVA21}}" ACCEPT_EULA=true ./server/setup-fantasy-server.sh
+
+  pack:refresh:
     desc: Refresh packwiz index
     dir: '{{.REPO_DIR}}'
     cmds:
       - packwiz refresh
 
-  serve:
+  pack:serve:
     desc: Serve packwiz locally
     dir: '{{.REPO_DIR}}'
     cmds:
@@ -20,21 +28,27 @@ tasks:
 
   server:sync:
     desc: Sync server-side mods/configs from packwiz
-    dir: '{{.SERVER_DIR}}'
-    env:
-      PACK_URL: '{{.PACK_URL}}'
+    dir: '{{.REPO_DIR}}'
     cmds:
-      - java -jar packwiz-installer-bootstrap.jar -g -s server "{{.PACK_URL}}"
+      - |
+        test -x "{{.SERVER_DIR}}/start-packwiz-server.sh" || {
+          echo "ERROR: run 'task server:setup' first"
+          exit 1
+        }
+      - cd "{{.SERVER_DIR}}" && "{{.JAVA21}}" -jar packwiz-installer-bootstrap.jar -g -s server "{{.PACK_URL}}"
 
   server:start:
-    desc: Sync server then start NeoForge
-    dir: '{{.SERVER_DIR}}'
-    env:
-      PACK_URL: '{{.PACK_URL}}'
+    desc: Sync server then start NeoForge after setup
+    dir: '{{.REPO_DIR}}'
     cmds:
-      - ./start-packwiz-server.sh
+      - |
+        test -x "{{.SERVER_DIR}}/start-packwiz-server.sh" || {
+          echo "ERROR: run 'task server:setup' first"
+          exit 1
+        }
+      - cd "{{.SERVER_DIR}}" && PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
 
-  backup:
+  server:backup:
     desc: Backup world
     dir: '{{.REPO_DIR}}'
     cmds:

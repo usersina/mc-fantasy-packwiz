@@ -2,11 +2,15 @@ hash-format = "sha256"
 
 [[files]]
 file = "README.md"
-hash = "d8c1356661596296c3d8d0ee905983cdaf04d5e3e49942e514cc89f8598f97e0"
+hash = "1a7ad5e1b4b808fe65110faa986f7ccb2fae1d727fe58d13e24c743c34041d79"
 
 [[files]]
 file = "Taskfile.yml"
-hash = "8bab4e8975800c3ad778f21afc490cf204511d2ace66a2887867c8f7499919bd"
+hash = "c32f4b51e5da3bd9883694b0aa5ada09470e482009820c0919ddb10ad911cafe"
+
+[[files]]
+file = "datapacks/.gitkeep"
+hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 [[files]]
 file = "defaultconfigs/paraglider-common.toml"
@@ -596,9 +600,25 @@ hash = "2541b092b92a82757e5d200a6093658e20db548bb8583abad3f4506ed04e5ce6"
 metafile = true
 
 [[files]]
-file = "scripts/install-all-mods.sh"
-hash = "70872d9dc0af38db4cd20381d38b29f4c4551c247af179ecca2f4e04677dc787"
+file = "server/backup-world.sh"
+hash = "f3711175607487928ebc9d71d55d0e35eec38f854e9932bf27440c013e19e5c0"
 
 [[files]]
-file = "server/backup-world.sh"
-hash = "faaffde41b6c17588b1ba47930357f93e76513a55b9d9c4815ab6e5b60ab001f"
+file = "server/base/README.md"
+hash = "7ef1f77d2d816b457bf1de0f6439c18c8f11cabc635f85ecb56b1999d19b19cf"
+
+[[files]]
+file = "server/base/server.properties"
+hash = "32a4d689caed807a24e6ad00a7d8794222efd19d772a2d41eb30e6cced3f533a"
+
+[[files]]
+file = "server/base/start-packwiz-server.sh"
+hash = "206a6dcd6d27db119e67972b917c739cba1cd5e7460a5ce6f6b4effbb63390ab"
+
+[[files]]
+file = "server/base/user_jvm_args.txt"
+hash = "50b5f7b8b8dc31f7079a1f84ba013f2bc757467154ed7829a7d7256559a15176"
+
+[[files]]
+file = "server/setup-fantasy-server.sh"
+hash = "f285c89de4203011ff4a3ad4223863f142153b2189ed24ff7cd5b71aa46916be"
