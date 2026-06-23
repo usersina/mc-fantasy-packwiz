@@ -41,7 +41,7 @@ The real server runtime is generated here:
 
 ## Client Pack
 
-For friends using Prism Launcher or Freesm Launcher, use the manual `.mrpack` export documented in [client/README.md](client/README.md).
+For friends using Prism Launcher or Freesm Launcher, use the manual `.mrpack` export documented in [client/README.md](client/README.md). The exported instance is meant to work for both multiplayer and local singleplayer.
 
 Short version:
 

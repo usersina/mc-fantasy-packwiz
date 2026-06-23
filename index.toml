@@ -53,7 +53,7 @@ metafile = true
 
 [[files]]
 file = "mods/baguettelib.pw.toml"
-hash = "762fcd212e5049e6e8dcece301c4f33a17d3fc9b00744301c52c4695d7015523"
+hash = "cc360d86f76e729d3ebb7384cfbc933d8ffba694ba91360edeb846d61d14e561"
 metafile = true
 
 [[files]]
@@ -63,7 +63,7 @@ metafile = true
 
 [[files]]
 file = "mods/basic-login.pw.toml"
-hash = "93243befcb29f885b1a8da81c3f0376d81831f7f24f96d33a5d7bedfa679dc3a"
+hash = "6d007a0bf3c83434cd96f84029d956f1187e8c743f24b6df4bef2faaf310849d"
 metafile = true
 
 [[files]]
@@ -148,7 +148,7 @@ metafile = true
 
 [[files]]
 file = "mods/corpse-x-curios-api-compat.pw.toml"
-hash = "2f6a345c8124dd87b60c8ebbbaa35d9efa27c2d1947357b3247ab98fae9db210"
+hash = "0f24d3112418b31cf86b84d0ded37decc9dbd50cc229cec632547458c01ffdca"
 metafile = true
 
 [[files]]
@@ -253,7 +253,7 @@ metafile = true
 
 [[files]]
 file = "mods/forgiving-void.pw.toml"
-hash = "b3e2786cd6d151651aa8ddc6548bc8e8bb7f67a10884f9570608ea11fc1197f6"
+hash = "ad797a4747adf0a547aff1f6bdb0c99d27b96324356fd0420fe9167e526d7185"
 metafile = true
 
 [[files]]
@@ -433,7 +433,7 @@ metafile = true
 
 [[files]]
 file = "mods/pufferfishs-unofficial-additions.pw.toml"
-hash = "9709dcfcc794b61de4c467b30d68da3caaab27e6022cfb3348b4fcf9b9f4f0e8"
+hash = "3a37a1911cee7925936f8720012eb00bcf4fbae5771a0869e4ce61e405eac91b"
 metafile = true
 
 [[files]]
@@ -458,7 +458,7 @@ metafile = true
 
 [[files]]
 file = "mods/skinrestorer.pw.toml"
-hash = "5701a4eb9887a6357f944647e1a5e0f09cb895a36b4b299e6450685e026391fc"
+hash = "c3f5faaeb11e79441d4dc7b082299af9024d4cb32a06e2fb9b58de7d577cf0c5"
 metafile = true
 
 [[files]]
@@ -568,25 +568,25 @@ metafile = true
 
 [[files]]
 file = "mods/yungs-better-dungeons.pw.toml"
-hash = "4c2830674a08ec9f10af13e4d259aa60158bd306a3996d935e678281ec0cb5fd"
+hash = "1496ffa30020676979e65921b91e583a2fdc77e50001e2ed55f99edf1a0ae880"
 metafile = true
 
 [[files]]
 file = "mods/yungs-better-nether-fortresses.pw.toml"
-hash = "c0e40691651465b4eb1037749148c2078123604195e19b582dbef3cd5914e3b1"
+hash = "50c1731148d91a4ef05cfc47f759ca8fb3dad254e15ce4ecc5732d6fbfa68637"
 metafile = true
 
 [[files]]
 file = "mods/yungs-better-strongholds.pw.toml"
-hash = "1a33e6d64e88ad59b65d126c6457d582e62724167349ea184eb237435298985e"
+hash = "03084966c05070b5c4b17cd89234f3c0d813940a2d76b405a6699deac10a0ab8"
 metafile = true
 
 [[files]]
 file = "mods/yungs-bridges.pw.toml"
-hash = "9d9b074b2425fc4f19808b7d6df4a0baeae39a37e909107aaa85004df1a2d195"
+hash = "c5e5f5aed37edd8073ec736e179b6159530ff497f4fe4c4dfaf954c810910433"
 metafile = true
 
 [[files]]
 file = "mods/yungs-extras.pw.toml"
-hash = "2541b092b92a82757e5d200a6093658e20db548bb8583abad3f4506ed04e5ce6"
+hash = "cfb7ce4c2b00cedd2e61f7d345b824d6bcc1471021668d2319ee2e4079108639"
 metafile = true

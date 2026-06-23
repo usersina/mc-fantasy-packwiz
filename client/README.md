@@ -1,6 +1,6 @@
 # Client Pack Export
 
-This folder contains client-only release inputs and the manual Prism/Freesm `.mrpack` export flow.
+This folder contains client release inputs and the manual Prism/Freesm `.mrpack` export flow.
 
 Files here are intentionally ignored by Packwiz's normal index so server sync does not copy them into the server runtime. `task pack:export-client` injects the selected client defaults into the generated `.mrpack` as `client-overrides/options.txt`.
 
@@ -93,6 +93,7 @@ The client export should include:
 
 - client-side mods
 - shared `both` mods
+- gameplay/worldgen mods needed for local singleplayer, even when they are conceptually server-side
 - `config/`, `defaultconfigs/`, resource packs, shaders, or client options when they are intentionally included
 
 The client export should not include:
@@ -116,6 +117,14 @@ The current export shape has been smoke-tested. The `.mrpack` contains:
   - `Configured`
 
 It does not contain `server/`, `docs/`, `Taskfile.yml`, `README.md`, or repo-managed `datapacks/`.
+
+## Side Policy For Singleplayer
+
+The Packwiz project currently contains every mod from the original source list by project ID.
+
+The Prism/Freesm export is intended to work as a complete playable instance, including local singleplayer. In Modrinth `.mrpack` metadata, `server` means a dedicated server, not Minecraft's integrated singleplayer server. Because of that, mods needed for world generation, gameplay rules, login/skin behavior, or local integrated-server behavior should be marked `side = "both"` here so launchers install them into the client instance.
+
+Use `side = "server"` only for something that truly belongs on the dedicated server and should not be present in a player/imported instance. The dedicated server still gets `both` mods because `task server:start` runs packwiz-installer in server mode.
 
 ## Current Server Datapack Split
 
