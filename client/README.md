@@ -35,7 +35,7 @@ The generated `.mrpack` files are ignored by Git because `dist/` and `*.mrpack` 
 
 `options-qwerty.txt` or `options-azerty.txt` is exported into the `.mrpack` as `client-overrides/options.txt`.
 
-Those files are intentionally partial: they keep the changed keybind lines plus the few layout-sensitive vanilla bindings needed to distinguish QWERTY from AZERTY. Unrelated controls, graphics, audio, chat, and other personal settings stay out of the repo. Minecraft fills missing option lines with defaults when the imported instance first launches.
+Those files are intentionally controls-only: they keep all `key_...` lines from the captured launcher profile so mod keybind groups stay coherent, while unrelated graphics, audio, chat, resource pack, and other personal settings stay out of the repo. Minecraft fills missing non-key option lines with defaults when the imported instance first launches.
 
 Current control defaults include the changed Vampirism action wheel keys, Iron's Spells spell controls, Dragon Mounts Remastered dragon command key, and the other keybind adjustments from the captured launcher profile.
 
