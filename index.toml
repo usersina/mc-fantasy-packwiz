@@ -5,6 +5,22 @@ file = "README.md"
 hash = "d8c1356661596296c3d8d0ee905983cdaf04d5e3e49942e514cc89f8598f97e0"
 
 [[files]]
+file = "Taskfile.yml"
+hash = "8bab4e8975800c3ad778f21afc490cf204511d2ace66a2887867c8f7499919bd"
+
+[[files]]
+file = "defaultconfigs/paraglider-common.toml"
+hash = "d81262505664f39799b57418d9744d02aed0c25b9ee1c1f0269cd6f4b9f31a83"
+
+[[files]]
+file = "defaultconfigs/paraglider-server.toml"
+hash = "dbebf5130d20e01beb2a5e8d48fb22b267a81ae64fdcf7776ae40286cbcae951"
+
+[[files]]
+file = "defaultconfigs/waystones-common.toml"
+hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
+
+[[files]]
 file = "mods/aces-spell-utils.pw.toml"
 hash = "0fa8a6109ec993b9dd07c2ebdc6e98a9464a07248105c185261b1001699003ce"
 metafile = true
@@ -16,7 +32,7 @@ metafile = true
 
 [[files]]
 file = "mods/appleskin.pw.toml"
-hash = "716d930feff599bf9ce732e05979fbae8025dc8a3c13ccf4f1cb207a70883bc6"
+hash = "ede3f1a1a9966ecba76bd49ecc839ca1a726fcfa5686d7aad64a46854984db99"
 metafile = true
 
 [[files]]
@@ -126,7 +142,7 @@ metafile = true
 
 [[files]]
 file = "mods/configured.pw.toml"
-hash = "af4dc4828902eae1784568632a749fe9a442943f1570ac0ba3ea75e79934be41"
+hash = "e1652216456cb6c5026b3e6b48d98b1509457eb6d974e18002af4ec3bf040ffa"
 metafile = true
 
 [[files]]
@@ -296,12 +312,12 @@ metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "b6e0a61fea06f8d6d8e1672cf07b682625c4b74efd548d5093cd9c1fed167eec"
+hash = "b4ada8cc3723fd50ce5b4116784434d6ce9edc9e611eca2c5994dba8146d194e"
 metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "e7b3c08c8b168d15e3997d41d0480d1d35cba0bdda94094f123d1eef65d0b0c4"
+hash = "bddad012395abb9a59b369b39837a04cf956320db9b778a4c922be2494607f46"
 metafile = true
 
 [[files]]
@@ -406,7 +422,7 @@ metafile = true
 
 [[files]]
 file = "mods/preloading-tricks.pw.toml"
-hash = "b2ae09a04a2f0bac5f9ade28b96e9566cb828f07cce27ae36d61ee9df75d38e1"
+hash = "f547ee4507a6752a7944d945ee45ed4cd70b4b5dcf3a7e007b29deaf9dfe38cd"
 metafile = true
 
 [[files]]
@@ -541,7 +557,7 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "67121835339ff35bc213b2ede0375d10de4c1fc9f40c7579a47ebc1a3d050648"
+hash = "ea1deed216de5662e9ff803c71000efac7f1b3ec0b14c81d58b93c8449ccf14e"
 metafile = true
 
 [[files]]
@@ -582,3 +598,7 @@ metafile = true
 [[files]]
 file = "scripts/install-all-mods.sh"
 hash = "70872d9dc0af38db4cd20381d38b29f4c4551c247af179ecca2f4e04677dc787"
+
+[[files]]
+file = "server/backup-world.sh"
+hash = "faaffde41b6c17588b1ba47930357f93e76513a55b9d9c4815ab6e5b60ab001f"

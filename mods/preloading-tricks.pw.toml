@@ -1,6 +1,6 @@
 name = "Preloading Tricks"
 filename = "preloading-tricks-3.7.2.jar"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/FFeAJNCx/versions/Lo9lUwc3/preloading-tricks-3.7.2.jar"
