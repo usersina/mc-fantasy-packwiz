@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "defaultconfigs/guideapi_vp-common.toml"
+hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
+
+[[files]]
 file = "defaultconfigs/paraglider-common.toml"
 hash = "d81262505664f39799b57418d9744d02aed0c25b9ee1c1f0269cd6f4b9f31a83"
 
