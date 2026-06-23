@@ -49,7 +49,7 @@ Short version:
 task pack:export-client
 ```
 
-This writes `dist/mc-fantasy-1.21.1-v1.0.0.mrpack`, deriving the Minecraft and pack versions from `pack.toml`.
+This writes `dist/mc-fantasy-1.21.1-v1.0.0.mrpack`, deriving the Minecraft and pack versions from `pack.toml`. It also injects client-only defaults from `client/options.txt`.
 
 ## What Gets Used
 

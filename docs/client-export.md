@@ -22,6 +22,16 @@ dist/mc-fantasy-1.21.1-v1.0.0.mrpack
 
 The generated `.mrpack` is ignored by Git because `dist/` and `*.mrpack` are runtime/release outputs.
 
+## Client Defaults
+
+`client/options.txt` is exported into the `.mrpack` as `client-overrides/options.txt`.
+
+That file is intentionally partial: it keeps only keybind lines that differ from a reset/default launcher profile. Unchanged controls, graphics, audio, chat, and other personal settings stay out of the repo. Minecraft fills missing option lines with defaults when the imported instance first launches.
+
+Current control defaults include the changed Vampirism action wheel keys, Iron's Spells spell controls, Dragon Mounts Remastered dragon command key, and the other keybind adjustments from the captured launcher profile.
+
+`client/**` is listed in `.packwizignore`, so these client-only defaults do not enter the normal Packwiz index and are not synced into the server runtime.
+
 ## Release Checklist
 
 Every time the pack changes and friends need a new client file:
@@ -74,6 +84,7 @@ The client export should not include:
 The current export shape has been smoke-tested. The `.mrpack` contains:
 
 - `modrinth.index.json` for downloadable mods
+- `client-overrides/options.txt` for client keybind defaults
 - `overrides/defaultconfigs/...`
 - embedded jars for current non-Modrinth export cases:
   - `More Dragon Eggs`

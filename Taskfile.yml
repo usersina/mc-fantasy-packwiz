@@ -36,8 +36,20 @@ tasks:
         fi
 
         OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}.mrpack"
+        OUT_ABS="$PWD/$OUT"
         mkdir -p dist
         packwiz modrinth export -o "$OUT"
+
+        if [ -f client/options.txt ]; then
+          TMP_DIR="$(mktemp -d)"
+          trap 'rm -rf "$TMP_DIR"' EXIT
+
+          mkdir -p "$TMP_DIR/client-overrides"
+          cp client/options.txt "$TMP_DIR/client-overrides/options.txt"
+          (cd "$TMP_DIR" && zip -qr "$OUT_ABS" client-overrides/options.txt)
+          echo "==> Added client/options.txt as client-overrides/options.txt"
+        fi
+
         echo "==> Wrote $OUT"
 
   pack:serve:

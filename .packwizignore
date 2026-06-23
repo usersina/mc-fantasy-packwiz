@@ -6,6 +6,7 @@ Taskfile.yml
 docs/**
 server/**
 scripts/**
+client/**
 datapacks/**
 dist/**
 tmp/**
