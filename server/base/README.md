@@ -16,4 +16,4 @@ Setup copies these with `rsync --ignore-existing` by default, so local runtime c
 
 Do not put downloaded mod jars, NeoForge libraries, world saves, logs, backups, or `eula.txt` in this folder.
 
-This folder is server-only and is intentionally excluded from client `.mrpack` exports. See `../../docs/client-export.md` for the Prism/Freesm client-pack flow.
+This folder is server-only and is intentionally excluded from client `.mrpack` exports. See `../../client/README.md` for the Prism/Freesm client-pack flow.

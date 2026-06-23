@@ -7,6 +7,7 @@ vars:
   PACK_URL: http://127.0.0.1:8080/pack.toml
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
   CLIENT_PACK_SLUG: mc-fantasy
+  KEYBOARD: qwerty
 
 tasks:
   server:setup:
@@ -35,20 +36,33 @@ tasks:
           exit 1
         fi
 
-        OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}.mrpack"
+        KEYBOARD="$(printf '%s' "{{.KEYBOARD}}" | tr '[:upper:]' '[:lower:]')"
+        case "$KEYBOARD" in
+          qwerty|azerty) ;;
+          *)
+            echo "ERROR: KEYBOARD must be qwerty or azerty"
+            exit 1
+            ;;
+        esac
+
+        OPTIONS_FILE="client/options-${KEYBOARD}.txt"
+        if [ ! -f "$OPTIONS_FILE" ]; then
+          echo "ERROR: missing $OPTIONS_FILE"
+          exit 1
+        fi
+
+        OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}-${KEYBOARD}.mrpack"
         OUT_ABS="$PWD/$OUT"
         mkdir -p dist
         packwiz modrinth export -o "$OUT"
 
-        if [ -f client/options.txt ]; then
-          TMP_DIR="$(mktemp -d)"
-          trap 'rm -rf "$TMP_DIR"' EXIT
+        TMP_DIR="$(mktemp -d)"
+        trap 'rm -rf "$TMP_DIR"' EXIT
 
-          mkdir -p "$TMP_DIR/client-overrides"
-          cp client/options.txt "$TMP_DIR/client-overrides/options.txt"
-          (cd "$TMP_DIR" && zip -qr "$OUT_ABS" client-overrides/options.txt)
-          echo "==> Added client/options.txt as client-overrides/options.txt"
-        fi
+        mkdir -p "$TMP_DIR/client-overrides"
+        cp "$OPTIONS_FILE" "$TMP_DIR/client-overrides/options.txt"
+        (cd "$TMP_DIR" && zip -qr "$OUT_ABS" client-overrides/options.txt)
+        echo "==> Added $OPTIONS_FILE as client-overrides/options.txt"
 
         echo "==> Wrote $OUT"
 

@@ -41,7 +41,7 @@ The real server runtime is generated here:
 
 ## Client Pack
 
-For friends using Prism Launcher or Freesm Launcher, use the manual `.mrpack` export documented in [docs/client-export.md](docs/client-export.md).
+For friends using Prism Launcher or Freesm Launcher, use the manual `.mrpack` export documented in [client/README.md](client/README.md).
 
 Short version:
 
@@ -49,7 +49,13 @@ Short version:
 task pack:export-client
 ```
 
-This writes `dist/mc-fantasy-1.21.1-v1.0.0.mrpack`, deriving the Minecraft and pack versions from `pack.toml`. It also injects client-only defaults from `client/options.txt`.
+This writes `dist/mc-fantasy-1.21.1-v1.0.0-qwerty.mrpack`, deriving the Minecraft and pack versions from `pack.toml`. It also injects client-only defaults from `client/options-qwerty.txt`.
+
+For AZERTY friends:
+
+```bash
+task pack:export-client KEYBOARD=azerty
+```
 
 ## What Gets Used
 
