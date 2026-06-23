@@ -50,19 +50,24 @@ tasks:
           echo "ERROR: missing $OPTIONS_FILE"
           exit 1
         fi
+        if ! awk 'NR == 1 { ok = ($0 ~ /^version:[0-9]+$/); next } $0 !~ /^key_/ { bad = 1 } END { exit !(ok && !bad) }' "$OPTIONS_FILE"; then
+          echo "ERROR: $OPTIONS_FILE must start with version:<number> and contain only keybinding lines after that"
+          exit 1
+        fi
 
         OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}-${KEYBOARD}.mrpack"
         OUT_ABS="$PWD/$OUT"
         mkdir -p dist
+        rm -f "$OUT_ABS"
         packwiz modrinth export -o "$OUT"
 
         TMP_DIR="$(mktemp -d)"
         trap 'rm -rf "$TMP_DIR"' EXIT
 
-        mkdir -p "$TMP_DIR/client-overrides"
-        cp "$OPTIONS_FILE" "$TMP_DIR/client-overrides/options.txt"
-        (cd "$TMP_DIR" && zip -qr "$OUT_ABS" client-overrides/options.txt)
-        echo "==> Added $OPTIONS_FILE as client-overrides/options.txt"
+        mkdir -p "$TMP_DIR/overrides"
+        cp "$OPTIONS_FILE" "$TMP_DIR/overrides/options.txt"
+        (cd "$TMP_DIR" && zip -qr "$OUT_ABS" overrides/options.txt)
+        echo "==> Added $OPTIONS_FILE as overrides/options.txt"
 
         echo "==> Wrote $OUT"
 

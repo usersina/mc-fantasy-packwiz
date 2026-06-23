@@ -2,7 +2,7 @@
 
 This folder contains client release inputs and the manual Prism/Freesm `.mrpack` export flow.
 
-Files here are intentionally ignored by Packwiz's normal index so server sync does not copy them into the server runtime. `task pack:export-client` injects the selected client defaults into the generated `.mrpack` as `client-overrides/options.txt`.
+Files here are intentionally ignored by Packwiz's normal index so server sync does not copy them into the server runtime. `task pack:export-client` injects the selected client defaults into the generated `.mrpack` as `overrides/options.txt`.
 
 Full release automation is intentionally deferred; the future path should probably attach generated `.mrpack` files to a GitHub Release.
 
@@ -33,9 +33,9 @@ The generated `.mrpack` files are ignored by Git because `dist/` and `*.mrpack` 
 
 ## Client Defaults
 
-`options-qwerty.txt` or `options-azerty.txt` is exported into the `.mrpack` as `client-overrides/options.txt`.
+`options-qwerty.txt` or `options-azerty.txt` is exported into the `.mrpack` as `overrides/options.txt`. Modrinth `.mrpack` importers copy `overrides/` into the Minecraft instance root, which is where Minecraft reads `options.txt`.
 
-Those files are intentionally controls-only: they keep all `key_...` lines from the captured launcher profile so mod keybind groups stay coherent, while unrelated graphics, audio, chat, resource pack, and other personal settings stay out of the repo. Minecraft fills missing non-key option lines with defaults when the imported instance first launches.
+Those files are intentionally controls-only, with one required metadata line: `version:3955`. The version line prevents Minecraft 1.21.1 from treating modern key names as legacy LWJGL numeric key codes during option-file data fixing. After that first line, the profiles keep only `key_...` lines from the captured launcher profile, so mod keybind groups stay coherent while unrelated graphics, audio, chat, resource pack, and other personal settings stay out of the repo. Minecraft fills missing non-key option lines with defaults when the imported instance first launches.
 
 Current control defaults include the changed Vampirism action wheel keys, Iron's Spells spell controls, Dragon Mounts Remastered dragon command key, and the other keybind adjustments from the captured launcher profile.
 
@@ -44,12 +44,14 @@ The keyboard profiles differ only on the layout-sensitive bindings:
 ```txt
 QWERTY:
 key_key.forward:key.keyboard.w
+key_key.left:key.keyboard.a
 key_key.drop:key.keyboard.q
 key_keys.werewolves.bite:key.keyboard.z
 key_keys.vampirism.suck:key.keyboard.z
 
 AZERTY:
 key_key.forward:key.keyboard.z
+key_key.left:key.keyboard.q
 key_key.drop:key.keyboard.a
 key_keys.werewolves.bite:key.keyboard.w
 key_keys.vampirism.suck:key.keyboard.w
@@ -110,7 +112,7 @@ The client export should not include:
 The current export shape has been smoke-tested. The `.mrpack` contains:
 
 - `modrinth.index.json` for downloadable mods
-- `client-overrides/options.txt` for client keybind defaults
+- `overrides/options.txt` for client keybind defaults
 - `overrides/defaultconfigs/...`
 - embedded jars for current non-Modrinth export cases:
   - `More Dragon Eggs`
