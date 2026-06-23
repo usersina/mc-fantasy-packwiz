@@ -1,0 +1,13 @@
+name = "iron's spellbooks arcane essence blocks"
+filename = "arcaneessenceblock-1.0.1-neoforge-1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Pkj2hNRk/versions/Amnk4kDG/arcaneessenceblock-1.0.1-neoforge-1.21.1.jar"
+hash-format = "sha512"
+hash = "d3552483a71090ee034b863dd32304f52f07f3b67deec7a097e692ded29d25315a609fa492beeae800d94ecadd07e405794849d33a7bd97db4d8060c48bf1ae1"
+
+[update]
+[update.modrinth]
+mod-id = "Pkj2hNRk"
+version = "Amnk4kDG"

@@ -1,0 +1,13 @@
+name = "DMR: Phantom Dragon"
+filename = "DMR-Phantom-Dragon-1.21.1-1.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/jZ1O2L1W/versions/7OxL2HYN/DMR-Phantom-Dragon-1.21.1-1.0.0.jar"
+hash-format = "sha512"
+hash = "f723887d4a545bb510177649342a7c9d7f8a99920156d1f03fe21f58be58b801ada8e6cb2c928de8aa43c36228d659b2ad03fd4b79549a54a3146270ae2b2ca6"
+
+[update]
+[update.modrinth]
+mod-id = "jZ1O2L1W"
+version = "7OxL2HYN"

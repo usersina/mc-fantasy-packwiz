@@ -1,0 +1,13 @@
+name = "DMR: Craftable Eggs"
+filename = "dmr-craftable-eggs-1.3.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/YSQOjXtW/versions/AUDaQobX/dmr-craftable-eggs-1.3.0.jar"
+hash-format = "sha512"
+hash = "8cd45997774d82faf3ef0cc869c4d7954ba6e600b7349bb43c0d09f21190a720966ee83d1d7fb31946338d93697951ecb9e4e88a965eb891de557ee97bd1c565"
+
+[update]
+[update.modrinth]
+mod-id = "YSQOjXtW"
+version = "AUDaQobX"

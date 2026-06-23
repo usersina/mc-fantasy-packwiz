@@ -1,0 +1,13 @@
+name = "Fireproof Boats"
+filename = "fireproofboats-1.21.0-1.0.4.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/njBFO9fI/versions/VGsYexOS/fireproofboats-1.21.0-1.0.4.jar"
+hash-format = "sha512"
+hash = "6120f10cb987356ff44f028c9c87b9abe914287070fc26388dafc5bb6c1e03d869a54e159098b5f851dce90d31b94c775aa3c8e2a0d628df9374f24c0bb10a1f"
+
+[update]
+[update.modrinth]
+mod-id = "njBFO9fI"
+version = "VGsYexOS"

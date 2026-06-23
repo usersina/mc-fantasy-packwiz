@@ -1,0 +1,13 @@
+name = "Wind's Spellbooks : Iron's Spells 'n Spellbooks Addon"
+filename = "wind_spellbooks-1.0.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/nTApwmMc/versions/hOrukM8m/wind_spellbooks-1.0.1.jar"
+hash-format = "sha512"
+hash = "745111739ad0e64cdfbeaa7ad1e3d9a39c85aea69d31e10137673e3dbfb9bce861fbbcd819b9b8c8d6b111ba4ab6d55302967c2b081755a211239823d926feef"
+
+[update]
+[update.modrinth]
+mod-id = "nTApwmMc"
+version = "hOrukM8m"
