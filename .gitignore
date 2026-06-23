@@ -1,0 +1,33 @@
+# Never commit downloaded mods
+*.jar
+*.mrpack
+*.zip
+
+# Local packwiz/cache/temp
+.packwiz/
+.cache/
+dist/
+tmp/
+
+# Server/runtime files
+world/
+logs/
+crash-reports/
+server.properties
+eula.txt
+usercache.json
+whitelist.json
+ops.json
+banned-players.json
+banned-ips.json
+
+# Launcher/runtime
+.minecraft/
+minecraft/
+versions/
+libraries/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
