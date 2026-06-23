@@ -53,6 +53,18 @@ FORCE=true ACCEPT_EULA=true ./server/setup-fantasy-server.sh
 
 `server/base/server.properties` is intentionally tracked. The generated runtime `server.properties` at the repo root is ignored, but the template under `server/base/` is not.
 
+## Datapacks
+
+Put tracked datapacks in `datapacks/<datapack-name>/`. After changing datapacks, refresh the Packwiz index:
+
+```bash
+task pack:refresh
+```
+
+`task server:start` and `task server:sync` both sync Packwiz first, then mirror runtime `datapacks/` into the configured world folder, currently `/data/games/servers/minecraft/fantasy-lan/world/datapacks/`.
+
+For a brand-new world, run `task server:start` after `task pack:serve`; the launcher creates `world/datapacks/` before NeoForge starts, so the new world sees the repo datapacks on first generation.
+
 ## Useful Tasks
 
 Task names use `domain:action`: `pack:*` for Packwiz work and `server:*` for runtime work.

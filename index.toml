@@ -2,15 +2,43 @@ hash-format = "sha256"
 
 [[files]]
 file = "README.md"
-hash = "1a7ad5e1b4b808fe65110faa986f7ccb2fae1d727fe58d13e24c743c34041d79"
+hash = "f504b4bbc8fe4688e97b6ad148cab87c0318ba717ff92a461756a577cd082d3f"
 
 [[files]]
 file = "Taskfile.yml"
-hash = "c32f4b51e5da3bd9883694b0aa5ada09470e482009820c0919ddb10ad911cafe"
+hash = "4f10c905fc71dd42c82a94240fd4e3d04c531c15b7397f9518145319283d2ecf"
 
 [[files]]
-file = "datapacks/.gitkeep"
-hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+file = "datapacks/blood_vials_to_blood_bottles/README.md"
+hash = "a68e6ce9999bc0b36029d27a620fc04014201a034d5976d012391501fb1501ab"
+
+[[files]]
+file = "datapacks/blood_vials_to_blood_bottles/data/blood_vials_to_blood_bottles/recipe/blood_bottle_3_from_vial.json"
+hash = "4e1b4a7ffb5b9d8265dbb243f5bb87a831200eb14feb443f83956e9b26d596a8"
+
+[[files]]
+file = "datapacks/blood_vials_to_blood_bottles/data/blood_vials_to_blood_bottles/recipe/blood_bottle_6_from_vials.json"
+hash = "56cd77cfe71c01b4ee89ff1b3b6cd95e79e300bbde0b16b22c59bfbdf285fd0c"
+
+[[files]]
+file = "datapacks/blood_vials_to_blood_bottles/data/blood_vials_to_blood_bottles/recipe/blood_bottle_9_from_vials.json"
+hash = "5164b63fbf26b9d0bb52a0b68e509f448bfe1853d999a2c69a55b243e18b383e"
+
+[[files]]
+file = "datapacks/blood_vials_to_blood_bottles/pack.mcmeta"
+hash = "bcd11748c4348eab4458c78ed7ae3cc3f21c69ce6efc1e9d0593c3619e408c89"
+
+[[files]]
+file = "datapacks/craftable_arcane_essence/README.md"
+hash = "9afdbb569a260a35abd6801ad49374e522f237316fe0df0e33081744089d7513"
+
+[[files]]
+file = "datapacks/craftable_arcane_essence/data/craftable_arcane_essence/recipe/arcane_essence.json"
+hash = "37c51f9b7421fc07ce61b1210fc72246760f2793d9083ae1df1e1e02d1be62f6"
+
+[[files]]
+file = "datapacks/craftable_arcane_essence/pack.mcmeta"
+hash = "2c7b88e5ff6ad9378150ed7c0d04e952ea248d9cdc399d980c87588a6e5b63bd"
 
 [[files]]
 file = "defaultconfigs/paraglider-common.toml"
@@ -613,7 +641,7 @@ hash = "32a4d689caed807a24e6ad00a7d8794222efd19d772a2d41eb30e6cced3f533a"
 
 [[files]]
 file = "server/base/start-packwiz-server.sh"
-hash = "206a6dcd6d27db119e67972b917c739cba1cd5e7460a5ce6f6b4effbb63390ab"
+hash = "3e481bd91aed5640eb83e424825d0ab10ae6969c298a32f9b97b11e59b39f3de"
 
 [[files]]
 file = "server/base/user_jvm_args.txt"

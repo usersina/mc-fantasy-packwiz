@@ -9,18 +9,6 @@
 /dist/
 /tmp/
 
-# Server/runtime files generated when running from the repo root
-/world/
-/logs/
-/crash-reports/
-/server.properties
-/eula.txt
-/usercache.json
-/whitelist.json
-/ops.json
-/banned-players.json
-/banned-ips.json
-
 # Launcher/runtime
 /.minecraft/
 /minecraft/

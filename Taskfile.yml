@@ -27,7 +27,7 @@ tasks:
       - packwiz serve -p 8080
 
   server:sync:
-    desc: Sync server-side mods/configs from packwiz
+    desc: Sync server-side mods/configs/datapacks from packwiz
     dir: '{{.REPO_DIR}}'
     cmds:
       - |
@@ -35,7 +35,7 @@ tasks:
           echo "ERROR: run 'task server:setup' first"
           exit 1
         }
-      - cd "{{.SERVER_DIR}}" && "{{.JAVA21}}" -jar packwiz-installer-bootstrap.jar -g -s server "{{.PACK_URL}}"
+      - cd "{{.SERVER_DIR}}" && SYNC_ONLY=true PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
 
   server:start:
     desc: Sync server then start NeoForge after setup

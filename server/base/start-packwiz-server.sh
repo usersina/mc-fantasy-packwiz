@@ -6,6 +6,7 @@ PACK_URL="${PACK_URL:-http://127.0.0.1:8080/pack.toml}"
 JAVA21="${JAVA21:-/usr/lib/jvm/java-21-openjdk/bin/java}"
 NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.233}"
 PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar}"
+SYNC_ONLY="${SYNC_ONLY:-false}"
 
 cd "$SERVER_DIR"
 
@@ -49,6 +50,24 @@ fi
 
 echo "==> Syncing server-side packwiz files"
 "$JAVA21" -jar packwiz-installer-bootstrap.jar -g -s server "$PACK_URL"
+
+WORLD_NAME="$(sed -n 's/^level-name=//p' server.properties 2>/dev/null | tail -n 1)"
+WORLD_NAME="${WORLD_NAME:-world}"
+PACK_DATAPACKS_DIR="$SERVER_DIR/datapacks"
+WORLD_DATAPACKS_DIR="$SERVER_DIR/$WORLD_NAME/datapacks"
+
+if [ -d "$PACK_DATAPACKS_DIR" ] && [ -n "$(find "$PACK_DATAPACKS_DIR" -mindepth 1 ! -name .gitkeep -print -quit)" ]; then
+  echo "==> Syncing datapacks into $WORLD_DATAPACKS_DIR"
+  mkdir -p "$WORLD_DATAPACKS_DIR"
+  rsync -a --delete --exclude .gitkeep "$PACK_DATAPACKS_DIR/" "$WORLD_DATAPACKS_DIR/"
+else
+  echo "==> No repo datapacks to sync"
+fi
+
+if [ "$SYNC_ONLY" = "true" ]; then
+  echo "==> Sync complete; not starting server because SYNC_ONLY=true"
+  exit 0
+fi
 
 echo "==> Starting NeoForge server"
 echo "==> NeoForge args: $NEOFORGE_ARGS"
