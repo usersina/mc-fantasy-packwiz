@@ -1,0 +1,11 @@
+.git/**
+.gitignore
+.packwizignore
+README.md
+Taskfile.yml
+docs/**
+server/**
+scripts/**
+datapacks/**
+dist/**
+tmp/**

@@ -10,8 +10,10 @@ Prerequisites:
 
 - Java 21 at `/usr/lib/jvm/java-21-openjdk/bin/java`
 - `packwiz`
-- `task` from Go Task
+- Go Task, exposed as `task` or `go-task`
 - `curl` and `rsync`
+
+Examples below use `task`. If your install exposes the binary as `go-task`, replace `task` with `go-task`.
 
 First, set up the generated server runtime:
 
@@ -37,6 +39,18 @@ The real server runtime is generated here:
 /data/games/servers/minecraft/fantasy-lan/
 ```
 
+## Client Pack
+
+For friends using Prism Launcher or Freesm Launcher, use the manual `.mrpack` export documented in [docs/client-export.md](docs/client-export.md).
+
+Short version:
+
+```bash
+task pack:export-client
+```
+
+This writes `dist/mc-fantasy-1.21.1-v1.0.0.mrpack`, deriving the Minecraft and pack versions from `pack.toml`.
+
 ## What Gets Used
 
 The base server template lives in `server/base/`. `task server:setup` runs `server/setup-fantasy-server.sh`, which copies these files into the runtime directory:
@@ -55,15 +69,13 @@ FORCE=true ACCEPT_EULA=true ./server/setup-fantasy-server.sh
 
 ## Datapacks
 
-Put tracked datapacks in `datapacks/<datapack-name>/`. After changing datapacks, refresh the Packwiz index:
+Put tracked server datapacks in `datapacks/<datapack-name>/`.
 
-```bash
-task pack:refresh
-```
-
-`task server:start` and `task server:sync` both sync Packwiz first, then mirror runtime `datapacks/` into the configured world folder, currently `/data/games/servers/minecraft/fantasy-lan/world/datapacks/`.
+`task server:start` and `task server:sync` both sync Packwiz first, copy repo datapacks into the runtime, then mirror them into the configured world folder, currently `/data/games/servers/minecraft/fantasy-lan/world/datapacks/`.
 
 For a brand-new world, run `task server:start` after `task pack:serve`; the launcher creates `world/datapacks/` before NeoForge starts, so the new world sees the repo datapacks on first generation.
+
+Repo datapacks are server-managed and intentionally excluded from client `.mrpack` exports.
 
 ## Useful Tasks
 

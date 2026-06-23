@@ -6,6 +6,7 @@ vars:
   SERVER_DIR: /data/games/servers/minecraft/fantasy-lan
   PACK_URL: http://127.0.0.1:8080/pack.toml
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
+  CLIENT_PACK_SLUG: mc-fantasy
 
 tasks:
   server:setup:
@@ -19,6 +20,25 @@ tasks:
     dir: '{{.REPO_DIR}}'
     cmds:
       - packwiz refresh
+
+  pack:export-client:
+    desc: Export Prism/Freesm .mrpack into dist/
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - packwiz refresh
+      - |
+        VERSION="$(awk -F'"' '/^version = / { print $2; exit }' pack.toml)"
+        MC_VERSION="$(awk -F'"' '/^minecraft = / { print $2; exit }' pack.toml)"
+
+        if [ -z "$VERSION" ] || [ -z "$MC_VERSION" ]; then
+          echo "ERROR: could not read version or minecraft from pack.toml"
+          exit 1
+        fi
+
+        OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}.mrpack"
+        mkdir -p dist
+        packwiz modrinth export -o "$OUT"
+        echo "==> Wrote $OUT"
 
   pack:serve:
     desc: Serve packwiz locally
@@ -35,7 +55,7 @@ tasks:
           echo "ERROR: run 'task server:setup' first"
           exit 1
         }
-      - cd "{{.SERVER_DIR}}" && SYNC_ONLY=true PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
+      - cd "{{.SERVER_DIR}}" && SYNC_ONLY=true PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" REPO_DATAPACKS_DIR="{{.REPO_DIR}}/datapacks" ./start-packwiz-server.sh
 
   server:start:
     desc: Sync server then start NeoForge after setup
@@ -46,7 +66,7 @@ tasks:
           echo "ERROR: run 'task server:setup' first"
           exit 1
         }
-      - cd "{{.SERVER_DIR}}" && PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
+      - cd "{{.SERVER_DIR}}" && PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" REPO_DATAPACKS_DIR="{{.REPO_DIR}}/datapacks" ./start-packwiz-server.sh
 
   server:backup:
     desc: Backup world

@@ -7,6 +7,7 @@ JAVA21="${JAVA21:-/usr/lib/jvm/java-21-openjdk/bin/java}"
 NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.233}"
 PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar}"
 SYNC_ONLY="${SYNC_ONLY:-false}"
+REPO_DATAPACKS_DIR="${REPO_DATAPACKS_DIR:-}"
 
 cd "$SERVER_DIR"
 
@@ -55,6 +56,12 @@ WORLD_NAME="$(sed -n 's/^level-name=//p' server.properties 2>/dev/null | tail -n
 WORLD_NAME="${WORLD_NAME:-world}"
 PACK_DATAPACKS_DIR="$SERVER_DIR/datapacks"
 WORLD_DATAPACKS_DIR="$SERVER_DIR/$WORLD_NAME/datapacks"
+
+if [ -n "$REPO_DATAPACKS_DIR" ] && [ -d "$REPO_DATAPACKS_DIR" ]; then
+  echo "==> Syncing repo datapacks into $PACK_DATAPACKS_DIR"
+  mkdir -p "$PACK_DATAPACKS_DIR"
+  rsync -a --delete --exclude .gitkeep "$REPO_DATAPACKS_DIR/" "$PACK_DATAPACKS_DIR/"
+fi
 
 if [ -d "$PACK_DATAPACKS_DIR" ] && [ -n "$(find "$PACK_DATAPACKS_DIR" -mindepth 1 ! -name .gitkeep -print -quit)" ]; then
   echo "==> Syncing datapacks into $WORLD_DATAPACKS_DIR"

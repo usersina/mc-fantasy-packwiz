@@ -1,46 +1,6 @@
 hash-format = "sha256"
 
 [[files]]
-file = "README.md"
-hash = "f504b4bbc8fe4688e97b6ad148cab87c0318ba717ff92a461756a577cd082d3f"
-
-[[files]]
-file = "Taskfile.yml"
-hash = "4f10c905fc71dd42c82a94240fd4e3d04c531c15b7397f9518145319283d2ecf"
-
-[[files]]
-file = "datapacks/blood_vials_to_blood_bottles/README.md"
-hash = "a68e6ce9999bc0b36029d27a620fc04014201a034d5976d012391501fb1501ab"
-
-[[files]]
-file = "datapacks/blood_vials_to_blood_bottles/data/blood_vials_to_blood_bottles/recipe/blood_bottle_3_from_vial.json"
-hash = "4e1b4a7ffb5b9d8265dbb243f5bb87a831200eb14feb443f83956e9b26d596a8"
-
-[[files]]
-file = "datapacks/blood_vials_to_blood_bottles/data/blood_vials_to_blood_bottles/recipe/blood_bottle_6_from_vials.json"
-hash = "56cd77cfe71c01b4ee89ff1b3b6cd95e79e300bbde0b16b22c59bfbdf285fd0c"
-
-[[files]]
-file = "datapacks/blood_vials_to_blood_bottles/data/blood_vials_to_blood_bottles/recipe/blood_bottle_9_from_vials.json"
-hash = "5164b63fbf26b9d0bb52a0b68e509f448bfe1853d999a2c69a55b243e18b383e"
-
-[[files]]
-file = "datapacks/blood_vials_to_blood_bottles/pack.mcmeta"
-hash = "bcd11748c4348eab4458c78ed7ae3cc3f21c69ce6efc1e9d0593c3619e408c89"
-
-[[files]]
-file = "datapacks/craftable_arcane_essence/README.md"
-hash = "9afdbb569a260a35abd6801ad49374e522f237316fe0df0e33081744089d7513"
-
-[[files]]
-file = "datapacks/craftable_arcane_essence/data/craftable_arcane_essence/recipe/arcane_essence.json"
-hash = "37c51f9b7421fc07ce61b1210fc72246760f2793d9083ae1df1e1e02d1be62f6"
-
-[[files]]
-file = "datapacks/craftable_arcane_essence/pack.mcmeta"
-hash = "2c7b88e5ff6ad9378150ed7c0d04e952ea248d9cdc399d980c87588a6e5b63bd"
-
-[[files]]
 file = "defaultconfigs/paraglider-common.toml"
 hash = "d81262505664f39799b57418d9744d02aed0c25b9ee1c1f0269cd6f4b9f31a83"
 
@@ -626,27 +586,3 @@ metafile = true
 file = "mods/yungs-extras.pw.toml"
 hash = "2541b092b92a82757e5d200a6093658e20db548bb8583abad3f4506ed04e5ce6"
 metafile = true
-
-[[files]]
-file = "server/backup-world.sh"
-hash = "f3711175607487928ebc9d71d55d0e35eec38f854e9932bf27440c013e19e5c0"
-
-[[files]]
-file = "server/base/README.md"
-hash = "7ef1f77d2d816b457bf1de0f6439c18c8f11cabc635f85ecb56b1999d19b19cf"
-
-[[files]]
-file = "server/base/server.properties"
-hash = "32a4d689caed807a24e6ad00a7d8794222efd19d772a2d41eb30e6cced3f533a"
-
-[[files]]
-file = "server/base/start-packwiz-server.sh"
-hash = "3e481bd91aed5640eb83e424825d0ab10ae6969c298a32f9b97b11e59b39f3de"
-
-[[files]]
-file = "server/base/user_jvm_args.txt"
-hash = "50b5f7b8b8dc31f7079a1f84ba013f2bc757467154ed7829a7d7256559a15176"
-
-[[files]]
-file = "server/setup-fantasy-server.sh"
-hash = "f285c89de4203011ff4a3ad4223863f142153b2189ed24ff7cd5b71aa46916be"

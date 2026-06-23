@@ -39,7 +39,9 @@ Result:
 
 ## Installation
 
-Put the `.zip` file in your world's `datapacks` folder, then run:
+In this repo, leave this datapack unpacked under `datapacks/blood_vials_to_blood_bottles/`. `task server:start` and `task server:sync` copy it into the server runtime and mirror it into the configured world before NeoForge starts.
+
+For standalone use outside this repo, put a zipped copy in your world's `datapacks` folder, then run:
 
 ```mcfunction
 /reload
