@@ -1,0 +1,41 @@
+version: '3'
+
+vars:
+  REPO_DIR: /home/sina/Documents/github/usersina/mc-fantasy-packwiz
+  SERVER_DIR: /data/games/servers/minecraft/fantasy-lan
+  PACK_URL: http://127.0.0.1:8080/pack.toml
+
+tasks:
+  refresh:
+    desc: Refresh packwiz index
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - packwiz refresh
+
+  serve:
+    desc: Serve packwiz locally
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - packwiz serve -p 8080
+
+  server:sync:
+    desc: Sync server-side mods/configs from packwiz
+    dir: '{{.SERVER_DIR}}'
+    env:
+      PACK_URL: '{{.PACK_URL}}'
+    cmds:
+      - java -jar packwiz-installer-bootstrap.jar -g -s server "{{.PACK_URL}}"
+
+  server:start:
+    desc: Sync server then start NeoForge
+    dir: '{{.SERVER_DIR}}'
+    env:
+      PACK_URL: '{{.PACK_URL}}'
+    cmds:
+      - ./start-packwiz-server.sh
+
+  backup:
+    desc: Backup world
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - ./server/backup-world.sh
