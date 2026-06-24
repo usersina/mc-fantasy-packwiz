@@ -13,6 +13,18 @@ file = "defaultconfigs/paraglider-server.toml"
 hash = "dbebf5130d20e01beb2a5e8d48fb22b267a81ae64fdcf7776ae40286cbcae951"
 
 [[files]]
+file = "defaultconfigs/vampirism-balance.toml"
+hash = "a54cbb1f21ba260705916c92f94e18b97180a6060a46958e1e32bd3a9fa21445"
+
+[[files]]
+file = "defaultconfigs/vampirism-common.toml"
+hash = "2dce8914ff3efc090b392e8336a60f6e3cce1ec8e97f758447334386d8d6f388"
+
+[[files]]
+file = "defaultconfigs/vampirism-server.toml"
+hash = "91acad24efd2ff810049be33431d7191a33acefaa113d841f7518f405ec44cf6"
+
+[[files]]
 file = "defaultconfigs/waystones-common.toml"
 hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
 
