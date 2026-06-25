@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " G ",
+    "VHV",
+    " N "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "V": {
+      "item": "irons_spellbooks:blood_vial"
+    },
+    "H": {
+      "item": "vampirism:human_heart"
+    },
+    "N": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "result": {
+    "id": "vampirism:pure_blood_4",
+    "count": 1
+  }
+}

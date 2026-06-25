@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "type": "neoforge:components",
+    "items": "vampirism:blood_bottle",
+    "components": {
+      "vampirism:bottle_blood": {
+        "blood": 9
+      }
+    },
+    "strict": false
+  },
+  "result": {
+    "id": "irons_spellbooks:blood_vial",
+    "count": 3
+  }
+}

@@ -6,6 +6,12 @@
       "item": "irons_spellbooks:blood_vial"
     },
     {
+      "item": "irons_spellbooks:blood_vial"
+    },
+    {
+      "item": "irons_spellbooks:blood_vial"
+    },
+    {
       "item": "minecraft:glass_bottle"
     }
   ],
@@ -14,7 +20,7 @@
     "count": 1,
     "components": {
       "vampirism:bottle_blood": {
-        "blood": 3
+        "blood": 9
       }
     }
   }
