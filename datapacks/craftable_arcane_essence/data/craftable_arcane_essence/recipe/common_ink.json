@@ -12,11 +12,11 @@
       "item": "irons_spellbooks:arcane_essence"
     },
     {
-      "item": "minecraft:copper_nugget"
+      "item": "minecraft:copper_ingot"
     }
   ],
   "result": {
     "id": "irons_spellbooks:common_ink",
-    "count": 1
+    "count": 2
   }
 }
