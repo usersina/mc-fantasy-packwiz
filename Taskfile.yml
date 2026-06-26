@@ -11,10 +11,10 @@ vars:
 
 tasks:
   server:setup:
-    desc: Create/install the server runtime from repo templates
+    desc: Create/install the server runtime
     dir: '{{.REPO_DIR}}'
     cmds:
-      - SERVER_DIR="{{.SERVER_DIR}}" JAVA21="{{.JAVA21}}" ACCEPT_EULA=true ./server/setup-fantasy-server.sh
+      - SERVER_DIR="{{.SERVER_DIR}}" JAVA21="{{.JAVA21}}" ACCEPT_EULA=true ./scripts/server.sh setup
 
   pack:refresh:
     desc: Refresh packwiz index
@@ -83,30 +83,34 @@ tasks:
     cmds:
       - packwiz serve -p 8080
 
-  server:sync:
-    desc: Sync server-side mods/configs/global datapacks from packwiz
+  server:update:
+    desc: Sync Packwiz-managed server files without starting
     dir: '{{.REPO_DIR}}'
     cmds:
-      - |
-        test -x "{{.SERVER_DIR}}/start-packwiz-server.sh" || {
-          echo "ERROR: run 'task server:setup' first"
-          exit 1
-        }
-      - cd "{{.SERVER_DIR}}" && SYNC_ONLY=true PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
+      - packwiz refresh
+      - SERVER_DIR="{{.SERVER_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./scripts/server.sh update
 
   server:start:
-    desc: Sync server then start NeoForge after setup
+    desc: Sync server then start NeoForge
     dir: '{{.REPO_DIR}}'
     cmds:
-      - |
-        test -x "{{.SERVER_DIR}}/start-packwiz-server.sh" || {
-          echo "ERROR: run 'task server:setup' first"
-          exit 1
-        }
-      - cd "{{.SERVER_DIR}}" && PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
+      - packwiz refresh
+      - SERVER_DIR="{{.SERVER_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./scripts/server.sh start
+
+  server:diff-base:
+    desc: Compare server-base templates with runtime copies
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - SERVER_DIR="{{.SERVER_DIR}}" ./scripts/server.sh diff-base
+
+  server:apply-base:
+    desc: Backup and overwrite runtime base files from server-base templates
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - SERVER_DIR="{{.SERVER_DIR}}" ./scripts/server.sh apply-base
 
   server:backup:
     desc: Backup world
     dir: '{{.REPO_DIR}}'
     cmds:
-      - SERVER_DIR="{{.SERVER_DIR}}" ./server/backup-world.sh
+      - SERVER_DIR="{{.SERVER_DIR}}" ./scripts/server.sh backup

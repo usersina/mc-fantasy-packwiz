@@ -101,7 +101,7 @@ The client export should include:
 The client export should not include:
 
 - the generated server runtime
-- `server/base/`
+- `server-base/`
 - server world saves
 - logs, crash reports, libraries, installers, or NeoForge runtime files
 - repo docs and Taskfile plumbing
@@ -118,7 +118,7 @@ The current export shape has been smoke-tested. The `.mrpack` contains:
   - `More Dragon Eggs`
   - `Configured`
 
-It does not contain `server/`, `docs/`, `Taskfile.yml`, or `README.md`.
+It does not contain `server-base/`, `scripts/`, `docs/`, `Taskfile.yml`, or `README.md`.
 
 ## Side Policy For Singleplayer
 
