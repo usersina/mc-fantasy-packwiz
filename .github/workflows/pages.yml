@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       asset_name: ${{ steps.export_client.outputs.asset_name }}
+      stable_asset_name: ${{ steps.export_client.outputs.stable_asset_name }}
       pack_version: ${{ steps.export_client.outputs.pack_version }}
       minecraft_version: ${{ steps.export_client.outputs.minecraft_version }}
     steps:
@@ -74,7 +75,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: client-pack
-          path: ${{ steps.export_client.outputs.asset_path }}
+          path: |
+            ${{ steps.export_client.outputs.asset_path }}
+            ${{ steps.export_client.outputs.stable_asset_path }}
           if-no-files-found: error
 
       - name: Configure Pages
@@ -116,12 +119,18 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: client-stable
           ASSET_NAME: ${{ needs.build.outputs.asset_name }}
+          STABLE_ASSET_NAME: ${{ needs.build.outputs.stable_asset_name }}
           PACK_VERSION: ${{ needs.build.outputs.pack_version }}
           MC_VERSION: ${{ needs.build.outputs.minecraft_version }}
         run: |
           asset_path="dist/release/$ASSET_NAME"
+          stable_asset_path="dist/release/$STABLE_ASSET_NAME"
           if [ ! -f "$asset_path" ]; then
             echo "ERROR: missing downloaded client pack artifact: $asset_path"
+            exit 1
+          fi
+          if [ ! -f "$stable_asset_path" ]; then
+            echo "ERROR: missing downloaded stable client pack artifact: $stable_asset_path"
             exit 1
           fi
 
@@ -129,7 +138,13 @@ jobs:
           cat > "$notes_file" <<EOF
           Stable client bootstrap for the Fantasy Pack.
 
-          Download \`$ASSET_NAME\` and import it into Prism Launcher or Freesm Launcher.
+          Import this stable URL into Prism Launcher or Freesm Launcher:
+          https://github.com/${GITHUB_REPOSITORY}/releases/download/$RELEASE_TAG/$STABLE_ASSET_NAME
+
+          Versioned asset:
+          $ASSET_NAME
+
+          A .mrpack import is a snapshot. Relaunching the same instance only auto-updates if the instance has the Packwiz pre-launch updater command configured.
 
           Preferred live updater URL:
           https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
@@ -148,14 +163,14 @@ jobs:
               gh api -X DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${asset_id}"
             done
 
-            gh release upload "$RELEASE_TAG" "$asset_path"
+            gh release upload "$RELEASE_TAG" "$stable_asset_path" "$asset_path"
             gh release edit "$RELEASE_TAG" \
               --title "Fantasy Pack Client Bootstrap" \
               --notes-file "$notes_file" \
               --target "$GITHUB_SHA" \
               --latest
           else
-            gh release create "$RELEASE_TAG" "$asset_path" \
+            gh release create "$RELEASE_TAG" "$stable_asset_path" "$asset_path" \
               --title "Fantasy Pack Client Bootstrap" \
               --notes-file "$notes_file" \
               --target "$GITHUB_SHA" \

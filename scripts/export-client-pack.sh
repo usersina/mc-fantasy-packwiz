@@ -18,11 +18,14 @@ fi
 packwiz refresh
 
 OUT="${DIST_DIR%/}/${CLIENT_PACK_SLUG}-${MC_VERSION}-v${VERSION}.mrpack"
+STABLE_OUT="${DIST_DIR%/}/${CLIENT_PACK_SLUG}-stable.mrpack"
 mkdir -p "$DIST_DIR"
-rm -f "$OUT"
+rm -f "$OUT" "$STABLE_OUT"
 packwiz modrinth export -o "$OUT"
+cp "$OUT" "$STABLE_OUT"
 
 echo "==> Wrote $OUT"
+echo "==> Wrote $STABLE_OUT"
 
 if [ "${GITHUB_OUTPUT:-}" != "" ]; then
   {
@@ -30,5 +33,7 @@ if [ "${GITHUB_OUTPUT:-}" != "" ]; then
     echo "minecraft_version=$MC_VERSION"
     echo "asset_name=$(basename "$OUT")"
     echo "asset_path=$OUT"
+    echo "stable_asset_name=$(basename "$STABLE_OUT")"
+    echo "stable_asset_path=$STABLE_OUT"
   } >> "$GITHUB_OUTPUT"
 fi

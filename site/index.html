@@ -249,15 +249,15 @@
         <h1>MC Fantasy Packwiz</h1>
         <p class="lede">
           This site hosts the stable Packwiz update channel for the Fantasy
-          Minecraft pack. Launchers should use the Packwiz URL, while players
-          should import the prepared Prism or Freesm updater instance.
+          Minecraft pack. Players can import the client pack, while
+          auto-updating instances should use the Packwiz URL.
         </p>
         <div class="actions">
           <a class="button" href="stable/pack.toml">Stable pack.toml</a>
           <a
             class="button secondary"
-            href="https://github.com/usersina/mc-fantasy-packwiz/releases/latest"
-            >Download .mrpack</a
+            href="https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack"
+            >Import .mrpack</a
           >
           <a
             class="button secondary"
@@ -309,27 +309,33 @@
           The public client pack is a Prism/Freesm <code>.mrpack</code>
           published as a GitHub Release artifact.
         </p>
+        <p>Use this import URL:</p>
+        <div class="endpoint">
+          <pre><code>https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack</code></pre>
+        </div>
         <ol>
           <li>Install Prism Launcher or Freesm Launcher.</li>
           <li>Make sure the launcher uses Java 21.</li>
           <li>
-            Download the latest client pack from
-            <a
-              href="https://github.com/usersina/mc-fantasy-packwiz/releases/latest"
-              >GitHub Releases</a
-            >.
+            Choose <code>Add Instance</code>, then <code>Import</code>.
           </li>
-          <li>Choose <code>Add Instance</code>, then <code>Import</code>.</li>
-          <li>Select the downloaded <code>.mrpack</code> file.</li>
+          <li>Paste the import URL, or select the downloaded file.</li>
           <li>
             Launch the imported instance and wait for downloads to finish.
           </li>
           <li>Join the multiplayer server with the address you were given.</li>
         </ol>
         <p>
-          If the server pack changes later, download and import the latest
-          release again unless you are using a prepared updater instance.
-          Controls can be changed locally in Minecraft.
+          A direct <code>.mrpack</code> import is a snapshot. Restarting that
+          same instance does not check for new releases. If the server pack
+          changes later, import the same URL again unless you are using a
+          prepared updater instance.
+        </p>
+        <p>
+          Controls can be changed locally in Minecraft. Latest release page:
+          <a href="https://github.com/usersina/mc-fantasy-packwiz/releases/latest"
+            >GitHub Releases</a
+          >.
         </p>
         <p>
           For troubleshooting and maintainer details, read the
