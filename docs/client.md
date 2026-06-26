@@ -123,6 +123,7 @@ https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 
     ```txt
     <instance Minecraft folder>/packwiz-installer-bootstrap.jar
+    # E.g. /home/user/.local/share/FreesmLauncher/instances/mc-fantasy-stable/minecraft/packwiz-installer-bootstrap.jar
     ```
 
 6. In the instance settings, open:
@@ -137,6 +138,10 @@ https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
     ```bash
     "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
     ```
+
+    The Custom Commands tab should look like this:
+
+    ![Freesm Launcher pre-launch command field configured for Packwiz Installer](../media/pre-launch-command.png)
 
 8. Save the instance settings.
 9. Launch the same instance.
