@@ -11,7 +11,26 @@ ACCEPT_EULA="${ACCEPT_EULA:-false}"
 
 NEOFORGE_INSTALLER="neoforge-${NEOFORGE_VERSION}-installer.jar"
 NEOFORGE_URL="https://maven.neoforged.net/releases/net/neoforged/neoforge/${NEOFORGE_VERSION}/${NEOFORGE_INSTALLER}"
-PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar}"
+PACKWIZ_INSTALLER_VERSION="${PACKWIZ_INSTALLER_VERSION:-v0.0.3}"
+PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/${PACKWIZ_INSTALLER_VERSION}/packwiz-installer-bootstrap.jar}"
+
+download_if_missing() {
+  local output="$1"
+  local url="$2"
+  local tmp
+
+  if [ -f "$output" ]; then
+    return 0
+  fi
+
+  tmp="$(mktemp "${output}.tmp.XXXXXX")"
+  if ! curl -fL --retry 3 --retry-delay 2 -o "$tmp" "$url"; then
+    rm -f "$tmp"
+    echo "ERROR: failed to download $url"
+    exit 1
+  fi
+  mv "$tmp" "$output"
+}
 
 echo "==> Repo:   $REPO_DIR"
 echo "==> Base:   $SERVER_BASE_DIR"
@@ -55,9 +74,7 @@ fi
 cd "$SERVER_DIR"
 
 echo "==> Downloading NeoForge installer if needed"
-if [ ! -f "$NEOFORGE_INSTALLER" ]; then
-  curl -L -o "$NEOFORGE_INSTALLER" "$NEOFORGE_URL"
-fi
+download_if_missing "$NEOFORGE_INSTALLER" "$NEOFORGE_URL"
 
 echo "==> Installing NeoForge server if needed"
 if [ ! -f "run.sh" ]; then
@@ -67,9 +84,7 @@ else
 fi
 
 echo "==> Downloading packwiz installer if needed"
-if [ ! -f "packwiz-installer-bootstrap.jar" ]; then
-  curl -L -o packwiz-installer-bootstrap.jar "$PACKWIZ_INSTALLER_URL"
-fi
+download_if_missing packwiz-installer-bootstrap.jar "$PACKWIZ_INSTALLER_URL"
 
 echo "==> Handling EULA"
 if [ "$ACCEPT_EULA" = "true" ]; then

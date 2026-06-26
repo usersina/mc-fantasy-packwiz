@@ -12,6 +12,7 @@ Prerequisites:
 - `packwiz`
 - Go Task, exposed as `task` or `go-task`
 - `curl` and `rsync`
+- `zip`
 
 Examples below use `task`. If your install exposes the binary as `go-task`, replace `task` with `go-task`.
 
@@ -75,13 +76,13 @@ FORCE=true ACCEPT_EULA=true ./server/setup-fantasy-server.sh
 
 ## Datapacks
 
-Put tracked server datapacks in `datapacks/<datapack-name>/`.
+Put tracked global datapacks in `config/paxi/datapacks/<datapack-name>/`.
 
-`task server:start` and `task server:sync` both sync Packwiz first, copy repo datapacks into the runtime, then mirror them into the configured world folder, currently `/data/games/servers/minecraft/fantasy-lan/world/datapacks/`.
+The pack includes Paxi, which loads those datapacks for every world. Because they are normal Packwiz-managed files now, `task server:start`, `task server:sync`, and `task pack:export-client` all use the same datapack source.
 
-For a brand-new world, run `task server:start` after `task pack:serve`; the launcher creates `world/datapacks/` before NeoForge starts, so the new world sees the repo datapacks on first generation.
+For a brand-new dedicated server world, run `task server:start` after `task pack:serve`; Packwiz syncs `config/paxi/datapacks/...` before NeoForge starts, so Paxi exposes the datapacks on first generation.
 
-Repo datapacks are server-managed and intentionally excluded from client `.mrpack` exports.
+For local Prism/Freesm singleplayer, import the exported `.mrpack`; the same `config/paxi/datapacks/...` files are included there too.
 
 ## Useful Tasks
 

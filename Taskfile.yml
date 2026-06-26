@@ -26,8 +26,12 @@ tasks:
     desc: Export Prism/Freesm .mrpack into dist/
     dir: '{{.REPO_DIR}}'
     cmds:
-      - packwiz refresh
       - |
+        command -v zip >/dev/null || {
+          echo "ERROR: zip is required for injecting client options into the exported .mrpack"
+          exit 1
+        }
+
         VERSION="$(awk -F'"' '/^version = / { print $2; exit }' pack.toml)"
         MC_VERSION="$(awk -F'"' '/^minecraft = / { print $2; exit }' pack.toml)"
 
@@ -55,6 +59,8 @@ tasks:
           exit 1
         fi
 
+        packwiz refresh
+
         OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}-${KEYBOARD}.mrpack"
         OUT_ABS="$PWD/$OUT"
         mkdir -p dist
@@ -78,7 +84,7 @@ tasks:
       - packwiz serve -p 8080
 
   server:sync:
-    desc: Sync server-side mods/configs/datapacks from packwiz
+    desc: Sync server-side mods/configs/global datapacks from packwiz
     dir: '{{.REPO_DIR}}'
     cmds:
       - |
@@ -86,7 +92,7 @@ tasks:
           echo "ERROR: run 'task server:setup' first"
           exit 1
         }
-      - cd "{{.SERVER_DIR}}" && SYNC_ONLY=true PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" REPO_DATAPACKS_DIR="{{.REPO_DIR}}/datapacks" ./start-packwiz-server.sh
+      - cd "{{.SERVER_DIR}}" && SYNC_ONLY=true PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
 
   server:start:
     desc: Sync server then start NeoForge after setup
@@ -97,10 +103,10 @@ tasks:
           echo "ERROR: run 'task server:setup' first"
           exit 1
         }
-      - cd "{{.SERVER_DIR}}" && PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" REPO_DATAPACKS_DIR="{{.REPO_DIR}}/datapacks" ./start-packwiz-server.sh
+      - cd "{{.SERVER_DIR}}" && PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./start-packwiz-server.sh
 
   server:backup:
     desc: Backup world
     dir: '{{.REPO_DIR}}'
     cmds:
-      - ./server/backup-world.sh
+      - SERVER_DIR="{{.SERVER_DIR}}" ./server/backup-world.sh

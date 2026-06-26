@@ -96,7 +96,7 @@ The client export should include:
 - client-side mods
 - shared `both` mods
 - gameplay/worldgen mods needed for local singleplayer, even when they are conceptually server-side
-- `config/`, `defaultconfigs/`, resource packs, shaders, or client options when they are intentionally included
+- `config/paxi/datapacks/`, `defaultconfigs/`, resource packs, shaders, or client options when they are intentionally included
 
 The client export should not include:
 
@@ -105,7 +105,6 @@ The client export should not include:
 - server world saves
 - logs, crash reports, libraries, installers, or NeoForge runtime files
 - repo docs and Taskfile plumbing
-- repo-managed server datapacks
 
 `.packwizignore` keeps repo/server-only files out of the Packwiz index and out of `.mrpack` exports. `client/**` is also ignored by Packwiz's normal index; the export task adds the selected profile to the `.mrpack` explicitly.
 
@@ -114,11 +113,12 @@ The current export shape has been smoke-tested. The `.mrpack` contains:
 - `modrinth.index.json` for downloadable mods
 - `overrides/options.txt` for client keybind defaults
 - `overrides/defaultconfigs/...`
+- `overrides/config/paxi/datapacks/...`
 - embedded jars for current non-Modrinth export cases:
   - `More Dragon Eggs`
   - `Configured`
 
-It does not contain `server/`, `docs/`, `Taskfile.yml`, `README.md`, or repo-managed `datapacks/`.
+It does not contain `server/`, `docs/`, `Taskfile.yml`, or `README.md`.
 
 ## Side Policy For Singleplayer
 
@@ -128,11 +128,11 @@ The Prism/Freesm export is intended to work as a complete playable instance, inc
 
 Use `side = "server"` only for something that truly belongs on the dedicated server and should not be present in a player/imported instance. The dedicated server still gets `both` mods because `task server:start` runs packwiz-installer in server mode.
 
-## Current Server Datapack Split
+## Global Datapacks
 
-Datapacks in `datapacks/` are managed by this repo for the server. They are copied into the runtime by `task server:start` and `task server:sync`, then mirrored into the configured world folder before NeoForge starts.
+Datapacks in `config/paxi/datapacks/` are managed by this repo and loaded globally by Paxi.
 
-Friends do not need those datapacks in their launcher instance to join the server.
+That means the same convenience recipes are available on the dedicated server and in local Prism/Freesm singleplayer worlds created from the exported `.mrpack`.
 
 ## If Export Fails
 
@@ -155,6 +155,7 @@ This is better for frequent updates, but it needs hosting and instance-template 
 ## References
 
 - [packwiz `modrinth export`](https://packwiz.infra.link/reference/commands/packwiz/modrinth/export/)
+- [Paxi](https://modrinth.com/mod/paxi)
 - [Prism Launcher import](https://prismlauncher.org/wiki/help-pages/zip-import/)
 - [packwiz-installer distribution](https://packwiz.infra.link/tutorials/installing/packwiz-installer/)
 - [Prism Launcher custom commands](https://prismlauncher.org/wiki/help-pages/custom-commands/)

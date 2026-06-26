@@ -1,6 +1,54 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/arcane_essence.json"
+hash = "37c51f9b7421fc07ce61b1210fc72246760f2793d9083ae1df1e1e02d1be62f6"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/common_ink.json"
+hash = "9e1c00351ebf82c2d51cc3f6006b6b34c5ef7979d37ce7d96078c7229599f87f"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/common_ink_from_glow_ink_sac.json"
+hash = "d8c1c7595572ed73bd561abd29a4210fd5fff76f55d676d44a2aa36e6362e1d8"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_3_from_vial.json"
+hash = "27c569ea9411240ec4a9e82a0f98a79ead6d6c35b04bbb171bc6eb38b1b1641d"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_6_from_vials.json"
+hash = "adb52062622eecc11b00ef4ba09a8488cfbe98f527343fef4228b7ee59ae9169"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_9_from_vials.json"
+hash = "12e9ddacf399fa6a14121316fd2d943ac1d97526ca33d1ac2019011dc0c23b2d"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vial_from_human_heart.json"
+hash = "366f65e12bb863af2bc0090d413fcf3bbd674149151fb157139647bc468e23bf"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vials_from_blood_bottle.json"
+hash = "9659f4db8b39c5096893bc53b2e0a25b7865a20813feec0c396a284df4244eb8"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/pure_blood_4_from_human_heart.json"
+hash = "1da7cded4d93715438ef6c03bee067327a7b192167f8385c66f9e7cd119387f9"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/leather_from_rotten_flesh.json"
+hash = "7004d47998fa03b2940f3013d4114c33cbbcb6eda782ebd2d8aa7b1e29c4083b"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/phantom_membrane_from_ender_pearl.json"
+hash = "ee21d3bc70a1b3238bbf4848b260982c1f5d465032c6f7668240838251cf7ad5"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/pack.mcmeta"
+hash = "52b2dc9d9049890e6e71bb12347510d12898f6324a0aad15a7e6db7878685cc5"
+
+[[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
 hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
 
@@ -421,6 +469,11 @@ metafile = true
 [[files]]
 file = "mods/paragliders.pw.toml"
 hash = "c323e7a690fc87db51353a7106e275d89e3947826070c0b02c3a4717361dde63"
+metafile = true
+
+[[files]]
+file = "mods/paxi.pw.toml"
+hash = "215d597764d5c5db89e700fc3495b72dc0a7f09c975de19dc8c580bde3469a5e"
 metafile = true
 
 [[files]]
