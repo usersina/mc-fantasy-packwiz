@@ -106,7 +106,7 @@ Do not put shared datapacks under `server-base/`; that folder is only for the de
 
 ## Client Updates
 
-The preferred client path is now a Prism/Freesm updater instance. Friends import the instance once, and a pre-launch Packwiz installer updates mods, config, and global Paxi datapacks from:
+The public client bootstrap is the `.mrpack` published on GitHub Releases. A prepared Prism/Freesm updater instance can also use the live Packwiz channel:
 
 ```txt
 https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
@@ -133,7 +133,7 @@ Then in another terminal:
 PACK_URL=http://127.0.0.1:8081/stable/pack.toml task pack:smoke-update
 ```
 
-The manual `.mrpack` export still exists as the first-import/bootstrap path and as a fallback. Ongoing keybind defaults are handled by Default Options through `config/defaultoptions/keybindings.txt`, without replacing each player's live `options.txt` on every launch.
+The `.mrpack` export is the public bootstrap client pack. Ongoing keybind defaults are handled by Default Options through `config/defaultoptions/keybindings.txt`, without replacing each player's live `options.txt` on every launch.
 
 ```bash
 task pack:export-client
@@ -141,7 +141,13 @@ task pack:export-client
 
 That writes `dist/mc-fantasy-1.21.1-v1.0.0.mrpack`, deriving the Minecraft and pack versions from `pack.toml`.
 
-See [docs/client.md](docs/client.md) for the player setup guide, updater instance setup, manual `.mrpack` fallback, and release checklist.
+CI publishes the exported `.mrpack` to the `client-stable` GitHub Release after the updater smoke test passes:
+
+```txt
+https://github.com/usersina/mc-fantasy-packwiz/releases/latest
+```
+
+See [docs/client.md](docs/client.md) for the player setup guide, updater instance setup, `.mrpack` release flow, and release checklist.
 
 ## Useful Tasks
 
@@ -158,7 +164,7 @@ task server:backup         # back up the active world and runtime config
 task pack:refresh          # refresh packwiz index files
 task pack:site             # build dist/site/stable for GitHub Pages
 task pack:smoke-update     # verify client updater installs successfully
-task pack:export-client    # export the Prism/Freesm .mrpack fallback
+task pack:export-client    # export the Prism/Freesm .mrpack bootstrap
 ```
 
 Rebuild the generated runtime from scratch:

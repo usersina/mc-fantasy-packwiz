@@ -19,4 +19,4 @@ Use `task server:diff-base` to compare runtime base files with this folder. Use 
 
 Do not put downloaded mod jars, NeoForge libraries, world saves, logs, backups, datapacks, or `eula.txt` in this folder.
 
-This folder is server-only and is intentionally excluded from client `.mrpack` exports. Shared datapacks belong in `../config/paxi/datapacks/`, not here. See `../client/README.md` for the Prism/Freesm client-pack flow.
+This folder is server-only and is intentionally excluded from client `.mrpack` exports. Shared datapacks belong in `../config/paxi/datapacks/`, not here. See `../docs/client.md` for the Prism/Freesm client-pack flow.

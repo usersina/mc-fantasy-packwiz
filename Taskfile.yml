@@ -40,24 +40,7 @@ tasks:
     desc: Export Prism/Freesm .mrpack into dist/
     dir: '{{.REPO_DIR}}'
     cmds:
-      - |
-        VERSION="$(awk -F'"' '/^version = / { print $2; exit }' pack.toml)"
-        MC_VERSION="$(awk -F'"' '/^minecraft = / { print $2; exit }' pack.toml)"
-
-        if [ -z "$VERSION" ] || [ -z "$MC_VERSION" ]; then
-          echo "ERROR: could not read version or minecraft from pack.toml"
-          exit 1
-        fi
-
-        packwiz refresh
-
-        OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}.mrpack"
-        OUT_ABS="$PWD/$OUT"
-        mkdir -p dist
-        rm -f "$OUT_ABS"
-        packwiz modrinth export -o "$OUT"
-
-        echo "==> Wrote $OUT"
+      - CLIENT_PACK_SLUG="{{.CLIENT_PACK_SLUG}}" ./scripts/export-client-pack.sh
 
   pack:serve:
     desc: Serve packwiz locally

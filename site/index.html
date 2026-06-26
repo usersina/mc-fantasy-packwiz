@@ -208,7 +208,8 @@
         margin: 0.75rem 0;
       }
 
-      ul {
+      ul,
+      ol {
         max-width: 70ch;
         margin: 0.75rem 0 0;
         padding-left: 1.25rem;
@@ -255,6 +256,11 @@
           <a class="button" href="stable/pack.toml">Stable pack.toml</a>
           <a
             class="button secondary"
+            href="https://github.com/usersina/mc-fantasy-packwiz/releases/latest"
+            >Download .mrpack</a
+          >
+          <a
+            class="button secondary"
             href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
             >Client guide</a
           >
@@ -298,19 +304,39 @@
 
     <main>
       <section class="section">
-        <h2>For Players</h2>
+        <h2>Quick Client Setup</h2>
         <p>
-          Use the updater instance zip from the server maintainer. Import it
-          once in Prism Launcher or Freesm Launcher, then keep launching that
-          same instance. It updates mods, config, key defaults, and global
-          datapacks before Minecraft starts.
+          The public client pack is a Prism/Freesm <code>.mrpack</code>
+          published as a GitHub Release artifact.
         </p>
-        <p>The player setup guide lives in the repository:</p>
+        <ol>
+          <li>Install Prism Launcher or Freesm Launcher.</li>
+          <li>Make sure the launcher uses Java 21.</li>
+          <li>
+            Download the latest client pack from
+            <a
+              href="https://github.com/usersina/mc-fantasy-packwiz/releases/latest"
+              >GitHub Releases</a
+            >.
+          </li>
+          <li>Choose <code>Add Instance</code>, then <code>Import</code>.</li>
+          <li>Select the downloaded <code>.mrpack</code> file.</li>
+          <li>
+            Launch the imported instance and wait for downloads to finish.
+          </li>
+          <li>Join the multiplayer server with the address you were given.</li>
+        </ol>
         <p>
+          If the server pack changes later, download and import the latest
+          release again unless you are using a prepared updater instance.
+          Controls can be changed locally in Minecraft.
+        </p>
+        <p>
+          For troubleshooting and maintainer details, read the
           <a
             href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
-            >Read the client guide</a
-          >
+            >full client guide</a
+          >.
         </p>
       </section>
 
