@@ -190,13 +190,12 @@ If your Go Task binary is named `go-task`, run `go-task pack:export-client` inst
 The task refreshes Packwiz, derives the Minecraft and pack versions from `pack.toml`, creates `dist/`, and writes:
 
 ```txt
-dist/mc-fantasy-1.21.1-v1.0.0.mrpack
 dist/mc-fantasy-stable.mrpack
 ```
 
-The versioned file is useful for archival/debugging. The stable file gives players a URL that does not change when the pack version changes.
+The stable filename gives players a URL that does not change when the pack version changes.
 
-The generated `.mrpack` files are ignored by Git because `dist/` and `*.mrpack` are runtime/release outputs. Use them as the public bootstrap client pack and for initial updater-instance creation.
+The generated `.mrpack` file is ignored by Git because `dist/` and `*.mrpack` are runtime/release outputs. Use it as the public bootstrap client pack and for initial updater-instance creation.
 
 CI publishes the exported `.mrpack` to the `client-stable` GitHub Release after the updater smoke test passes:
 

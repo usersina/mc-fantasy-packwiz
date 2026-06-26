@@ -106,7 +106,15 @@ Do not put shared datapacks under `server-base/`; that folder is only for the de
 
 ## Client Updates
 
-The public client bootstrap is the `.mrpack` published on GitHub Releases. A prepared Prism/Freesm updater instance can also use the live Packwiz channel:
+The public client bootstrap is the `.mrpack` published on GitHub Releases. A plain `.mrpack` import is a snapshot; players must import the stable URL again for manual updates unless they use a prepared updater instance with the Packwiz pre-launch command.
+
+The stable player import URL is:
+
+```txt
+https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
+```
+
+A prepared Prism/Freesm updater instance can use the live Packwiz channel:
 
 ```txt
 https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
@@ -139,7 +147,7 @@ The `.mrpack` export is the public bootstrap client pack. Ongoing keybind defaul
 task pack:export-client
 ```
 
-That writes `dist/mc-fantasy-1.21.1-v1.0.0.mrpack`, deriving the Minecraft and pack versions from `pack.toml`.
+That writes `dist/mc-fantasy-stable.mrpack`, deriving the Minecraft and pack versions from `pack.toml`.
 
 CI publishes the exported `.mrpack` to the `client-stable` GitHub Release after the updater smoke test passes:
 
