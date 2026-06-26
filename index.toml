@@ -5,6 +5,10 @@ file = "config/defaultoptions/keybindings.txt"
 hash = "b01089080edf69b0505e7335f1e1d8fe96c4038a849e478f121a191c29d22ef2"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/alchemist_cauldron.json"
+hash = "4397350d178f07420d1b28f701044d61d73a7a6fa7a7330e2ddbacf5796f3b20"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/arcane_essence.json"
 hash = "37c51f9b7421fc07ce61b1210fc72246760f2793d9083ae1df1e1e02d1be62f6"
 
@@ -79,6 +83,10 @@ hash = "91acad24efd2ff810049be33431d7191a33acefaa113d841f7518f405ec44cf6"
 [[files]]
 file = "defaultconfigs/waystones-common.toml"
 hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
+
+[[files]]
+file = "media/pre-launch-command.png"
+hash = "19b06f332f9e71c401f4a6ca89bbd2e3e59795bb55f96b2041cff518c716821c"
 
 [[files]]
 file = "mods/aces-spell-utils.pw.toml"
@@ -382,7 +390,7 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "bddad012395abb9a59b369b39837a04cf956320db9b778a4c922be2494607f46"
+hash = "e7b3c08c8b168d15e3997d41d0480d1d35cba0bdda94094f123d1eef65d0b0c4"
 metafile = true
 
 [[files]]
@@ -623,6 +631,16 @@ metafile = true
 [[files]]
 file = "mods/winds-spellbooks.pw.toml"
 hash = "e174ded612bdae826523460c671f0486e68b769007c41cb892fab4b22809ac02"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-minimap-world-map-waystones-compatibility-forge.pw.toml"
+hash = "637bc567eb5260d55ce89e6471c31e4369d454607f3d6f40139f7f7bdef90af9"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-minimap.pw.toml"
+hash = "3f9e51bfceabca41c537e58b8767bdb4273fdafe9f08bc472ebc255554617ad2"
 metafile = true
 
 [[files]]
