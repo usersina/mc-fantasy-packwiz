@@ -35,35 +35,55 @@ At this point the pack is installed. For future server updates, choose one of th
 
 There are two update methods:
 
-- **Manual update:** re-import the `.mrpack` when the server owner publishes a new client release.
+- **Manual update:** use the launcher's Modrinth tab to update the same instance from the stable `.mrpack` URL.
 - **Automatic update:** add Packwiz Installer Bootstrap and a pre-launch command to the same instance.
 
 The manual update method is the currently tested path. The automatic update method is documented below, but treat it as experimental until we test it with a real Prism/Freesm client instance.
 
-## Update Method 1: Manual Re-Import (Tested)
+## Update Method 1: Manual Launcher Update (Tested)
 
 Use this if you want the simplest and safest process.
 
 When the server owner says the pack changed:
 
 1. Close Minecraft.
-2. In Prism Launcher or Freesm Launcher, choose:
+2. Right-click the imported instance and choose:
+
+    ```txt
+    Edit
+    ```
+
+3. Open the Modrinth tab under the instance version settings.
+4. Paste or confirm the same stable `.mrpack` URL:
+
+    ```txt
+    https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
+    ```
+
+5. Press:
+
+    ```txt
+    Update Pack
+    ```
+
+6. Wait for the launcher to finish updating.
+7. Launch the same instance.
+
+This is still a manual snapshot update. Restarting the instance does not automatically check for new releases; you run **Update Pack** when the server owner says the pack changed.
+
+If the Modrinth update tab is not available or does not work, use the fallback:
+
+1. Close Minecraft.
+2. Choose:
 
     ```txt
     Add Instance
     Import
     ```
 
-3. Paste the same stable `.mrpack` URL:
-
-    ```txt
-    https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
-    ```
-
+3. Paste the stable `.mrpack` URL again.
 4. Import it as the updated client instance.
 5. Launch the updated instance.
-
-This is a snapshot update. Restarting an old `.mrpack` instance does not automatically check for new releases.
 
 ## Update Method 2: Automatic Packwiz Updater (Experimental)
 

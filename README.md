@@ -106,7 +106,7 @@ Do not put shared datapacks under `server-base/`; that folder is only for the de
 
 ## Client Updates
 
-The public client bootstrap is the `.mrpack` published on GitHub Releases. A plain `.mrpack` import is a snapshot; players must import the stable URL again for manual updates unless they use a prepared updater instance with the Packwiz pre-launch command.
+The public client bootstrap is the `.mrpack` published on GitHub Releases. A plain `.mrpack` import is a snapshot; players can manually update the same instance from the launcher's Modrinth tab with the stable URL, or re-import the URL if that update path is unavailable. A prepared updater instance can instead use the Packwiz pre-launch command.
 
 The stable player import URL is:
 
