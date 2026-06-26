@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MC Fantasy Packwiz</title>
+    <meta
+      name="description"
+      content="Stable Packwiz update endpoint for the MC Fantasy Minecraft modpack."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f1e8;
+        --ink: #17211a;
+        --muted: #5a645b;
+        --panel: #ffffff;
+        --line: #cfd7c7;
+        --green: #2f6f44;
+        --green-dark: #214f32;
+        --amber: #b7791f;
+        --stone: #e3e6df;
+        --dirt: #7b5a3a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--green-dark);
+        font-weight: 700;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+      }
+
+      code {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #f8faf6;
+        padding: 0.12rem 0.32rem;
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+          monospace;
+        font-size: 0.92em;
+      }
+
+      pre {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #101812;
+        color: #eaf5e9;
+        padding: 1rem;
+        font-size: 0.92rem;
+      }
+
+      pre code {
+        border: 0;
+        background: transparent;
+        color: inherit;
+        padding: 0;
+      }
+
+      .hero {
+        min-height: 58vh;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+        align-items: center;
+        gap: clamp(2rem, 5vw, 4rem);
+        padding: clamp(2rem, 6vw, 5rem);
+        border-bottom: 1px solid var(--line);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(244, 241, 232, 0.7),
+            rgba(244, 241, 232, 1)
+          ),
+          repeating-linear-gradient(
+            90deg,
+            rgba(47, 111, 68, 0.08) 0 16px,
+            transparent 16px 32px
+          );
+      }
+
+      .eyebrow {
+        margin: 0 0 0.75rem;
+        color: var(--amber);
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+
+      h1 {
+        max-width: 11ch;
+        margin: 0;
+        font-size: clamp(3rem, 9vw, 6.6rem);
+        line-height: 0.95;
+      }
+
+      .lede {
+        max-width: 48rem;
+        margin: 1.25rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2vw, 1.28rem);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.8rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        border-radius: 8px;
+        padding: 0.68rem 1rem;
+        border: 1px solid var(--green);
+        background: var(--green);
+        color: white;
+        text-decoration: none;
+        font-weight: 800;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--green-dark);
+      }
+
+      .pack-art {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        width: min(100%, 380px);
+        aspect-ratio: 1;
+        margin-inline: auto;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 24px 60px rgba(23, 33, 26, 0.12);
+      }
+
+      .block {
+        border-radius: 3px;
+        box-shadow: inset 0 -8px rgba(0, 0, 0, 0.08);
+      }
+
+      .grass {
+        background: #4f9d54;
+      }
+      .leaf {
+        background: #2f6f44;
+      }
+      .water {
+        background: #4b8fbf;
+      }
+      .stone {
+        background: #aeb7ad;
+      }
+      .dirt {
+        background: var(--dirt);
+      }
+      .gold {
+        background: #d6a437;
+      }
+
+      main {
+        width: min(1100px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 2.5rem 0 4rem;
+      }
+
+      .section {
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section:last-child {
+        border-bottom: 0;
+      }
+
+      h2 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+      }
+
+      p {
+        max-width: 70ch;
+        margin: 0.75rem 0;
+      }
+
+      ul {
+        max-width: 70ch;
+        margin: 0.75rem 0 0;
+        padding-left: 1.25rem;
+      }
+
+      li + li {
+        margin-top: 0.4rem;
+      }
+
+      .endpoint {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      .footer {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 780px) {
+        .hero {
+          min-height: auto;
+          grid-template-columns: 1fr;
+        }
+
+        .pack-art {
+          width: min(100%, 300px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Minecraft 1.21.1 NeoForge</p>
+        <h1>MC Fantasy Packwiz</h1>
+        <p class="lede">
+          This site hosts the stable Packwiz update channel for the Fantasy
+          Minecraft pack. Launchers should use the Packwiz URL, while players
+          should import the prepared Prism or Freesm updater instance.
+        </p>
+        <div class="actions">
+          <a class="button" href="stable/pack.toml">Stable pack.toml</a>
+          <a
+            class="button secondary"
+            href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
+            >Client guide</a
+          >
+        </div>
+      </div>
+      <div class="pack-art" aria-hidden="true">
+        <span class="block leaf"></span><span class="block leaf"></span
+        ><span class="block grass"></span><span class="block grass"></span
+        ><span class="block stone"></span><span class="block stone"></span
+        ><span class="block water"></span><span class="block water"></span>
+        <span class="block leaf"></span><span class="block grass"></span
+        ><span class="block grass"></span><span class="block gold"></span
+        ><span class="block stone"></span><span class="block water"></span
+        ><span class="block water"></span><span class="block water"></span>
+        <span class="block grass"></span><span class="block grass"></span
+        ><span class="block dirt"></span><span class="block gold"></span
+        ><span class="block stone"></span><span class="block stone"></span
+        ><span class="block water"></span><span class="block water"></span>
+        <span class="block grass"></span><span class="block dirt"></span
+        ><span class="block dirt"></span><span class="block stone"></span
+        ><span class="block stone"></span><span class="block leaf"></span
+        ><span class="block grass"></span><span class="block water"></span>
+        <span class="block dirt"></span><span class="block dirt"></span
+        ><span class="block stone"></span><span class="block stone"></span
+        ><span class="block leaf"></span><span class="block leaf"></span
+        ><span class="block grass"></span><span class="block grass"></span>
+        <span class="block dirt"></span><span class="block stone"></span
+        ><span class="block stone"></span><span class="block gold"></span
+        ><span class="block leaf"></span><span class="block grass"></span
+        ><span class="block grass"></span><span class="block dirt"></span>
+        <span class="block stone"></span><span class="block stone"></span
+        ><span class="block gold"></span><span class="block dirt"></span
+        ><span class="block grass"></span><span class="block grass"></span
+        ><span class="block dirt"></span><span class="block dirt"></span>
+        <span class="block stone"></span><span class="block gold"></span
+        ><span class="block dirt"></span><span class="block dirt"></span
+        ><span class="block dirt"></span><span class="block stone"></span
+        ><span class="block stone"></span><span class="block dirt"></span>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <h2>For Players</h2>
+        <p>
+          Use the updater instance zip from the server maintainer. Import it
+          once in Prism Launcher or Freesm Launcher, then keep launching that
+          same instance. It updates mods, config, key defaults, and global
+          datapacks before Minecraft starts.
+        </p>
+        <p>The player setup guide lives in the repository:</p>
+        <p>
+          <a
+            href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
+            >Read the client guide</a
+          >
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>For Launchers</h2>
+        <p>The stable Packwiz endpoint is:</p>
+        <div class="endpoint">
+          <pre><code>https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml</code></pre>
+        </div>
+        <p>
+          Prism or Freesm updater instances should run this pre-launch command:
+        </p>
+        <pre><code>"$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"</code></pre>
+      </section>
+
+      <section class="section">
+        <h2>What This Site Is</h2>
+        <ul>
+          <li>A GitHub Pages host for the stable Packwiz channel.</li>
+          <li>A machine-readable update source for Packwiz Installer.</li>
+          <li>
+            Not a full launcher, not a server status page, and not the Minecraft
+            server itself.
+          </li>
+        </ul>
+      </section>
+
+      <section class="section footer">
+        <p>
+          Source repository:
+          <a href="https://github.com/usersina/mc-fantasy-packwiz"
+            >usersina/mc-fantasy-packwiz</a
+          >
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

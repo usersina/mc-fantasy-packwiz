@@ -9,7 +9,6 @@ vars:
   SITE_DIR: dist/site/stable
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
   CLIENT_PACK_SLUG: mc-fantasy
-  KEYBOARD: qwerty
 
 tasks:
   server:setup:
@@ -42,11 +41,6 @@ tasks:
     dir: '{{.REPO_DIR}}'
     cmds:
       - |
-        command -v zip >/dev/null || {
-          echo "ERROR: zip is required for injecting client options into the exported .mrpack"
-          exit 1
-        }
-
         VERSION="$(awk -F'"' '/^version = / { print $2; exit }' pack.toml)"
         MC_VERSION="$(awk -F'"' '/^minecraft = / { print $2; exit }' pack.toml)"
 
@@ -55,40 +49,13 @@ tasks:
           exit 1
         fi
 
-        KEYBOARD="$(printf '%s' "{{.KEYBOARD}}" | tr '[:upper:]' '[:lower:]')"
-        case "$KEYBOARD" in
-          qwerty|azerty) ;;
-          *)
-            echo "ERROR: KEYBOARD must be qwerty or azerty"
-            exit 1
-            ;;
-        esac
-
-        OPTIONS_FILE="client/options-${KEYBOARD}.txt"
-        if [ ! -f "$OPTIONS_FILE" ]; then
-          echo "ERROR: missing $OPTIONS_FILE"
-          exit 1
-        fi
-        if ! awk 'NR == 1 { ok = ($0 ~ /^version:[0-9]+$/); next } $0 !~ /^key_/ { bad = 1 } END { exit !(ok && !bad) }' "$OPTIONS_FILE"; then
-          echo "ERROR: $OPTIONS_FILE must start with version:<number> and contain only keybinding lines after that"
-          exit 1
-        fi
-
         packwiz refresh
 
-        OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}-${KEYBOARD}.mrpack"
+        OUT="dist/{{.CLIENT_PACK_SLUG}}-${MC_VERSION}-v${VERSION}.mrpack"
         OUT_ABS="$PWD/$OUT"
         mkdir -p dist
         rm -f "$OUT_ABS"
         packwiz modrinth export -o "$OUT"
-
-        TMP_DIR="$(mktemp -d)"
-        trap 'rm -rf "$TMP_DIR"' EXIT
-
-        mkdir -p "$TMP_DIR/overrides"
-        cp "$OPTIONS_FILE" "$TMP_DIR/overrides/options.txt"
-        (cd "$TMP_DIR" && zip -qr "$OUT_ABS" overrides/options.txt)
-        echo "==> Added $OPTIONS_FILE as overrides/options.txt"
 
         echo "==> Wrote $OUT"
 

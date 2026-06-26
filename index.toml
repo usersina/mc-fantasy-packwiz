@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/defaultoptions/keybindings.txt"
+hash = "b01089080edf69b0505e7335f1e1d8fe96c4038a849e478f121a191c29d22ef2"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/arcane_essence.json"
 hash = "37c51f9b7421fc07ce61b1210fc72246760f2793d9083ae1df1e1e02d1be62f6"
 
@@ -229,6 +233,11 @@ metafile = true
 [[files]]
 file = "mods/curios.pw.toml"
 hash = "36debf7653e95a855b4fedacc19027cf2e01960fc0b6d55ef2ffbffbcb455690"
+metafile = true
+
+[[files]]
+file = "mods/default-options.pw.toml"
+hash = "ef7868aa3a029cdb7a9a46fc3f55ae12c4bc86cb5d92ae889ed554acfa229c45"
 metafile = true
 
 [[files]]

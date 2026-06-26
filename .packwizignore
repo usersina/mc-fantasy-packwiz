@@ -7,8 +7,9 @@ Taskfile.yml
 todo.md
 .cache/**
 docs/**
+site/**
 server-base/**
 scripts/**
-client/**
 dist/**
 tmp/**
+test/**

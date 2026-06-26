@@ -14,7 +14,6 @@ Prerequisites:
 - `packwiz`
 - Go Task, exposed as `task` or `go-task`
 - `curl`
-- `zip` for client exports
 - `tar` with zstd support for backups
 
 Examples use `task`. If your binary is named `go-task`, replace `task` with `go-task`.
@@ -113,6 +112,8 @@ The preferred client path is now a Prism/Freesm updater instance. Friends import
 https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 ```
 
+The Pages root, `https://usersina.github.io/mc-fantasy-packwiz/`, is a human-readable explainer. Launchers and Packwiz should use the `stable/pack.toml` URL above.
+
 Build the hosted Packwiz site locally:
 
 ```bash
@@ -132,23 +133,15 @@ Then in another terminal:
 PACK_URL=http://127.0.0.1:8081/stable/pack.toml task pack:smoke-update
 ```
 
-The manual `.mrpack` export still exists as the first-import/bootstrap path and as a fallback:
+The manual `.mrpack` export still exists as the first-import/bootstrap path and as a fallback. Ongoing keybind defaults are handled by Default Options through `config/defaultoptions/keybindings.txt`, without replacing each player's live `options.txt` on every launch.
 
 ```bash
 task pack:export-client
 ```
 
-That writes a QWERTY `.mrpack` into `dist/`, deriving the Minecraft and pack versions from `pack.toml` and injecting `client/options-qwerty.txt`.
+That writes `dist/mc-fantasy-1.21.1-v1.0.0.mrpack`, deriving the Minecraft and pack versions from `pack.toml`.
 
-For AZERTY:
-
-```bash
-task pack:export-client KEYBOARD=azerty
-```
-
-See [client/README.md](client/README.md) for the updater instance setup, the manual `.mrpack` fallback, and the release checklist.
-
-The sendable player guide is [docs/client-install.md](docs/client-install.md).
+See [docs/client.md](docs/client.md) for the player setup guide, updater instance setup, manual `.mrpack` fallback, and release checklist.
 
 ## Useful Tasks
 
@@ -165,7 +158,7 @@ task server:backup         # back up the active world and runtime config
 task pack:refresh          # refresh packwiz index files
 task pack:site             # build dist/site/stable for GitHub Pages
 task pack:smoke-update     # verify client updater installs successfully
-task pack:export-client    # export the QWERTY Prism/Freesm .mrpack
+task pack:export-client    # export the Prism/Freesm .mrpack fallback
 ```
 
 Rebuild the generated runtime from scratch:

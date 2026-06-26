@@ -101,8 +101,10 @@ echo "    $PACK_URL"
 
 require_path "mods"
 require_path "defaultconfigs/waystones-common.toml"
+require_path "config/defaultoptions/keybindings.txt"
 require_path "config/paxi/datapacks/minecraft_convenience_recipes/pack.mcmeta"
 require_mod_match "Configured" "configured-*.jar"
+require_mod_match "Default Options" "defaultoptions-*.jar"
 require_mod_match "More Dragon Eggs" "moredragoneggs-*.jar"
 
 mod_count="$(find "$SMOKE_DIR/mods" -type f -name '*.jar' | wc -l)"
