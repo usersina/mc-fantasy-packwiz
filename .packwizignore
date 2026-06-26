@@ -7,6 +7,5 @@ docs/**
 server/**
 scripts/**
 client/**
-datapacks/**
 dist/**
 tmp/**
