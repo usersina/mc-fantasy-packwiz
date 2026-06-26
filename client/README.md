@@ -6,6 +6,8 @@ The preferred client path is a one-time Prism/Freesm updater instance: friends i
 
 Files here are intentionally ignored by Packwiz's normal index so server sync does not copy them into the server runtime. `task pack:export-client` injects the selected client defaults into the generated `.mrpack` as `overrides/options.txt`.
 
+The short guide to send to players is [../docs/client-install.md](../docs/client-install.md).
+
 ## Stable Auto-Updating Client
 
 The stable updater URL is:

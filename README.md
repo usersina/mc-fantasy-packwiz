@@ -148,6 +148,8 @@ task pack:export-client KEYBOARD=azerty
 
 See [client/README.md](client/README.md) for the updater instance setup, the manual `.mrpack` fallback, and the release checklist.
 
+The sendable player guide is [docs/client-install.md](docs/client-install.md).
+
 ## Useful Tasks
 
 Task names use `domain:action`: `pack:*` for Packwiz work and `server:*` for runtime work.
