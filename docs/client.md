@@ -2,26 +2,12 @@
 
 Use this guide if you are joining the Fantasy Minecraft server with Prism Launcher or Freesm Launcher.
 
-## Choose Your Setup
+## Initial Setup
 
-Use **Method 1: Automatic Updates** if you want the pack to update when you launch the instance. This is the recommended setup.
-
-Use **Method 2: Manual Updates** only if you want the simplest import and are OK importing the pack again when the server owner publishes an update.
-
-Important: importing a `.mrpack` by itself does not create an auto-updating instance. If you only import the `.mrpack`, you are using the manual method.
-
-## Method 1: Automatic Updates (Recommended)
-
-This method updates mods, config, default keybinds, and global datapacks before Minecraft starts.
-
-You will use both of these URLs:
+Start here for every setup. This creates the Prism/Freesm instance you will use to join the server.
 
 ```txt
 https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
-```
-
-```txt
-https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 ```
 
 1. Install Prism Launcher or Freesm Launcher.
@@ -39,103 +25,104 @@ https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
     https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
     ```
 
-5. Finish the import.
-6. Right-click the new instance and choose:
+5. Launch the imported instance.
+6. Wait for the launcher to finish downloading the pack.
+7. Join the multiplayer server with the server address you were given.
 
-    ```txt
-    Edit
-    ```
+At this point the pack is installed. For future server updates, choose one of the update methods below.
 
-7. Open the instance Minecraft folder from the launcher. In Prism this is usually available from the instance edit window as:
+## Updates
 
-    ```txt
-    Folder
-    Minecraft
-    ```
+There are two update methods:
 
-8. Download Packwiz Installer Bootstrap:
+- **Manual update:** re-import the `.mrpack` when the server owner publishes a new client release.
+- **Automatic update:** add Packwiz Installer Bootstrap and a pre-launch command to the same instance.
 
-    ```txt
-    https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar
-    ```
+The manual update method is the currently tested path. The automatic update method is documented below, but treat it as experimental until we test it with a real Prism/Freesm client instance.
 
-9. Put the downloaded file directly in the instance Minecraft folder. The final path must look like:
+## Update Method 1: Manual Re-Import (Tested)
 
-    ```txt
-    <instance Minecraft folder>/packwiz-installer-bootstrap.jar
-    ```
+Use this if you want the simplest and safest process.
 
-10. In the instance settings, open:
+When the server owner says the pack changed:
 
-    ```txt
-    Settings
-    Custom commands
-    ```
-
-11. Add this as the pre-launch command:
-
-    ```bash
-    "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
-    ```
-
-12. Save the instance settings.
-13. Launch the instance.
-14. Wait for Packwiz to finish, then Minecraft will start.
-
-After this, keep using the same instance. When the server owner publishes a pack update, close Minecraft and launch this same instance again. Packwiz should update it before Minecraft starts.
-
-## Method 2: Manual Updates
-
-This method is easier, but it does not auto-update.
-
-In Prism Launcher or Freesm Launcher, import this stable `.mrpack` URL:
-
-```txt
-https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
-```
-
-You can also download the latest release from:
-
-```txt
-https://github.com/usersina/mc-fantasy-packwiz/releases/latest
-```
-
-1. Install Prism Launcher or Freesm Launcher.
-2. Make sure the launcher can use Java 21.
-3. In the launcher, choose:
+1. Close Minecraft.
+2. In Prism Launcher or Freesm Launcher, choose:
 
     ```txt
     Add Instance
     Import
     ```
 
-4. Paste the stable `.mrpack` URL above, or select the downloaded `.mrpack` file.
-5. Launch the imported instance.
-6. Wait for the launcher to finish downloading the pack.
-7. Join the multiplayer server with the server address you were given.
+3. Paste the same stable `.mrpack` URL:
 
-This creates a normal launcher instance from a snapshot of the pack. Restarting that same instance does not automatically check for new `.mrpack` releases.
+    ```txt
+    https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
+    ```
 
-If the server pack changes later, import the stable `.mrpack` URL again, or switch to Method 1.
+4. Import it as the updated client instance.
+5. Launch the updated instance.
 
-## How Updates Work
+This is a snapshot update. Restarting an old `.mrpack` instance does not automatically check for new releases.
 
-The release `.mrpack` is a bootstrap client pack. It is public, easy to import, and generated by CI after the Packwiz updater smoke test passes.
+## Update Method 2: Automatic Packwiz Updater (Experimental)
 
-There are two update modes:
+Use this if you want the same instance to update itself before Minecraft starts.
 
-- Manual update: import the stable `.mrpack` URL again after the server owner publishes a new client release.
-- Automatic update: use Method 1 so the instance has Packwiz Installer Bootstrap and the Packwiz pre-launch command configured.
+Status: documented, but not fully tested yet with a real client instance.
 
-The live Packwiz update channel is:
+This method continues from **Initial Setup**. Start with the instance you already imported from the `.mrpack`, then add the updater pieces.
+
+You will use this Packwiz URL:
 
 ```txt
 https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 ```
 
-If your instance has the Packwiz pre-launch updater configured, close Minecraft and launch the same instance again when the server pack changes. The update should happen automatically.
+1. Close Minecraft.
+2. Right-click the imported instance and choose:
 
-A plain `.mrpack` import does not add that pre-launch updater command by itself.
+    ```txt
+    Edit
+    ```
+
+3. Open the instance Minecraft folder from the launcher. In Prism this is usually available from the instance edit window as:
+
+    ```txt
+    Folder
+    Minecraft
+    ```
+
+4. Download Packwiz Installer Bootstrap:
+
+    ```txt
+    https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar
+    ```
+
+5. Put the downloaded file directly in the instance Minecraft folder. The final path must look like:
+
+    ```txt
+    <instance Minecraft folder>/packwiz-installer-bootstrap.jar
+    ```
+
+6. In the instance settings, open:
+
+    ```txt
+    Settings
+    Custom commands
+    ```
+
+7. Add this as the pre-launch command:
+
+    ```bash
+    "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+    ```
+
+8. Save the instance settings.
+9. Launch the same instance.
+10. Wait for Packwiz to finish, then Minecraft will start.
+
+After this, keep using the same instance. When the server owner publishes a pack update, close Minecraft and launch this same instance again. Packwiz should update it before Minecraft starts.
 
 Do not manually add, remove, or update mods in this instance unless asked. Manual changes can make your client different from the server.
 
