@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "vampirism:human_heart"
+  },
+  "result": {
+    "id": "irons_spellbooks:blood_vial",
+    "count": 1
+  }
+}
