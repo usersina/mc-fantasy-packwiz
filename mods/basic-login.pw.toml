@@ -1,6 +1,6 @@
 name = "Basic Login"
 filename = "basiclogin-2.0.0.21.1.jar"
-side = "both"
+side = "server"
 
 [download]
 url = "https://cdn.modrinth.com/data/uChGyl9A/versions/DGcgowF3/basiclogin-2.0.0.21.1.jar"
