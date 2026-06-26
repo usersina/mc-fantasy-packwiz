@@ -12,7 +12,7 @@
       "item": "irons_spellbooks:arcane_essence"
     },
     {
-      "item": "minecraft:copper_ingot"
+      "tag": "minecraft:coals"
     }
   ],
   "result": {
