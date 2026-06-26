@@ -34,7 +34,7 @@ tasks:
     desc: Smoke-test client auto-update install
     dir: '{{.REPO_DIR}}'
     cmds:
-      - PACK_URL="${PACK_URL:-{{.PUBLIC_PACK_URL}}}" JAVA21="{{.JAVA21}}" ./scripts/smoke-client-update.sh
+      - PACK_URL="${PACK_URL:-{{.PUBLIC_PACK_URL}}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/smoke-client-update.sh
 
   pack:export-client:
     desc: Export Prism/Freesm .mrpack into dist/

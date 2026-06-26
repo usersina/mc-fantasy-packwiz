@@ -64,7 +64,7 @@ jobs:
           done
 
           curl -fsS http://127.0.0.1:8081/stable/pack.toml >/dev/null
-          task pack:smoke-update PACK_URL=http://127.0.0.1:8081/stable/pack.toml JAVA21="$JAVA_HOME/bin/java"
+          PACK_URL=http://127.0.0.1:8081/stable/pack.toml JAVA21="$JAVA_HOME/bin/java" task pack:smoke-update
 
       - name: Export client .mrpack
         id: export_client
