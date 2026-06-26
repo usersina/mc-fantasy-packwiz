@@ -85,10 +85,6 @@ file = "defaultconfigs/waystones-common.toml"
 hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
 
 [[files]]
-file = "media/pre-launch-command.png"
-hash = "19b06f332f9e71c401f4a6ca89bbd2e3e59795bb55f96b2041cff518c716821c"
-
-[[files]]
 file = "mods/aces-spell-utils.pw.toml"
 hash = "0fa8a6109ec993b9dd07c2ebdc6e98a9464a07248105c185261b1001699003ce"
 metafile = true

@@ -25,71 +25,29 @@ https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/m
     https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
     ```
 
-5. Launch the imported instance.
-6. Wait for the launcher to finish downloading the pack.
-7. Join the multiplayer server with the server address you were given.
+    The import screen should look like this:
 
-At this point the pack is installed. For future server updates, choose one of the update methods below.
+    ![Freesm Launcher import screen with the stable Fantasy Pack mrpack URL pasted](../media/import-pack.png)
+
+5. Confirm the import and wait for the launcher to finish downloading the pack.
+6. Continue with **Recommended: Automatic Updates** below before using the instance regularly.
+7. Launch the imported instance.
+8. Join the multiplayer server with the server address you were given.
+
+At this point the pack is installed. For future server updates, use the recommended automatic updater below.
 
 ## Updates
 
 There are two update methods:
 
-- **Manual update:** use the launcher's Modrinth tab to update the same instance from the stable `.mrpack` URL.
-- **Automatic update:** add Packwiz Installer Bootstrap and a pre-launch command to the same instance.
+- **Recommended automatic update:** add Packwiz Installer Bootstrap and a pre-launch command to the same instance.
+- **Fallback launcher update:** use the launcher's Modrinth tab to update the same instance from the stable `.mrpack` URL.
 
-The manual update method is the currently tested path. The automatic update method is documented below, but treat it as experimental until we test it with a real Prism/Freesm client instance.
+The automatic update method is the recommended tested path. Once it is set up, the same instance checks the hosted stable Packwiz pack before Minecraft starts.
 
-## Update Method 1: Manual Launcher Update (Tested)
+## Recommended: Automatic Updates
 
-Use this if you want the simplest and safest process.
-
-When the server owner says the pack changed:
-
-1. Close Minecraft.
-2. Right-click the imported instance and choose:
-
-    ```txt
-    Edit
-    ```
-
-3. Open the Modrinth tab under the instance version settings.
-4. Paste or confirm the same stable `.mrpack` URL:
-
-    ```txt
-    https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
-    ```
-
-5. Press:
-
-    ```txt
-    Update Pack
-    ```
-
-6. Wait for the launcher to finish updating.
-7. Launch the same instance.
-
-This is still a manual snapshot update. Restarting the instance does not automatically check for new releases; you run **Update Pack** when the server owner says the pack changed.
-
-If the Modrinth update tab is not available or does not work, use the fallback:
-
-1. Close Minecraft.
-2. Choose:
-
-    ```txt
-    Add Instance
-    Import
-    ```
-
-3. Paste the stable `.mrpack` URL again.
-4. Import it as the updated client instance.
-5. Launch the updated instance.
-
-## Update Method 2: Automatic Packwiz Updater (Experimental)
-
-Use this if you want the same instance to update itself before Minecraft starts.
-
-Status: documented, but not fully tested yet with a real client instance.
+Use this so the same instance updates itself before Minecraft starts.
 
 This method continues from **Initial Setup**. Start with the instance you already imported from the `.mrpack`, then add the updater pieces.
 
@@ -150,6 +108,51 @@ https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 After this, keep using the same instance. When the server owner publishes a pack update, close Minecraft and launch this same instance again. Packwiz should update it before Minecraft starts.
 
 Do not manually add, remove, or update mods in this instance unless asked. Manual changes can make your client different from the server.
+
+## Fallback: Launcher Update Pack
+
+Use this if the automatic updater is not set up yet or the pre-launch command is not working.
+
+When the server owner says the pack changed:
+
+1. Close Minecraft.
+2. Right-click the imported instance and choose:
+
+    ```txt
+    Edit
+    ```
+
+3. Open the Modrinth tab under the instance version settings.
+4. Paste or confirm the same stable `.mrpack` URL:
+
+    ```txt
+    https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
+    ```
+
+5. Press:
+
+    ```txt
+    Update Pack
+    ```
+
+6. Wait for the launcher to finish updating.
+7. Launch the same instance.
+
+This is a manual snapshot update. Restarting the instance does not check for new releases unless you configured the automatic updater above.
+
+If the Modrinth update tab is not available or does not work, use the last-resort fallback:
+
+1. Close Minecraft.
+2. Choose:
+
+    ```txt
+    Add Instance
+    Import
+    ```
+
+3. Paste the stable `.mrpack` URL again.
+4. Import it as the updated client instance.
+5. Launch the updated instance.
 
 ## Controls
 

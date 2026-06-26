@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MC Fantasy Packwiz</title>
+    <title>Fantasy Pack Client Setup</title>
     <meta
       name="description"
-      content="Stable Packwiz update endpoint for the MC Fantasy Minecraft modpack."
+      content="Quick Prism and Freesm Launcher setup guide for the Fantasy Minecraft pack."
     />
     <style>
       :root {
         color-scheme: light;
-        --bg: #f4f1e8;
+        --bg: #f6f4ef;
         --ink: #17211a;
         --muted: #5a645b;
         --panel: #ffffff;
@@ -19,8 +19,7 @@
         --green: #2f6f44;
         --green-dark: #214f32;
         --amber: #b7791f;
-        --stone: #e3e6df;
-        --dirt: #7b5a3a;
+        --shadow: rgba(23, 33, 26, 0.12);
       }
 
       * {
@@ -78,18 +77,18 @@
       }
 
       .hero {
-        min-height: 58vh;
+        min-height: 54vh;
         display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+        grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
         align-items: center;
-        gap: clamp(2rem, 5vw, 4rem);
-        padding: clamp(2rem, 6vw, 5rem);
+        gap: clamp(1.5rem, 5vw, 4rem);
+        padding: clamp(1.25rem, 5vw, 4rem);
         border-bottom: 1px solid var(--line);
         background:
           linear-gradient(
             180deg,
-            rgba(244, 241, 232, 0.7),
-            rgba(244, 241, 232, 1)
+            rgba(246, 244, 239, 0.72),
+            rgba(246, 244, 239, 1)
           ),
           repeating-linear-gradient(
             90deg,
@@ -107,9 +106,9 @@
       }
 
       h1 {
-        max-width: 11ch;
+        max-width: 12ch;
         margin: 0;
-        font-size: clamp(3rem, 9vw, 6.6rem);
+        font-size: clamp(2.75rem, 7vw, 5.6rem);
         line-height: 0.95;
       }
 
@@ -145,57 +144,51 @@
         color: var(--green-dark);
       }
 
-      .pack-art {
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        gap: 5px;
-        width: min(100%, 380px);
-        aspect-ratio: 1;
+      .hero-shot,
+      .screenshot {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 24px 60px var(--shadow);
+      }
+
+      .hero-shot {
+        max-width: 680px;
         margin-inline: auto;
-        padding: 10px;
+      }
+
+      .steps {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+        align-items: start;
+        gap: clamp(1rem, 3vw, 2rem);
+        padding: 1.25rem;
         border: 1px solid var(--line);
         border-radius: 8px;
         background: var(--panel);
-        box-shadow: 0 24px 60px rgba(23, 33, 26, 0.12);
       }
 
-      .block {
-        border-radius: 3px;
-        box-shadow: inset 0 -8px rgba(0, 0, 0, 0.08);
+      .step.compact {
+        display: block;
       }
 
-      .grass {
-        background: #4f9d54;
-      }
-      .leaf {
-        background: #2f6f44;
-      }
-      .water {
-        background: #4b8fbf;
-      }
-      .stone {
-        background: #aeb7ad;
-      }
-      .dirt {
-        background: var(--dirt);
-      }
-      .gold {
-        background: #d6a437;
-      }
-
-      main {
-        width: min(1100px, calc(100% - 2rem));
-        margin: 0 auto;
-        padding: 2.5rem 0 4rem;
-      }
-
-      .section {
-        padding: 2rem 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .section:last-child {
-        border-bottom: 0;
+      .step-number {
+        display: inline-grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        margin-bottom: 0.75rem;
+        border-radius: 50%;
+        background: var(--green);
+        color: white;
+        font-weight: 800;
       }
 
       h2 {
@@ -225,6 +218,23 @@
         margin-top: 1rem;
       }
 
+      .help-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      main {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 2.5rem 0 4rem;
+      }
+
+      .section {
+        padding: 2rem 0;
+      }
+
       .footer {
         color: var(--muted);
         font-size: 0.92rem;
@@ -236,8 +246,8 @@
           grid-template-columns: 1fr;
         }
 
-        .pack-art {
-          width: min(100%, 300px);
+        .step {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -246,129 +256,105 @@
     <header class="hero">
       <div>
         <p class="eyebrow">Minecraft 1.21.1 NeoForge</p>
-        <h1>MC Fantasy Packwiz</h1>
+        <h1>Fantasy Pack Setup</h1>
         <p class="lede">
-          This site hosts the stable Packwiz update channel for the Fantasy
-          Minecraft pack. Players can import the client pack, while
-          auto-updating instances should use the Packwiz URL.
+          Import the pack once in Prism or Freesm, add the updater command, and
+          then launch the same instance whenever you want to play.
         </p>
         <div class="actions">
-          <a class="button" href="stable/pack.toml">Stable pack.toml</a>
           <a
-            class="button secondary"
+            class="button"
             href="https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack"
             >Import .mrpack</a
           >
           <a
             class="button secondary"
             href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
-            >Client guide</a
+            >Full guide</a
           >
         </div>
       </div>
-      <div class="pack-art" aria-hidden="true">
-        <span class="block leaf"></span><span class="block leaf"></span
-        ><span class="block grass"></span><span class="block grass"></span
-        ><span class="block stone"></span><span class="block stone"></span
-        ><span class="block water"></span><span class="block water"></span>
-        <span class="block leaf"></span><span class="block grass"></span
-        ><span class="block grass"></span><span class="block gold"></span
-        ><span class="block stone"></span><span class="block water"></span
-        ><span class="block water"></span><span class="block water"></span>
-        <span class="block grass"></span><span class="block grass"></span
-        ><span class="block dirt"></span><span class="block gold"></span
-        ><span class="block stone"></span><span class="block stone"></span
-        ><span class="block water"></span><span class="block water"></span>
-        <span class="block grass"></span><span class="block dirt"></span
-        ><span class="block dirt"></span><span class="block stone"></span
-        ><span class="block stone"></span><span class="block leaf"></span
-        ><span class="block grass"></span><span class="block water"></span>
-        <span class="block dirt"></span><span class="block dirt"></span
-        ><span class="block stone"></span><span class="block stone"></span
-        ><span class="block leaf"></span><span class="block leaf"></span
-        ><span class="block grass"></span><span class="block grass"></span>
-        <span class="block dirt"></span><span class="block stone"></span
-        ><span class="block stone"></span><span class="block gold"></span
-        ><span class="block leaf"></span><span class="block grass"></span
-        ><span class="block grass"></span><span class="block dirt"></span>
-        <span class="block stone"></span><span class="block stone"></span
-        ><span class="block gold"></span><span class="block dirt"></span
-        ><span class="block grass"></span><span class="block grass"></span
-        ><span class="block dirt"></span><span class="block dirt"></span>
-        <span class="block stone"></span><span class="block gold"></span
-        ><span class="block dirt"></span><span class="block dirt"></span
-        ><span class="block dirt"></span><span class="block stone"></span
-        ><span class="block stone"></span><span class="block dirt"></span>
-      </div>
+      <img
+        class="hero-shot"
+        src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/import-pack.png"
+        alt="Freesm Launcher import screen with the Fantasy Pack URL pasted"
+      />
     </header>
 
     <main>
       <section class="section">
-        <h2>Quick Client Setup</h2>
-        <p>
-          The public client pack is a Prism/Freesm <code>.mrpack</code>
-          published as a GitHub Release artifact.
-        </p>
-        <p>Use this import URL:</p>
-        <div class="endpoint">
-          <pre><code>https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack</code></pre>
-        </div>
-        <ol>
-          <li>Install Prism Launcher or Freesm Launcher.</li>
-          <li>Make sure the launcher uses Java 21.</li>
-          <li>
-            Choose <code>Add Instance</code>, then <code>Import</code>.
-          </li>
-          <li>Paste the import URL, or select the downloaded file.</li>
-          <li>
-            Launch the imported instance and wait for downloads to finish.
-          </li>
-          <li>Join the multiplayer server with the address you were given.</li>
-        </ol>
-        <p>
-          A direct <code>.mrpack</code> import is a snapshot. Restarting that
-          same instance does not check for new releases. If the server pack
-          changes later, open the instance's Modrinth tab and use
-          <code>Update Pack</code> with the same URL. Re-import the URL only if
-          that update path is unavailable.
-        </p>
-        <p>
-          Controls can be changed locally in Minecraft. Latest release page:
-          <a href="https://github.com/usersina/mc-fantasy-packwiz/releases/latest"
-            >GitHub Releases</a
-          >.
-        </p>
-        <p>
-          For troubleshooting and maintainer details, read the
-          <a
-            href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
-            >full client guide</a
-          >.
-        </p>
-      </section>
+        <h2>Three Steps</h2>
+        <div class="steps">
+          <article class="step">
+            <div>
+              <span class="step-number">1</span>
+              <h3>Import The Pack</h3>
+              <p>
+                In Prism or Freesm, choose <code>Add Instance</code>, then
+                <code>Import</code>. Paste this URL:
+              </p>
+              <div class="endpoint">
+                <pre><code>https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack</code></pre>
+              </div>
+              <p>
+                Confirm the import and let the launcher download everything.
+              </p>
+            </div>
+            <img
+              class="screenshot"
+              src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/import-pack.png"
+              alt="Import screen with the stable Fantasy Pack mrpack URL pasted"
+            />
+          </article>
 
-      <section class="section">
-        <h2>For Launchers</h2>
-        <p>The stable Packwiz endpoint is:</p>
-        <div class="endpoint">
-          <pre><code>https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml</code></pre>
-        </div>
-        <p>
-          Prism or Freesm updater instances should run this pre-launch command:
-        </p>
-        <pre><code>"$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"</code></pre>
-      </section>
+          <article class="step">
+            <div>
+              <span class="step-number">2</span>
+              <h3>Turn On Updates</h3>
+              <p>
+                Put <code>packwiz-installer-bootstrap.jar</code> in the instance
+                Minecraft folder, then add this pre-launch command:
+              </p>
+              <div class="endpoint">
+                <pre><code>"$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"</code></pre>
+              </div>
+              <p>
+                This makes the instance check for pack updates before Minecraft
+                starts.
+              </p>
+            </div>
+            <img
+              class="screenshot"
+              src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/pre-launch-command.png"
+              alt="Custom commands screen with the Packwiz pre-launch command configured"
+            />
+          </article>
 
-      <section class="section">
-        <h2>What This Site Is</h2>
-        <ul>
-          <li>A GitHub Pages host for the stable Packwiz channel.</li>
-          <li>A machine-readable update source for Packwiz Installer.</li>
-          <li>
-            Not a full launcher, not a server status page, and not the Minecraft
-            server itself.
-          </li>
-        </ul>
+          <article class="step compact">
+            <span class="step-number">3</span>
+            <h3>Launch And Play</h3>
+            <p>
+              Launch this same instance every time. If the server owner updates
+              the pack, close Minecraft and launch the instance again.
+            </p>
+            <p>
+              Need more detail, Java 21 help, or the fallback manual update
+              method?
+            </p>
+            <div class="help-links">
+              <a
+                class="button"
+                href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
+                >Open full guide</a
+              >
+              <a
+                class="button secondary"
+                href="https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar"
+                >Download updater jar</a
+              >
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="section footer">
