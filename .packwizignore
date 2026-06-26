@@ -1,8 +1,11 @@
 .git/**
+.github/**
 .gitignore
 .packwizignore
 README.md
 Taskfile.yml
+todo.md
+.cache/**
 docs/**
 server-base/**
 scripts/**

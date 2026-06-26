@@ -5,6 +5,8 @@ vars:
   REPO_DIR: '{{.TASKFILE_DIR}}'
   SERVER_DIR: /data/games/servers/minecraft/fantasy-lan
   PACK_URL: http://127.0.0.1:8080/pack.toml
+  PUBLIC_PACK_URL: https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
+  SITE_DIR: dist/site/stable
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
   CLIENT_PACK_SLUG: mc-fantasy
   KEYBOARD: qwerty
@@ -21,6 +23,19 @@ tasks:
     dir: '{{.REPO_DIR}}'
     cmds:
       - packwiz refresh
+
+  pack:site:
+    desc: Build GitHub Pages stable Packwiz site
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - packwiz refresh
+      - SITE_DIR="{{.SITE_DIR}}" ./scripts/build-pack-site.sh
+
+  pack:smoke-update:
+    desc: Smoke-test client auto-update install
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - PACK_URL="${PACK_URL:-{{.PUBLIC_PACK_URL}}}" JAVA21="{{.JAVA21}}" ./scripts/smoke-client-update.sh
 
   pack:export-client:
     desc: Export Prism/Freesm .mrpack into dist/

@@ -105,9 +105,34 @@ Paxi loads those datapacks for every world. Because they are Packwiz-managed fil
 
 Do not put shared datapacks under `server-base/`; that folder is only for the dedicated server base templates.
 
-## Client Pack
+## Client Updates
 
-For Prism Launcher or Freesm Launcher:
+The preferred client path is now a Prism/Freesm updater instance. Friends import the instance once, and a pre-launch Packwiz installer updates mods, config, and global Paxi datapacks from:
+
+```txt
+https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
+```
+
+Build the hosted Packwiz site locally:
+
+```bash
+task pack:site
+```
+
+Smoke-test the client updater against a served copy before release:
+
+```bash
+cd dist/site
+python3 -m http.server 8081
+```
+
+Then in another terminal:
+
+```bash
+PACK_URL=http://127.0.0.1:8081/stable/pack.toml task pack:smoke-update
+```
+
+The manual `.mrpack` export still exists as the first-import/bootstrap path and as a fallback:
 
 ```bash
 task pack:export-client
@@ -121,7 +146,7 @@ For AZERTY:
 task pack:export-client KEYBOARD=azerty
 ```
 
-See [client/README.md](client/README.md) for the full manual export flow, what goes into the `.mrpack`, and the deferred auto-updating path.
+See [client/README.md](client/README.md) for the updater instance setup, the manual `.mrpack` fallback, and the release checklist.
 
 ## Useful Tasks
 
@@ -136,6 +161,8 @@ task server:diff-base      # compare runtime base files with server-base
 task server:apply-base     # back up and overwrite runtime base files
 task server:backup         # back up the active world and runtime config
 task pack:refresh          # refresh packwiz index files
+task pack:site             # build dist/site/stable for GitHub Pages
+task pack:smoke-update     # verify client updater installs successfully
 task pack:export-client    # export the QWERTY Prism/Freesm .mrpack
 ```
 

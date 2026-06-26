@@ -1,12 +1,35 @@
-# Client Pack Export
+# Client Pack Updates
 
-This folder contains client release inputs and the manual Prism/Freesm `.mrpack` export flow.
+This folder contains client release inputs for Prism/Freesm.
+
+The preferred client path is a one-time Prism/Freesm updater instance: friends import the instance once, then Packwiz updates mods, config, and global Paxi datapacks before each launch.
 
 Files here are intentionally ignored by Packwiz's normal index so server sync does not copy them into the server runtime. `task pack:export-client` injects the selected client defaults into the generated `.mrpack` as `overrides/options.txt`.
 
-Full release automation is intentionally deferred; the future path should probably attach generated `.mrpack` files to a GitHub Release.
+## Stable Auto-Updating Client
 
-## Manual Export
+The stable updater URL is:
+
+```txt
+https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
+```
+
+Create the friend-facing updater instance like this:
+
+1. Export a QWERTY or AZERTY `.mrpack` with `task pack:export-client`.
+2. Import that `.mrpack` into Prism or Freesm once so the client defaults are seeded.
+3. Put `packwiz-installer-bootstrap.jar` in that instance's Minecraft folder.
+4. Add this pre-launch command:
+
+    ```bash
+    "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+    ```
+
+5. Export that configured launcher instance as a zip and send it to friends.
+
+After that first import, friends should launch through that instance. New mods, removed mods, defaultconfigs, Packwiz-managed config, and `config/paxi/datapacks/` are pulled from the hosted stable Packwiz site before Minecraft starts.
+
+## Manual Export Fallback
 
 Run from the repo root:
 
@@ -29,7 +52,7 @@ dist/mc-fantasy-1.21.1-v1.0.0-qwerty.mrpack
 dist/mc-fantasy-1.21.1-v1.0.0-azerty.mrpack
 ```
 
-The generated `.mrpack` files are ignored by Git because `dist/` and `*.mrpack` are runtime/release outputs.
+The generated `.mrpack` files are ignored by Git because `dist/` and `*.mrpack` are runtime/release outputs. Use them for initial updater-instance creation or as a manual fallback when a friend cannot use the updater instance.
 
 ## Client Defaults
 
@@ -59,18 +82,40 @@ key_keys.vampirism.suck:key.keyboard.w
 
 ## Release Checklist
 
-Every time the pack changes and friends need new client files:
+Before publishing a client update:
 
 ```bash
-task pack:export-client
-task pack:export-client KEYBOARD=azerty
+task pack:site
 ```
 
-Then upload the generated `.mrpack` files to a GitHub Release or send them directly.
+Then serve the generated site locally:
+
+```bash
+cd dist/site
+python3 -m http.server 8081
+```
+
+In another terminal:
+
+```bash
+PACK_URL=http://127.0.0.1:8081/stable/pack.toml task pack:smoke-update
+```
+
+The smoke test installs a clean temp client and verifies:
+
+- Packwiz installer exits successfully
+- `mods/`, `defaultconfigs/`, and `config/paxi/datapacks/` are present
+- `Configured` and `More Dragon Eggs` resolve from their current CurseForge metadata
+
+When local smoke testing passes, push to `main`. GitHub Actions rebuilds `dist/site/stable/`, serves it locally, runs the same smoke update against it, and deploys GitHub Pages only after that succeeds.
+
+Update/restart the dedicated server from the same pack version during the same release window.
 
 ## Send To Friends
 
-Send the file matching their keyboard layout:
+For the updater path, send the exported Prism/Freesm instance zip after you configure the pre-launch command.
+
+For manual fallback, send the `.mrpack` matching their keyboard layout:
 
 ```txt
 dist/mc-fantasy-1.21.1-v1.0.0-qwerty.mrpack
@@ -120,6 +165,8 @@ The current export shape has been smoke-tested. The `.mrpack` contains:
 
 It does not contain `server-base/`, `scripts/`, `docs/`, `Taskfile.yml`, or `README.md`.
 
+The hosted stable Packwiz site is even smaller: it contains `pack.toml`, `index.toml`, and the files listed in `index.toml`.
+
 ## Side Policy For Singleplayer
 
 The Packwiz project currently contains every mod from the original source list by project ID.
@@ -140,17 +187,21 @@ Most mods are Modrinth-backed. If export prints `added to zip` for a small numbe
 
 If export fails because of a restricted download or missing metadata, check the failing mod metadata first. The manual fallback is to import the pack locally in Prism, repair whatever download/import issue appears there, then export a Prism instance zip for friends.
 
-## Deferred Auto-Updating Path
+## GitHub Pages Publishing
 
-The second path is a packwiz-installer pre-launch instance:
+GitHub Pages should be configured to use GitHub Actions as its source. The workflow publishes:
 
-1. Host `pack.toml` somewhere friends can reach, not `127.0.0.1`.
-2. Create a Prism/Freesm instance with Minecraft `1.21.1`, NeoForge `21.1.233`, and Java 21.
-3. Put `packwiz-installer-bootstrap.jar` in the instance `.minecraft` folder.
-4. Add a pre-launch command that runs packwiz-installer against the hosted `pack.toml`.
-5. Export that configured launcher instance as a zip.
+```txt
+dist/site/stable/
+```
 
-This is better for frequent updates, but it needs hosting and instance-template decisions, so it is only documented for now.
+to:
+
+```txt
+https://usersina.github.io/mc-fantasy-packwiz/stable/
+```
+
+Minecraft or NeoForge version changes still require a new launcher instance zip. Normal mod/config/datapack updates should flow through the hosted Packwiz updater.
 
 ## References
 
