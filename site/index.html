@@ -258,20 +258,21 @@
         <p class="eyebrow">Minecraft 1.21.1 NeoForge</p>
         <h1>Fantasy Pack Setup</h1>
         <p class="lede">
-          Import the pack once in Prism or Freesm, add the updater command, and
-          then launch the same instance whenever you want to play.
+          Import the pack once in Prism or Freesm, drop in the updater jar, add
+          the updater command, then launch the same instance whenever you want
+          to play.
         </p>
         <div class="actions">
           <a
             class="button"
             href="https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack"
-            >Import .mrpack</a
-          >
+            >Import .mrpack
+          </a>
           <a
             class="button secondary"
             href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
-            >Full guide</a
-          >
+            >Full guide
+          </a>
         </div>
       </div>
       <img
@@ -283,7 +284,7 @@
 
     <main>
       <section class="section">
-        <h2>Three Steps</h2>
+        <h2>Four Steps</h2>
         <div class="steps">
           <article class="step">
             <div>
@@ -310,10 +311,38 @@
           <article class="step">
             <div>
               <span class="step-number">2</span>
+              <h3>Add The Updater Jar</h3>
+              <p>
+                Download <code>packwiz-installer-bootstrap.jar</code> and put it
+                directly inside the imported instance's <code>minecraft</code>
+                folder.
+              </p>
+              <p>
+                In Prism or Freesm, open the instance, then use the folder
+                button to open its Minecraft folder.
+              </p>
+              <div class="help-links">
+                <a
+                  class="button"
+                  href="https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar"
+                  >Download updater jar
+                </a>
+              </div>
+            </div>
+            <img
+              class="screenshot"
+              src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/packwiz-at-folder.png"
+              alt="Instance Minecraft folder with packwiz-installer-bootstrap.jar selected"
+            />
+          </article>
+
+          <article class="step">
+            <div>
+              <span class="step-number">3</span>
               <h3>Turn On Updates</h3>
               <p>
-                Put <code>packwiz-installer-bootstrap.jar</code> in the instance
-                Minecraft folder, then add this pre-launch command:
+                In the instance settings, open <code>Custom commands</code> and
+                paste this as the pre-launch command:
               </p>
               <div class="endpoint">
                 <pre><code>"$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"</code></pre>
@@ -331,7 +360,7 @@
           </article>
 
           <article class="step compact">
-            <span class="step-number">3</span>
+            <span class="step-number">4</span>
             <h3>Launch And Play</h3>
             <p>
               Launch this same instance every time. If the server owner updates
@@ -345,13 +374,15 @@
               <a
                 class="button"
                 href="https://github.com/usersina/mc-fantasy-packwiz/blob/main/docs/client.md"
-                >Open full guide</a
               >
+                Open full guide
+              </a>
               <a
                 class="button secondary"
-                href="https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar"
-                >Download updater jar</a
+                href="https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack"
               >
+                Import URL
+              </a>
             </div>
           </article>
         </div>
@@ -360,9 +391,9 @@
       <section class="section footer">
         <p>
           Source repository:
-          <a href="https://github.com/usersina/mc-fantasy-packwiz"
-            >usersina/mc-fantasy-packwiz</a
-          >
+          <a href="https://github.com/usersina/mc-fantasy-packwiz">
+            usersina/mc-fantasy-packwiz
+          </a>
         </p>
       </section>
     </main>
