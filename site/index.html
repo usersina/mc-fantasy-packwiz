@@ -159,6 +159,65 @@
         margin-inline: auto;
       }
 
+      .zoom-button {
+        appearance: none;
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        cursor: zoom-in;
+        text-align: left;
+      }
+
+      .zoom-button:focus-visible {
+        outline: 3px solid var(--amber);
+        outline-offset: 4px;
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: none;
+        place-items: center;
+        padding: clamp(1rem, 4vw, 2rem);
+        background: rgba(10, 14, 11, 0.86);
+      }
+
+      .lightbox.is-open {
+        display: grid;
+      }
+
+      .lightbox img {
+        max-width: min(1200px, 96vw);
+        max-height: 88vh;
+        border-radius: 8px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2.75rem;
+        height: 2.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        cursor: pointer;
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+
+      .lightbox-close:focus-visible {
+        outline: 3px solid white;
+        outline-offset: 4px;
+      }
+
       .steps {
         display: grid;
         gap: 1.25rem;
@@ -301,11 +360,17 @@
                 Confirm the import and let the launcher download everything.
               </p>
             </div>
-            <img
-              class="screenshot"
-              src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/import-pack.png"
-              alt="Import screen with the stable Fantasy Pack mrpack URL pasted"
-            />
+            <button
+              class="zoom-button"
+              type="button"
+              aria-label="Zoom import pack screenshot"
+            >
+              <img
+                class="screenshot"
+                src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/import-pack.png"
+                alt="Import screen with the stable Fantasy Pack mrpack URL pasted"
+              />
+            </button>
           </article>
 
           <article class="step">
@@ -329,11 +394,17 @@
                 </a>
               </div>
             </div>
-            <img
-              class="screenshot"
-              src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/packwiz-at-folder.png"
-              alt="Instance Minecraft folder with packwiz-installer-bootstrap.jar selected"
-            />
+            <button
+              class="zoom-button"
+              type="button"
+              aria-label="Zoom updater jar folder screenshot"
+            >
+              <img
+                class="screenshot"
+                src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/packwiz-at-folder.png"
+                alt="Instance Minecraft folder with packwiz-installer-bootstrap.jar selected"
+              />
+            </button>
           </article>
 
           <article class="step">
@@ -352,11 +423,17 @@
                 starts.
               </p>
             </div>
-            <img
-              class="screenshot"
-              src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/pre-launch-command.png"
-              alt="Custom commands screen with the Packwiz pre-launch command configured"
-            />
+            <button
+              class="zoom-button"
+              type="button"
+              aria-label="Zoom pre-launch command screenshot"
+            >
+              <img
+                class="screenshot"
+                src="https://raw.githubusercontent.com/usersina/mc-fantasy-packwiz/main/media/pre-launch-command.png"
+                alt="Custom commands screen with the Packwiz pre-launch command configured"
+              />
+            </button>
           </article>
 
           <article class="step compact">
@@ -397,5 +474,61 @@
         </p>
       </section>
     </main>
+
+    <div
+      class="lightbox"
+      id="image-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <button
+        class="lightbox-close"
+        type="button"
+        aria-label="Close image preview"
+      >
+        &times;
+      </button>
+      <img alt="" />
+    </div>
+
+    <script>
+      const lightbox = document.querySelector('#image-lightbox')
+      const lightboxImage = lightbox.querySelector('img')
+      const closeButton = lightbox.querySelector('.lightbox-close')
+      let previousFocus = null
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open')
+        lightbox.setAttribute('aria-hidden', 'true')
+        lightboxImage.removeAttribute('src')
+        lightboxImage.alt = ''
+        previousFocus?.focus()
+      }
+
+      document.querySelectorAll('.zoom-button').forEach((button) => {
+        button.addEventListener('click', () => {
+          const image = button.querySelector('img')
+          previousFocus = button
+          lightboxImage.src = image.src
+          lightboxImage.alt = image.alt
+          lightbox.classList.add('is-open')
+          lightbox.setAttribute('aria-hidden', 'false')
+          closeButton.focus()
+        })
+      })
+
+      closeButton.addEventListener('click', closeLightbox)
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+          closeLightbox()
+        }
+      })
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+          closeLightbox()
+        }
+      })
+    </script>
   </body>
 </html>
