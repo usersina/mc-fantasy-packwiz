@@ -520,6 +520,11 @@ hash = "6be463e57622036302e6555834d4b915e9d0407ce646a20edc770901111eca0d"
 metafile = true
 
 [[files]]
+file = "mods/realm-rpg-fallen-adventurers.pw.toml"
+hash = "e3dc2d295b421fd9e51608c84c1172dd794c94fb03fdcc85aa173257e4535728"
+metafile = true
+
+[[files]]
 file = "mods/resourceful-config.pw.toml"
 hash = "27721caca5a03b743bf25888e1d984142948069dace31453f103f94f7f24d2ce"
 metafile = true
