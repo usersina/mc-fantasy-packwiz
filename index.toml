@@ -130,11 +130,6 @@ hash = "76122ac2bb341daceebb19cd69e1f3bf19efea88fa59010865c1b8f02ea1d759"
 metafile = true
 
 [[files]]
-file = "mods/basic-login.pw.toml"
-hash = "93243befcb29f885b1a8da81c3f0376d81831f7f24f96d33a5d7bedfa679dc3a"
-metafile = true
-
-[[files]]
 file = "mods/bedspreads.pw.toml"
 hash = "7057d5d342a6fffba43bf3452f0f47f919f9e363c868f72787a8e3d770fdbfde"
 metafile = true
