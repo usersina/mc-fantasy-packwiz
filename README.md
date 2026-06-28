@@ -71,6 +71,14 @@ That syncs Packwiz-managed files into the existing runtime without starting the 
 
 `server-base/server.properties` is tracked on purpose. A generated `server.properties` at the repo root or inside the runtime is not.
 
+## Config Folders
+
+Use `config/` for files that should exist at the Minecraft instance root on both clients and the dedicated server. Examples in this pack are `config/paxi/datapacks/...` and `config/defaultoptions/keybindings.txt`.
+
+Use `defaultconfigs/` for NeoForge server config defaults. NeoForge uses these as templates for new worlds' `serverconfig/` files. They are good for "when a new world is created, start with these server config values." They are not the same thing as the Default Options mod.
+
+`config/defaultoptions/keybindings.txt` belongs to the Default Options mod. It provides client keybinding defaults without replacing each player's normal `options.txt` every launch.
+
 To review base-template drift:
 
 ```bash
@@ -103,6 +111,10 @@ Paxi loads those datapacks for every world. Because they are Packwiz-managed fil
 - Prism/Freesm `.mrpack` exports via `task pack:export-client`
 
 Do not put shared datapacks under `server-base/`; that folder is only for the dedicated server base templates.
+
+## Mod Notes
+
+Carry On uses the unofficial patched `carryon-neoforge-1.21.1-2.2.4.4-patched-no-slowness.jar` intentionally because the official 1.21.1 build hit server stability problems in this pack. Player pickup remains enabled, but it has an intermittent `carryon:sync_carry_data` disconnect risk, so do not update or swap Carry On casually without retesting multiplayer player pickup.
 
 ## Client Updates
 

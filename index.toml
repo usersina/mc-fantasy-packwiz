@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/defaultoptions/keybindings.txt"
-hash = "ee67bfaabcae827da5799b9f7e7cc9d543e22aec31261fbb1c2729e1b520850c"
+hash = "433bb9ed0e6883b78382e98a2a792aada6cb04fe4d2af714fb6778d3e2da4579"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/alchemist_cauldron.json"
