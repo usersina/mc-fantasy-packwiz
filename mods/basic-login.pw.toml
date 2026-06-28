@@ -1,0 +1,13 @@
+name = "Basic Login"
+filename = "basiclogin-2.0.0.21.1.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/uChGyl9A/versions/DGcgowF3/basiclogin-2.0.0.21.1.jar"
+hash-format = "sha512"
+hash = "2e67e3d8819d0c2dd0941229c6fa459302d4ea71b0f5c9e9da608d29388d4aec8d85b06ea69e2a13c667d7329df3f319c0c7e01dccce5328e108388db0f31128"
+
+[update]
+[update.modrinth]
+mod-id = "uChGyl9A"
+version = "DGcgowF3"
