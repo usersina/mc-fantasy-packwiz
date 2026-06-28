@@ -140,6 +140,11 @@ hash = "7057d5d342a6fffba43bf3452f0f47f919f9e363c868f72787a8e3d770fdbfde"
 metafile = true
 
 [[files]]
+file = "mods/bens-sharks.pw.toml"
+hash = "2380138869c88a71a98d712922f98d182780cfb48a8947b6dad4349928aa8991"
+metafile = true
+
+[[files]]
 file = "mods/better-archeology.pw.toml"
 hash = "eca8266d3037451685da7d3aacc0fc4d17f9caafad60d7671fecf14880f46335"
 metafile = true
@@ -190,6 +195,11 @@ hash = "bf0c5cf4279509496b9763b7f04449862fbc7277da2c7d368c8caa439c7c3e65"
 metafile = true
 
 [[files]]
+file = "mods/chat-heads.pw.toml"
+hash = "3c58cdbfe61c7ecec7068fd066b4c375457631e370a64c032c9f8a8666d4f27b"
+metafile = true
+
+[[files]]
 file = "mods/chefs-delight.pw.toml"
 hash = "4c05ea60d85212e4737d23a4b5ee74659a37c7cb9d6ab54c71b2eca56ed1f58c"
 metafile = true
@@ -205,6 +215,11 @@ hash = "2acaff560bbda5741538528a2967355ec86a8f7564adba0b2316989c66892374"
 metafile = true
 
 [[files]]
+file = "mods/collective.pw.toml"
+hash = "a7dabd3e4c6de8e6eb635ca1b3d2a5eac8166f51939ec8b228cddee58e4d7dbb"
+metafile = true
+
+[[files]]
 file = "mods/configured.pw.toml"
 hash = "e1652216456cb6c5026b3e6b48d98b1509457eb6d974e18002af4ec3bf040ffa"
 metafile = true
@@ -212,6 +227,11 @@ metafile = true
 [[files]]
 file = "mods/controlling.pw.toml"
 hash = "65c8086d2ec3d39acc7bd36c7a0306ccc43b602b38fa07d13291bc478ef7dfff"
+metafile = true
+
+[[files]]
+file = "mods/coroutil.pw.toml"
+hash = "d901f874a1e09747b8d0d072c38c426eceead1f29c8ba36680f8f0082996b152"
 metafile = true
 
 [[files]]
@@ -380,6 +400,11 @@ hash = "d21467f13f2bff35f6e7c5172f9820e55499c49bfa1ebd45f587e890f9c4b726"
 metafile = true
 
 [[files]]
+file = "mods/item-highlighter.pw.toml"
+hash = "9163b758163681f75e2048c798be880c50392684b127d7d87f42ea588deceb62"
+metafile = true
+
+[[files]]
 file = "mods/jade.pw.toml"
 hash = "b4ada8cc3723fd50ce5b4116784434d6ce9edc9e611eca2c5994dba8146d194e"
 metafile = true
@@ -412,6 +437,11 @@ metafile = true
 [[files]]
 file = "mods/l_enders-cataclysm.pw.toml"
 hash = "724206c2b7dbf3501b9ec3ea38036eb616118c1c0ec562d68526eb529f8dfb41"
+metafile = true
+
+[[files]]
+file = "mods/lambdynamiclights.pw.toml"
+hash = "b85d562b35f68cdbb0f79bbdebc11cb938002c727d9f982ed5743c8488c74ac7"
 metafile = true
 
 [[files]]
@@ -495,6 +525,11 @@ hash = "93284ca7f2f23f0bb76d42b797cabf2aea1914ee9825bec82bf6ffe4c60dda0d"
 metafile = true
 
 [[files]]
+file = "mods/polymorph.pw.toml"
+hash = "152769b5dfbb92a836634e315898b23b6a555c60b6f05ddf38c00085f2b784f6"
+metafile = true
+
+[[files]]
 file = "mods/preloading-tricks.pw.toml"
 hash = "f547ee4507a6752a7944d945ee45ed4cd70b4b5dcf3a7e007b29deaf9dfe38cd"
 metafile = true
@@ -532,6 +567,11 @@ metafile = true
 [[files]]
 file = "mods/searchables.pw.toml"
 hash = "ce9ddada6ffd55a512149cc474c6a453281a997a5fdf1b7b4a2cc73f875e704a"
+metafile = true
+
+[[files]]
+file = "mods/skeleton-horse-spawn.pw.toml"
+hash = "11a400b0a7a71773fa573f52266780bc815a16272497e90da9794a986890ad2e"
 metafile = true
 
 [[files]]
@@ -635,6 +675,11 @@ hash = "e60cb37ec5b9d07ec09e2963d57cc7b50627968456fdbf0fc4cd5ec3cf72712b"
 metafile = true
 
 [[files]]
+file = "mods/what-are-they-up-to.pw.toml"
+hash = "9ce52d07c0c3d146a2a44f8bc187138ce7a5558a4e3ab540c86234702b6de274"
+metafile = true
+
+[[files]]
 file = "mods/winds-spellbooks.pw.toml"
 hash = "e174ded612bdae826523460c671f0486e68b769007c41cb892fab4b22809ac02"
 metafile = true
@@ -687,4 +732,9 @@ metafile = true
 [[files]]
 file = "mods/yungs-extras.pw.toml"
 hash = "cfb7ce4c2b00cedd2e61f7d345b824d6bcc1471021668d2319ee2e4079108639"
+metafile = true
+
+[[files]]
+file = "mods/zombie-horse-spawn.pw.toml"
+hash = "3d551e43e74be879f460419854fb3756e934560ff41c81b62380192c9f959a07"
 metafile = true
