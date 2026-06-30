@@ -385,6 +385,11 @@ hash = "c0b2d4b3c5f658cbcdf2cd3fee5af0b3591aa0d9fe46ace7bf32411112b48234"
 metafile = true
 
 [[files]]
+file = "mods/guard-villagers.pw.toml"
+hash = "3843e6f8c47a3a62759c64a92d33e1527674581f7f7739378b3503ac4864dfc7"
+metafile = true
+
+[[files]]
 file = "mods/gui-clock.pw.toml"
 hash = "408033a936dfe6f531a14d798d3e956f536285589c7c7f78b6fda6165fcb4a1d"
 metafile = true
