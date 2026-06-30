@@ -85,6 +85,16 @@ file = "defaultconfigs/waystones-common.toml"
 hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
 
 [[files]]
+file = "mods/accessories-compat-layer.pw.toml"
+hash = "c255cf4cd29718e3ab0a4c18df8bb7b626e0092c5aad7b4e67f34fc1ad4492f8"
+metafile = true
+
+[[files]]
+file = "mods/accessories.pw.toml"
+hash = "19cbfb37dc29169b50599dfa328fe12a0ec9caaec8ac02627b5846f3bd9d1425"
+metafile = true
+
+[[files]]
 file = "mods/aces-spell-utils.pw.toml"
 hash = "0fa8a6109ec993b9dd07c2ebdc6e98a9464a07248105c185261b1001699003ce"
 metafile = true
