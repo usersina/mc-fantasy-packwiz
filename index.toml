@@ -665,6 +665,11 @@ hash = "820e6d40c78ba56e7ff38471ca157aa9133339597fd783280e8b1523538e816d"
 metafile = true
 
 [[files]]
+file = "mods/stardew-fishing.pw.toml"
+hash = "9295546bbcf6d942e07d379d983446a005890b7ce169b287e7d0351fcb2011f5"
+metafile = true
+
+[[files]]
 file = "mods/stormies-spiders.pw.toml"
 hash = "1d7ed103bf6c4995bc1eff18fc1aac0114cfbc0f58a0810d3984d57eecb644d6"
 metafile = true
