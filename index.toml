@@ -90,6 +90,11 @@ hash = "0fa8a6109ec993b9dd07c2ebdc6e98a9464a07248105c185261b1001699003ce"
 metafile = true
 
 [[files]]
+file = "mods/aether.pw.toml"
+hash = "cc3f6e6e8f1838d16e47cce9241e32176279673efb1438ff4451ccffa9579b14"
+metafile = true
+
+[[files]]
 file = "mods/ambientsounds.pw.toml"
 hash = "f3d66527c4f82b44d9409f643332bc15f91b85f033afe147e3d8b421c0ea6d1e"
 metafile = true
