@@ -360,6 +360,11 @@ hash = "c0b2d4b3c5f658cbcdf2cd3fee5af0b3591aa0d9fe46ace7bf32411112b48234"
 metafile = true
 
 [[files]]
+file = "mods/gui-clock.pw.toml"
+hash = "408033a936dfe6f531a14d798d3e956f536285589c7c7f78b6fda6165fcb4a1d"
+metafile = true
+
+[[files]]
 file = "mods/guide-api.pw.toml"
 hash = "d973a76275a2ed58cda27e322b6bebe217144f1083f5a3eb41074dd2785a4fd5"
 metafile = true
