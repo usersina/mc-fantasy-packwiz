@@ -1,0 +1,13 @@
+name = "Vampires Need Umbrellas - Curios"
+filename = "curiosumbrella.zip"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ifNJaSxB/versions/yZ2DzdwV/curiosumbrella.zip"
+hash-format = "sha512"
+hash = "d071ee407012d98c6fbf46b31d8f14eb030edf39130ffaf7442577e3c4301074448c4101b954516b1b7147135fb56d406f9f335ce0ec70158353cf975f485cd1"
+
+[update]
+[update.modrinth]
+mod-id = "ifNJaSxB"
+version = "yZ2DzdwV"

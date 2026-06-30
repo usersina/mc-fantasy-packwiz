@@ -57,6 +57,16 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/pack.mcmeta"
 hash = "52b2dc9d9049890e6e71bb12347510d12898f6324a0aad15a7e6db7878685cc5"
 
 [[files]]
+file = "config/paxi/datapacks/smelt-gravel-for-flint.pw.toml"
+hash = "7095a7b7439c205b72b1cbb202232a86d74512097a5efeba5ae3bef9dd307cf7"
+metafile = true
+
+[[files]]
+file = "config/paxi/datapacks/vampires-need-umbrellas-curios.pw.toml"
+hash = "c0a24c2c3e847e15acd99774581aad9ffb06cc1f4db5ffcf02c4c9e50be0c189"
+metafile = true
+
+[[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
 hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
 
