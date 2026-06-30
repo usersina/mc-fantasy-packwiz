@@ -675,6 +675,11 @@ hash = "5044244197219c2d0dcca141c78c0dd1837d27954e1a4ebb05aa60a59bb87bf9"
 metafile = true
 
 [[files]]
+file = "mods/vampirism-integrations.pw.toml"
+hash = "fe1143f2dd40fc4720ba870a196b5e4f50cff6c358503ec34d85c20a9d4cd90f"
+metafile = true
+
+[[files]]
 file = "mods/vampirism-irons-spells-compatibility.pw.toml"
 hash = "a4bb17b290b4966122029a17c1a21804945c52ec22af7b72c287a0d1a2eecf2a"
 metafile = true
