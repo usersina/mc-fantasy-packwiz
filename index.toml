@@ -71,10 +71,6 @@ hash = "c0a24c2c3e847e15acd99774581aad9ffb06cc1f4db5ffcf02c4c9e50be0c189"
 metafile = true
 
 [[files]]
-file = "config/pmweather-server.toml"
-hash = "358f998ee630007297704bf1634eb00b16cc7ab3082f95345761d10a3533e627"
-
-[[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
 hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
 
