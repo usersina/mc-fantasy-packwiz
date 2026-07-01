@@ -423,3 +423,8 @@ Player pickup remains enabled, but it has an intermittent `carryon:sync_carry_da
 ## Todo
 
 - [ ] Replace [mods/automaticsorter-1.3.1-1.21.1-neoforge.jar](mods/automaticsorter-1.3.1-1.21.1-neoforge.jar) with the [official 1.21.1 release](https://modrinth.com/mod/automaticsorter) once the [NeoForge release](https://github.com/EpicSniper/minecraft-automatic-sorter-mod/pull/18) is available.
+
+<!-- Deleted due to potato P.Cs
+- protomanlys-weather
+- natural-regrowth-for-protomanlys-weather
+- immersive-aerodynamics-for-protomanlys-weather -->
