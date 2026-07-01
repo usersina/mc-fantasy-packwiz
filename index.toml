@@ -148,11 +148,6 @@ hash = "7b8b82bf778a7930edbf2ea63c177f07202c519b6982306eee2fe7c9acbd9dc6"
 metafile = true
 
 [[files]]
-file = "mods/automaticsorter.pw.toml"
-hash = "8f300f14ed70b7ae24a334c7781b73a0642b439f6fc36b30ffead4b54d27e645"
-metafile = true
-
-[[files]]
 file = "mods/azurelib.pw.toml"
 hash = "f72e0f818b9788376820b02ed9d4f1b4d63453dcd65de2fc24743b03dd133664"
 metafile = true
