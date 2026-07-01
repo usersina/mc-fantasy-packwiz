@@ -1,225 +1,263 @@
 # MC Fantasy Packwiz
 
-End-to-end Packwiz repo for the 1.21.1 Fantasy NeoForge pack. The repo owns the pack definition, client export defaults, and the small server bootstrap; the generated Minecraft server runtime lives outside Git.
+End-to-end Packwiz repo for the 1.21.1 Fantasy NeoForge pack.
 
-The main entry point is the Taskfile. Pack tasks call `scripts/pack.sh`; server tasks call `scripts/server.sh`.
+This repo owns:
 
-## Quick Start
+- the Packwiz pack definition
+- client bootstrap/export defaults
+- global datapacks
+- shared default keybindings
+- the small dedicated-server setup/update scripts
 
-Run these from the repo root.
+This repo does not own:
 
-Prerequisites:
+- the generated Minecraft server runtime
+- worlds, logs, libraries, installers, crash reports, or backups
+- each player's personal launcher settings
+
+Main entry points:
+
+- `Taskfile.yml` for day-to-day commands
+- `scripts/pack.sh` for Packwiz/client/site/inspection work
+- `scripts/server.sh` for dedicated-server runtime work
+- [docs/client.md](docs/client.md) for player setup and client release details
+
+## Paths
+
+| Path                                         | Purpose                                                          |
+| -------------------------------------------- | ---------------------------------------------------------------- |
+| `/data/games/servers/minecraft/fantasy-lan/` | Generated dedicated-server runtime                               |
+| `server-base/`                               | Tracked base templates copied during setup                       |
+| `mods/`                                      | Packwiz mod metadata                                             |
+| `config/`                                    | Packwiz-managed root config, client defaults, and Paxi datapacks |
+| `defaultconfigs/`                            | NeoForge config defaults                                         |
+| `dist/`                                      | Ignored build, inspection, export, and smoke-test output         |
+
+## Prerequisites
 
 - Java 21 JDK at `/usr/lib/jvm/java-21-openjdk/bin/java`
 - `packwiz`
 - Go Task, exposed as `task` or `go-task`
 - `curl`
-- `jq` and `unzip`
+- `jq`
+- `unzip`
 - `tar` with zstd support for backups
 
 Examples use `task`. If your binary is named `go-task`, replace `task` with `go-task`.
 
-Set up the generated server runtime once:
+## Server Quick Start
 
-```bash
-task server:setup
+```mermaid
+flowchart TD
+  setup["task server:setup<br/>create runtime once"] --> serve["Terminal 1:<br/>task pack:serve"]
+  serve --> start["Terminal 2:<br/>task server:start"]
+  start --> sync["Packwiz syncs mods/config/datapacks"]
+  sync --> run["NeoForge starts"]
 ```
 
-Then keep Terminal 1 open to serve the Packwiz pack:
+Run these from the repo root.
 
-```bash
-task pack:serve
-```
+1. Create the generated server runtime once:
 
-Then use Terminal 2 to sync the runtime and start NeoForge:
+   ```bash
+   task server:setup
+   ```
 
-```bash
-task server:start
-```
+2. Keep Terminal 1 open to serve the local Packwiz pack:
 
-The generated server runtime is:
+   ```bash
+   task pack:serve
+   ```
 
-```txt
-/data/games/servers/minecraft/fantasy-lan/
-```
+3. Use Terminal 2 to sync and start NeoForge:
+
+   ```bash
+   task server:start
+   ```
 
 ## Server Workflow
 
-`task server:setup` creates the runtime, installs NeoForge, downloads the Packwiz installer, accepts the EULA for this local runtime, and copies the base templates from `server-base/`.
+`task server:setup` does the one-time runtime setup:
 
-It only copies these base files when they are missing, unless you pass `FORCE=true`:
+- creates `/data/games/servers/minecraft/fantasy-lan/`
+- installs NeoForge
+- downloads Packwiz Installer Bootstrap
+- accepts the EULA for this local runtime
+- copies base templates from `server-base/`
+
+Base templates copied during setup:
 
 - `server-base/server.properties`
 - `server-base/user_jvm_args.txt`
 
-For normal ongoing changes, use:
+Setup copies those only when missing. To overwrite them during setup, run:
+
+```bash
+FORCE=true task server:setup
+```
+
+For normal updates:
 
 ```bash
 task server:update
 ```
 
-That syncs Packwiz-managed files into the existing runtime without starting the server. It requires `task pack:serve` to be running in another terminal unless `PACK_URL` points at another reachable `pack.toml`.
+That syncs Packwiz-managed files into the existing runtime without starting the server. It needs `task pack:serve` running unless `PACK_URL` points at another reachable `pack.toml`.
 
-`task server:start` does the same sync first, then starts NeoForge.
+`task server:start` runs the same sync first, then starts NeoForge.
 
 ## Runtime Ownership
 
-| Files                                                                                  | Owner                               | Normal update path                                                      |
-| -------------------------------------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------------------- |
-| `mods/`, `defaultconfigs/`, `config/paxi/datapacks/`, and Packwiz-indexed `config/...` | Packwiz                             | `task server:update` or `task server:start`                             |
-| Runtime `server.properties` and `user_jvm_args.txt`                                    | runtime, seeded from `server-base/` | `task server:diff-base`, then `task server:apply-base` when intentional |
-| `world/`, `logs/`, `eula.txt`, generated libraries, generated configs                  | runtime                             | never committed, never overwritten by normal updates                    |
+| Files                                                                              | Owner                               | Normal update path                                     |
+| ---------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------ |
+| `mods/`, `defaultconfigs/`, `config/paxi/datapacks/`, Packwiz-indexed `config/...` | Packwiz                             | `task server:update` or `task server:start`            |
+| runtime `server.properties`, `user_jvm_args.txt`                                   | runtime, seeded from `server-base/` | `task server:diff-base`, then `task server:apply-base` |
+| `world/`, `logs/`, `eula.txt`, libraries, generated configs                        | runtime                             | never committed, never overwritten by normal updates   |
 
-`server-base/server.properties` is tracked on purpose. A generated `server.properties` at the repo root or inside the runtime is not.
+Rules:
 
-## Config Folders
+- `server-base/server.properties` is tracked on purpose.
+- Generated `server.properties` files at repo root or inside the runtime are not tracked.
+- Use `task server:diff-base` before applying base-template changes.
+- Use `task server:apply-base` only when overwriting runtime base files is intentional.
 
-Use `config/` for files that should exist at the Minecraft instance root on clients, the dedicated server, or both. Packwiz installs these files directly and updates them on `task server:update`, `task server:start`, client updater launches, and `.mrpack` exports. Examples in this pack are `config/paxi/datapacks/...` and `config/defaultoptions/keybindings.txt`.
-
-Use `defaultconfigs/` for NeoForge config defaults that should seed missing generated configs. On this NeoForge 1.21.1 setup, the server loads these defaults and creates matching active files under the runtime root `config/` folder, not under `world/serverconfig/`.
-
-Use `world/serverconfig/` only as a runtime world-specific override folder. It is not the normal place for this repo's shared Packwiz-managed defaults.
-
-`config/defaultoptions/keybindings.txt` belongs to the Default Options mod. It provides client keybinding defaults without replacing each player's normal `options.txt` every launch.
-
-To review base-template drift:
-
-```bash
-task server:diff-base
-```
-
-To intentionally overwrite the runtime base files from `server-base/`:
-
-```bash
-task server:apply-base
-```
-
-That creates a timestamped backup under:
+`server:apply-base` creates timestamped backups under:
 
 ```txt
 /data/games/servers/minecraft/fantasy-lan/base-template-backups/
 ```
 
+## Config Placement
+
+```mermaid
+flowchart TD
+  file["New generated/config file"] --> inspect["Inspect or generate a temp runtime"]
+  inspect --> decision{"What owns it?"}
+  decision -->|directly read from root config<br/>or must update existing instances| config["commit under config/"]
+  decision -->|NeoForge default seed| defaults["commit under defaultconfigs/"]
+  decision -->|world-specific override| world["runtime world/serverconfig/<br/>usually do not commit"]
+  decision -->|cache/log/world data/local setting| ignore["do not commit"]
+```
+
+Use `config/` for files that should exist at the Minecraft instance root on clients, the dedicated server, or both. Packwiz installs these directly and updates them on:
+
+- `task server:update`
+- `task server:start`
+- client updater launches
+- `.mrpack` exports
+
+Common `config/` examples:
+
+- `config/paxi/datapacks/...`
+- `config/defaultoptions/keybindings.txt`
+- root config files proven to be read directly by a mod
+
+Use `defaultconfigs/` for NeoForge config defaults. On this NeoForge 1.21.1 setup:
+
+- NeoForge loads defaults from `defaultconfigs/`
+- matching active files are generated under runtime `config/`
+- `world/serverconfig/` is not the normal shared-default location
+
+When in doubt:
+
+- prefer `defaultconfigs/` for NeoForge `*-common.toml`, `*-server.toml`, and balance files if inspection proves they load from there
+- prefer `config/` when the mod directly reads root `config/`
+- prefer `config/` when Packwiz must update the active file in-place on existing instances
+- never commit caches, logs, generated world data, or personal settings
+
 ## Datapacks
 
-Put shared global datapacks in:
+Put shared global datapacks under:
 
 ```txt
 config/paxi/datapacks/<datapack-name>/
 ```
 
-Paxi loads those datapacks for every world. Because they are Packwiz-managed files, they are included in:
+Paxi loads those datapacks for every world.
 
-- dedicated server syncs via `task server:update` and `task server:start`
-- Prism/Freesm `.mrpack` exports via `task pack:export-client`
+Because they are Packwiz-managed, they are included in:
 
-Do not put shared datapacks under `server-base/`; that folder is only for the dedicated server base templates.
+- dedicated server syncs
+- Prism/Freesm `.mrpack` exports
+- local singleplayer worlds created from the exported pack
 
-## Inspecting Mods and Packs
+Do not put shared datapacks under `server-base/`; that folder is only for dedicated-server base templates.
 
-Use the inspector when adding a mod and you need to discover keybindings, likely generated config files, or what the Packwiz client actually installs.
+## Adding or Inspecting Mods
 
-Inspect one Packwiz mod metadata file or jar:
-
-```bash
-task pack:inspect INSPECT=mod MOD=mods/beltborne-lanterns.pw.toml
-```
-
-Inspect a real Prism/Freesm instance after launching it once:
-
-```bash
-task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft
-```
-
-Materialize the Packwiz client into an ignored inspection folder and scan it:
-
-```bash
-task pack:inspect INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml
-```
-
-Generate a temporary dedicated server runtime under `dist/inspect/` and report generated configs:
-
-```bash
-task pack:inspect INSPECT=server-generated
-```
-
-Inspection reports are written to `dist/inspect/`. They are intentionally read-only reports: use them to decide what to commit, then update `config/`, `defaultconfigs/`, or `config/defaultoptions/keybindings.txt` yourself.
-
-## When a Mod Adds Config or Controls
-
-When adding a mod, first add it through Packwiz and refresh:
+Use Packwiz to add mods so metadata stays correct:
 
 ```bash
 packwiz modrinth add <mod-slug>
 task pack:refresh
 ```
 
-Then inspect the mod for likely controls and config files:
+Then inspect before committing config/control decisions:
 
 ```bash
 task pack:inspect INSPECT=mod MOD=mods/<mod-file>.pw.toml
 ```
 
-If the mod has controls, prefer Default Options:
+Inspection modes:
 
-1. Use the inspection report to find keybinding IDs and default keys.
-2. Open the maintainer client instance when you need to confirm names in Minecraft.
-3. Change the controls in Minecraft.
-4. Run `/defaultoptions saveKeys`.
-5. Commit the updated `config/defaultoptions/keybindings.txt`.
+| Mode                     | Command                                                                          | Use for                                    |
+| ------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------ |
+| Mod metadata or jar      | `task pack:inspect INSPECT=mod MOD=mods/example.pw.toml`                         | likely keybindings and config candidates   |
+| Real launcher instance   | `task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft` | client-generated configs after one launch  |
+| Materialized client pack | `task pack:inspect INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml` | what Packwiz actually installs             |
+| Generated server runtime | `task pack:inspect INSPECT=server-generated`                                     | server-generated configs and runtime paths |
 
-Do not commit a full `options.txt`; it would overwrite player preferences such as controls, video, audio, and resource packs.
+Inspection reports are written to ignored `dist/inspect/`.
 
-If the mod has config files, decide ownership before copying anything:
+They are read-only reports. After reviewing them, update only intentional files under:
 
-| Generated file kind        | Commit where            | Use when                                                                         |
-| -------------------------- | ----------------------- | -------------------------------------------------------------------------------- |
-| Client/shared live config  | `config/<file>`         | The file should be installed and updated directly on clients and/or the server.  |
-| NeoForge generated default | `defaultconfigs/<file>` | The file should seed missing generated server/common configs on a fresh runtime. |
-| Runtime-only local state   | nowhere                 | The file is a cache, log, generated world data, or personal/local setting.       |
+- `config/`
+- `defaultconfigs/`
+- `config/defaultoptions/keybindings.txt`
 
-To discover generated server configs, run:
+## Controls
 
-```bash
-task pack:inspect INSPECT=server-generated
-```
+Use Default Options for shared default keybindings.
 
-That creates a temporary server under `dist/inspect/server-generated/runtime`, launches it once, stops it, and writes `dist/inspect/server-generated.md`. Compare generated files from that temp runtime, then copy only intentional defaults into `config/` or `defaultconfigs/`.
+Workflow:
 
-To discover client-side generated configs, launch a real maintainer Prism/Freesm instance once, then scan its Minecraft folder:
+1. Inspect the mod for keybinding IDs.
+2. Open the maintainer client instance if names need confirmation.
+3. Change controls in Minecraft.
+4. Run:
 
-```bash
-task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft
-```
+   ```txt
+   /defaultoptions saveKeys
+   ```
 
-For this pack, a successful generated-server inspection should show:
+5. Commit `config/defaultoptions/keybindings.txt`.
 
-- Packwiz-managed datapacks under `config/paxi/datapacks/`
-- committed defaults under `defaultconfigs/`
-- generated active server configs under runtime `config/`
-- `world/serverconfig/readme.txt`, unless you intentionally add world-specific overrides
+Do not commit a full `options.txt`. It would overwrite player preferences such as controls, video, audio, chat, and resource packs.
 
-## Mod Notes
+## Client Releases
 
-Carry On uses the unofficial patched `carryon-neoforge-1.21.1-2.2.4.4-patched-no-slowness.jar` intentionally because the official 1.21.1 build hit server stability problems in this pack. Player pickup remains enabled, but it has an intermittent `carryon:sync_carry_data` disconnect risk, so do not update or swap Carry On casually without retesting multiplayer player pickup.
+Player-facing guide:
 
-## Client Updates
+- [docs/client.md](docs/client.md)
 
-The public client bootstrap is the `.mrpack` published on GitHub Releases. The recommended player flow is to import the `.mrpack` once, then add the tested Packwiz pre-launch updater to that same Prism/Freesm instance. The launcher's Modrinth **Update Pack** tab is the fallback manual update path.
-
-The stable player import URL is:
+Stable `.mrpack` import URL:
 
 ```txt
 https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
 ```
 
-A prepared Prism/Freesm updater instance can use the live Packwiz channel:
+Stable Packwiz updater URL:
 
 ```txt
 https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 ```
 
-The Pages root, `https://usersina.github.io/mc-fantasy-packwiz/`, is a human-readable explainer. Launchers and Packwiz should use the `stable/pack.toml` URL above.
+Human-readable Pages root:
+
+```txt
+https://usersina.github.io/mc-fantasy-packwiz/
+```
 
 Build the hosted Packwiz site locally:
 
@@ -227,7 +265,7 @@ Build the hosted Packwiz site locally:
 task pack:site
 ```
 
-Smoke-test the client updater against a served copy before release:
+Smoke-test the client updater:
 
 ```bash
 cd dist/site
@@ -240,40 +278,117 @@ Then in another terminal:
 PACK_URL=http://127.0.0.1:8081/stable/pack.toml task pack:smoke-update
 ```
 
-The `.mrpack` export is the public bootstrap client pack. Ongoing keybind defaults are handled by Default Options through `config/defaultoptions/keybindings.txt`, without replacing each player's live `options.txt` on every launch.
+Export the public bootstrap `.mrpack`:
 
 ```bash
 task pack:export-client
 ```
 
-That writes `dist/mc-fantasy-stable.mrpack`, deriving the Minecraft and pack versions from `pack.toml`.
-
-CI publishes the exported `.mrpack` to the `client-stable` GitHub Release after the updater smoke test passes:
+That writes:
 
 ```txt
-https://github.com/usersina/mc-fantasy-packwiz/releases/latest
+dist/mc-fantasy-stable.mrpack
 ```
 
-See [docs/client.md](docs/client.md) for the player setup guide, updater instance setup, `.mrpack` release flow, and release checklist.
+CI publishes the exported `.mrpack` to the `client-stable` GitHub Release after smoke tests pass.
+
+## Release Checklist
+
+Before pushing a pack change:
+
+1. Refresh Packwiz:
+
+   ```bash
+   task pack:refresh
+   ```
+
+2. Build the site:
+
+   ```bash
+   task pack:site
+   ```
+
+3. Smoke-test the client updater against a local server.
+4. Run generated-server inspection when config behavior changed:
+
+   ```bash
+   task pack:inspect INSPECT=server-generated
+   ```
+
+5. Update/restart the dedicated server during the same release window.
+
+GitHub Actions on `main`:
+
+- builds `dist/site/stable/`
+- serves it locally in CI
+- runs the client smoke update
+- deploys GitHub Pages only after smoke passes
+- updates the `client-stable` release artifact after smoke passes
 
 ## Useful Tasks
 
-Task names use `domain:action`: `pack:*` for Packwiz work and `server:*` for runtime work.
+Task names use `domain:action`:
+
+- `pack:*` for Packwiz/client/site/inspection work
+- `server:*` for runtime work
+
+| Task                      | Purpose                                                    |
+| ------------------------- | ---------------------------------------------------------- |
+| `task server:setup`       | create/install the runtime once                            |
+| `task pack:serve`         | serve local `pack.toml` on port 8080                       |
+| `task server:update`      | sync Packwiz-managed files without starting                |
+| `task server:start`       | sync, then start NeoForge                                  |
+| `task server:diff-base`   | compare runtime base files with `server-base/`             |
+| `task server:apply-base`  | back up and overwrite runtime base files                   |
+| `task server:backup`      | back up the active world and runtime config                |
+| `task pack:refresh`       | refresh Packwiz index files                                |
+| `task pack:site`          | build `dist/site/stable` for GitHub Pages                  |
+| `task pack:smoke-update`  | verify client updater installs successfully                |
+| `task pack:export-client` | export the Prism/Freesm `.mrpack` bootstrap                |
+| `task pack:inspect`       | inspect mods, packs, instances, or generated server config |
+
+## Overrides
+
+Override Taskfile defaults for one run:
 
 ```bash
-task server:setup          # create/install the runtime once
-task pack:serve            # serve pack.toml locally on port 8080
-task server:update         # sync Packwiz-managed files without starting
-task server:start          # sync, then start NeoForge
-task server:diff-base      # compare runtime base files with server-base
-task server:apply-base     # back up and overwrite runtime base files
-task server:backup         # back up the active world and runtime config
-task pack:refresh          # refresh packwiz index files
-task pack:site             # build dist/site/stable for GitHub Pages
-task pack:smoke-update     # verify client updater installs successfully
-task pack:export-client    # export the Prism/Freesm .mrpack bootstrap
-task pack:inspect          # inspect mods, packs, instances, or generated server config
+task server:start SERVER_DIR=/path/to/server JAVA21=/path/to/java21
 ```
+
+Call the server script directly:
+
+```bash
+SERVER_DIR=/path/to/server JAVA21=/path/to/java21 ACCEPT_EULA=true ./scripts/server.sh setup
+```
+
+Call the pack script directly:
+
+```bash
+INSPECT=mod MOD=mods/beltborne-lanterns.pw.toml ./scripts/pack.sh inspect
+```
+
+## Troubleshooting
+
+Java class version error:
+
+- Symptom: `Unsupported class file major version 70`
+- Cause: server launched with Java 26
+- Fix:
+
+  ```bash
+  task server:start JAVA21=/path/to/java21
+  ```
+
+Runtime not created:
+
+```bash
+task server:setup
+```
+
+Pack URL not reachable:
+
+- keep `task pack:serve` running in another terminal
+- or set `PACK_URL` to a reachable hosted/local `pack.toml`
 
 Rebuild the generated runtime from scratch:
 
@@ -284,49 +399,23 @@ task server:setup
 
 Then run `task pack:serve` and `task server:start` again.
 
-## Overrides
-
-Override Taskfile defaults for one run:
-
-```bash
-task server:start SERVER_DIR=/path/to/server JAVA21=/path/to/java21
-```
-
-Or call the single server script directly:
-
-```bash
-SERVER_DIR=/path/to/server JAVA21=/path/to/java21 ACCEPT_EULA=true ./scripts/server.sh setup
-```
-
-Pack maintenance commands can also call the single pack script directly:
-
-```bash
-INSPECT=mod MOD=mods/beltborne-lanterns.pw.toml ./scripts/pack.sh inspect
-```
-
-## Troubleshooting
-
-If startup fails with `Unsupported class file major version 70`, the server launched with Java 26. Use the Taskfile path or set `JAVA21` to a Java 21 executable:
-
-```bash
-task server:start JAVA21=/path/to/java21
-```
-
-The startup log should show Java 21. If the runtime has not been created yet, run `task server:setup` first.
-
-If `task server:update` or `task server:start` cannot reach `pack.toml`, make sure `task pack:serve` is still running in another terminal.
-
 ## Packwiz Notes
 
-After editing pack files directly, run:
+After editing pack files directly:
 
 ```bash
 task pack:refresh
 ```
 
-Add new mods through Packwiz so metadata stays correct:
+Add new mods through Packwiz:
 
 ```bash
 packwiz modrinth add jei
 packwiz curseforge add configured
 ```
+
+## Mod Notes
+
+Carry On uses the unofficial patched `carryon-neoforge-1.21.1-2.2.4.4-patched-no-slowness.jar` intentionally because the official 1.21.1 build hit server stability problems in this pack.
+
+Player pickup remains enabled, but it has an intermittent `carryon:sync_carry_data` disconnect risk. Do not update or swap Carry On casually without retesting multiplayer player pickup.

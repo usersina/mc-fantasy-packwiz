@@ -1,164 +1,187 @@
 # Fantasy Pack Client Guide
 
-Use this guide if you are joining the Fantasy Minecraft server with Prism Launcher or Freesm Launcher.
+Use this guide to join the Fantasy Minecraft server with Prism Launcher or Freesm Launcher.
+
+## Pick an Update Method
+
+Recommended method:
+
+- import the `.mrpack` once
+- add the Packwiz pre-launch updater to that same instance
+- keep launching the same instance
+
+Fallback method:
+
+- import the `.mrpack`
+- use the launcher's Modrinth **Update Pack** tab when the server owner publishes changes
+
+```mermaid
+flowchart TD
+  import["Import stable .mrpack"] --> choose{"How will this instance update?"}
+  choose -->|recommended| auto["Add Packwiz jar + pre-launch command"]
+  choose -->|fallback| manual["Use Modrinth Update Pack manually"]
+  auto --> launch["Launch same instance"]
+  manual --> launch
+  launch --> server["Join server or play singleplayer"]
+```
 
 ## Initial Setup
 
-Start here for every setup. This creates the Prism/Freesm instance you will use to join the server.
+Stable `.mrpack` import URL:
 
 ```txt
 https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
 ```
 
+Steps:
+
 1. Install Prism Launcher or Freesm Launcher.
 2. Make sure the launcher can use Java 21.
-3. In the launcher, choose:
+3. Choose:
 
-    ```txt
-    Add Instance
-    Import
-    ```
+   ```txt
+   Add Instance
+   Import
+   ```
 
-4. Paste this `.mrpack` URL:
+4. Paste the stable `.mrpack` URL.
 
-    ```txt
-    https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
-    ```
+   ![Freesm Launcher import screen with the stable Fantasy Pack mrpack URL pasted](../media/import-pack.png)
 
-    The import screen should look like this:
+5. Confirm the import.
+6. Wait for the launcher to download the pack.
+7. Continue with **Recommended Automatic Updates** before using the instance regularly.
+8. Launch the imported instance.
+9. Join the multiplayer server with the address you were given.
 
-    ![Freesm Launcher import screen with the stable Fantasy Pack mrpack URL pasted](../media/import-pack.png)
+## Recommended Automatic Updates
 
-5. Confirm the import and wait for the launcher to finish downloading the pack.
-6. Continue with **Recommended: Automatic Updates** below before using the instance regularly.
-7. Launch the imported instance.
-8. Join the multiplayer server with the server address you were given.
+Use this method so the same instance checks for pack updates before Minecraft starts.
 
-At this point the pack is installed. For future server updates, use the recommended automatic updater below.
-
-## Updates
-
-There are two update methods:
-
-- **Recommended automatic update:** add Packwiz Installer Bootstrap and a pre-launch command to the same instance.
-- **Fallback launcher update:** use the launcher's Modrinth tab to update the same instance from the stable `.mrpack` URL.
-
-The automatic update method is the recommended tested path. Once it is set up, the same instance checks the hosted stable Packwiz pack before Minecraft starts.
-
-## Recommended: Automatic Updates
-
-Use this so the same instance updates itself before Minecraft starts.
-
-This method continues from **Initial Setup**. Start with the instance you already imported from the `.mrpack`, then add the updater pieces.
-
-You will use this Packwiz URL:
+Packwiz updater URL:
 
 ```txt
 https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 ```
 
+Steps:
+
 1. Close Minecraft.
-2. Right-click the imported instance and choose:
+2. Right-click the imported instance.
+3. Choose:
 
-    ```txt
-    Edit
-    ```
+   ```txt
+   Edit
+   ```
 
-3. Open the instance Minecraft folder from the launcher. In Prism this is usually available from the instance edit window as:
+4. Open the instance Minecraft folder.
 
-    ```txt
-    Folder
-    Minecraft
-    ```
+   In Prism/Freesm this is usually:
 
-4. Download Packwiz Installer Bootstrap:
+   ```txt
+   Folder
+   Minecraft
+   ```
 
-    ```txt
-    https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar
-    ```
+   ![Launcher folder menu showing the Minecraft folder location](../media/packwiz-at-folder.png)
 
-5. Put the downloaded file directly in the instance Minecraft folder. The final path must look like:
+5. Download Packwiz Installer Bootstrap:
 
-    ```txt
-    <instance Minecraft folder>/packwiz-installer-bootstrap.jar
-    # E.g. /home/user/.local/share/FreesmLauncher/instances/mc-fantasy-stable/minecraft/packwiz-installer-bootstrap.jar
-    ```
+   ```txt
+   https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar
+   ```
 
-6. In the instance settings, open:
+6. Put the jar directly in the instance Minecraft folder:
 
-    ```txt
-    Settings
-    Custom commands
-    ```
+   ```txt
+   <instance Minecraft folder>/packwiz-installer-bootstrap.jar
+   ```
 
-7. Add this as the pre-launch command:
+7. Open:
 
-    ```bash
-    "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
-    ```
+   ```txt
+   Settings
+   Custom commands
+   ```
 
-    The Custom Commands tab should look like this:
+8. Add this pre-launch command:
 
-    ![Freesm Launcher pre-launch command field configured for Packwiz Installer](../media/pre-launch-command.png)
+   ```bash
+   "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+   ```
 
-8. Save the instance settings.
-9. Launch the same instance.
-10. Wait for Packwiz to finish, then Minecraft will start.
+   ![Freesm Launcher pre-launch command field configured for Packwiz Installer](../media/pre-launch-command.png)
 
-After this, keep using the same instance. When the server owner publishes a pack update, close Minecraft and launch this same instance again. Packwiz should update it before Minecraft starts.
+9. Save the instance settings.
+10. Launch the same instance.
+11. Wait for Packwiz to finish, then Minecraft will start.
 
-Do not manually add, remove, or update mods in this instance unless asked. Manual changes can make your client different from the server.
+After this:
 
-## Fallback: Launcher Update Pack
+- keep using this same instance
+- close Minecraft and relaunch to receive published updates
+- do not manually add, remove, or update mods unless asked
 
-Use this if the automatic updater is not set up yet or the pre-launch command is not working.
+## Fallback: Update Pack Tab
+
+Use this if the automatic updater is not set up yet or the pre-launch command is broken.
 
 When the server owner says the pack changed:
 
 1. Close Minecraft.
-2. Right-click the imported instance and choose:
+2. Right-click the imported instance.
+3. Choose:
 
-    ```txt
-    Edit
-    ```
+   ```txt
+   Edit
+   ```
 
-3. Open the Modrinth tab under the instance version settings.
-4. Paste or confirm the same stable `.mrpack` URL:
+4. Open the Modrinth tab under the instance version settings.
+5. Paste or confirm the stable `.mrpack` URL:
 
-    ```txt
-    https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
-    ```
+   ```txt
+   https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
+   ```
 
-5. Press:
+6. Press:
 
-    ```txt
-    Update Pack
-    ```
+   ```txt
+   Update Pack
+   ```
 
-6. Wait for the launcher to finish updating.
-7. Launch the same instance.
+7. Wait for the launcher to finish.
+8. Launch the same instance.
 
-This is a manual snapshot update. Restarting the instance does not check for new releases unless you configured the automatic updater above.
+This is a manual snapshot update. Restarting the instance does not check for new releases unless the automatic updater is configured.
 
-If the Modrinth update tab is not available or does not work, use the last-resort fallback:
+## Last-Resort Reimport
+
+Use this only if the launcher update tab is unavailable or broken:
 
 1. Close Minecraft.
 2. Choose:
 
-    ```txt
-    Add Instance
-    Import
-    ```
+   ```txt
+   Add Instance
+   Import
+   ```
 
 3. Paste the stable `.mrpack` URL again.
-4. Import it as the updated client instance.
+4. Import it as a new updated instance.
 5. Launch the updated instance.
 
 ## Controls
 
-The pack provides default key mappings through the Default Options mod. This helps new mods get sane keybinds without replacing your personal `options.txt` every time you launch.
+The pack ships default key mappings through the Default Options mod.
 
-You can still change controls locally in Minecraft. If a key feels wrong, change it in:
+What this means:
+
+- new mods can have sane default keybinds
+- your personal `options.txt` is not replaced on every launch
+- you can still change controls locally
+- the pack uses one shared default profile, not QWERTY/AZERTY variants
+
+Change controls in:
 
 ```txt
 Options
@@ -166,44 +189,79 @@ Controls
 Key Binds
 ```
 
-This pack intentionally has one shared default keybinding profile. We do not maintain separate keyboard-layout variants; each player can tweak controls locally.
+## Singleplayer
+
+The pack is intended to work in local singleplayer too.
+
+Singleplayer includes:
+
+- the same client and shared mods
+- gameplay/worldgen mods needed by integrated-server worlds
+- global Paxi datapacks
+- default keybindings
 
 ## Troubleshooting
 
-If Minecraft does not start, set the instance to Java 21 in the launcher settings.
+Minecraft does not start:
 
-If the `.mrpack` import fails, check that you are online, then try again. If it still fails, send the launcher log.
+- set the instance to Java 21
+- relaunch the same instance
 
-If you expected automatic updates but the instance launches without updating, check that the instance has this pre-launch command:
+`.mrpack` import fails:
 
-```bash
-"$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
-```
+- check that you are online
+- retry the import
+- send the launcher log if it still fails
 
-If Freesm refuses an import, try importing with Prism Launcher.
+Automatic updater does not run:
 
-## Singleplayer
+- check that `packwiz-installer-bootstrap.jar` is in the instance Minecraft folder
+- check that the pre-launch command is exactly:
 
-The pack is intended to work in local singleplayer too. The same mods and global datapacks are included for local worlds.
+  ```bash
+  "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+  ```
+
+Freesm import refuses the pack:
+
+- try importing with Prism Launcher
+
+## Maintainer Notes
+
+Everything below is for pack maintenance and release work.
 
 ## Maintainer: Updater Instance
 
-The public `.mrpack` release is the default player-facing bootstrap. It does not auto-update by itself. A manually prepared Prism/Freesm updater instance is still useful for friends who should receive automatic Packwiz updates on every launch.
+The public `.mrpack` release is the player-facing bootstrap. It does not auto-update by itself.
 
-Create the friend-facing updater instance like this:
+A prepared updater instance is useful when you want to give friends a one-import instance that already has the Packwiz pre-launch command.
 
-1. Export the bootstrap `.mrpack` with `task pack:export-client`.
-2. Import that `.mrpack` into Prism or Freesm once so mods and defaults are seeded.
+Build it like this:
+
+1. Export the bootstrap:
+
+   ```bash
+   task pack:export-client
+   ```
+
+2. Import the `.mrpack` into Prism or Freesm.
 3. Put `packwiz-installer-bootstrap.jar` in that instance's Minecraft folder.
-4. Add this pre-launch command:
+4. Add the pre-launch command:
 
-    ```bash
-    "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
-    ```
+   ```bash
+   "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+   ```
 
-5. Export that configured launcher instance as a zip if you want a one-import auto-updating instance for friends.
+5. Export that configured launcher instance as a zip if desired.
 
-After that first import, friends should launch through that instance. New mods, removed mods, defaultconfigs, Packwiz-managed config, `config/defaultoptions/keybindings.txt`, and `config/paxi/datapacks/` are pulled from the hosted stable Packwiz site before Minecraft starts.
+Once configured, the instance pulls these from the hosted stable Packwiz site before Minecraft starts:
+
+- new mods
+- removed mods
+- `defaultconfigs/`
+- Packwiz-managed `config/`
+- `config/defaultoptions/keybindings.txt`
+- `config/paxi/datapacks/`
 
 ## Maintainer: Manual Export
 
@@ -213,25 +271,33 @@ Run from the repo root:
 task pack:export-client
 ```
 
-If your Go Task binary is named `go-task`, run `go-task pack:export-client` instead.
+If your Go Task binary is named `go-task`:
 
-The task refreshes Packwiz, derives the Minecraft and pack versions from `pack.toml`, creates `dist/`, and writes:
-
-```txt
-dist/mc-fantasy-stable.mrpack
+```bash
+go-task pack:export-client
 ```
+
+The task:
+
+- refreshes Packwiz
+- derives Minecraft and pack versions from `pack.toml`
+- creates `dist/`
+- writes `dist/mc-fantasy-stable.mrpack`
 
 The stable filename gives players a URL that does not change when the pack version changes.
 
-The generated `.mrpack` file is ignored by Git because `dist/` and `*.mrpack` are runtime/release outputs. Use it as the public bootstrap client pack and for initial updater-instance creation.
+Ignored release outputs:
 
-CI publishes the exported `.mrpack` to the `client-stable` GitHub Release after the updater smoke test passes:
+- `dist/`
+- `*.mrpack`
+
+CI publishes the exported `.mrpack` to:
 
 ```txt
 https://github.com/usersina/mc-fantasy-packwiz/releases/latest
 ```
 
-The stable direct import URL is:
+Stable direct import URL:
 
 ```txt
 https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/mc-fantasy-stable.mrpack
@@ -239,154 +305,224 @@ https://github.com/usersina/mc-fantasy-packwiz/releases/download/client-stable/m
 
 ## Maintainer: Key Defaults
 
-This pack does not ship a live `options.txt`. Minecraft owns each player's local `options.txt`, and the updater should not overwrite personal controls, video, audio, chat, or resource-pack settings on every launch.
+This pack does not ship a live `options.txt`.
 
-Default key mappings live in:
+Reason:
+
+- Minecraft owns each player's local `options.txt`
+- the updater must not overwrite personal controls, video, audio, chat, or resource-pack settings
+
+Shared defaults live in:
 
 ```txt
 config/defaultoptions/keybindings.txt
 ```
 
-The Default Options mod reads that file from the instance config folder and applies those defaults for keys that have not already been customized by the player. That gives the pack a safe way to add defaults for new mods without replacing the whole local options file.
+Default Options applies those defaults for keys that players have not customized yet.
 
-When adding a new mod, inspect it first:
+When adding or changing controls:
 
-```bash
-task pack:inspect INSPECT=mod MOD=mods/example-mod.pw.toml
+1. Inspect the mod:
+
+   ```bash
+   task pack:inspect INSPECT=mod MOD=mods/example-mod.pw.toml
+   ```
+
+2. Open the maintainer client instance.
+3. Change controls in Minecraft.
+4. Run:
+
+   ```txt
+   /defaultoptions saveKeys
+   ```
+
+5. Commit `config/defaultoptions/keybindings.txt`.
+6. Run:
+
+   ```bash
+   task pack:site
+   task pack:smoke-update
+   ```
+
+Policy:
+
+- keep one shared default profile
+- do not create QWERTY/AZERTY variants
+- let players adjust controls locally
+
+## Maintainer: Inspection
+
+Packwiz installs and exports the pack, but it does not fully explain a mod's default keybindings or generated configs. Use the repo inspector.
+
+| Inspection | Command |
+| --- | --- |
+| Materialized Packwiz client | `task pack:inspect INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml` |
+| Existing launcher instance | `task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft` |
+| Generated dedicated server | `task pack:inspect INSPECT=server-generated` |
+| One mod metadata file | `task pack:inspect INSPECT=mod MOD=mods/example-mod.pw.toml` |
+
+Reports are written to:
+
+```txt
+dist/inspect/
 ```
 
-The report is written under `dist/inspect/` and can show likely keybinding translation keys, detected default keys when available, and config file candidates. Static jar inspection is a helper, not a replacement for checking important controls in a real launcher instance.
+The inspector does not copy files into the pack. Review the report, then commit only intentional files.
 
-When changing controls:
+Client-side generated config defaults require one of:
 
-1. Open the maintainer client instance.
-2. Change the controls in Minecraft.
-3. Run:
+- static inspection
+- scanning a real launcher instance after launch
 
-    ```txt
-    /defaultoptions saveKeys
-    ```
-
-4. Commit the generated `config/defaultoptions/keybindings.txt`.
-5. Run `task pack:site` and `task pack:smoke-update` before publishing.
-
-Do not create QWERTY/AZERTY variants. Keep one shared default and let players adjust controls locally.
-
-## Maintainer: Inspecting Pack and Generated Configs
-
-Packwiz can install and export the pack, but it does not have an official command that fully explains a mod's default keybindings or generated configs. Use the repo inspector for that.
-
-Scan a materialized Packwiz client:
-
-```bash
-task pack:inspect INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml
-```
-
-Scan an existing Prism/Freesm instance after launching it once:
-
-```bash
-task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft
-```
-
-Capture generated dedicated-server configs in an ignored temporary runtime:
-
-```bash
-task pack:inspect INSPECT=server-generated
-```
-
-The inspector writes Markdown reports to `dist/inspect/` and does not copy files into the pack. For client-side generated config defaults, use static inspection or scan a real launcher instance after launch; the repo intentionally does not try to automate a graphical Minecraft client startup.
+The repo intentionally does not automate graphical Minecraft client startup.
 
 ## Maintainer: Release Checklist
 
+```mermaid
+flowchart TD
+  change["Change mods/config/datapacks"] --> site["task pack:site"]
+  site --> serve["Serve dist/site locally"]
+  serve --> smoke["PACK_URL=local task pack:smoke-update"]
+  smoke --> push["Push to main"]
+  push --> ci["GitHub Actions smoke + Pages deploy + release asset"]
+  ci --> server["Update/restart dedicated server"]
+```
+
 Before publishing a client update:
 
-```bash
-task pack:site
-```
+1. Build the Packwiz site:
 
-Then serve the generated site locally:
+   ```bash
+   task pack:site
+   ```
 
-```bash
-cd dist/site
-python3 -m http.server 8081
-```
+2. Serve it locally:
 
-In another terminal:
+   ```bash
+   cd dist/site
+   python3 -m http.server 8081
+   ```
 
-```bash
-PACK_URL=http://127.0.0.1:8081/stable/pack.toml task pack:smoke-update
-```
+3. Smoke-test in another terminal:
 
-The smoke test installs a clean temp client and verifies:
+   ```bash
+   PACK_URL=http://127.0.0.1:8081/stable/pack.toml task pack:smoke-update
+   ```
+
+4. Push to `main` after local smoke passes.
+5. Update/restart the dedicated server from the same pack version.
+
+Smoke test checks:
 
 - Packwiz installer exits successfully
-- `mods/`, `defaultconfigs/`, `config/defaultoptions/keybindings.txt`, and `config/paxi/datapacks/` are present
-- `Configured`, `Default Options`, and `More Dragon Eggs` resolve from their current metadata
+- `mods/` exists
+- `defaultconfigs/` exists
+- `config/defaultoptions/keybindings.txt` exists
+- `config/paxi/datapacks/` exists
+- current metadata resolves for known non-trivial downloads
 
-When local smoke testing passes, push to `main`. GitHub Actions rebuilds `dist/site/stable/`, serves it locally, runs the same smoke update against it, and deploys GitHub Pages only after that succeeds.
+CI does the same high-level flow:
 
-The same workflow exports the manual `.mrpack` and updates the `client-stable` GitHub Release only after the smoke test succeeds.
-
-Update/restart the dedicated server from the same pack version during the same release window.
+- rebuilds `dist/site/stable/`
+- serves it locally
+- runs the smoke update
+- deploys GitHub Pages only after smoke passes
+- updates the `client-stable` release asset only after smoke passes
 
 ## Maintainer: Pack Contents
 
-The client export should include:
+Client export should include:
 
 - client-side mods
 - shared `both` mods
-- gameplay/worldgen mods needed for local singleplayer, even when they are conceptually server-side
+- gameplay/worldgen mods needed for local singleplayer
 - `config/defaultoptions/keybindings.txt`
-- `config/paxi/datapacks/`, `defaultconfigs/`, resource packs, or shaders when they are intentionally included
+- `config/paxi/datapacks/`
+- `defaultconfigs/`
+- intentional resource packs or shaders
 
-The client export should not include:
+Client export should not include:
 
-- the generated server runtime
+- generated server runtime
 - `server-base/`
 - server world saves
-- logs, crash reports, libraries, installers, or NeoForge runtime files
-- repo docs and Taskfile plumbing
+- logs
+- crash reports
+- libraries
+- installers
+- NeoForge runtime files
+- repo docs
+- Taskfile plumbing
 - live launcher `options.txt`
 
-`.packwizignore` keeps repo/server-only files out of the Packwiz index and out of `.mrpack` exports.
+`.packwizignore` keeps repo/server-only files out of the Packwiz index and `.mrpack` exports.
 
-The current export shape should contain:
+Expected `.mrpack` shape:
 
-- `modrinth.index.json` for downloadable mods
+- `modrinth.index.json`
 - `overrides/config/defaultoptions/keybindings.txt`
 - `overrides/defaultconfigs/...`
 - `overrides/config/paxi/datapacks/...`
-- embedded jars for current non-Modrinth export cases:
-  - `More Dragon Eggs`
-  - `Configured`
+- embedded jars only for current non-Modrinth export cases
 
-It should not contain `overrides/options.txt`, `server-base/`, `scripts/`, `docs/`, `Taskfile.yml`, or `README.md`.
+Expected hosted Packwiz site shape:
 
-The hosted stable Packwiz site is even smaller: it contains `pack.toml`, `index.toml`, and the files listed in `index.toml`.
+- `pack.toml`
+- `index.toml`
+- files listed in `index.toml`
 
 ## Maintainer: Side Policy
 
-The Packwiz project currently contains every mod from the original source list by project ID.
+The client export must work as a complete playable instance, including local singleplayer.
 
-The Prism/Freesm export is intended to work as a complete playable instance, including local singleplayer. In Modrinth `.mrpack` metadata, `server` means a dedicated server, not Minecraft's integrated singleplayer server. Because of that, mods needed for world generation, gameplay rules, login/skin behavior, or local integrated-server behavior should be marked `side = "both"` here so launchers install them into the client instance.
+In Modrinth `.mrpack` metadata:
 
-Use `side = "server"` only for something that truly belongs on the dedicated server and should not be present in a player/imported instance. The dedicated server still gets `both` mods because `task server:start` runs packwiz-installer in server mode.
+- `client` means client instance
+- `server` means dedicated server
+- integrated singleplayer still needs gameplay/worldgen mods in the client instance
+
+Use `side = "both"` for mods needed by:
+
+- world generation
+- gameplay rules
+- login/skin behavior
+- integrated-server behavior
+- local singleplayer
+
+Use `side = "server"` only for mods that truly belong on the dedicated server and should not be present in an imported player instance.
+
+The dedicated server still receives `both` mods because `task server:start` runs Packwiz Installer in server mode.
 
 ## Maintainer: Global Datapacks
 
 Datapacks in `config/paxi/datapacks/` are managed by this repo and loaded globally by Paxi.
 
-That means the same convenience recipes are available on the dedicated server and in local Prism/Freesm singleplayer worlds created from the exported `.mrpack`.
+They apply to:
+
+- dedicated server worlds
+- local Prism/Freesm singleplayer worlds
 
 ## Maintainer: If Export Fails
 
-Most mods are Modrinth-backed. If export prints `added to zip` for a small number of non-Modrinth-compatible files, that can be OK; those jars are embedded in the `.mrpack`.
+Most mods are Modrinth-backed.
 
-If export fails because of a restricted download or missing metadata, check the failing mod metadata first. A manual recovery path is to import the pack locally in Prism, repair whatever download/import issue appears there, then export a Prism instance zip.
+If export prints `added to zip` for a small number of non-Modrinth-compatible files:
+
+- that can be OK
+- those jars are embedded in the `.mrpack`
+
+If export fails:
+
+1. Check the failing mod metadata.
+2. Import the pack locally in Prism.
+3. Repair the download/import issue there.
+4. Export a Prism instance zip as a manual recovery path.
 
 ## Maintainer: GitHub Pages
 
-GitHub Pages should be configured to use GitHub Actions as its source. The workflow publishes:
+GitHub Pages should use GitHub Actions as its source.
+
+The workflow publishes:
 
 ```txt
 dist/site/stable/
@@ -398,13 +534,16 @@ to:
 https://usersina.github.io/mc-fantasy-packwiz/stable/
 ```
 
-The human-readable Pages root is built from `site/index.html` and published as:
+The human-readable Pages root is built from `site/index.html`:
 
 ```txt
 https://usersina.github.io/mc-fantasy-packwiz/
 ```
 
-Minecraft or NeoForge version changes still require a new launcher instance zip. Normal mod/config/datapack/key-default updates should flow through the hosted Packwiz updater.
+Version-change rule:
+
+- normal mod/config/datapack/key-default updates flow through the hosted Packwiz updater
+- Minecraft or NeoForge version changes require a new launcher instance zip
 
 ## References
 
