@@ -2,7 +2,7 @@
 
 End-to-end Packwiz repo for the 1.21.1 Fantasy NeoForge pack. The repo owns the pack definition, client export defaults, and the small server bootstrap; the generated Minecraft server runtime lives outside Git.
 
-The main entry point is the Taskfile. Server tasks call one script, `scripts/server.sh`.
+The main entry point is the Taskfile. Pack tasks call `scripts/pack.sh`; server tasks call `scripts/server.sh`.
 
 ## Quick Start
 
@@ -10,10 +10,11 @@ Run these from the repo root.
 
 Prerequisites:
 
-- Java 21 at `/usr/lib/jvm/java-21-openjdk/bin/java`
+- Java 21 JDK at `/usr/lib/jvm/java-21-openjdk/bin/java`
 - `packwiz`
 - Go Task, exposed as `task` or `go-task`
 - `curl`
+- `jq` and `unzip`
 - `tar` with zstd support for backups
 
 Examples use `task`. If your binary is named `go-task`, replace `task` with `go-task`.
@@ -73,9 +74,11 @@ That syncs Packwiz-managed files into the existing runtime without starting the 
 
 ## Config Folders
 
-Use `config/` for files that should exist at the Minecraft instance root on both clients and the dedicated server. Examples in this pack are `config/paxi/datapacks/...` and `config/defaultoptions/keybindings.txt`.
+Use `config/` for files that should exist at the Minecraft instance root on clients, the dedicated server, or both. Packwiz installs these files directly and updates them on `task server:update`, `task server:start`, client updater launches, and `.mrpack` exports. Examples in this pack are `config/paxi/datapacks/...` and `config/defaultoptions/keybindings.txt`.
 
-Use `defaultconfigs/` for NeoForge server config defaults. NeoForge uses these as templates for new worlds' `serverconfig/` files. They are good for "when a new world is created, start with these server config values." They are not the same thing as the Default Options mod.
+Use `defaultconfigs/` for NeoForge config defaults that should seed missing generated configs. On this NeoForge 1.21.1 setup, the server loads these defaults and creates matching active files under the runtime root `config/` folder, not under `world/serverconfig/`.
+
+Use `world/serverconfig/` only as a runtime world-specific override folder. It is not the normal place for this repo's shared Packwiz-managed defaults.
 
 `config/defaultoptions/keybindings.txt` belongs to the Default Options mod. It provides client keybinding defaults without replacing each player's normal `options.txt` every launch.
 
@@ -111,6 +114,90 @@ Paxi loads those datapacks for every world. Because they are Packwiz-managed fil
 - Prism/Freesm `.mrpack` exports via `task pack:export-client`
 
 Do not put shared datapacks under `server-base/`; that folder is only for the dedicated server base templates.
+
+## Inspecting Mods and Packs
+
+Use the inspector when adding a mod and you need to discover keybindings, likely generated config files, or what the Packwiz client actually installs.
+
+Inspect one Packwiz mod metadata file or jar:
+
+```bash
+task pack:inspect INSPECT=mod MOD=mods/beltborne-lanterns.pw.toml
+```
+
+Inspect a real Prism/Freesm instance after launching it once:
+
+```bash
+task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft
+```
+
+Materialize the Packwiz client into an ignored inspection folder and scan it:
+
+```bash
+task pack:inspect INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml
+```
+
+Generate a temporary dedicated server runtime under `dist/inspect/` and report generated configs:
+
+```bash
+task pack:inspect INSPECT=server-generated
+```
+
+Inspection reports are written to `dist/inspect/`. They are intentionally read-only reports: use them to decide what to commit, then update `config/`, `defaultconfigs/`, or `config/defaultoptions/keybindings.txt` yourself.
+
+## When a Mod Adds Config or Controls
+
+When adding a mod, first add it through Packwiz and refresh:
+
+```bash
+packwiz modrinth add <mod-slug>
+task pack:refresh
+```
+
+Then inspect the mod for likely controls and config files:
+
+```bash
+task pack:inspect INSPECT=mod MOD=mods/<mod-file>.pw.toml
+```
+
+If the mod has controls, prefer Default Options:
+
+1. Use the inspection report to find keybinding IDs and default keys.
+2. Open the maintainer client instance when you need to confirm names in Minecraft.
+3. Change the controls in Minecraft.
+4. Run `/defaultoptions saveKeys`.
+5. Commit the updated `config/defaultoptions/keybindings.txt`.
+
+Do not commit a full `options.txt`; it would overwrite player preferences such as controls, video, audio, and resource packs.
+
+If the mod has config files, decide ownership before copying anything:
+
+| Generated file kind        | Commit where            | Use when                                                                         |
+| -------------------------- | ----------------------- | -------------------------------------------------------------------------------- |
+| Client/shared live config  | `config/<file>`         | The file should be installed and updated directly on clients and/or the server.  |
+| NeoForge generated default | `defaultconfigs/<file>` | The file should seed missing generated server/common configs on a fresh runtime. |
+| Runtime-only local state   | nowhere                 | The file is a cache, log, generated world data, or personal/local setting.       |
+
+To discover generated server configs, run:
+
+```bash
+task pack:inspect INSPECT=server-generated
+```
+
+That creates a temporary server under `dist/inspect/server-generated/runtime`, launches it once, stops it, and writes `dist/inspect/server-generated.md`. Compare generated files from that temp runtime, then copy only intentional defaults into `config/` or `defaultconfigs/`.
+
+To discover client-side generated configs, launch a real maintainer Prism/Freesm instance once, then scan its Minecraft folder:
+
+```bash
+task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft
+```
+
+For this pack, a successful generated-server inspection should show:
+
+- Packwiz-managed datapacks under `config/paxi/datapacks/`
+- committed defaults under `defaultconfigs/`
+- generated active server configs under runtime `config/`
+- `world/serverconfig/readme.txt`, unless you intentionally add world-specific overrides
 
 ## Mod Notes
 
@@ -185,6 +272,7 @@ task pack:refresh          # refresh packwiz index files
 task pack:site             # build dist/site/stable for GitHub Pages
 task pack:smoke-update     # verify client updater installs successfully
 task pack:export-client    # export the Prism/Freesm .mrpack bootstrap
+task pack:inspect          # inspect mods, packs, instances, or generated server config
 ```
 
 Rebuild the generated runtime from scratch:
@@ -210,6 +298,12 @@ Or call the single server script directly:
 SERVER_DIR=/path/to/server JAVA21=/path/to/java21 ACCEPT_EULA=true ./scripts/server.sh setup
 ```
 
+Pack maintenance commands can also call the single pack script directly:
+
+```bash
+INSPECT=mod MOD=mods/beltborne-lanterns.pw.toml ./scripts/pack.sh inspect
+```
+
 ## Troubleshooting
 
 If startup fails with `Unsupported class file major version 70`, the server launched with Java 26. Use the Taskfile path or set `JAVA21` to a Java 21 executable:
@@ -233,6 +327,6 @@ task pack:refresh
 Add new mods through Packwiz so metadata stays correct:
 
 ```bash
-packwiz modrinth install jei
-packwiz curseforge install configured
+packwiz modrinth add jei
+packwiz curseforge add configured
 ```

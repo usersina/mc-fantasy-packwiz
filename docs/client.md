@@ -249,7 +249,15 @@ config/defaultoptions/keybindings.txt
 
 The Default Options mod reads that file from the instance config folder and applies those defaults for keys that have not already been customized by the player. That gives the pack a safe way to add defaults for new mods without replacing the whole local options file.
 
-When changing controls for a new mod:
+When adding a new mod, inspect it first:
+
+```bash
+task pack:inspect INSPECT=mod MOD=mods/example-mod.pw.toml
+```
+
+The report is written under `dist/inspect/` and can show likely keybinding translation keys, detected default keys when available, and config file candidates. Static jar inspection is a helper, not a replacement for checking important controls in a real launcher instance.
+
+When changing controls:
 
 1. Open the maintainer client instance.
 2. Change the controls in Minecraft.
@@ -263,6 +271,30 @@ When changing controls for a new mod:
 5. Run `task pack:site` and `task pack:smoke-update` before publishing.
 
 Do not create QWERTY/AZERTY variants. Keep one shared default and let players adjust controls locally.
+
+## Maintainer: Inspecting Pack and Generated Configs
+
+Packwiz can install and export the pack, but it does not have an official command that fully explains a mod's default keybindings or generated configs. Use the repo inspector for that.
+
+Scan a materialized Packwiz client:
+
+```bash
+task pack:inspect INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml
+```
+
+Scan an existing Prism/Freesm instance after launching it once:
+
+```bash
+task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft
+```
+
+Capture generated dedicated-server configs in an ignored temporary runtime:
+
+```bash
+task pack:inspect INSPECT=server-generated
+```
+
+The inspector writes Markdown reports to `dist/inspect/` and does not copy files into the pack. For client-side generated config defaults, use static inspection or scan a real launcher instance after launch; the repo intentionally does not try to automate a graphical Minecraft client startup.
 
 ## Maintainer: Release Checklist
 

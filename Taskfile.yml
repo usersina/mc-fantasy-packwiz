@@ -9,6 +9,9 @@ vars:
   SITE_DIR: dist/site/stable
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
   CLIENT_PACK_SLUG: mc-fantasy
+  INSPECT: ''
+  MOD: ''
+  INSTANCE_MC_DIR: ''
 
 tasks:
   server:setup:
@@ -27,20 +30,25 @@ tasks:
     desc: Build GitHub Pages stable Packwiz site
     dir: '{{.REPO_DIR}}'
     cmds:
-      - packwiz refresh
-      - SITE_DIR="{{.SITE_DIR}}" ./scripts/build-pack-site.sh
+      - SITE_DIR="{{.SITE_DIR}}" ./scripts/pack.sh site
 
   pack:smoke-update:
     desc: Smoke-test client auto-update install
     dir: '{{.REPO_DIR}}'
     cmds:
-      - PACK_URL="${PACK_URL:-{{.PUBLIC_PACK_URL}}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/smoke-client-update.sh
+      - PACK_URL="${PACK_URL:-{{.PUBLIC_PACK_URL}}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/pack.sh smoke-update
 
   pack:export-client:
     desc: Export Prism/Freesm .mrpack into dist/
     dir: '{{.REPO_DIR}}'
     cmds:
-      - CLIENT_PACK_SLUG="{{.CLIENT_PACK_SLUG}}" ./scripts/export-client-pack.sh
+      - CLIENT_PACK_SLUG="{{.CLIENT_PACK_SLUG}}" ./scripts/pack.sh export-client
+
+  pack:inspect:
+    desc: Inspect a mod, materialized pack, launcher instance, or generated server configs
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - INSPECT="{{.INSPECT}}" MOD="{{.MOD}}" INSTANCE_MC_DIR="{{.INSTANCE_MC_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./scripts/pack.sh inspect
 
   pack:serve:
     desc: Serve packwiz locally
