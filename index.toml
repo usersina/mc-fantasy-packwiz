@@ -5,6 +5,10 @@ file = "config/defaultoptions/keybindings.txt"
 hash = "ab365899fa82a0074ff60ab14636cf33daf3cd2ce555dee85d35eaad3c32629c"
 
 [[files]]
+file = "config/lithium.properties"
+hash = "27c5cd07b19acca041107277303621d6578f33604d4c46b9eb6936915d8b1746"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/alchemist_cauldron.json"
 hash = "4397350d178f07420d1b28f701044d61d73a7a6fa7a7330e2ddbacf5796f3b20"
 
@@ -534,6 +538,11 @@ hash = "983d6ab9d9a7d40031f1789f5ae018cccb889832ac8ce741df60a9d8e5f42817"
 metafile = true
 
 [[files]]
+file = "mods/moonlight.pw.toml"
+hash = "018eeaa17d34a6010be48e946ad26973e24e125cfdf6f87cbd79f0cd7d5901ce"
+metafile = true
+
+[[files]]
 file = "mods/more-dragon-eggs.pw.toml"
 hash = "6526d0de1fe5acd6a4fa0135b8b7bcd7fc09bd481f85e7f8221db633ff58e676"
 metafile = true
@@ -706,6 +715,11 @@ metafile = true
 [[files]]
 file = "mods/stormies-spiders.pw.toml"
 hash = "1d7ed103bf6c4995bc1eff18fc1aac0114cfbc0f58a0810d3984d57eecb644d6"
+metafile = true
+
+[[files]]
+file = "mods/supplementaries.pw.toml"
+hash = "039a71011f455c24c9ccc7b38ef6f01561992a77a5d0c21f75dc01f70b42b1e2"
 metafile = true
 
 [[files]]
