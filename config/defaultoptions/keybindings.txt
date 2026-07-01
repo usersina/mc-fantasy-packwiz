@@ -20,6 +20,10 @@ key_key.cataclysm.helmet_ability:key.keyboard.unknown:
 key_key.cataclysm.chestplate_ability:key.keyboard.unknown:
 key_key.cataclysm.boots_ability:key.keyboard.unknown:
 key_key.smallships.ship_sail:key.keyboard.space:
+key_key.beltborne_lanterns.toggle_lantern:key.keyboard.unknown:
+key_key.beltborne_lanterns.open_config:key.keyboard.unknown:
+key_key.beltborne_lanterns.toggle_debug:key.keyboard.unknown:
+key_key.beltborne_lanterns.open_debug:key.keyboard.unknown:
 key_key.jei.bookmark:key.keyboard.unknown:
 key_keys.werewolves.leap:key.keyboard.space:
 key_keys.werewolves.bite:key.keyboard.z:
