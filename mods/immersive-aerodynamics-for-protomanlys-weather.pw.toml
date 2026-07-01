@@ -1,0 +1,13 @@
+name = "Immersive Aerodynamics for Protomanly's Weather"
+filename = "immersive_aerodynamics-0.0.3.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/anwi3Iz6/versions/JfhkmF4m/immersive_aerodynamics-0.0.3.jar"
+hash-format = "sha512"
+hash = "cead54e3642f09af52e950ef617b129298e0591410f3957b837c923b1164cae8c4c2a2d989eba458d0252eaf19053ff0d95e629ea8635aeb688014dea590eca5"
+
+[update]
+[update.modrinth]
+mod-id = "anwi3Iz6"
+version = "JfhkmF4m"

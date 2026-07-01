@@ -67,6 +67,10 @@ hash = "c0a24c2c3e847e15acd99774581aad9ffb06cc1f4db5ffcf02c4c9e50be0c189"
 metafile = true
 
 [[files]]
+file = "config/pmweather-server.toml"
+hash = "358f998ee630007297704bf1634eb00b16cc7ab3082f95345761d10a3533e627"
+
+[[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
 hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
 
@@ -425,6 +429,11 @@ hash = "a2fbecad69fcbff54919864ea8b95e54d140a1a2c637d73307fb366e76066fe6"
 metafile = true
 
 [[files]]
+file = "mods/immersive-aerodynamics-for-protomanlys-weather.pw.toml"
+hash = "2f6ceaca7311c9fe5865c16cb98be43a07c62df93f3657b4443fdb40e4dc7c51"
+metafile = true
+
+[[files]]
 file = "mods/immersive-aircraft.pw.toml"
 hash = "306c6a05c47046994a065bd8a461bd1ba1a7a8187f267c35ddf81c0a3041ed98"
 metafile = true
@@ -545,6 +554,11 @@ hash = "02aa4dcb8fa24cffcd2182c66683c2a476a95abf53002373f953a49737a587e3"
 metafile = true
 
 [[files]]
+file = "mods/natural-regrowth-for-protomanlys-weather.pw.toml"
+hash = "45febc98db2d7b1a4476d0639c21eea6d4da5e7c189770085e0ba6edab1bfcde"
+metafile = true
+
+[[files]]
 file = "mods/no-chat-reports.pw.toml"
 hash = "5da18814472be5dc93a21886983646da3a7236413800075ac75229be82d114fa"
 metafile = true
@@ -602,6 +616,11 @@ metafile = true
 [[files]]
 file = "mods/prism-lib.pw.toml"
 hash = "d9b38ba42434eb436d036b1c8add839bee003240dc85cc54ec626aac58c59070"
+metafile = true
+
+[[files]]
+file = "mods/protomanlys-weather.pw.toml"
+hash = "5074c1853c6fc522e39014be88c3badaf4e2ad975030f70118bcf8adefd71eb2"
 metafile = true
 
 [[files]]
