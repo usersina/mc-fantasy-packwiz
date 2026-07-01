@@ -1074,6 +1074,24 @@ write_server_generated_report() {
   } > "$report"
 }
 
+set_inspection_server_port() {
+  local server_dir="$1"
+  local server_properties="$server_dir/server.properties"
+
+  if [ ! -f "$server_properties" ]; then
+    echo "WARN: server.properties missing; cannot set temporary inspection port"
+    return 0
+  fi
+
+  if grep -q '^server-port=' "$server_properties"; then
+    sed -i 's/^server-port=.*/server-port=0/' "$server_properties"
+  else
+    printf "\nserver-port=0\n" >> "$server_properties"
+  fi
+
+  echo "==> Temporary inspection server port: 0 (auto-select free port)"
+}
+
 cmd_inspect_server_generated() {
   local root="$REPORT_DIR/server-generated"
   local site_dir="$root/site/stable"
@@ -1106,6 +1124,7 @@ cmd_inspect_server_generated() {
   echo "==> Creating temporary server runtime:"
   echo "    $server_dir"
   SERVER_DIR="$server_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" ACCEPT_EULA=true "$REPO_DIR/scripts/server.sh" setup
+  set_inspection_server_port "$server_dir"
 
   echo "==> Starting temporary server to generate configs"
   set +e

@@ -419,3 +419,7 @@ packwiz curseforge add configured
 Carry On uses the unofficial patched `carryon-neoforge-1.21.1-2.2.4.4-patched-no-slowness.jar` intentionally because the official 1.21.1 build hit server stability problems in this pack.
 
 Player pickup remains enabled, but it has an intermittent `carryon:sync_carry_data` disconnect risk. Do not update or swap Carry On casually without retesting multiplayer player pickup.
+
+## Todo
+
+- [ ] Replace [mods/automaticsorter-1.3.1-1.21.1-neoforge.jar](mods/automaticsorter-1.3.1-1.21.1-neoforge.jar) with the [official 1.21.1 release](https://modrinth.com/mod/automaticsorter) once the [NeoForge release](https://github.com/EpicSniper/minecraft-automatic-sorter-mod/pull/18) is available.

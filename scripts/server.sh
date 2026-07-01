@@ -6,7 +6,7 @@ SERVER_BASE_DIR="${SERVER_BASE_DIR:-$REPO_DIR/server-base}"
 SERVER_DIR="${SERVER_DIR:-/data/games/servers/minecraft/fantasy-lan}"
 PACK_URL="${PACK_URL:-http://127.0.0.1:8080/pack.toml}"
 JAVA21="${JAVA21:-/usr/lib/jvm/java-21-openjdk/bin/java}"
-NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.233}"
+NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.234}"
 PACKWIZ_INSTALLER_VERSION="${PACKWIZ_INSTALLER_VERSION:-v0.0.3}"
 PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/${PACKWIZ_INSTALLER_VERSION}/packwiz-installer-bootstrap.jar}"
 FORCE="${FORCE:-false}"
@@ -125,15 +125,7 @@ setup_server() {
 
   cd "$SERVER_DIR"
 
-  echo "==> Downloading NeoForge installer if needed"
-  download_if_missing "$NEOFORGE_INSTALLER" "$NEOFORGE_URL"
-
-  echo "==> Installing NeoForge server if needed"
-  if [ ! -f run.sh ]; then
-    "$JAVA21" -jar "$NEOFORGE_INSTALLER" --installServer
-  else
-    echo "run.sh already exists; skipping NeoForge install"
-  fi
+  install_neoforge_if_needed
 
   if [ "${#copied_base_files[@]}" -gt 0 ]; then
     echo "==> Re-applying copied server base templates"
@@ -166,15 +158,25 @@ setup_server() {
   echo "     cd $REPO_DIR && task server:start"
 }
 
+install_neoforge_if_needed() {
+  local target_args="libraries/net/neoforged/neoforge/${NEOFORGE_VERSION}/unix_args.txt"
+
+  echo "==> Downloading NeoForge installer if needed"
+  download_if_missing "$NEOFORGE_INSTALLER" "$NEOFORGE_URL"
+
+  echo "==> Installing NeoForge server if needed"
+  if [ ! -f "$target_args" ]; then
+    "$JAVA21" -jar "$NEOFORGE_INSTALLER" --installServer
+  else
+    echo "NeoForge $NEOFORGE_VERSION already installed; skipping NeoForge install"
+  fi
+}
+
 find_neoforge_args() {
   local args="libraries/net/neoforged/neoforge/${NEOFORGE_VERSION}/unix_args.txt"
 
-  if [ ! -f "$args" ] && [ -d libraries/net/neoforged/neoforge ]; then
-    args="$(find libraries/net/neoforged/neoforge -mindepth 2 -maxdepth 2 -name unix_args.txt -print | sort -V | tail -n 1)"
-  fi
-
-  if [ -z "$args" ] || [ ! -f "$args" ]; then
-    echo "ERROR: NeoForge argfile not found in $SERVER_DIR" >&2
+  if [ ! -f "$args" ]; then
+    echo "ERROR: NeoForge $NEOFORGE_VERSION argfile not found in $SERVER_DIR" >&2
     echo "Run first:" >&2
     echo "  task server:setup" >&2
     exit 1
@@ -205,6 +207,7 @@ start_server() {
   local neoforge_args
 
   sync_packwiz
+  install_neoforge_if_needed
   neoforge_args="$(find_neoforge_args)"
 
   echo "==> Starting NeoForge server"
