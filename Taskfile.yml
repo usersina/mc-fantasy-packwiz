@@ -9,6 +9,16 @@ vars:
   SITE_DIR: dist/site/stable
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
   CLIENT_PACK_SLUG: mc-fantasy
+  CLIENT_TEST_DIR: dist/client-test
+  CLIENT_TEST_IMPORT_SLUG: mc-fantasy-dev
+  CLIENT_TEST_PORT: 8082
+  CLIENT_INSTANCE_ID: ''
+  CLIENT_LAUNCHER: ''
+  CLIENT_LAUNCHER_ROOT: ''
+  CLIENT_SERVER: ''
+  CLIENT_TEST_DISABLE_PRELAUNCH: 'true'
+  LAUNCH: 'true'
+  RESET: 'false'
   INSPECT: ''
   MOD: ''
   INSTANCE_MC_DIR: ''
@@ -55,6 +65,12 @@ tasks:
     dir: '{{.REPO_DIR}}'
     cmds:
       - packwiz serve -p 8080
+
+  client:test:
+    desc: Bootstrap, sync, or launch a Prism/Freesm maintainer test client
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - CLIENT_PACK_SLUG="{{.CLIENT_PACK_SLUG}}" CLIENT_TEST_DIR="{{.CLIENT_TEST_DIR}}" CLIENT_TEST_IMPORT_SLUG="{{.CLIENT_TEST_IMPORT_SLUG}}" CLIENT_TEST_PORT="{{.CLIENT_TEST_PORT}}" CLIENT_INSTANCE_ID="{{.CLIENT_INSTANCE_ID}}" CLIENT_LAUNCHER="{{.CLIENT_LAUNCHER}}" CLIENT_LAUNCHER_ROOT="{{.CLIENT_LAUNCHER_ROOT}}" CLIENT_SERVER="{{.CLIENT_SERVER}}" CLIENT_TEST_DISABLE_PRELAUNCH="{{.CLIENT_TEST_DISABLE_PRELAUNCH}}" INSTANCE_MC_DIR="{{.INSTANCE_MC_DIR}}" JAVA21="{{.JAVA21}}" LAUNCH="{{.LAUNCH}}" RESET="{{.RESET}}" ./scripts/pack.sh client-test
 
   server:update:
     desc: Sync Packwiz-managed server files without starting

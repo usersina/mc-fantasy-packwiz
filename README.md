@@ -42,7 +42,9 @@ Main entry points:
 - `curl`
 - `jq`
 - `unzip`
+- `python3` for local client test serving
 - `tar` with zstd support for backups
+- Prism Launcher or Freesm Launcher for `client:test`
 
 Examples use `task`. If your binary is named `go-task`, replace `task` with `go-task`.
 
@@ -216,6 +218,113 @@ They are read-only reports. After reviewing them, update only intentional files 
 - `defaultconfigs/`
 - `config/defaultoptions/keybindings.txt`
 
+## Maintainer Client Test Loop
+
+This is the Packwiz-pack equivalent of a mod repo's Gradle `runClient`.
+
+```mermaid
+flowchart TD
+  first["task client:test"] --> exists{"mc-fantasy-dev exists?"}
+  exists -- "no" --> import["import in Prism/Freesm"]
+  exists -- "yes" --> saved
+  import --> id["name folder:<br/>mc-fantasy-dev"]
+  id --> saved["expected ID saved under dist/client-test/"]
+  edit["edit mods/config/datapacks"] --> run["task client:test"]
+  saved --> run
+  run --> site["temporary local Packwiz site"]
+  site --> sync["Packwiz syncs current repo<br/>into test instance"]
+  sync --> launch["Prism/Freesm launches Minecraft"]
+  launch --> test["test in game"]
+  test --> edit
+  reset["task client:test RESET=true"] --> first
+```
+
+First run:
+
+1. Export and open the launcher import flow:
+
+   ```bash
+   task client:test
+   ```
+
+2. Finish the import in Prism/Freesm.
+3. Use `mc-fantasy-dev` as the dev instance folder/name.
+
+   The bootstrap run saves `mc-fantasy-dev` as the expected instance ID under `dist/client-test/`.
+
+   If `mc-fantasy-dev` already exists, `task client:test` skips the import flow, remembers that instance, and uses Packwiz's incremental sync directly.
+
+   If Freesm picks a different folder name, right-click the imported instance, open its instance folder, and use that exact folder name instead.
+
+   ```bash
+   task client:test CLIENT_INSTANCE_ID=<actual-instance-folder-name>
+   ```
+
+Normal test loop:
+
+```bash
+task client:test
+```
+
+What it does:
+
+- refreshes Packwiz
+- builds a temporary local site under `dist/client-test/site/`
+- serves that site on `127.0.0.1:8082`
+- syncs the current repo pack into the test instance Minecraft folder
+- copies `packwiz-installer-bootstrap.jar` into that Minecraft folder
+- disables the public stable Packwiz pre-launch updater for that test instance
+- launches Prism/Freesm with `--launch <instance-id>`
+
+If the task cannot find the instance folder automatically, pass it directly:
+
+```bash
+task client:test \
+  CLIENT_INSTANCE_ID=<instance-folder-name> \
+  INSTANCE_MC_DIR=/path/to/instance/.minecraft
+```
+
+To sync without launching:
+
+```bash
+task client:test LAUNCH=false
+```
+
+To switch or remember a different instance:
+
+```bash
+task client:test CLIENT_INSTANCE_ID=<new-instance-folder-name>
+```
+
+To forget the remembered instance and return to bootstrap mode:
+
+```bash
+task client:test RESET=true
+```
+
+Useful overrides:
+
+- `CLIENT_LAUNCHER=prismlauncher`
+- `CLIENT_LAUNCHER=org.prismlauncher.PrismLauncher`
+- `CLIENT_LAUNCHER=org.freesmlauncher.FreesmLauncher`
+- `CLIENT_LAUNCHER_ROOT=/custom/prism/root`
+- `CLIENT_SERVER=host:port`
+- `CLIENT_TEST_IMPORT_SLUG=mc-fantasy-dev`
+- `CLIENT_TEST_PORT=8090`
+- `CLIENT_TEST_DISABLE_PRELAUNCH=false`
+- `LAUNCH=false`
+- `RESET=true`
+
+Notes:
+
+- Prism's CLI launches by instance ID, which is the instance folder name.
+- The remembered instance ID lives under ignored `dist/client-test/`.
+- `RESET=true` forgets the saved ID; it does not delete any Prism/Freesm instance.
+- If the test instance was imported from the public updater pack, `client:test` backs up `instance.cfg` and clears that public pre-launch updater by default. Otherwise the launcher would re-sync from published stable and undo local repo changes before Minecraft starts.
+- `CLIENT_SERVER` is passed through as Prism/Freesm `--server`.
+- A real launcher is still used for accounts, assets, natives, and Minecraft process setup.
+- The generated local client folder under `dist/client-test/` is disposable.
+
 ## Controls
 
 Use Default Options for shared default keybindings.
@@ -330,6 +439,7 @@ GitHub Actions on `main`:
 Task names use `domain:action`:
 
 - `pack:*` for Packwiz/client/site/inspection work
+- `client:*` for maintainer local client testing
 - `server:*` for runtime work
 
 | Task                      | Purpose                                                    |
@@ -346,6 +456,7 @@ Task names use `domain:action`:
 | `task pack:smoke-update`  | verify client updater installs successfully                |
 | `task pack:export-client` | export the Prism/Freesm `.mrpack` bootstrap                |
 | `task pack:inspect`       | inspect mods, packs, instances, or generated server config |
+| `task client:test`        | bootstrap, sync, or launch the maintainer test client      |
 
 ## Overrides
 

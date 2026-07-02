@@ -16,19 +16,30 @@ ACTION="${1:-}"
 
 usage() {
   cat <<EOF
-Usage: $(basename "$0") <site|export-client|smoke-update|inspect>
+Usage: $(basename "$0") <site|export-client|smoke-update|inspect|client-test>
 
 Actions:
-  site           Refresh Packwiz and build the hosted stable Packwiz site.
-  export-client  Refresh Packwiz and export the stable Prism/Freesm .mrpack.
-  smoke-update   Install the client pack into a temp folder and verify basics.
-  inspect        Inspect mods, materialized packs, launcher instances, or generated server configs.
+  site                Refresh Packwiz and build the hosted stable Packwiz site.
+  export-client       Refresh Packwiz and export the stable Prism/Freesm .mrpack.
+  smoke-update        Install the client pack into a temp folder and verify basics.
+  inspect             Inspect mods, materialized packs, launcher instances, or generated server configs.
+  client-test         Bootstrap, sync, or launch a Prism/Freesm maintainer test client.
 
 Inspect examples:
   INSPECT=mod MOD=mods/beltborne-lanterns.pw.toml $(basename "$0") inspect
   INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft $(basename "$0") inspect
   INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml $(basename "$0") inspect
   INSPECT=server-generated $(basename "$0") inspect
+
+Client test examples:
+  $(basename "$0") client-test
+  CLIENT_INSTANCE_ID=FantasyDev $(basename "$0") client-test
+  CLIENT_INSTANCE_ID=FantasyDev LAUNCH=false $(basename "$0") client-test
+  RESET=true $(basename "$0") client-test
+
+Client test options:
+  CLIENT_TEST_IMPORT_SLUG=mc-fantasy-dev sets the bootstrap .mrpack filename.
+  CLIENT_TEST_DISABLE_PRELAUNCH=false keeps an existing launcher pre-launch command.
 EOF
 }
 
@@ -231,6 +242,439 @@ cmd_export_client() {
   fi
 }
 
+client_test_dir() {
+  local dir="${CLIENT_TEST_DIR:-$REPO_DIR/dist/client-test}"
+
+  case "$dir" in
+    /*) printf "%s\n" "$dir" ;;
+    *) printf "%s\n" "$REPO_DIR/$dir" ;;
+  esac
+}
+
+client_test_site_dir() {
+  printf "%s\n" "$(client_test_dir)/site/stable"
+}
+
+client_test_mc_dir_default() {
+  printf "%s\n" "$(client_test_dir)/minecraft"
+}
+
+client_test_instance_id_file() {
+  printf "%s\n" "$(client_test_dir)/instance-id"
+}
+
+is_truthy() {
+  case "${1:-}" in
+    true|TRUE|True|yes|YES|Yes|1)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+reset_remembered_client_instance() {
+  local state_file
+
+  state_file="$(client_test_instance_id_file)"
+  if [ -f "$state_file" ]; then
+    rm -f "$state_file"
+    echo "==> Forgot remembered client test instance"
+  fi
+}
+
+load_remembered_client_instance() {
+  local state_file
+
+  if [ -n "${CLIENT_INSTANCE_ID:-}" ]; then
+    return 0
+  fi
+
+  state_file="$(client_test_instance_id_file)"
+  if [ ! -f "$state_file" ]; then
+    return 0
+  fi
+
+  CLIENT_INSTANCE_ID="$(sed -n '1p' "$state_file" | tr -d '\r\n')"
+  if [ -n "$CLIENT_INSTANCE_ID" ]; then
+    echo "==> Using remembered client test instance:"
+    echo "    $CLIENT_INSTANCE_ID"
+  fi
+}
+
+remember_client_instance() {
+  local state_file
+
+  if [ -z "${CLIENT_INSTANCE_ID:-}" ]; then
+    return 0
+  fi
+
+  state_file="$(client_test_instance_id_file)"
+  mkdir -p "$(dirname "$state_file")"
+  printf "%s\n" "$CLIENT_INSTANCE_ID" > "$state_file"
+  echo "==> Remembered client test instance:"
+  echo "    $CLIENT_INSTANCE_ID"
+}
+
+discover_default_client_test_instance() {
+  local default_id="${CLIENT_TEST_IMPORT_SLUG:-mc-fantasy-dev}"
+  local mc_dir
+
+  if [ -n "${CLIENT_INSTANCE_ID:-}" ] || [ -n "${INSTANCE_MC_DIR:-}" ]; then
+    return 0
+  fi
+
+  if mc_dir="$(resolve_instance_mc_dir "$default_id")"; then
+    CLIENT_INSTANCE_ID="$default_id"
+    echo "==> Found existing client test instance:"
+    echo "    $CLIENT_INSTANCE_ID"
+    echo "==> Minecraft folder:"
+    echo "    $mc_dir"
+    remember_client_instance
+  fi
+}
+
+resolve_instance_mc_dir() {
+  local instance_id="$1"
+  local root
+  local instance_dir
+  local mc_dir
+  local roots=()
+
+  if [ -n "${CLIENT_LAUNCHER_ROOT:-}" ]; then
+    roots+=("$CLIENT_LAUNCHER_ROOT")
+  fi
+
+  roots+=(
+    "$HOME/.local/share/PrismLauncher"
+    "$HOME/.local/share/FreesmLauncher"
+    "$HOME/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher"
+    "$HOME/.var/app/org.freesmlauncher.FreesmLauncher/data/FreesmLauncher"
+  )
+
+  for root in "${roots[@]}"; do
+    instance_dir="$root/instances/$instance_id"
+    if [ ! -d "$instance_dir" ]; then
+      continue
+    fi
+
+    for mc_dir in "$instance_dir/.minecraft" "$instance_dir/minecraft"; do
+      if [ -d "$mc_dir" ]; then
+        printf "%s\n" "$mc_dir"
+        return 0
+      fi
+    done
+
+    mkdir -p "$instance_dir/.minecraft"
+    printf "%s\n" "$instance_dir/.minecraft"
+    return 0
+  done
+
+  return 1
+}
+
+client_target_mc_dir() {
+  if [ -n "${INSTANCE_MC_DIR:-}" ]; then
+    printf "%s\n" "$INSTANCE_MC_DIR"
+    return 0
+  fi
+
+  if [ -n "${CLIENT_INSTANCE_ID:-}" ]; then
+    if resolve_instance_mc_dir "$CLIENT_INSTANCE_ID"; then
+      return 0
+    fi
+
+    echo "ERROR: could not find launcher instance folder for CLIENT_INSTANCE_ID=$CLIENT_INSTANCE_ID" >&2
+    echo "Pass INSTANCE_MC_DIR=/path/to/instance/.minecraft, set CLIENT_LAUNCHER_ROOT=/path/to/launcher/root, or run RESET=true to forget it." >&2
+    exit 1
+  fi
+
+  client_test_mc_dir_default
+}
+
+disable_public_packwiz_prelaunch_for_test() {
+  local mc_dir="$1"
+  local instance_dir
+  local cfg
+  local backup
+  local tmp
+
+  if ! is_truthy "${CLIENT_TEST_DISABLE_PRELAUNCH:-true}"; then
+    return 0
+  fi
+
+  case "$(basename "$mc_dir")" in
+    .minecraft|minecraft)
+      instance_dir="$(dirname "$mc_dir")"
+      ;;
+    *)
+      return 0
+      ;;
+  esac
+
+  cfg="$instance_dir/instance.cfg"
+  if [ ! -f "$cfg" ]; then
+    return 0
+  fi
+
+  if ! grep -q '^PreLaunchCommand=.*packwiz-installer.*usersina.github.io/mc-fantasy-packwiz/stable/pack.toml' "$cfg"; then
+    return 0
+  fi
+
+  backup="$cfg.client-test-prelaunch.bak"
+  if [ ! -f "$backup" ]; then
+    cp -p "$cfg" "$backup"
+  fi
+
+  tmp="$(mktemp "${cfg}.tmp.XXXXXX")"
+  awk '
+    /^PreLaunchCommand=/ {
+      print "PreLaunchCommand="
+      next
+    }
+    { print }
+  ' "$cfg" > "$tmp"
+  mv "$tmp" "$cfg"
+
+  echo "==> Disabled public Packwiz pre-launch updater for maintainer test instance"
+  echo "    $cfg"
+  echo "==> Backup:"
+  echo "    $backup"
+}
+
+start_client_site_server() {
+  local site_root="$1"
+  local port="$2"
+  local log_file="$3"
+
+  require_command python3
+
+  (
+    cd "$site_root"
+    python3 -m http.server "$port" --bind 127.0.0.1 > "$log_file" 2>&1
+  ) &
+  CLIENT_SITE_SERVER_PID="$!"
+}
+
+stop_client_site_server() {
+  if [ -n "${CLIENT_SITE_SERVER_PID:-}" ] && kill -0 "$CLIENT_SITE_SERVER_PID" >/dev/null 2>&1; then
+    kill "$CLIENT_SITE_SERVER_PID" >/dev/null 2>&1 || true
+    wait "$CLIENT_SITE_SERVER_PID" >/dev/null 2>&1 || true
+  fi
+}
+
+sync_client_test_pack() {
+  local target_dir="$1"
+  local test_dir
+  local site_dir
+  local site_root
+  local old_site_dir
+  local port="${CLIENT_TEST_PORT:-8082}"
+  local url
+  local log_file
+
+  cd "$REPO_DIR"
+
+  test_dir="$(client_test_dir)"
+  site_dir="$(client_test_site_dir)"
+  site_root="$(dirname "$site_dir")"
+  log_file="$test_dir/http-server.log"
+
+  safe_rm_rf "$site_dir"
+  mkdir -p "$target_dir" "$test_dir"
+
+  echo "==> Refreshing Packwiz index"
+  packwiz refresh
+
+  echo "==> Building temporary local Packwiz site"
+  old_site_dir="$SITE_DIR"
+  SITE_DIR="$site_dir"
+  build_site
+  SITE_DIR="$old_site_dir"
+
+  url="http://127.0.0.1:${port}/stable/pack.toml"
+  echo "==> Serving temporary Packwiz site:"
+  echo "    $url"
+  start_client_site_server "$site_root" "$port" "$log_file"
+  trap 'status=$?; stop_client_site_server; exit "$status"' EXIT
+
+  if ! wait_for_http "$url"; then
+    echo "ERROR: temporary Packwiz site did not start"
+    echo "==> Server log:"
+    sed -n '1,120p' "$log_file" 2>/dev/null || true
+    exit 1
+  fi
+
+  install_packwiz_client "$target_dir" "$url"
+  cp -p "$PACKWIZ_INSTALLER_CACHE" "$target_dir/packwiz-installer-bootstrap.jar"
+
+  trap - EXIT
+  stop_client_site_server
+
+  echo "==> Synced client Minecraft folder:"
+  echo "    $target_dir"
+}
+
+launcher_args_common() {
+  if [ -n "${CLIENT_LAUNCHER_ROOT:-}" ]; then
+    printf "%s\0%s\0" "--dir" "$CLIENT_LAUNCHER_ROOT"
+  fi
+}
+
+should_launch_client() {
+  case "${LAUNCH:-true}" in
+    false|FALSE|False|no|NO|No|0)
+      return 1
+      ;;
+    *)
+      return 0
+      ;;
+  esac
+}
+
+run_launcher() {
+  local -a args=("$@")
+  local launcher="${CLIENT_LAUNCHER:-}"
+  local bin
+  local app_id
+  local -a bins=(prismlauncher PrismLauncher freesmlauncher FreesmLauncher)
+  local -a app_ids=(org.prismlauncher.PrismLauncher org.freesmlauncher.FreesmLauncher)
+
+  if [ -n "$launcher" ]; then
+    if command -v "$launcher" >/dev/null 2>&1; then
+      "$launcher" "${args[@]}"
+      return 0
+    fi
+
+    if command -v flatpak >/dev/null 2>&1 && flatpak info "$launcher" >/dev/null 2>&1; then
+      flatpak run "$launcher" "${args[@]}"
+      return 0
+    fi
+
+    echo "ERROR: CLIENT_LAUNCHER is not an executable or Flatpak app id: $launcher"
+    exit 1
+  fi
+
+  for bin in "${bins[@]}"; do
+    if command -v "$bin" >/dev/null 2>&1; then
+      "$bin" "${args[@]}"
+      return 0
+    fi
+  done
+
+  if command -v flatpak >/dev/null 2>&1; then
+    for app_id in "${app_ids[@]}"; do
+      if flatpak info "$app_id" >/dev/null 2>&1; then
+        flatpak run "$app_id" "${args[@]}"
+        return 0
+      fi
+    done
+  fi
+
+  echo "ERROR: could not find Prism Launcher or Freesm Launcher"
+  echo "Set CLIENT_LAUNCHER to an executable name/path or Flatpak app id."
+  echo "Examples:"
+  echo "  CLIENT_LAUNCHER=prismlauncher"
+  echo "  CLIENT_LAUNCHER=org.prismlauncher.PrismLauncher"
+  echo "  CLIENT_LAUNCHER=org.freesmlauncher.FreesmLauncher"
+  exit 1
+}
+
+cmd_client_test_bootstrap() {
+  local output
+  local import_output
+  local import_slug="${CLIENT_TEST_IMPORT_SLUG:-mc-fantasy-dev}"
+  local remembered_bootstrap=false
+  local -a args=()
+  local arg
+
+  cmd_export_client
+
+  output="${DIST_DIR%/}/${CLIENT_PACK_SLUG}-stable.mrpack"
+  import_output="${DIST_DIR%/}/${import_slug}.mrpack"
+  if [ "$import_output" != "$output" ]; then
+    cp -p "$output" "$import_output"
+  fi
+
+  echo "==> Test client bootstrap .mrpack:"
+  echo "    $import_output"
+
+  if should_launch_client; then
+    while IFS= read -r -d '' arg; do
+      args+=("$arg")
+    done < <(launcher_args_common)
+    args+=("--import" "$REPO_DIR/$import_output")
+
+    echo "==> Opening launcher import flow"
+    run_launcher "${args[@]}"
+    CLIENT_INSTANCE_ID="$import_slug"
+    remember_client_instance
+    remembered_bootstrap=true
+  else
+    echo "==> Launch disabled by LAUNCH=false"
+  fi
+
+  if [ "$remembered_bootstrap" = "true" ]; then
+    echo "==> After importing as ${import_slug}, plain 'task client:test' will reuse it."
+    echo "==> If Freesm picked a different folder name, run:"
+    echo "    task client:test CLIENT_INSTANCE_ID=<actual-instance-folder-name>"
+  else
+    echo "==> After importing, note the instance folder name and run:"
+    echo "    task client:test CLIENT_INSTANCE_ID=${import_slug}"
+    echo "==> If Freesm picked a different folder name, use that exact folder name instead."
+    echo "==> After that, plain 'task client:test' will reuse the remembered instance."
+  fi
+}
+
+cmd_client_test() {
+  local target_dir
+  local -a args=()
+  local arg
+
+  if is_truthy "${RESET:-false}"; then
+    reset_remembered_client_instance
+  else
+    load_remembered_client_instance
+    discover_default_client_test_instance
+  fi
+
+  if [ -z "${CLIENT_INSTANCE_ID:-}" ] && [ -z "${INSTANCE_MC_DIR:-}" ]; then
+    cmd_client_test_bootstrap
+    return 0
+  fi
+
+  target_dir="$(client_target_mc_dir)"
+  sync_client_test_pack "$target_dir"
+  remember_client_instance
+  disable_public_packwiz_prelaunch_for_test "$target_dir"
+
+  if ! should_launch_client; then
+    echo "==> Launch disabled by LAUNCH=false"
+    return 0
+  fi
+
+  if [ -z "${CLIENT_INSTANCE_ID:-}" ]; then
+    echo "ERROR: launching requires CLIENT_INSTANCE_ID=<launcher instance folder name>" >&2
+    echo "The pack was synced to: $target_dir" >&2
+    echo "Pass CLIENT_INSTANCE_ID, or run with LAUNCH=false for sync-only." >&2
+    exit 1
+  fi
+
+  while IFS= read -r -d '' arg; do
+    args+=("$arg")
+  done < <(launcher_args_common)
+  args+=("--launch" "$CLIENT_INSTANCE_ID")
+
+  if [ -n "${CLIENT_SERVER:-}" ]; then
+    args+=("--server" "$CLIENT_SERVER")
+  fi
+
+  echo "==> Launching client test instance:"
+  echo "    $CLIENT_INSTANCE_ID"
+  run_launcher "${args[@]}"
+}
+
 install_packwiz_client() {
   local target_dir="$1"
   local pack_url="$2"
@@ -279,17 +723,23 @@ cmd_smoke_update() {
   fi
 
   cleanup_smoke() {
-    local status="$1"
+    local status="${1:-1}"
+    local cleanup_dir="${2:-}"
+    local cleanup_created="${3:-false}"
 
-    if [ "$status" -eq 0 ] && [ "$created_smoke_dir" = "true" ] && [ "${KEEP_SMOKE_DIR:-false}" != "true" ]; then
-      rm -rf "$smoke_dir"
+    if [ -z "$cleanup_dir" ]; then
+      return 0
+    fi
+
+    if [ "$status" -eq 0 ] && [ "$cleanup_created" = "true" ] && [ "${KEEP_SMOKE_DIR:-false}" != "true" ]; then
+      rm -rf "$cleanup_dir"
       return 0
     fi
 
     echo "==> Smoke client folder retained:"
-    echo "    $smoke_dir"
+    echo "    $cleanup_dir"
   }
-  trap 'status=$?; cleanup_smoke "$status"' EXIT
+  trap 'status=$?; cleanup_smoke "$status" "${smoke_dir:-}" "${created_smoke_dir:-false}"' EXIT
 
   echo "==> Smoke client folder:"
   echo "    $smoke_dir"
@@ -311,7 +761,7 @@ cmd_smoke_update() {
   echo "==> Client updater smoke test passed"
   echo "==> Installed $mod_count mod jars"
   trap - EXIT
-  cleanup_smoke 0
+  cleanup_smoke 0 "$smoke_dir" "$created_smoke_dir"
 }
 
 glfw_key_name() {
@@ -509,10 +959,13 @@ extract_lang_keys() {
 
 config_extension_from_jar() {
   local jar_file="$1"
+  local jar_strings
 
-  if strings "$jar_file" | grep -q 'Toml4jConfigSerializer'; then
+  jar_strings="$(unzip -p "$jar_file" 2>/dev/null | strings || true)"
+
+  if grep -q 'Toml4jConfigSerializer' <<< "$jar_strings"; then
     printf "toml"
-  elif strings "$jar_file" | grep -q 'JanksonConfigSerializer'; then
+  elif grep -q 'JanksonConfigSerializer' <<< "$jar_strings"; then
     printf "json5"
   else
     printf "json"
@@ -610,7 +1063,8 @@ collect_config_candidates() {
       *) add_config_candidate "$output" "config/$string_candidate" "jar string" ;;
     esac
   done < <(
-    strings "$jar_file" \
+    unzip -p "$jar_file" 2>/dev/null \
+      | strings \
       | sed 's/PK$//' \
       | { grep -E '^config/[A-Za-z0-9_.-]+\.(json5?|toml|properties|cfg)$|^[A-Za-z0-9_.-]+-(client|common|server)\.toml$' || true; } \
       | sort -u
@@ -1014,7 +1468,7 @@ wait_for_http() {
   local attempt
 
   for attempt in 1 2 3 4 5 6 7 8 9 10; do
-    if curl -fsS "$url" >/dev/null; then
+    if curl -fs "$url" >/dev/null; then
       return 0
     fi
     sleep 1
@@ -1187,6 +1641,9 @@ case "$ACTION" in
     ;;
   inspect)
     cmd_inspect
+    ;;
+  client-test)
+    cmd_client_test
     ;;
   -h|--help|help|"")
     usage
