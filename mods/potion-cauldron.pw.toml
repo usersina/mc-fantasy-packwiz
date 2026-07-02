@@ -1,0 +1,13 @@
+name = "Potion Cauldron"
+filename = "potioncauldron-forge-1.0.1+mc1.21.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yTSyrZpM/versions/P3zwKplP/potioncauldron-forge-1.0.1%2Bmc1.21.jar"
+hash-format = "sha512"
+hash = "9526d7155536e4d18d2a1be00f56c047b0738067962807d826386af1b6451c0a8d48f444f16325b82ac99def64f0bb7d8df3d70cfc6fa41427d0243354533583"
+
+[update]
+[update.modrinth]
+mod-id = "yTSyrZpM"
+version = "P3zwKplP"

@@ -288,6 +288,11 @@ hash = "8e671fbd3a5460a61073cced391ec08efc6b67d765e49015eea45a1f1db159a0"
 metafile = true
 
 [[files]]
+file = "mods/crawl.pw.toml"
+hash = "349b56aa9ea8284fb89e880941d319ce52e50e51d63084472ea93493cff105b7"
+metafile = true
+
+[[files]]
 file = "mods/creativecore.pw.toml"
 hash = "d1dd0981cbd7ae9601c9c4603f88826b68a0c7e76fc12ef6bc80f08188d7dfb8"
 metafile = true
@@ -600,6 +605,11 @@ metafile = true
 [[files]]
 file = "mods/polymorph.pw.toml"
 hash = "152769b5dfbb92a836634e315898b23b6a555c60b6f05ddf38c00085f2b784f6"
+metafile = true
+
+[[files]]
+file = "mods/potion-cauldron.pw.toml"
+hash = "3a360e1a6f8a41d04eb8ba47defbc9745908fee530eed74a7e159288110c8399"
 metafile = true
 
 [[files]]
