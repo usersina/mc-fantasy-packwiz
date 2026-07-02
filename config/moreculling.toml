@@ -1,0 +1,26 @@
+# Keep aggressive culling conservative for a large modpack:
+# vanilla blocks are enabled explicitly, while modded blocks opt in only
+# after we verify their models do not show visual artifacts.
+version = 1
+enableSodiumMenu = true
+cloudCulling = true
+signTextCulling = true
+rainCulling = true
+dontCull = []
+useBlockStateCulling = true
+useCustomItemFrameRenderer = true
+itemFrameMapCulling = true
+useItemFrameLOD = true
+itemFrameLODRange = 16
+useItemFrame3FaceCulling = true
+itemFrame3FaceCullingRange = 2.0
+paintingCulling = true
+leavesCullingMode = "DEFAULT"
+leavesCullingAmount = 2
+includeMangroveRoots = false
+endGatewayCulling = false
+beaconBeamCulling = true
+useOnModdedBlocksByDefault = false
+
+[modCompatibility]
+minecraft = true

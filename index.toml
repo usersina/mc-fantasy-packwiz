@@ -9,6 +9,10 @@ file = "config/lithium.properties"
 hash = "27c5cd07b19acca041107277303621d6578f33604d4c46b9eb6936915d8b1746"
 
 [[files]]
+file = "config/moreculling.toml"
+hash = "459153a2bb845bf219133ead80df29f7792152fc9c24f11e2496dcf861caad67"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/alchemist_cauldron.json"
 hash = "4397350d178f07420d1b28f701044d61d73a7a6fa7a7330e2ddbacf5796f3b20"
 
@@ -158,6 +162,11 @@ hash = "1dad8d5b874f6b9dc5be195238c183960e31d522584b0466f5f7fe6075942905"
 [[files]]
 file = "mods/azurelib.pw.toml"
 hash = "f72e0f818b9788376820b02ed9d4f1b4d63453dcd65de2fc24743b03dd133664"
+metafile = true
+
+[[files]]
+file = "mods/badoptimizations.pw.toml"
+hash = "dd56ff2bcc4253d1d70c08333632743fb56cdc4cf5518dc6afc024164633145d"
 metafile = true
 
 [[files]]
@@ -451,6 +460,11 @@ hash = "a2fbecad69fcbff54919864ea8b95e54d140a1a2c637d73307fb366e76066fe6"
 metafile = true
 
 [[files]]
+file = "mods/immediatelyfast.pw.toml"
+hash = "94af73eec28b59b314b2c6ef9dfb98f37d7bbcbcb482c278570cc15e44b6a559"
+metafile = true
+
+[[files]]
 file = "mods/immersive-aircraft.pw.toml"
 hash = "306c6a05c47046994a065bd8a461bd1ba1a7a8187f267c35ddf81c0a3041ed98"
 metafile = true
@@ -563,6 +577,11 @@ metafile = true
 [[files]]
 file = "mods/more-enchantment-info.pw.toml"
 hash = "c220c7a69906e84e1d8837d8e7c0eca69ce7326108362879303ada55b1496a8b"
+metafile = true
+
+[[files]]
+file = "mods/moreculling.pw.toml"
+hash = "4eaef45625336f16e9461e00e9e4f4ed789bcd25b4ca8e011d68564ddb7c8c3a"
 metafile = true
 
 [[files]]
