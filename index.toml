@@ -613,11 +613,6 @@ hash = "152769b5dfbb92a836634e315898b23b6a555c60b6f05ddf38c00085f2b784f6"
 metafile = true
 
 [[files]]
-file = "mods/potion-cauldron.pw.toml"
-hash = "3a360e1a6f8a41d04eb8ba47defbc9745908fee530eed74a7e159288110c8399"
-metafile = true
-
-[[files]]
 file = "mods/preloading-tricks.pw.toml"
 hash = "f547ee4507a6752a7944d945ee45ed4cd70b4b5dcf3a7e007b29deaf9dfe38cd"
 metafile = true
