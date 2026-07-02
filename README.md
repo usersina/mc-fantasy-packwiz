@@ -109,6 +109,50 @@ That syncs Packwiz-managed files into the existing runtime without starting the 
 
 `task server:start` runs the same sync first, then starts NeoForge.
 
+## Chunk Pregeneration
+
+Chunky is included as a server-side utility for pre-generating chunks.
+
+It does not change gameplay and it does not generate chunks automatically. It only works while the server process is running and after an operator or the server console starts a pregeneration task.
+
+The important rule: finalize your worldgen mods/configs first, then run Chunky. If you later add/remove worldgen mods, already-generated chunks will not magically regenerate; only new unexplored chunks use the new setup.
+
+Recommended first run:
+
+1. Back up the server:
+
+   ```bash
+   task server:backup
+   ```
+
+2. Start the server:
+
+   ```bash
+   task pack:serve
+   task server:start
+   ```
+
+3. In the server console, pre-generate a modest overworld area around spawn:
+
+   ```txt
+   chunky world world
+   chunky shape circle
+   chunky spawn
+   chunky radius 3000
+   chunky start
+   ```
+
+Useful console commands:
+
+- `chunky progress` shows current progress.
+- `chunky pause` pauses the task and keeps progress.
+- `chunky continue` resumes a paused task.
+- `chunky cancel` stops and discards the current task.
+
+Run big pregeneration jobs when nobody is playing, or when players know the server may lag. Chunky can run while people are online, but it competes for CPU, memory, and disk I/O with normal gameplay. Small radiuses are fine for testing; increase gradually after the server feels stable.
+
+Repeat the same flow for other dimensions only if needed, for example `the_nether` or `the_end`.
+
 ## Runtime Ownership
 
 | Files                                                                              | Owner                               | Normal update path                                     |
