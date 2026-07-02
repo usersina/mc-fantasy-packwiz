@@ -235,6 +235,11 @@ hash = "da045434a9f317ecfef588e409566b6679c76eed01ddc3a0652edce203113a68"
 metafile = true
 
 [[files]]
+file = "mods/butchery.pw.toml"
+hash = "f6d1978323e25d4085062067c000454bed811549a133ce6f07a3d143e4901c3d"
+metafile = true
+
+[[files]]
 file = "mods/caelus.pw.toml"
 hash = "992b0dca9683f225fc774d779762d18a009f2d82b9d051e7c0b55a33a95d9238"
 metafile = true
