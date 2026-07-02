@@ -49,6 +49,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_conve
 hash = "1da7cded4d93715438ef6c03bee067327a7b192167f8385c66f9e7cd119387f9"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/blasting_gravel_to_flint.json"
+hash = "b76b24a4ed035893089ba878c682e1952ed4e33b0d4f42ca7374fd6f63ff032d"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/leather_from_rotten_flesh.json"
 hash = "7004d47998fa03b2940f3013d4114c33cbbcb6eda782ebd2d8aa7b1e29c4083b"
 
@@ -57,13 +61,12 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/
 hash = "ee21d3bc70a1b3238bbf4848b260982c1f5d465032c6f7668240838251cf7ad5"
 
 [[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/pack.mcmeta"
-hash = "52b2dc9d9049890e6e71bb12347510d12898f6324a0aad15a7e6db7878685cc5"
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/smelting_gravel_to_flint.json"
+hash = "ebd58e28a992acce5f71fcf6a4f3521abb40c11b11240bc47ac6be26de718190"
 
 [[files]]
-file = "config/paxi/datapacks/smelt-gravel-for-flint.pw.toml"
-hash = "7095a7b7439c205b72b1cbb202232a86d74512097a5efeba5ae3bef9dd307cf7"
-metafile = true
+file = "config/paxi/datapacks/minecraft_convenience_recipes/pack.mcmeta"
+hash = "52b2dc9d9049890e6e71bb12347510d12898f6324a0aad15a7e6db7878685cc5"
 
 [[files]]
 file = "config/paxi/datapacks/vampires-need-umbrellas-curios.pw.toml"
@@ -215,6 +218,11 @@ metafile = true
 [[files]]
 file = "mods/bookshelf-lib.pw.toml"
 hash = "68d6016fa3707c434b3aca5db041c7518c70feb53d0183faa2502cc6efd4c827"
+metafile = true
+
+[[files]]
+file = "mods/botany-pots.pw.toml"
+hash = "da045434a9f317ecfef588e409566b6679c76eed01ddc3a0652edce203113a68"
 metafile = true
 
 [[files]]
