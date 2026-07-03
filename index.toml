@@ -150,6 +150,14 @@ hash = "c0a24c2c3e847e15acd99774581aad9ffb06cc1f4db5ffcf02c4c9e50be0c189"
 metafile = true
 
 [[files]]
+file = "config/reviveme/reviveme-common.toml"
+hash = "f08059dad921a935998cc42ac636c88fbcbc515f25f0d88665c69613d29a1160"
+
+[[files]]
+file = "config/sneakpush-common.toml"
+hash = "e12db6e8d7a1bb84aa12f8d4b5ab93a26e6d7c3edc0812f5b217a8f55fab4e97"
+
+[[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
 hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
 
@@ -577,6 +585,11 @@ hash = "2708e6dba49ceb7c944d9b518bd0f62525b104c36f29a4ca6fd9c789ff5afd37"
 metafile = true
 
 [[files]]
+file = "mods/invocore-utility-mod.pw.toml"
+hash = "ea6933f4da94e3f5cd4979942de988fc4713d40cb938c88061b4d367d13c7d2c"
+metafile = true
+
+[[files]]
 file = "mods/irons-lib.pw.toml"
 hash = "eb9dd11b787766f0cf68fc83cc1ae97e7bf52be41d3f29ba77062944f774865f"
 metafile = true
@@ -787,6 +800,11 @@ hash = "27721caca5a03b743bf25888e1d984142948069dace31453f103f94f7f24d2ce"
 metafile = true
 
 [[files]]
+file = "mods/revive-me.pw.toml"
+hash = "d39f31e308e665307a51e426e16c431efc88592289863747ab9da99db5b5c465"
+metafile = true
+
+[[files]]
 file = "mods/searchables.pw.toml"
 hash = "ce9ddada6ffd55a512149cc474c6a453281a997a5fdf1b7b4a2cc73f875e704a"
 metafile = true
@@ -814,6 +832,16 @@ metafile = true
 [[files]]
 file = "mods/small-ships.pw.toml"
 hash = "5f0d17d236aad8f111b519c006988c8bf536ee569028c0a34690c4cc229b6403"
+metafile = true
+
+[[files]]
+file = "mods/sneak-push.pw.toml"
+hash = "49b0e407747aa39c2427c67fffc1648d4c419eff5b2cfaaeefbbfaf59fe15b08"
+metafile = true
+
+[[files]]
+file = "mods/sneak-through-berries.pw.toml"
+hash = "fe65710b674d3fc8306a842baaecb97206502705c2250ccf349e37dee170af4f"
 metafile = true
 
 [[files]]
