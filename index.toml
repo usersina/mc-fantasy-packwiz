@@ -155,7 +155,7 @@ hash = "f08059dad921a935998cc42ac636c88fbcbc515f25f0d88665c69613d29a1160"
 
 [[files]]
 file = "config/sneakpush-common.toml"
-hash = "e12db6e8d7a1bb84aa12f8d4b5ab93a26e6d7c3edc0812f5b217a8f55fab4e97"
+hash = "fb627518c3711c871be6aee5419dc2661320c4c5412206459658e13d3b2f3511"
 
 [[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
