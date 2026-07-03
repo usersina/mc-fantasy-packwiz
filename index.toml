@@ -211,6 +211,11 @@ hash = "cc3f6e6e8f1838d16e47cce9241e32176279673efb1438ff4451ccffa9579b14"
 metafile = true
 
 [[files]]
+file = "mods/afk-announcer.pw.toml"
+hash = "975c3c9b8d38109266057a2fab01d5455605ab392f79994e375481e3b9e13649"
+metafile = true
+
+[[files]]
 file = "mods/ambientsounds.pw.toml"
 hash = "f3d66527c4f82b44d9409f643332bc15f91b85f033afe147e3d8b421c0ea6d1e"
 metafile = true
@@ -585,6 +590,11 @@ hash = "2708e6dba49ceb7c944d9b518bd0f62525b104c36f29a4ca6fd9c789ff5afd37"
 metafile = true
 
 [[files]]
+file = "mods/invisible-player-name.pw.toml"
+hash = "68b4228c867b1bb7e0ce7127df117d0c794e3dae5dfc793ef4b3386138c37ce8"
+metafile = true
+
+[[files]]
 file = "mods/invocore-utility-mod.pw.toml"
 hash = "ea6933f4da94e3f5cd4979942de988fc4713d40cb938c88061b4d367d13c7d2c"
 metafile = true
@@ -812,6 +822,11 @@ metafile = true
 [[files]]
 file = "mods/shatterbyte-lib.pw.toml"
 hash = "3f552bbdc42f07fd7d5695ced1d27d774af63cff5460be45817939e5f8e4f9de"
+metafile = true
+
+[[files]]
+file = "mods/show-dimension-in-name.pw.toml"
+hash = "0a6b37e52fde57628f217b8179a040ec5f36eb6823bd2572e15f220da668577d"
 metafile = true
 
 [[files]]

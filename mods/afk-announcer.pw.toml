@@ -1,0 +1,13 @@
+name = "AFK Announcer"
+filename = "afk-announcer-v3.4.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/26qk5hxQ/versions/BAN3UGOM/afk-announcer-v3.4.1.jar"
+hash-format = "sha512"
+hash = "df3265447a00b3375483ab450c15ec4a3c03a24d7e10a8a382bb20e91d99c6e27eb4a4ac42400a1b036cba8f65ebd1f190498a9198aa57000c07b6516bfc37dd"
+
+[update]
+[update.modrinth]
+mod-id = "26qk5hxQ"
+version = "BAN3UGOM"

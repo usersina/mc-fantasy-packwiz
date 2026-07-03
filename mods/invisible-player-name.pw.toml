@@ -1,0 +1,13 @@
+name = "Invisible Player Name"
+filename = "invisible-player-name-v.3.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/2xSnKnYj/versions/msbkUl0u/invisible-player-name-v.3.0.0.jar"
+hash-format = "sha512"
+hash = "2d5adf4481b1aefb963ccaf49cb543d16bcfd5ec8ed5da1c2ebd9ff9a22e29cfe35045116eda6d02a1caf6272f4dcb915c53616fc5a633d7ff1cd951f601ef8c"
+
+[update]
+[update.modrinth]
+mod-id = "2xSnKnYj"
+version = "msbkUl0u"
