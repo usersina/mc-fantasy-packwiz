@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/defaultoptions/keybindings.txt"
-hash = "ab365899fa82a0074ff60ab14636cf33daf3cd2ce555dee85d35eaad3c32629c"
+hash = "29b8405cf5a6655d19a8179e4239195830d457b6e1e41fcb29c183acc2a5caa0"
 
 [[files]]
 file = "config/lithium.properties"
@@ -35,6 +35,10 @@ hash = "d8c1c7595572ed73bd561abd29a4210fd5fff76f55d676d44a2aa36e6362e1d8"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/illusioner.json"
 hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/entity_type/entity_blood.json"
+hash = "fd92a97d7f35c9a5dda1a568a652bb2340c06d92f45727308f11aa62dfee86db"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"

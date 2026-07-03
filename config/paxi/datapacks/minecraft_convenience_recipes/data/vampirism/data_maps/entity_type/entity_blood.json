@@ -1,0 +1,253 @@
+{
+  "values": {
+    "minecraft:allay": {
+      "blood": 0
+    },
+    "minecraft:axolotl": {
+      "blood": 0
+    },
+    "minecraft:bee": {
+      "blood": 0
+    },
+    "minecraft:camel": {
+      "blood": 15
+    },
+    "minecraft:cat": {
+      "blood": 3
+    },
+    "minecraft:chicken": {
+      "blood": 0
+    },
+    "minecraft:cow": {
+      "blood": 10
+    },
+    "minecraft:donkey": {
+      "blood": 13
+    },
+    "minecraft:fox": {
+      "blood": 4
+    },
+    "minecraft:frog": {
+      "blood": 0
+    },
+    "minecraft:goat": {
+      "blood": 7
+    },
+    "minecraft:horse": {
+      "blood": 13
+    },
+    "minecraft:llama": {
+      "blood": 10
+    },
+    "minecraft:mooshroom": {
+      "blood": 10
+    },
+    "minecraft:mule": {
+      "blood": 13
+    },
+    "minecraft:ocelot": {
+      "blood": 4
+    },
+    "minecraft:panda": {
+      "blood": 13
+    },
+    "minecraft:parrot": {
+      "blood": 0
+    },
+    "minecraft:pig": {
+      "blood": 5
+    },
+    "minecraft:piglin": {
+      "blood": 15
+    },
+    "minecraft:piglin_brute": {
+      "blood": 25
+    },
+    "minecraft:hoglin": {
+      "blood": 20
+    },
+    "minecraft:polar_bear": {
+      "blood": 10
+    },
+    "minecraft:rabbit": {
+      "blood": 2
+    },
+    "minecraft:sheep": {
+      "blood": 5
+    },
+    "minecraft:skeleton_horse": {
+      "blood": 0
+    },
+    "minecraft:sniffer": {
+      "blood": 20
+    },
+    "minecraft:trader_llama": {
+      "blood": 10
+    },
+    "minecraft:turtle": {
+      "blood": 5
+    },
+    "minecraft:villager": {
+      "blood": 15
+    },
+    "minecraft:wandering_trader": {
+      "blood": 15
+    },
+    "minecraft:illusioner": {
+      "blood": 20
+    },
+    "minecraft:wolf": {
+      "blood": 5
+    },
+    "guardvillagers:guard": {
+      "blood": 15
+    },
+    "vampirism:hunter": {
+      "blood": 15
+    },
+    "vampirism:hunter_imob": {
+      "blood": 15
+    },
+    "vampirism:advanced_hunter": {
+      "blood": 20
+    },
+    "vampirism:advanced_hunter_imob": {
+      "blood": 20
+    },
+    "vampirism:hunter_trainer": {
+      "blood": 35
+    },
+    "vampirism:task_master_hunter": {
+      "blood": 25
+    },
+    "vampirism:hunter_minion": {
+      "blood": 20
+    },
+    "werewolves:human_werewolf": {
+      "blood": 15
+    },
+    "werewolves:werewolf_beast": {
+      "blood": 20
+    },
+    "werewolves:werewolf_survivalist": {
+      "blood": 20
+    },
+    "werewolves:werewolf_minion": {
+      "blood": 20
+    },
+    "werewolves:alpha_werewolf": {
+      "blood": 35
+    },
+    "werewolves:task_master_werewolf": {
+      "blood": 25
+    },
+    "irons_spellbooks:apothecarist": {
+      "blood": 20
+    },
+    "irons_spellbooks:archevoker": {
+      "blood": 20
+    },
+    "irons_spellbooks:cryomancer": {
+      "blood": 20
+    },
+    "irons_spellbooks:priest": {
+      "blood": 15
+    },
+    "irons_spellbooks:pyromancer": {
+      "blood": 20
+    },
+    "wind_spellbooks:aeromancer": {
+      "blood": 20
+    },
+    "aether:aerbunny": {
+      "blood": 2
+    },
+    "aether:phyg": {
+      "blood": 5
+    },
+    "aether:sheepuff": {
+      "blood": 5
+    },
+    "aether:cockatrice": {
+      "blood": 10
+    },
+    "aether:moa": {
+      "blood": 13
+    },
+    "aether:flying_cow": {
+      "blood": 10
+    },
+    "aether:aerwhale": {
+      "blood": 20
+    },
+    "aquaculture:arrau_turtle": {
+      "blood": 5
+    },
+    "aquaculture:box_turtle": {
+      "blood": 5
+    },
+    "aquaculture:starshell_turtle": {
+      "blood": 5
+    },
+    "benssharks:axodile": {
+      "blood": 15
+    },
+    "benssharks:barracuda": {
+      "blood": 5
+    },
+    "benssharks:cookiecutter_shark": {
+      "blood": 2
+    },
+    "benssharks:blacktip_reef_shark": {
+      "blood": 10
+    },
+    "benssharks:bonnethead_shark": {
+      "blood": 5
+    },
+    "benssharks:greater_axodile": {
+      "blood": 30
+    },
+    "benssharks:blue_shark": {
+      "blood": 15
+    },
+    "benssharks:bull_shark": {
+      "blood": 15
+    },
+    "benssharks:greatwhiteshark": {
+      "blood": 30
+    },
+    "benssharks:greenland_shark": {
+      "blood": 20
+    },
+    "benssharks:land_shark": {
+      "blood": 25
+    },
+    "benssharks:lemon_shark": {
+      "blood": 15
+    },
+    "benssharks:mako_shark": {
+      "blood": 20
+    },
+    "benssharks:nurse_shark": {
+      "blood": 15
+    },
+    "benssharks:thalassoger": {
+      "blood": 15
+    },
+    "benssharks:tiger_shark": {
+      "blood": 25
+    },
+    "benssharks:whitetip_shark": {
+      "blood": 15
+    },
+    "benssharks:basking_shark": {
+      "blood": 20
+    },
+    "benssharks:megalodon": {
+      "blood": 40
+    },
+    "benssharks:whale_shark": {
+      "blood": 25
+    }
+  }
+}
