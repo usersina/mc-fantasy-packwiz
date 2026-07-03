@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/defaultoptions/keybindings.txt"
-hash = "29b8405cf5a6655d19a8179e4239195830d457b6e1e41fcb29c183acc2a5caa0"
+hash = "714c3c53b3fc3c29db4a41c689d4b11b959cbc5f766a1606282a663647e9100d"
 
 [[files]]
 file = "config/lithium.properties"
@@ -287,6 +287,11 @@ hash = "a8eb83f5f009bd865dbb42b4988d8be78595190fc295d47ebf5402cece95ceca"
 metafile = true
 
 [[files]]
+file = "mods/better-modlist.pw.toml"
+hash = "b841dbd591775e39c4c04361bf56cefabbb954dc709608f0ea812a7e4db00530"
+metafile = true
+
+[[files]]
 file = "mods/blazing-bamboo-continued.pw.toml"
 hash = "413364f900b3ae67d8ad06171c19553c9da5ba94d1244d7a096364617d0a841d"
 metafile = true
@@ -304,6 +309,11 @@ metafile = true
 [[files]]
 file = "mods/botany-pots.pw.toml"
 hash = "da045434a9f317ecfef588e409566b6679c76eed01ddc3a0652edce203113a68"
+metafile = true
+
+[[files]]
+file = "mods/bow-infinity-fix.pw.toml"
+hash = "b8837889b804dacb837572fcf16032cd531b5814e1817ed0d6a35523cc9c5d86"
 metafile = true
 
 [[files]]
@@ -363,7 +373,7 @@ metafile = true
 
 [[files]]
 file = "mods/collective.pw.toml"
-hash = "a7dabd3e4c6de8e6eb635ca1b3d2a5eac8166f51939ec8b228cddee58e4d7dbb"
+hash = "e37aafe5cd58c8289c3b8929393cba2a5c7f2cdd5bbe01e9c6ada1f3f5b86436"
 metafile = true
 
 [[files]]
@@ -532,6 +542,11 @@ hash = "d973a76275a2ed58cda27e322b6bebe217144f1083f5a3eb41074dd2785a4fd5"
 metafile = true
 
 [[files]]
+file = "mods/healing-campfire.pw.toml"
+hash = "89787085b795067d933d636211006b9a99e69a00f660eaa5a5debf93cfc9b612"
+metafile = true
+
+[[files]]
 file = "mods/ia_engines.pw.toml"
 hash = "94a5d61721b64f7e949d81448d540f57f048e43abecd1629e7347821af7d2d12"
 metafile = true
@@ -549,6 +564,16 @@ metafile = true
 [[files]]
 file = "mods/immersive-aircraft.pw.toml"
 hash = "306c6a05c47046994a065bd8a461bd1ba1a7a8187f267c35ddf81c0a3041ed98"
+metafile = true
+
+[[files]]
+file = "mods/infinite-trading.pw.toml"
+hash = "0782144244f5fce35d5e752932f2d515ce18aea7939829d141ec5230c215024c"
+metafile = true
+
+[[files]]
+file = "mods/invisibility-aggro-fix.pw.toml"
+hash = "2708e6dba49ceb7c944d9b518bd0f62525b104c36f29a4ca6fd9c789ff5afd37"
 metafile = true
 
 [[files]]
@@ -674,6 +699,11 @@ metafile = true
 [[files]]
 file = "mods/mowzies-mobs.pw.toml"
 hash = "02aa4dcb8fa24cffcd2182c66683c2a476a95abf53002373f953a49737a587e3"
+metafile = true
+
+[[files]]
+file = "mods/natures-compass.pw.toml"
+hash = "35acdf433fe8f8599f59975e848efdb717663c2c471d3a5dc18743799795a736"
 metafile = true
 
 [[files]]
@@ -809,6 +839,11 @@ metafile = true
 [[files]]
 file = "mods/spartan-weaponry-unofficial.pw.toml"
 hash = "820e6d40c78ba56e7ff38471ca157aa9133339597fd783280e8b1523538e816d"
+metafile = true
+
+[[files]]
+file = "mods/spyglass-improvements.pw.toml"
+hash = "03c32079e39cf21efb8d0b5f0d24f004b9221c1455d460fdcb621821f7285239"
 metafile = true
 
 [[files]]

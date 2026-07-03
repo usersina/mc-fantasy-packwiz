@@ -1,0 +1,13 @@
+name = "Invisibility Aggro Fix"
+filename = "invisibility_aggro_fix-1.0-1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ZUMcrL70/versions/XeuX1ddH/invisibility_aggro_fix-1.0-1.21.1.jar"
+hash-format = "sha512"
+hash = "e9d83efa5eda82674e2a79fa216b61fcfe65e60fa86e8533d0f35ddf3138b86bf368de241d7557e97532996002fe22c0ac53d1823736b82e848c3c20726603e6"
+
+[update]
+[update.modrinth]
+mod-id = "ZUMcrL70"
+version = "XeuX1ddH"
