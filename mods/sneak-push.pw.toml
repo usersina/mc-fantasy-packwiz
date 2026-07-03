@@ -1,0 +1,13 @@
+name = "Sneak Push"
+filename = "sneakpush-1.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/hvl2dRGr/versions/tx4qO3tJ/sneakpush-1.0.0.jar"
+hash-format = "sha512"
+hash = "0762b044486ffe11db52263ba7fff9bc4b0b9901095d95f18a0541d9dcf4c79868c94c37c84ce55b19c654a02bfc4257873f274c80669a90eca7dfa9af023dd1"
+
+[update]
+[update.modrinth]
+mod-id = "hvl2dRGr"
+version = "tx4qO3tJ"

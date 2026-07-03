@@ -1,0 +1,42 @@
+#=== Basic Settings ===
+[basic]
+	#If true, affects all entities. If false, only affects entities in the whitelist.
+	affectAllEntities = true
+	#List of entity types to affect (e.g., minecraft:player, minecraft:zombie)
+	entityWhitelist = ["minecraft:player"]
+	#Knockback strength multiplier (default: 0.4)
+	# Default: 0.4
+	# Range: 0.0 ~ 10.0
+	knockbackStrength = 0.4
+
+#=== Cooldown Settings ===
+[cooldown]
+	#Enable cooldown between pushes
+	enableCooldown = true
+	#Cooldown duration in ticks (20 ticks = 1 second)
+	# Default: 40
+	# Range: 1 ~ 6000
+	cooldownTicks = 40
+	#Show cooldown message in action bar
+	showCooldownMessage = false
+
+#=== Advanced Options ===
+[advanced]
+	#Grant temporary damage immunity to pushed entities
+	grantDamageImmunity = false
+	#Duration of damage immunity in ticks (20 ticks = 1 second)
+	# Default: 20
+	# Range: 1 ~ 6000
+	damageImmunityTicks = 20
+	#Prevent fall damage for pushed entities
+	preventFallDamage = false
+	#Duration of fall damage protection in ticks (20 ticks = 1 second)
+	# Default: 60
+	# Range: 1 ~ 6000
+	fallDamageProtectionTicks = 60
+	#Prevent pushed entities from interacting with blocks/items temporarily
+	disableTargetInteraction = false
+	#Duration of interaction disable in ticks (20 ticks = 1 second)
+	# Default: 20
+	# Range: 1 ~ 6000
+	interactionDisableTicks = 20
