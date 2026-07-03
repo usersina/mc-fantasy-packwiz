@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/defaultoptions/keybindings.txt"
-hash = "714c3c53b3fc3c29db4a41c689d4b11b959cbc5f766a1606282a663647e9100d"
+hash = "a188fa8430127f7bcadab682d81a357fe793e0fa505268cfdce2e9fbe2f24a6b"
 
 [[files]]
 file = "config/lithium.properties"
@@ -870,6 +870,10 @@ metafile = true
 file = "mods/towns-and-towers.pw.toml"
 hash = "5518dd2f6a5d88e4affb9df628604737893025206d7149579e4c24f909b130a3"
 metafile = true
+
+[[files]]
+file = "mods/vampire-invisibility-aggro-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "19c6be940a52628460b57614c130c5fb555de71ac9eecaf181fffffa5ff8fc99"
 
 [[files]]
 file = "mods/vampires-delight.pw.toml"

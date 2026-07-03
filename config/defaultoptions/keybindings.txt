@@ -24,7 +24,7 @@ key_key.beltborne_lanterns.toggle_lantern:key.keyboard.unknown:
 key_key.beltborne_lanterns.open_config:key.keyboard.unknown:
 key_key.beltborne_lanterns.toggle_debug:key.keyboard.unknown:
 key_key.beltborne_lanterns.open_debug:key.keyboard.unknown:
-key_key.spyglass-improvements.use:key.keyboard.unknown:
+key_key.spyglass-improvements.use:key.keyboard.y:
 key_key.jei.bookmark:key.keyboard.unknown:
 key_keys.werewolves.leap:key.keyboard.space:
 key_keys.werewolves.bite:key.keyboard.z:
@@ -40,4 +40,4 @@ key_key.butchery.evokermaskpress:key.keyboard.h
 key_key.butchery.pillagernosepress:key.keyboard.h
 key_key.butchery.vindicatornosepress:key.keyboard.h
 key_accessories.key.open_accessories_screen:key.keyboard.unknown
-key_key.crawl:key.keyboard.x
+key_key.crawl:key.keyboard.x:SHIFT

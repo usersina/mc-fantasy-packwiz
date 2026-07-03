@@ -11,6 +11,7 @@ media/**
 site/**
 server-base/**
 scripts/**
+local-mods/**
 dist/**
 tmp/**
 test/**

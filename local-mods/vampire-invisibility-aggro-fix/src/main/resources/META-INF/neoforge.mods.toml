@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="vampire_invisibility_aggro_fix"
+version="1.0.0"
+displayName="Vampire Invisibility Aggro Fix"
+authors="usersina"
+description='''Makes Vampirism's vampire invisibility action clear and cancel mob aggro in this pack.'''
+
+[[dependencies.vampire_invisibility_aggro_fix]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.vampire_invisibility_aggro_fix]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.vampire_invisibility_aggro_fix]]
+modId="vampirism"
+type="required"
+versionRange="[1.10,)"
+ordering="AFTER"
+side="BOTH"
+

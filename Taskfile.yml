@@ -46,7 +46,12 @@ tasks:
     desc: Smoke-test client auto-update install
     dir: '{{.REPO_DIR}}'
     cmds:
-      - PACK_URL="${PACK_URL:-{{.PUBLIC_PACK_URL}}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/pack.sh smoke-update
+      - |
+        pack_url="${PACK_URL:-{{.PUBLIC_PACK_URL}}}"
+        if [ "{{.PACK_URL}}" != "http://127.0.0.1:8080/pack.toml" ]; then
+          pack_url="{{.PACK_URL}}"
+        fi
+        PACK_URL="$pack_url" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/pack.sh smoke-update
 
   pack:export-client:
     desc: Export Prism/Freesm .mrpack into dist/
@@ -65,6 +70,12 @@ tasks:
     dir: '{{.REPO_DIR}}'
     cmds:
       - packwiz serve -p 8080
+
+  local-mods:build:
+    desc: Build tiny repo-local compatibility mods
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - JAVA21="{{.JAVA21}}" ./local-mods/vampire-invisibility-aggro-fix/build.sh
 
   client:test:
     desc: Bootstrap, sync, or launch a Prism/Freesm maintainer test client
