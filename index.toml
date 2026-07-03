@@ -13,6 +13,10 @@ file = "config/moreculling.toml"
 hash = "459153a2bb845bf219133ead80df29f7792152fc9c24f11e2496dcf861caad67"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/guardvillagers/loot_table/entities/guard.json"
+hash = "3898e1af0425db87a147b0c7b3023b343497a41ee9e8b437479afc56acb1cbcf"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/alchemist_cauldron.json"
 hash = "4397350d178f07420d1b28f701044d61d73a7a6fa7a7330e2ddbacf5796f3b20"
 
@@ -27,6 +31,34 @@ hash = "9e1c00351ebf82c2d51cc3f6006b6b34c5ef7979d37ce7d96078c7229599f87f"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/common_ink_from_glow_ink_sac.json"
 hash = "d8c1c7595572ed73bd561abd29a4210fd5fff76f55d676d44a2aa36e6362e1d8"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/illusioner.json"
+hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"
+hash = "7a3916d217fb3521f0f70880688d1d10fc7f9bb400bb7773a2d6810b6e9cb592"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter_imob.json"
+hash = "1e3bf3be833feb6e89e839c25ac20571bd26af29e1734bd65323bde8c9808e1e"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/hunter.json"
+hash = "75efa29be883da318d2dd32b8b4ef79e51e6ba270fdb5230cd22108816fb423d"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/hunter_imob.json"
+hash = "dc4e1e81d7754bb5b9cf9bc6f3c33e860c810654a5c380599d075128ce56616e"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/hunter_trainer.json"
+hash = "7e212f981fe1548c2bc5d5735ecd3ff5ff8c5a02e80b6e9a1647271e471ecfb8"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/task_master_hunter.json"
+hash = "0589a8c556e9ff7817484f89159bf2f98a2699337d37e9e3f3e08ca0ae653fff"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_3_from_vial.json"
