@@ -74,11 +74,19 @@ hash = "12e9ddacf399fa6a14121316fd2d943ac1d97526ca33d1ac2019011dc0c23b2d"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vial_from_human_heart.json"
-hash = "366f65e12bb863af2bc0090d413fcf3bbd674149151fb157139647bc468e23bf"
+hash = "9dc7dc535d6698708ca50bf4f3f6db3320bd6e9084ff15779278f47448ab377a"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vials_from_blood_bottle.json"
-hash = "9659f4db8b39c5096893bc53b2e0a25b7865a20813feec0c396a284df4244eb8"
+hash = "73421e0ca59870537188af779f2acda4f10ecca54240de8598a56d4ed0f69b4a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/butchery_heart_from_human_heart.json"
+hash = "c0c8c9e3bc02aba780e89e93bf524a749f2258d5c6f2c3fbb26e3eaf7dcc9a22"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/human_heart_from_butchery_heart.json"
+hash = "41829be8da74d847c94cd82fe1d61403815f6ef75411b849504676c89a4c97ec"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/pure_blood_4_from_human_heart.json"

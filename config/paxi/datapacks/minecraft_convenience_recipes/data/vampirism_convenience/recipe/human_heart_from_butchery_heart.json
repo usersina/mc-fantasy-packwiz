@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "butchery:heart"
+    }
+  ],
+  "result": {
+    "id": "vampirism:human_heart",
+    "count": 1
+  }
+}
