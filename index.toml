@@ -137,6 +137,26 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/
 hash = "ebd58e28a992acce5f71fcf6a4f3521abb40c11b11240bc47ac6be26de718190"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/neoforge/biome_modifier/spawn/human_werewolf_spawns.json"
+hash = "2d1ed1ebbc81fc207828db40cc0388456f6fb290250d1bee7169e87876f25e0f"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/neoforge/biome_modifier/spawn/werewolf_spawns.json"
+hash = "205cdf6cb4a8673e3f74ed57e32d695a940da9847c793b3f1ff500fb0f876de9"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/tags/worldgen/biome/has_spawn/human_werewolf.json"
+hash = "97c3a730f2d104e62cc48418bd6257194f2bb386c6f07815921940a0572bc30b"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/tags/worldgen/biome/has_spawn/werewolf.json"
+hash = "97c3a730f2d104e62cc48418bd6257194f2bb386c6f07815921940a0572bc30b"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/worldgen/biome/werewolf_heaven.json"
+hash = "f8029badbfb1932248d9ca8f5b8ca1bcf02923689b67c5573ddfc5a70484d88a"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/wind_spellbooks/loot_table/entities/aeromancer.json"
 hash = "a68ddba65c3993dde0ce383004f0a5e009736f3a2040ddb883cd2e8f3c5b512d"
 
