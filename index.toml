@@ -62,7 +62,7 @@ hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/entity_type/entity_blood.json"
-hash = "fd92a97d7f35c9a5dda1a568a652bb2340c06d92f45727308f11aa62dfee86db"
+hash = "af3d05d89e3f445b868d739bea294aa8d3ba3de85b44ddbcaa82d3bcf4117d56"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"

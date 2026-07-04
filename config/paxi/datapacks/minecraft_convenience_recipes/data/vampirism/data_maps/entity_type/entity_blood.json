@@ -93,8 +93,23 @@
     "minecraft:wandering_trader": {
       "blood": 15
     },
+    "minecraft:evoker": {
+      "blood": 20
+    },
     "minecraft:illusioner": {
       "blood": 20
+    },
+    "minecraft:pillager": {
+      "blood": 15
+    },
+    "minecraft:ravager": {
+      "blood": 35
+    },
+    "minecraft:vindicator": {
+      "blood": 20
+    },
+    "minecraft:witch": {
+      "blood": 15
     },
     "minecraft:wolf": {
       "blood": 5
