@@ -5,6 +5,10 @@ file = "config/defaultoptions/keybindings.txt"
 hash = "a188fa8430127f7bcadab682d81a357fe793e0fa505268cfdce2e9fbe2f24a6b"
 
 [[files]]
+file = "config/irons_spellbooks-client.toml"
+hash = "a7e101256466b14941225a67d8c1c2d7591043b008d8f43a1679df2fd8f153d8"
+
+[[files]]
 file = "config/lithium.properties"
 hash = "27c5cd07b19acca041107277303621d6578f33604d4c46b9eb6936915d8b1746"
 
