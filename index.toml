@@ -6,7 +6,7 @@ hash = "a188fa8430127f7bcadab682d81a357fe793e0fa505268cfdce2e9fbe2f24a6b"
 
 [[files]]
 file = "config/irons_spellbooks-client.toml"
-hash = "a7e101256466b14941225a67d8c1c2d7591043b008d8f43a1679df2fd8f153d8"
+hash = "ef580b811fb717262f2c3bc35118df76c6304fc02f3935fa884d488dff22ce25"
 
 [[files]]
 file = "config/lithium.properties"
@@ -631,6 +631,11 @@ metafile = true
 [[files]]
 file = "mods/healing-campfire.pw.toml"
 hash = "89787085b795067d933d636211006b9a99e69a00f660eaa5a5debf93cfc9b612"
+metafile = true
+
+[[files]]
+file = "mods/horseman.pw.toml"
+hash = "50a65864799d28c51f698c146f6f030851ad9ab93946513016c01d3a60e967bc"
 metafile = true
 
 [[files]]
