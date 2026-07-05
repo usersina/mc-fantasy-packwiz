@@ -1023,6 +1023,10 @@ file = "mods/vampire-invisibility-aggro-fix-1.0.0+mc1.21.1-neoforge.jar"
 hash = "0cce6504fc938887609e2821ab873d5c26562bfd73a7bb26c39419c5f1af22b9"
 
 [[files]]
+file = "mods/vampire-player-bite-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "7210354cf89096faaed63235318271c7da8264480bedb640235af24623e1f1c8"
+
+[[files]]
 file = "mods/vampires-delight.pw.toml"
 hash = "bbb95e29b2d68c5459d8da788d6126d4ead5162d4977cd4184d214351aaf429e"
 metafile = true
