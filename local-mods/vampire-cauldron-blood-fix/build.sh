@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MOD_ID="vampire-invisibility-aggro-fix"
+MOD_ID="vampire-cauldron-blood-fix"
 MOD_VERSION="1.0.0"
 MC_VERSION="1.21.1"
 LOADER="neoforge"

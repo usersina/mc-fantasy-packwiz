@@ -75,7 +75,10 @@ tasks:
     desc: Build tiny repo-local compatibility mods
     dir: '{{.REPO_DIR}}'
     cmds:
-      - JAVA21="{{.JAVA21}}" ./local-mods/vampire-invisibility-aggro-fix/build.sh
+      - |
+        for build_script in ./local-mods/*/build.sh; do
+          JAVA21="{{.JAVA21}}" "$build_script"
+        done
 
   client:test:
     desc: Bootstrap, sync, or launch a Prism/Freesm maintainer test client

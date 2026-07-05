@@ -1015,8 +1015,12 @@ hash = "5518dd2f6a5d88e4affb9df628604737893025206d7149579e4c24f909b130a3"
 metafile = true
 
 [[files]]
+file = "mods/vampire-cauldron-blood-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "d3818b573f94f783279186579ccc197c1906f2eabbc99e54754e4b95f9dcb299"
+
+[[files]]
 file = "mods/vampire-invisibility-aggro-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "19c6be940a52628460b57614c130c5fb555de71ac9eecaf181fffffa5ff8fc99"
+hash = "0cce6504fc938887609e2821ab873d5c26562bfd73a7bb26c39419c5f1af22b9"
 
 [[files]]
 file = "mods/vampires-delight.pw.toml"
