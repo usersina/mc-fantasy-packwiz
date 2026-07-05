@@ -89,6 +89,34 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_
 hash = "0589a8c556e9ff7817484f89159bf2f98a2699337d37e9e3f3e08ca0ae653fff"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/h_capture1.json"
+hash = "c9c240c175de347d30a1d74d9a8986fa1fc3c190e76e636446b50f9a17360b8c"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/hunter_lord1.json"
+hash = "dad2d5ec2cef27786f4923b55b1038ec7521c6306e51aa965d47130ec3b99893"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/hunter_lord5.json"
+hash = "dd5ba15a7752977f331e75c34ea23d1831d4795a66998749829a2dca2a6a3559"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/v_capture1.json"
+hash = "b9d5e62614d74403961c820e68e1ad7dd970b2ce262c19a2202a72d64b72e9ab"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/v_capture2.json"
+hash = "3fad64ecb780f7b50be83aa9055b12783bc2d47a220b2fb108cc8663cab58d38"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/vampire_lord1.json"
+hash = "3fb77949b9f943f4b8733336c34a6f13b1bab2251ea61f48d66b60263fec499e"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/vampire_lord5.json"
+hash = "e643a4f2a0030112ce35c1603e8590ce4840b305f4d35154d147eb00b98cffd0"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_3_from_vial.json"
 hash = "27c569ea9411240ec4a9e82a0f98a79ead6d6c35b04bbb171bc6eb38b1b1641d"
 
@@ -206,6 +234,18 @@ file = "defaultconfigs/waystones-common.toml"
 hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
 
 [[files]]
+file = "kubejs/client_scripts/main.js"
+hash = "f8f4dea2c603fbc5898147eadcd92dcaf85eb3f2cfd873dcc3de66935c3c887d"
+
+[[files]]
+file = "kubejs/server_scripts/faction_representatives.js"
+hash = "5c8a941713fddf6cd91216e31570622386c8717ac5fd350431b5143743810956"
+
+[[files]]
+file = "kubejs/startup_scripts/main.js"
+hash = "4a198035e9cf7ca8acaabf09ab5da3dd0d855d226d57cd40d41a6e0aa69250d7"
+
+[[files]]
 file = "mods/accessories-compat-layer.pw.toml"
 hash = "c255cf4cd29718e3ab0a4c18df8bb7b626e0092c5aad7b4e67f34fc1ad4492f8"
 metafile = true
@@ -231,8 +271,13 @@ hash = "cc3f6e6e8f1838d16e47cce9241e32176279673efb1438ff4451ccffa9579b14"
 metafile = true
 
 [[files]]
-file = "mods/afk-announcer.pw.toml"
-hash = "975c3c9b8d38109266057a2fab01d5455605ab392f79994e375481e3b9e13649"
+file = "mods/almanac.pw.toml"
+hash = "19d6b20763edf0247e395db37d6e7e5b012ca063f5820c81a6330baff2218c4e"
+metafile = true
+
+[[files]]
+file = "mods/alternate-current.pw.toml"
+hash = "18cf2b63d293ba0738c1073690fbd2c62305b161f76d346a551a66a9bbf8af32"
 metafile = true
 
 [[files]]
@@ -327,6 +372,11 @@ metafile = true
 [[files]]
 file = "mods/blazing-bamboo-continued.pw.toml"
 hash = "413364f900b3ae67d8ad06171c19553c9da5ba94d1244d7a096364617d0a841d"
+metafile = true
+
+[[files]]
+file = "mods/bloodlines.pw.toml"
+hash = "fe7eefc4939b96b85b29a0824b3205ab268eb80356a5dbb327fd2c33f167310d"
 metafile = true
 
 [[files]]
@@ -670,6 +720,11 @@ hash = "f22b9b2717d5c14f4d1f43329e1a9afc71806a1c311108b4ae0db858e9d90569"
 metafile = true
 
 [[files]]
+file = "mods/kubejs.pw.toml"
+hash = "99bea71046529d65463fc12acb505ab363c91133ebbcc1d976e49a5d33150702"
+metafile = true
+
+[[files]]
 file = "mods/l_enders-cataclysm-delight.pw.toml"
 hash = "637e5b445b28d460884ce868948328ef512eb10ab2af60a86bd3e2c37ac49697"
 metafile = true
@@ -702,6 +757,11 @@ metafile = true
 [[files]]
 file = "mods/lithium.pw.toml"
 hash = "58e0bebd41fa44f3f0dd6c053ec3eb1529d4bfe0c054c0741ba6e2e1b8e4523e"
+metafile = true
+
+[[files]]
+file = "mods/lmd.pw.toml"
+hash = "edc75ace846ae34c1cb4cf4a44106e1fb035b1eee0432765a716098c9a4b5823"
 metafile = true
 
 [[files]]
@@ -825,6 +885,11 @@ hash = "e3dc2d295b421fd9e51608c84c1172dd794c94fb03fdcc85aa173257e4535728"
 metafile = true
 
 [[files]]
+file = "mods/reeses-sodium-options.pw.toml"
+hash = "ae1a00455be0edadffea3e272b43a7d8080a501fc4fe0e3e8ff91bb81903d6e6"
+metafile = true
+
+[[files]]
 file = "mods/resourceful-config.pw.toml"
 hash = "27721caca5a03b743bf25888e1d984142948069dace31453f103f94f7f24d2ce"
 metafile = true
@@ -832,6 +897,11 @@ metafile = true
 [[files]]
 file = "mods/revive-me.pw.toml"
 hash = "d39f31e308e665307a51e426e16c431efc88592289863747ab9da99db5b5c465"
+metafile = true
+
+[[files]]
+file = "mods/rhino.pw.toml"
+hash = "e55ca32b338a0e0540f4fec5170675d860566255ae0f45692a00cb4ebf2eb535"
 metafile = true
 
 [[files]]
@@ -880,6 +950,11 @@ hash = "fe65710b674d3fc8306a842baaecb97206502705c2250ccf349e37dee170af4f"
 metafile = true
 
 [[files]]
+file = "mods/sodium-extra.pw.toml"
+hash = "d379a43459f5d24be47e6518a804dcf303b344b9e8a870d30213efd392c7a05e"
+metafile = true
+
+[[files]]
 file = "mods/sodium.pw.toml"
 hash = "25324a8a9cdc663d3d1952191e873f87531011715de49673cbf7c1b0da0504d6"
 metafile = true
@@ -892,6 +967,11 @@ metafile = true
 [[files]]
 file = "mods/sophisticated-core.pw.toml"
 hash = "82e9a1a3374847c0cda6bd0cef3718df19983226742f988f80a04cee0e94a45f"
+metafile = true
+
+[[files]]
+file = "mods/spark.pw.toml"
+hash = "593fa7b30ab016aa45be07bd6bef3a9f160ed0f24689850d60bf84995d69b843"
 metafile = true
 
 [[files]]
@@ -940,27 +1020,32 @@ hash = "19c6be940a52628460b57614c130c5fb555de71ac9eecaf181fffffa5ff8fc99"
 
 [[files]]
 file = "mods/vampires-delight.pw.toml"
-hash = "44af81a36776dafbb3bbd3e25a674f7d64afeeabb91ad2cef1d2ffa059e210d9"
+hash = "bbb95e29b2d68c5459d8da788d6126d4ead5162d4977cd4184d214351aaf429e"
 metafile = true
 
 [[files]]
 file = "mods/vampires-need-umbrellas.pw.toml"
-hash = "5044244197219c2d0dcca141c78c0dd1837d27954e1a4ebb05aa60a59bb87bf9"
+hash = "c0a0bb919ffb39c7165f42b11a2aaae14b4f510bb9f1ac5133440c1245156c45"
+metafile = true
+
+[[files]]
+file = "mods/vampiric-ageing-a-vampirism-addon.pw.toml"
+hash = "67bbc572f35ec24ffe8af81ec902551a9da039596ca0731d8cef47b6984804a8"
+metafile = true
+
+[[files]]
+file = "mods/vampirism-become-a-vampire.pw.toml"
+hash = "b761582203c5ec2fe9d1708a2d12ec8e864f4434a2c6f07aaae9c0c74c377dc3"
 metafile = true
 
 [[files]]
 file = "mods/vampirism-integrations.pw.toml"
-hash = "fe1143f2dd40fc4720ba870a196b5e4f50cff6c358503ec34d85c20a9d4cd90f"
+hash = "31158437e53c56f2e213aa305709642a185d11d417ea3f4e02af013b4cdec8a5"
 metafile = true
 
 [[files]]
 file = "mods/vampirism-irons-spells-compatibility.pw.toml"
-hash = "a4bb17b290b4966122029a17c1a21804945c52ec22af7b72c287a0d1a2eecf2a"
-metafile = true
-
-[[files]]
-file = "mods/vampirism.pw.toml"
-hash = "76dbc52a3385ba8b4cc2af3a1e1d4a3c2f8b9f2cedd3286133e73945b8b2be7c"
+hash = "c8eb34b4fa25c02dfd154d1cbf61a3adb5fe566b19e3f457aab9afc79e811119"
 metafile = true
 
 [[files]]
@@ -984,8 +1069,8 @@ hash = "6469e09b6d02aa3f1aeb653c9e33ec948e2bd9d09cabc60a834552783120c018"
 metafile = true
 
 [[files]]
-file = "mods/werewolves.pw.toml"
-hash = "e60cb37ec5b9d07ec09e2963d57cc7b50627968456fdbf0fc4cd5ec3cf72712b"
+file = "mods/werewolves-become-a-beast.pw.toml"
+hash = "b8d738888c0648b600c95f191eaadb3abae54cd8bd2225207310c68a78ee5bea"
 metafile = true
 
 [[files]]

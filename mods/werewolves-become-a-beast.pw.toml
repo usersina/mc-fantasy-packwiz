@@ -1,0 +1,13 @@
+name = "Werewolves - Become a Beast!"
+filename = "Werewolves-1.21-2.0.3.3.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "12a400d50c6e2afdcd96caf73cb80d37877147c8"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7814024
+project-id = 417851

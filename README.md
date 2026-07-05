@@ -8,6 +8,7 @@ This repo owns:
 - client bootstrap/export defaults
 - global datapacks
 - shared default keybindings
+- small KubeJS gameplay glue
 - the small dedicated-server setup/update scripts
 
 This repo does not own:
@@ -32,6 +33,7 @@ Main entry points:
 | `mods/`                                      | Packwiz mod metadata                                             |
 | `config/`                                    | Packwiz-managed root config, client defaults, and Paxi datapacks |
 | `defaultconfigs/`                            | NeoForge config defaults                                         |
+| `kubejs/`                                    | Packwiz-managed KubeJS scripts                                   |
 | `dist/`                                      | Ignored build, inspection, export, and smoke-test output         |
 
 ## Prerequisites
@@ -229,6 +231,28 @@ Because they are Packwiz-managed, they are included in:
 - local singleplayer worlds created from the exported pack
 
 Do not put shared datapacks under `server-base/`; that folder is only for dedicated-server base templates.
+
+## KubeJS Gameplay Glue
+
+Keep KubeJS scripts small and pack-specific. Use them when a datapack cannot express the interaction cleanly.
+
+Current custom behavior:
+
+- Sneak-right-click a crafted Vampirism Village Totem Top with `vampirism:vampire_blood_bottle` to summon a vampire representative.
+- Sneak-right-click a crafted Vampirism Village Totem Top with `vampirism:hunter_intel` to summon a hunter representative.
+- The ritual only works on crafted Vampirism totem tops, not ordinary blocks or fragile generated village totems.
+
+The same feature also overrides Vampirism task JSONs in the Paxi datapack so village-capture requirements become diamond payments:
+
+```txt
+1 village capture = 5 diamonds
+```
+
+After changing `kubejs/` scripts or Paxi datapack files, refresh Packwiz:
+
+```bash
+task pack:refresh
+```
 
 ## Adding or Inspecting Mods
 

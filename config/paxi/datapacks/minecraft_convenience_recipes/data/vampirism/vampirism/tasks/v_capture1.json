@@ -1,0 +1,28 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.diamond"
+        },
+        "id": "minecraft:diamond",
+        "item": {
+          "count": 5,
+          "id": "minecraft:diamond"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "vampirism:item",
+    "item": {
+      "count": 10,
+      "id": "minecraft:emerald"
+    }
+  },
+  "title": {
+    "translate": "task.vampirism.v_capture1"
+  },
+  "unlocker": []
+}

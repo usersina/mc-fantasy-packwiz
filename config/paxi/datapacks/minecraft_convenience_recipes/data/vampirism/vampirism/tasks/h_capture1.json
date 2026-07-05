@@ -1,0 +1,28 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.diamond"
+        },
+        "id": "minecraft:diamond",
+        "item": {
+          "count": 10,
+          "id": "minecraft:diamond"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "vampirism:item",
+    "item": {
+      "count": 10,
+      "id": "vampirism:vampire_blood_bottle"
+    }
+  },
+  "title": {
+    "translate": "task.vampirism.h_capture1"
+  },
+  "unlocker": []
+}
