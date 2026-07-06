@@ -1,11 +1,20 @@
 const REPRESENTATIVE_TAG = 'fantasy_pack_representative'
 const REPRESENTATIVE_RADIUS = 12
+const TOTEM_BASE = 'vampirism:totem_base'
+const MISSING_BASE_MESSAGE = 'Place a Vampirism Village Totem Base directly under the top first.'
 
 const RITUAL_BLOCKS = [
   'vampirism:totem_top_crafted',
   'vampirism:totem_top_vampirism_vampire_crafted',
   'vampirism:totem_top_vampirism_hunter_crafted'
 ]
+
+const HORIZONTAL_OFFSETS = {
+  north: { x: 0, z: -1 },
+  south: { x: 0, z: 1 },
+  west: { x: -1, z: 0 },
+  east: { x: 1, z: 0 }
+}
 
 const REPRESENTATIVES = {
   vampire: {
@@ -46,10 +55,37 @@ function hasNearbyRepresentative(event, representative, x, y, z) {
   return false
 }
 
+function hasTotemBase(event) {
+  return String(event.block.down.id) == TOTEM_BASE
+}
+
+function spawnOffsetFor(event) {
+  const facing = String(event.facing || '').toLowerCase()
+  if (HORIZONTAL_OFFSETS[facing] != null) {
+    return HORIZONTAL_OFFSETS[facing]
+  }
+
+  const dxToPlayer = event.player.getX() - (event.block.x + 0.5)
+  const dzToPlayer = event.player.getZ() - (event.block.z + 0.5)
+
+  if (Math.abs(dxToPlayer) >= Math.abs(dzToPlayer)) {
+    return dxToPlayer >= 0 ? HORIZONTAL_OFFSETS.east : HORIZONTAL_OFFSETS.west
+  }
+
+  return dzToPlayer >= 0 ? HORIZONTAL_OFFSETS.south : HORIZONTAL_OFFSETS.north
+}
+
 function summonRepresentative(event, representative) {
-  const x = event.block.x + 0.5
-  const y = event.block.y + 1
-  const z = event.block.z + 0.5
+  if (!hasTotemBase(event)) {
+    event.player.tell(MISSING_BASE_MESSAGE)
+    event.cancel()
+    return
+  }
+
+  const offset = spawnOffsetFor(event)
+  const x = event.block.x + 0.5 + offset.x
+  const y = event.block.down.y
+  const z = event.block.z + 0.5 + offset.z
 
   if (hasNearbyRepresentative(event, representative, x, y, z)) {
     event.player.tell(representative.duplicate)

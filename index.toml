@@ -223,7 +223,7 @@ hash = "f8f4dea2c603fbc5898147eadcd92dcaf85eb3f2cfd873dcc3de66935c3c887d"
 
 [[files]]
 file = "kubejs/server_scripts/faction_representatives.js"
-hash = "5c8a941713fddf6cd91216e31570622386c8717ac5fd350431b5143743810956"
+hash = "b106ee090cb8fa614c305bc33714d875c31f0ae101fb1199d4321e656de3a145"
 
 [[files]]
 file = "kubejs/startup_scripts/main.js"
