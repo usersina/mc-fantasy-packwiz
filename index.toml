@@ -400,7 +400,7 @@ metafile = true
 
 [[files]]
 file = "mods/carry-on-player-sync-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "910812c10fe8f859a04afe0271246e7ad64309628391fd544171ece04d6a8dc4"
+hash = "bc1d466d0431dc97ff0f11c7e607dfcceb70ea42bf9ee867ceee6ee340d6bf0a"
 
 [[files]]
 file = "mods/carryon-patched.pw.toml"
