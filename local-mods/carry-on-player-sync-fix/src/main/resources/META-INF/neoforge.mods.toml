@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="carry_on_player_sync_fix"
+version="1.0.0"
+displayName="Carry On Player Sync Fix"
+authors="usersina"
+description='''Prevents Carry On player pickup from syncing stale player-carry NBT.'''
+
+[[mixins]]
+config="carry_on_player_sync_fix.mixins.json"
+
+[[dependencies.carry_on_player_sync_fix]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.carry_on_player_sync_fix]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.carry_on_player_sync_fix]]
+modId="carryon"
+type="required"
+versionRange="[2.2.4,)"
+ordering="AFTER"
+side="BOTH"

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "io.github.usersina.mcfantasy.carryonplayersyncfix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CarryOnDataMixin",
+    "PlacementHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
