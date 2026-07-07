@@ -17,6 +17,22 @@ file = "config/moreculling.toml"
 hash = "459153a2bb845bf219133ead80df29f7792152fc9c24f11e2496dcf861caad67"
 
 [[files]]
+file = "config/paxi/datapacks/fantasy_starter_lobby/data/fantasy_pack/dimension/starter_lobby.json"
+hash = "cf6b5c8666dcb83807a538efb9d7cebb3fe7ffddb753e3c7fa47531d68388487"
+
+[[files]]
+file = "config/paxi/datapacks/fantasy_starter_lobby/data/fantasy_pack/dimension_type/starter_lobby.json"
+hash = "98091297e64eaa7e2c8b0d60c3c3fb77155be8691d74ff080ecd29bc323cf589"
+
+[[files]]
+file = "config/paxi/datapacks/fantasy_starter_lobby/data/fantasy_pack/worldgen/biome/starter_lobby.json"
+hash = "4e6aa653845c0fba950b9520fc574da1cc3bd13237c0f488703a0b0e3393267c"
+
+[[files]]
+file = "config/paxi/datapacks/fantasy_starter_lobby/pack.mcmeta"
+hash = "9da7443a9b8acabb72c0a5ad2d1aeb88d0728ac8445cd503a30902482455d4b0"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/benssharks/loot_table/entities/thalassoger.json"
 hash = "96bae82eea14eb904810caea22d1d7c1598f7410786e4ae3032e744f9bb3862b"
 
@@ -63,6 +79,10 @@ hash = "d8c1c7595572ed73bd561abd29a4210fd5fff76f55d676d44a2aa36e6362e1d8"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/illusioner.json"
 hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/terralith/function/toast.mcfunction"
+hash = "9fefa9b2803667e2d968a11decf15a6dba408449442d8ce875e4a6a1550927ba"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/entity_type/entity_blood.json"
@@ -223,11 +243,15 @@ hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
 
 [[files]]
 file = "kubejs/client_scripts/main.js"
-hash = "7ef2cc992d82712f7175b8f956d939b1a26e56f2375bf312dfed074f20ea1b78"
+hash = "653d12d3860e4d85e10c9d1baf25ca9fb40cd25017ecc54b75d24f7763c314e0"
 
 [[files]]
 file = "kubejs/server_scripts/faction_representatives.js"
-hash = "30c74451c528b173f5b3234f20f51583754a35a0c8343a8cb3c5e6100fcc52c4"
+hash = "63a0c0d7b8789eb46dab90adbf23bfd4ee69d1707eddb8aa6dfdc1f59879f1bb"
+
+[[files]]
+file = "kubejs/server_scripts/starter_roles.js"
+hash = "1abaab1ae2f646d01303cb7c2880c0fe7a898bf0896e6acbb8b9afd180275527"
 
 [[files]]
 file = "kubejs/startup_scripts/main.js"
@@ -604,6 +628,11 @@ metafile = true
 [[files]]
 file = "mods/farmers-respite-unofficial-port.pw.toml"
 hash = "3e6c8c0d34ec406a99d6170cba5291a4007b4b01c8b5975b8363a2e5b5d96434"
+metafile = true
+
+[[files]]
+file = "mods/fast-ip-ping.pw.toml"
+hash = "f3935636357eb78086ff6ba4e8ed68ea0d63411dadbaaf97f25727cfbc6399e3"
 metafile = true
 
 [[files]]

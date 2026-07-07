@@ -238,9 +238,49 @@ Keep KubeJS scripts small and pack-specific. Use them when a datapack cannot exp
 
 Current custom behavior:
 
+### Starter Role Lobby
+
+```mermaid
+flowchart TD
+  login["New player logs in"] --> chosen{"starter role saved?"}
+  chosen -- "no" --> lobby["teleport to fantasy_pack:starter_lobby"]
+  lobby --> pad["stand on a colored role pad"]
+  pad --> grant["grant faction/gear kit"]
+  grant --> save["save one-time role on player data"]
+  save --> spawn["teleport to overworld spawn"]
+  chosen -- "yes" --> normal["normal spawn/respawn flow"]
+  normal --> stuck{"somehow in lobby?"}
+  stuck -- "yes" --> spawn
+```
+
+The starter lobby is a separate Packwiz-managed Paxi datapack dimension:
+
+```txt
+config/paxi/datapacks/fantasy_starter_lobby/
+```
+
+New players are sent there until they choose exactly one role. After a role is saved in player persistent data, the lobby is one-way: if that player somehow logs in or respawns there, KubeJS sends them back to overworld spawn.
+
+Players choose by standing on the colored floor pad directly in front of a signed visual role block for about two seconds. The visual role blocks are only anchors; the pads are the trigger so the flow does not conflict with Carry On's sneak-right-click behavior. The lobby is protected by adventure mode and KubeJS block break/place cancellation.
+
+Role choices:
+
+| Role              | Visual block                    | Initial identity                                                                                         |
+| ----------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Mage Apprentice   | `irons_spellbooks:arcane_anvil` | wizard armor, equipped starter spellbook, mage supplies                                                  |
+| Vampire Fledgling | `vampirism:blood_pedestal`      | vampire level 4, worn vampire clothes, equipped blood spellbook, off-hand umbrella, filled blood bottles |
+| Hunter Initiate   | `vampirism:hunter_table`        | hunter level 4, hunter gear, crossbow supplies                                                           |
+| Werewolf Initiate | `werewolves:stone_altar`        | werewolf level 4, pelt gear, survival tools, werewolf supplies                                           |
+| Explorer Pilot    | `minecraft:cartography_table`   | worn leather armor, ordered starter tools, airship, fuel, navigation                                     |
+| Vanilla Start     | `minecraft:grass_block`         | no starter kit; spawn into the world normally                                                            |
+
+Role kits are intentionally KubeJS-only. Do not add a token item or manual command flow unless the one-time lobby model changes.
+
+### Faction Representatives
+
 - Place a Vampirism Village Totem Base with a crafted Vampirism Village Totem Top directly above it.
 - Sneak-right-click the base with `vampirism:vampire_blood_bottle` to summon a vampire representative.
-- Sneak-right-click the base with `vampirism:hunter_intel` to summon a hunter representative.
+- Sneak-right-click the base with any Vampirism hunter intel paper, such as `vampirism:hunter_intel_0`, to summon a hunter representative.
 - The ritual only works on a Vampirism totem base with a crafted top directly above it, not ordinary blocks or fragile generated village totems.
 - The representative appears beside the totem on the clicked side.
 

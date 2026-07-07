@@ -1,0 +1,25 @@
+{
+  "type": "fantasy_pack:starter_lobby",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "fantasy_pack:starter_lobby",
+      "features": false,
+      "layers": [
+        {
+          "block": "minecraft:bedrock",
+          "height": 1
+        },
+        {
+          "block": "minecraft:deepslate",
+          "height": 60
+        },
+        {
+          "block": "minecraft:polished_deepslate",
+          "height": 1
+        }
+      ],
+      "structure_overrides": []
+    }
+  }
+}

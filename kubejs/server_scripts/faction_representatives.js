@@ -1,20 +1,21 @@
 const REPRESENTATIVE_TAG = 'fantasy_pack_representative'
 const REPRESENTATIVE_RADIUS = 12
 const TOTEM_BASE = 'vampirism:totem_base'
-const MISSING_TOP_MESSAGE = 'Place a crafted Vampirism Village Totem Top directly above the base first.'
+const MISSING_TOP_MESSAGE =
+  'Place a crafted Vampirism Village Totem Top directly above the base first.'
 const CLICK_BASE_MESSAGE = 'Sneak-right-click the totem base, not the top.'
 
 const RITUAL_TOPS = [
   'vampirism:totem_top_crafted',
   'vampirism:totem_top_vampirism_vampire_crafted',
-  'vampirism:totem_top_vampirism_hunter_crafted'
+  'vampirism:totem_top_vampirism_hunter_crafted',
 ]
 
 const HORIZONTAL_OFFSETS = {
   north: { x: 0, z: -1 },
   south: { x: 0, z: 1 },
   west: { x: -1, z: 0 },
-  east: { x: 1, z: 0 }
+  east: { x: 1, z: 0 },
 }
 
 const REPRESENTATIVES = {
@@ -22,14 +23,14 @@ const REPRESENTATIVES = {
     entity: 'vampirism:task_master_vampire',
     name: 'Vampire Representative',
     success: 'A vampire representative answers the totem.',
-    duplicate: 'A vampire representative is already near this totem.'
+    duplicate: 'A vampire representative is already near this totem.',
   },
   hunter: {
     entity: 'vampirism:task_master_hunter',
     name: 'Hunter Representative',
     success: 'A hunter representative answers the totem.',
-    duplicate: 'A hunter representative is already near this totem.'
-  }
+    duplicate: 'A hunter representative is already near this totem.',
+  },
 }
 
 function representativeForOffering(itemId) {
@@ -37,7 +38,7 @@ function representativeForOffering(itemId) {
     return REPRESENTATIVES.vampire
   }
 
-  if (itemId == 'vampirism:hunter_intel' || /^vampirism:hunter_intel_[0-9]$/.test(itemId)) {
+  if (/^vampirism:hunter_intel_[0-9]$/.test(itemId)) {
     return REPRESENTATIVES.hunter
   }
 
@@ -45,10 +46,18 @@ function representativeForOffering(itemId) {
 }
 
 function hasNearbyRepresentative(event, representative, x, y, z) {
-  const nearbyEntities = event.block.level.entities.filterDistance(x, y, z, REPRESENTATIVE_RADIUS)
+  const nearbyEntities = event.block.level.entities.filterDistance(
+    x,
+    y,
+    z,
+    REPRESENTATIVE_RADIUS
+  )
 
   for (const entity of nearbyEntities) {
-    if (String(entity.type) == representative.entity && entity.tags.contains(REPRESENTATIVE_TAG)) {
+    if (
+      String(entity.type) == representative.entity &&
+      entity.tags.contains(REPRESENTATIVE_TAG)
+    ) {
       return true
     }
   }
@@ -110,7 +119,7 @@ function summonRepresentative(event, representative) {
   event.cancel()
 }
 
-BlockEvents.rightClicked(event => {
+BlockEvents.rightClicked((event) => {
   if (String(event.hand) != 'MAIN_HAND') return
   if (!event.player.isShiftKeyDown()) return
 
@@ -129,7 +138,7 @@ BlockEvents.rightClicked(event => {
   summonRepresentative(event, representative)
 })
 
-ItemEvents.rightClicked(event => {
+ItemEvents.rightClicked((event) => {
   if (String(event.hand) != 'MAIN_HAND') return
   if (!event.player.isShiftKeyDown()) return
 
