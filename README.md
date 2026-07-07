@@ -239,9 +239,9 @@ Keep KubeJS scripts small and pack-specific. Use them when a datapack cannot exp
 Current custom behavior:
 
 - Place a Vampirism Village Totem Base with a crafted Vampirism Village Totem Top directly above it.
-- Sneak-right-click the crafted top with `vampirism:vampire_blood_bottle` to summon a vampire representative.
-- Sneak-right-click the crafted top with `vampirism:hunter_intel` to summon a hunter representative.
-- The ritual only works on crafted Vampirism totem tops with a base below, not ordinary blocks or fragile generated village totems.
+- Sneak-right-click the base with `vampirism:vampire_blood_bottle` to summon a vampire representative.
+- Sneak-right-click the base with `vampirism:hunter_intel` to summon a hunter representative.
+- The ritual only works on a Vampirism totem base with a crafted top directly above it, not ordinary blocks or fragile generated village totems.
 - The representative appears beside the totem on the clicked side.
 
 The same feature also overrides Vampirism task JSONs in the Paxi datapack so village-capture requirements become diamond payments:

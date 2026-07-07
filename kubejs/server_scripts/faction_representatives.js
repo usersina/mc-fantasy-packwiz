@@ -1,9 +1,10 @@
 const REPRESENTATIVE_TAG = 'fantasy_pack_representative'
 const REPRESENTATIVE_RADIUS = 12
 const TOTEM_BASE = 'vampirism:totem_base'
-const MISSING_BASE_MESSAGE = 'Place a Vampirism Village Totem Base directly under the top first.'
+const MISSING_TOP_MESSAGE = 'Place a crafted Vampirism Village Totem Top directly above the base first.'
+const CLICK_BASE_MESSAGE = 'Sneak-right-click the totem base, not the top.'
 
-const RITUAL_BLOCKS = [
+const RITUAL_TOPS = [
   'vampirism:totem_top_crafted',
   'vampirism:totem_top_vampirism_vampire_crafted',
   'vampirism:totem_top_vampirism_hunter_crafted'
@@ -55,8 +56,16 @@ function hasNearbyRepresentative(event, representative, x, y, z) {
   return false
 }
 
-function hasTotemBase(event) {
-  return String(event.block.down.id) == TOTEM_BASE
+function hasCraftedTotemTop(event) {
+  return RITUAL_TOPS.includes(String(event.block.up.id))
+}
+
+function isRitualTop(blockId) {
+  return RITUAL_TOPS.includes(blockId)
+}
+
+function isRitualBlock(blockId) {
+  return blockId == TOTEM_BASE || isRitualTop(blockId)
 }
 
 function spawnOffsetFor(event) {
@@ -76,15 +85,15 @@ function spawnOffsetFor(event) {
 }
 
 function summonRepresentative(event, representative) {
-  if (!hasTotemBase(event)) {
-    event.player.tell(MISSING_BASE_MESSAGE)
+  if (!hasCraftedTotemTop(event)) {
+    event.player.tell(MISSING_TOP_MESSAGE)
     event.cancel()
     return
   }
 
   const offset = spawnOffsetFor(event)
   const x = event.block.x + 0.5 + offset.x
-  const y = event.block.down.y
+  const y = event.block.y
   const z = event.block.z + 0.5 + offset.z
 
   if (hasNearbyRepresentative(event, representative, x, y, z)) {
@@ -104,10 +113,32 @@ function summonRepresentative(event, representative) {
 BlockEvents.rightClicked(event => {
   if (String(event.hand) != 'MAIN_HAND') return
   if (!event.player.isShiftKeyDown()) return
-  if (!RITUAL_BLOCKS.includes(String(event.block.id))) return
 
   const representative = representativeForOffering(String(event.item.id))
   if (representative == null) return
 
+  const blockId = String(event.block.id)
+  if (blockId != TOTEM_BASE) {
+    if (isRitualTop(blockId)) {
+      event.player.tell(CLICK_BASE_MESSAGE)
+      event.cancel()
+    }
+    return
+  }
+
   summonRepresentative(event, representative)
+})
+
+ItemEvents.rightClicked(event => {
+  if (String(event.hand) != 'MAIN_HAND') return
+  if (!event.player.isShiftKeyDown()) return
+
+  const representative = representativeForOffering(String(event.item.id))
+  if (representative == null) return
+
+  const target = event.target
+  if (target == null || target.block == null) return
+  if (!isRitualBlock(String(target.block.id))) return
+
+  event.cancel()
 })
