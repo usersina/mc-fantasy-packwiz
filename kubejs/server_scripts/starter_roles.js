@@ -12,8 +12,16 @@ const StarterLobbyBuiltInRegistries = Java.loadClass(
   'net.minecraft.core.registries.BuiltInRegistries'
 )
 
+let StarterLobbyBasicLogin = null
+try {
+  StarterLobbyBasicLogin = Java.loadClass('io.github.bravecake.basiclogin.BasicLogin')
+} catch (error) {
+  StarterLobbyBasicLogin = null
+}
+
 let starterLobbyBuilt = false
 let starterLobbyMissingLevelLogged = false
+let starterLoginCheckWarningLogged = false
 const starterPadHolds = {}
 const starterLobbyModePlayers = {}
 const starterRoleChoicesInProgress = {}
@@ -425,6 +433,7 @@ function clearStarterObject(object) {
 function resetStarterLobbyState() {
   starterLobbyBuilt = false
   starterLobbyMissingLevelLogged = false
+  starterLoginCheckWarningLogged = false
   clearStarterObject(starterPadHolds)
   clearStarterObject(starterLobbyModePlayers)
   clearStarterObject(starterRoleChoicesInProgress)
@@ -805,7 +814,30 @@ function isInStarterLobby(player) {
   return String(player.level.dimension) == STARTER_LOBBY_DIMENSION
 }
 
+function isStarterLoginReady(player) {
+  if (StarterLobbyBasicLogin == null) {
+    return true
+  }
+
+  try {
+    return StarterLobbyBasicLogin.isLoggedIn(player)
+  } catch (error) {
+    if (!starterLoginCheckWarningLogged) {
+      starterLoginCheckWarningLogged = true
+      console.warn(
+        '[Fantasy Pack] Basic Login status check failed; delaying starter routing.'
+      )
+      console.warn(error)
+    }
+    return false
+  }
+}
+
 function routeStarterPlayer(player, server) {
+  if (!isStarterLoginReady(player)) {
+    return
+  }
+
   if (hasChosenStarterRole(player)) {
     if (isInStarterLobby(player)) {
       clearStarterPadHold(player)
@@ -939,6 +971,14 @@ PlayerEvents.tick((event) => {
     if (starterLobbyModePlayers[playerTarget(player)]) {
       restoreOverworldGameMode(player, server)
     }
+    if (!hasChosenStarterRole(player) && isStarterLoginReady(player)) {
+      sendToStarterLobby(player, server)
+    }
+    return
+  }
+
+  if (!isStarterLoginReady(player)) {
+    clearStarterPadHold(player)
     return
   }
 
