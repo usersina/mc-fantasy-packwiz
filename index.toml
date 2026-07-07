@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/alexsmobs-common.toml"
+hash = "ecbcc34b2aefe92783466c45ba0cd262f9e5bf223632aa26dd44145bd8e03259"
+
+[[files]]
 file = "config/defaultoptions/keybindings.txt"
 hash = "a188fa8430127f7bcadab682d81a357fe793e0fa505268cfdce2e9fbe2f24a6b"
 
@@ -86,7 +90,7 @@ hash = "9fefa9b2803667e2d968a11decf15a6dba408449442d8ce875e4a6a1550927ba"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/entity_type/entity_blood.json"
-hash = "af3d05d89e3f445b868d739bea294aa8d3ba3de85b44ddbcaa82d3bcf4117d56"
+hash = "bc59bf8c68b40f688886751b1053ebe4383cd1344c60c8db09ec2d28e095f20b"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"
@@ -243,15 +247,15 @@ hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
 
 [[files]]
 file = "kubejs/client_scripts/main.js"
-hash = "653d12d3860e4d85e10c9d1baf25ca9fb40cd25017ecc54b75d24f7763c314e0"
+hash = "c71c0d297835cad7eeb54f91b823a21058d7cb58bda44b154051c1e770be4163"
 
 [[files]]
 file = "kubejs/server_scripts/faction_representatives.js"
-hash = "63a0c0d7b8789eb46dab90adbf23bfd4ee69d1707eddb8aa6dfdc1f59879f1bb"
+hash = "0893e53815293867a9dd7414d9cc314ff53b823ea7c9c2c15189785e478b8883"
 
 [[files]]
 file = "kubejs/server_scripts/starter_roles.js"
-hash = "1abaab1ae2f646d01303cb7c2880c0fe7a898bf0896e6acbb8b9afd180275527"
+hash = "e8889aa81260324b563a7be7e6f85ec82bf355e207e0a9aab533e00f7017d108"
 
 [[files]]
 file = "kubejs/startup_scripts/main.js"

@@ -195,6 +195,252 @@
     "aether:aerwhale": {
       "blood": 20
     },
+    "alexsmobs:alligator_snapping_turtle": {
+      "blood": 7
+    },
+    "alexsmobs:anaconda": {
+      "blood": 15
+    },
+    "alexsmobs:anteater": {
+      "blood": 7
+    },
+    "alexsmobs:bald_eagle": {
+      "blood": 3
+    },
+    "alexsmobs:banana_slug": {
+      "blood": 0
+    },
+    "alexsmobs:bison": {
+      "blood": 15
+    },
+    "alexsmobs:blobfish": {
+      "blood": 2
+    },
+    "alexsmobs:blue_jay": {
+      "blood": 0
+    },
+    "alexsmobs:bunfungus": {
+      "blood": 3
+    },
+    "alexsmobs:cachalot_whale": {
+      "blood": 40
+    },
+    "alexsmobs:caiman": {
+      "blood": 12
+    },
+    "alexsmobs:capuchin_monkey": {
+      "blood": 4
+    },
+    "alexsmobs:catfish": {
+      "blood": 5
+    },
+    "alexsmobs:cockroach": {
+      "blood": 0
+    },
+    "alexsmobs:comb_jelly": {
+      "blood": 0
+    },
+    "alexsmobs:cosmaw": {
+      "blood": 20
+    },
+    "alexsmobs:cosmic_cod": {
+      "blood": 2
+    },
+    "alexsmobs:crimson_mosquito": {
+      "blood": 2
+    },
+    "alexsmobs:crocodile": {
+      "blood": 20
+    },
+    "alexsmobs:crow": {
+      "blood": 2
+    },
+    "alexsmobs:devils_hole_pupfish": {
+      "blood": 0
+    },
+    "alexsmobs:dropbear": {
+      "blood": 10
+    },
+    "alexsmobs:elephant": {
+      "blood": 35
+    },
+    "alexsmobs:emu": {
+      "blood": 5
+    },
+    "alexsmobs:endergrade": {
+      "blood": 5
+    },
+    "alexsmobs:enderiophage": {
+      "blood": 2
+    },
+    "alexsmobs:farseer": {
+      "blood": 20
+    },
+    "alexsmobs:flutter": {
+      "blood": 0
+    },
+    "alexsmobs:fly": {
+      "blood": 0
+    },
+    "alexsmobs:flying_fish": {
+      "blood": 2
+    },
+    "alexsmobs:frilled_shark": {
+      "blood": 10
+    },
+    "alexsmobs:froststalker": {
+      "blood": 15
+    },
+    "alexsmobs:gazelle": {
+      "blood": 7
+    },
+    "alexsmobs:gelada_monkey": {
+      "blood": 5
+    },
+    "alexsmobs:giant_squid": {
+      "blood": 25
+    },
+    "alexsmobs:gorilla": {
+      "blood": 20
+    },
+    "alexsmobs:grizzly_bear": {
+      "blood": 15
+    },
+    "alexsmobs:hammerhead_shark": {
+      "blood": 15
+    },
+    "alexsmobs:hummingbird": {
+      "blood": 0
+    },
+    "alexsmobs:jerboa": {
+      "blood": 2
+    },
+    "alexsmobs:kangaroo": {
+      "blood": 10
+    },
+    "alexsmobs:komodo_dragon": {
+      "blood": 10
+    },
+    "alexsmobs:laviathan": {
+      "blood": 35
+    },
+    "alexsmobs:leafcutter_ant": {
+      "blood": 0
+    },
+    "alexsmobs:lobster": {
+      "blood": 2
+    },
+    "alexsmobs:maned_wolf": {
+      "blood": 5
+    },
+    "alexsmobs:mantis_shrimp": {
+      "blood": 2
+    },
+    "alexsmobs:mimic_octopus": {
+      "blood": 5
+    },
+    "alexsmobs:moose": {
+      "blood": 15
+    },
+    "alexsmobs:mudskipper": {
+      "blood": 0
+    },
+    "alexsmobs:mungus": {
+      "blood": 5
+    },
+    "alexsmobs:murmur": {
+      "blood": 15
+    },
+    "alexsmobs:orca": {
+      "blood": 30
+    },
+    "alexsmobs:platypus": {
+      "blood": 3
+    },
+    "alexsmobs:potoo": {
+      "blood": 2
+    },
+    "alexsmobs:raccoon": {
+      "blood": 3
+    },
+    "alexsmobs:rain_frog": {
+      "blood": 0
+    },
+    "alexsmobs:rattlesnake": {
+      "blood": 3
+    },
+    "alexsmobs:rhinoceros": {
+      "blood": 25
+    },
+    "alexsmobs:roadrunner": {
+      "blood": 2
+    },
+    "alexsmobs:sea_bear": {
+      "blood": 20
+    },
+    "alexsmobs:seagull": {
+      "blood": 2
+    },
+    "alexsmobs:seal": {
+      "blood": 7
+    },
+    "alexsmobs:shoebill": {
+      "blood": 3
+    },
+    "alexsmobs:skreecher": {
+      "blood": 15
+    },
+    "alexsmobs:skunk": {
+      "blood": 3
+    },
+    "alexsmobs:snow_leopard": {
+      "blood": 10
+    },
+    "alexsmobs:straddler": {
+      "blood": 15
+    },
+    "alexsmobs:stradpole": {
+      "blood": 2
+    },
+    "alexsmobs:sugar_glider": {
+      "blood": 2
+    },
+    "alexsmobs:sunbird": {
+      "blood": 10
+    },
+    "alexsmobs:tarantula_hawk": {
+      "blood": 2
+    },
+    "alexsmobs:tasmanian_devil": {
+      "blood": 4
+    },
+    "alexsmobs:terrapin": {
+      "blood": 5
+    },
+    "alexsmobs:tiger": {
+      "blood": 15
+    },
+    "alexsmobs:toucan": {
+      "blood": 2
+    },
+    "alexsmobs:triops": {
+      "blood": 0
+    },
+    "alexsmobs:tusklin": {
+      "blood": 20
+    },
+    "alexsmobs:underminer": {
+      "blood": 15
+    },
+    "alexsmobs:void_worm": {
+      "blood": 50
+    },
+    "alexsmobs:warped_mosco": {
+      "blood": 20
+    },
+    "alexsmobs:warped_toad": {
+      "blood": 5
+    },
     "aquaculture:arrau_turtle": {
       "blood": 5
     },
