@@ -985,11 +985,6 @@ hash = "27721caca5a03b743bf25888e1d984142948069dace31453f103f94f7f24d2ce"
 metafile = true
 
 [[files]]
-file = "mods/revive-me.pw.toml"
-hash = "d39f31e308e665307a51e426e16c431efc88592289863747ab9da99db5b5c465"
-metafile = true
-
-[[files]]
 file = "mods/rhino.pw.toml"
 hash = "e55ca32b338a0e0540f4fec5170675d860566255ae0f45692a00cb4ebf2eb535"
 metafile = true
