@@ -255,7 +255,7 @@ hash = "0893e53815293867a9dd7414d9cc314ff53b823ea7c9c2c15189785e478b8883"
 
 [[files]]
 file = "kubejs/server_scripts/starter_roles.js"
-hash = "e8889aa81260324b563a7be7e6f85ec82bf355e207e0a9aab533e00f7017d108"
+hash = "90b5a935c8c077d814a43be6a089cb7c609b2a1dd9bd53802712ab68eed54f35"
 
 [[files]]
 file = "kubejs/startup_scripts/main.js"

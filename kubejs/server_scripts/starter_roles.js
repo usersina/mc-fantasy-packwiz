@@ -755,21 +755,13 @@ function setStarterLobbyGameMode(player, server) {
   if (starterLobbyModePlayers[target]) return
 
   starterLobbyModePlayers[target] = true
-  runStarterCommand(
-    server,
-    `execute as ${target} unless entity @s[gamemode=creative] unless entity @s[gamemode=spectator] run gamemode adventure @s`,
-    'set starter lobby adventure mode'
-  )
+  runStarterCommand(server, `gamemode adventure ${target}`, 'set starter lobby adventure mode')
 }
 
 function restoreOverworldGameMode(player, server) {
   const target = playerTarget(player)
   delete starterLobbyModePlayers[target]
-  runStarterCommand(
-    server,
-    `execute as ${target} if entity @s[gamemode=adventure] run gamemode survival @s`,
-    'restore survival mode'
-  )
+  runStarterCommand(server, `gamemode survival ${target}`, 'restore survival mode')
 }
 
 function sendToStarterLobby(player, server) {
