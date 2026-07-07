@@ -190,6 +190,10 @@ file = "config/sneakpush-common.toml"
 hash = "fb627518c3711c871be6aee5419dc2661320c4c5412206459658e13d3b2f3511"
 
 [[files]]
+file = "config/vampirism-client.toml"
+hash = "2dcfb4512d41be46c970be16433c3a1ebe41af93c5d54d9e0246de3b561f7770"
+
+[[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
 hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
 
@@ -211,7 +215,7 @@ hash = "2dce8914ff3efc090b392e8336a60f6e3cce1ec8e97f758447334386d8d6f388"
 
 [[files]]
 file = "defaultconfigs/vampirism-server.toml"
-hash = "91acad24efd2ff810049be33431d7191a33acefaa113d841f7518f405ec44cf6"
+hash = "465f3daa05831b835d6e29bc9f54d3873bc64ef4563d00df9298feb214c71c4c"
 
 [[files]]
 file = "defaultconfigs/waystones-common.toml"
@@ -252,6 +256,16 @@ metafile = true
 [[files]]
 file = "mods/aether.pw.toml"
 hash = "cc3f6e6e8f1838d16e47cce9241e32176279673efb1438ff4451ccffa9579b14"
+metafile = true
+
+[[files]]
+file = "mods/alexs-caves-(unofficial-port).pw.toml"
+hash = "e3ea6c1ae49cfdb68008b673687d013a8b75d53fc2cc66ba2d1677dc51b929b0"
+metafile = true
+
+[[files]]
+file = "mods/alexs-mobs(1.21.1).pw.toml"
+hash = "fb53bc6c0d543cd7e88a5faba1e3235dca6c556e0cf8c1a534bbdec581c3c2f8"
 metafile = true
 
 [[files]]
@@ -349,8 +363,23 @@ hash = "a8eb83f5f009bd865dbb42b4988d8be78595190fc295d47ebf5402cece95ceca"
 metafile = true
 
 [[files]]
+file = "mods/better-clouds.pw.toml"
+hash = "d0fa701686c9533ae60cf096c3b4192bef2ab93e33c1f3ee885c2eb50715afc6"
+metafile = true
+
+[[files]]
 file = "mods/better-modlist.pw.toml"
 hash = "b841dbd591775e39c4c04361bf56cefabbb954dc709608f0ea812a7e4db00530"
+metafile = true
+
+[[files]]
+file = "mods/better-than-mending.pw.toml"
+hash = "12b0b7e34d631a5f2b6a544bb0a549d48201671feac81a9ce0766db091adbd6e"
+metafile = true
+
+[[files]]
+file = "mods/better-tridents.pw.toml"
+hash = "f8a38924e14f920e143eca6225cb2a8151d7c2978bf36869fe3290e1302bd6a4"
 metafile = true
 
 [[files]]
@@ -433,6 +462,11 @@ hash = "68cc51e721e993a8b7a2cbaf45369933b22b07a9c82327ab14757ee10684aa81"
 metafile = true
 
 [[files]]
+file = "mods/citadel-(1.21.1-port).pw.toml"
+hash = "80d7af83c244304212b8d95ab2e3525b3eeae02f31e41474c2cdec2f4d370723"
+metafile = true
+
+[[files]]
 file = "mods/cloth-config.pw.toml"
 hash = "75181b55e0407d1fca1e2f346c6501f919f5109545990ddfb66db9cd1b771f8a"
 metafile = true
@@ -490,6 +524,11 @@ metafile = true
 [[files]]
 file = "mods/curios.pw.toml"
 hash = "36debf7653e95a855b4fedacc19027cf2e01960fc0b6d55ef2ffbffbcb455690"
+metafile = true
+
+[[files]]
+file = "mods/dark-doppelganger.pw.toml"
+hash = "07e28f0e32a1922a181060c37a65f7290c5b5a02116c1678340e4140ab90750e"
 metafile = true
 
 [[files]]
@@ -589,7 +628,7 @@ metafile = true
 
 [[files]]
 file = "mods/geckolib.pw.toml"
-hash = "58234f79e5a0cf300e6cfbb068a16d154c6489ff6d784c1a5cfe6ea9755625f4"
+hash = "5a26489b734991c0511abfe43bf9143c935b8483d854a78fecd2e84993fb09cc"
 metafile = true
 
 [[files]]
@@ -615,6 +654,11 @@ metafile = true
 [[files]]
 file = "mods/healing-campfire.pw.toml"
 hash = "89787085b795067d933d636211006b9a99e69a00f660eaa5a5debf93cfc9b612"
+metafile = true
+
+[[files]]
+file = "mods/hexalia.pw.toml"
+hash = "5354be01c8bbcd16fd6d24ff249b1dcaeeda86aa6e89e28af186c306e2f8c9fc"
 metafile = true
 
 [[files]]
@@ -703,6 +747,16 @@ hash = "0b6a884fe3969a05a24aec1569d1ffcb2ec8fb8b268f749416a9c0677e3cac46"
 metafile = true
 
 [[files]]
+file = "mods/just-enough-professions-jep.pw.toml"
+hash = "bffd4067f92d5d8ed7a8a3acfdae213e9523ba5a518196cbd0a98d05e95fe6b6"
+metafile = true
+
+[[files]]
+file = "mods/just-enough-resources-jer.pw.toml"
+hash = "7905c08f37d8ebde50a5330a7dd10029de6259b0cb8adbde1170d93ea20218a7"
+metafile = true
+
+[[files]]
 file = "mods/justenoughbreeding.pw.toml"
 hash = "dfaea557f268beaec21999ba1277f4077bfbea0645f90274c32f2e166f6d1444"
 metafile = true
@@ -768,6 +822,11 @@ hash = "983d6ab9d9a7d40031f1789f5ae018cccb889832ac8ce741df60a9d8e5f42817"
 metafile = true
 
 [[files]]
+file = "mods/monsters-in-the-closet.pw.toml"
+hash = "6afce08213c05a33240e980e2b92032a6a3ad25d2a54ff8e9f56b5f00d46d45d"
+metafile = true
+
+[[files]]
 file = "mods/moonlight.pw.toml"
 hash = "018eeaa17d34a6010be48e946ad26973e24e125cfdf6f87cbd79f0cd7d5901ce"
 metafile = true
@@ -795,6 +854,11 @@ metafile = true
 [[files]]
 file = "mods/mowzies-mobs.pw.toml"
 hash = "02aa4dcb8fa24cffcd2182c66683c2a476a95abf53002373f953a49737a587e3"
+metafile = true
+
+[[files]]
+file = "mods/my-nethers-delight.pw.toml"
+hash = "e9eaae2c64556b565ebb7db05200392697f2472058cfebd82db3635c3512d918"
 metafile = true
 
 [[files]]
@@ -898,6 +962,11 @@ hash = "e55ca32b338a0e0540f4fec5170675d860566255ae0f45692a00cb4ebf2eb535"
 metafile = true
 
 [[files]]
+file = "mods/scorched.pw.toml"
+hash = "ee9f80e2894babfd878d8188697b99fc13a3c5220d5b630cec1f32c8e3aadd36"
+metafile = true
+
+[[files]]
 file = "mods/searchables.pw.toml"
 hash = "ce9ddada6ffd55a512149cc474c6a453281a997a5fdf1b7b4a2cc73f875e704a"
 metafile = true
@@ -968,6 +1037,11 @@ hash = "593fa7b30ab016aa45be07bd6bef3a9f160ed0f24689850d60bf84995d69b843"
 metafile = true
 
 [[files]]
+file = "mods/sparsestructures.pw.toml"
+hash = "8c71edbbb86e5d3e1c14ea6629382539d44e75b1061725df9c3abceb889a8591"
+metafile = true
+
+[[files]]
 file = "mods/spartan-shields-unofficial.pw.toml"
 hash = "d097a7919d8e3b1eb1fabf1fb66e379d0b51f9d8fa01a96ad6ddd048066e3ebd"
 metafile = true
@@ -993,8 +1067,28 @@ hash = "1d7ed103bf6c4995bc1eff18fc1aac0114cfbc0f58a0810d3984d57eecb644d6"
 metafile = true
 
 [[files]]
+file = "mods/structory-towers.pw.toml"
+hash = "05cac280ad411f249f192ab5cfa3ae3df7356c0293863e7660ad7db4497381e1"
+metafile = true
+
+[[files]]
+file = "mods/structory.pw.toml"
+hash = "e2ab46d275b5037d19198f4cff55fe3e4672c3f5c8ca60e91d3b3e57ab13810c"
+metafile = true
+
+[[files]]
+file = "mods/supplementaries-squared.pw.toml"
+hash = "46280c9487633e3bd1dd7bb24ccc4076058b2602d7dc2906f96509527346cf24"
+metafile = true
+
+[[files]]
 file = "mods/supplementaries.pw.toml"
 hash = "039a71011f455c24c9ccc7b38ef6f01561992a77a5d0c21f75dc01f70b42b1e2"
+metafile = true
+
+[[files]]
+file = "mods/terralith.pw.toml"
+hash = "da7ee99189ad35aac094919fe33cac647d98533b23c228f10d4811f08989e2b8"
 metafile = true
 
 [[files]]
@@ -1005,6 +1099,16 @@ metafile = true
 [[files]]
 file = "mods/towns-and-towers.pw.toml"
 hash = "5518dd2f6a5d88e4affb9df628604737893025206d7149579e4c24f909b130a3"
+metafile = true
+
+[[files]]
+file = "mods/underwater-village.pw.toml"
+hash = "183b6911813421c59df2de77ae810a0c188ea8d6b5d4e465ff19859b900ebbf5"
+metafile = true
+
+[[files]]
+file = "mods/universal-bone-meal.pw.toml"
+hash = "36451170388b68c89ba69f5f2bd4fd283d1811a3d9b5e31281a424f9ca6f61a7"
 metafile = true
 
 [[files]]
@@ -1102,6 +1206,16 @@ metafile = true
 [[files]]
 file = "mods/xp-tome.pw.toml"
 hash = "e328921ddfa33f9679adc80d8ae6d11cd407b95f5a8e73cb3e2f78708f6888d1"
+metafile = true
+
+[[files]]
+file = "mods/yacl.pw.toml"
+hash = "539f362e9e192cf3b2813e0dfdfc51a5e6814129c6e82a9733842529beea6242"
+metafile = true
+
+[[files]]
+file = "mods/yeetus-experimentus.pw.toml"
+hash = "5e25dccab496945a5f19bb82383e0ebf98452ffc14cd25c7e0259cc44312281a"
 metafile = true
 
 [[files]]

@@ -57,7 +57,7 @@ allSkillsAtMaxLevel = false
 #Disable vampire fangs being usable to infect yourself
 disableFangInfection = false
 #Prevent vampire mobs from infecting players when attacking
-disableMobBiteInfection = false
+disableMobBiteInfection = true
 #Prevent villagers in hunter controlled villages to turn into guard villager when the village is attacked
 disableVillageGuards = true
 

@@ -1,0 +1,13 @@
+name = "Dark Doppelganger - Irons Spells And Spellbooks Addon"
+filename = "darkdoppelganger-3.3.0-1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/2vzHL83v/versions/OBpb6JlI/darkdoppelganger-3.3.0-1.21.1.jar"
+hash-format = "sha512"
+hash = "5544fad3afe8472a8147e1a384046db95c143252900da137a3f862d08b972433582d33a8fc14de5213d2be9b79cfe1a8f71a638f39dd7f42d750ba75de38d164"
+
+[update]
+[update.modrinth]
+mod-id = "2vzHL83v"
+version = "OBpb6JlI"
