@@ -309,7 +309,8 @@ Check or apply available updates for Packwiz-managed mods:
 
 ```bash
 task pack:check-updates
-task pack:update-all
+task pack:update -- sodium
+task pack:update
 ```
 
 Then inspect before committing config/control decisions:
@@ -570,7 +571,7 @@ Task names use `domain:action`:
 | `task server:backup`      | back up the active world and runtime config                |
 | `task pack:refresh`       | refresh Packwiz index files                                |
 | `task pack:check-updates` | check mod updates without changing the repo                |
-| `task pack:update-all`    | update every Packwiz-managed file, then refresh            |
+| `task pack:update`        | update one or every Packwiz-managed file, then refresh     |
 | `task pack:site`          | build `dist/site/stable` for GitHub Pages                  |
 | `task pack:smoke-update`  | verify client updater installs successfully                |
 | `task pack:export-client` | export the Prism/Freesm `.mrpack` bootstrap                |

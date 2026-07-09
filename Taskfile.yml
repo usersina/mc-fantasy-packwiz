@@ -46,6 +46,7 @@ tasks:
         output_file="$tmpdir/packwiz-update-output.txt"
         warnings_file="$tmpdir/packwiz-update-warnings.txt"
         updates_file="$tmpdir/packwiz-update-updates.txt"
+        updates_with_slugs_file="$tmpdir/packwiz-update-updates-with-slugs.txt"
 
         echo "==> Checking Packwiz updates without changing the repo"
         rsync -a \
@@ -74,8 +75,25 @@ tasks:
           in_updates && NF { print }
         ' "$output_file" | sort -f >"$updates_file"
 
+        while IFS= read -r update_line; do
+          old_file="${update_line% -> *}"
+          old_file="${old_file##*: }"
+          slug="$(
+            for meta_file in mods/*.pw.toml; do
+              if grep -Fqx "filename = \"$old_file\"" "$meta_file"; then
+                basename "$meta_file" .pw.toml
+                break
+              fi
+            done
+          )"
+          if [ -z "$slug" ]; then
+            slug="unknown"
+          fi
+          printf "%s\t%s\n" "$slug" "$update_line"
+        done <"$updates_file" | sort -f >"$updates_with_slugs_file"
+
         warning_count="$(wc -l <"$warnings_file" | tr -d ' ')"
-        update_count="$(wc -l <"$updates_file" | tr -d ' ')"
+        update_count="$(wc -l <"$updates_with_slugs_file" | tr -d ' ')"
 
         if [ "$warning_count" -gt 0 ]; then
           echo
@@ -86,11 +104,11 @@ tasks:
         echo
         if [ "$update_count" -gt 0 ]; then
           echo "==> Available updates ($update_count)"
-          sed 's/^/  - /' "$updates_file"
+          awk -F '\t' '{ printf "  - %-36s %s\n", $1, $2 }' "$updates_with_slugs_file"
           echo
           echo "Next options:"
-          echo "  task pack:update-all"
-          echo "  packwiz update \"Exact Mod Name\" && task pack:refresh"
+          echo "  task pack:update -- <slug>"
+          echo "  task pack:update"
         else
           echo "==> No Packwiz updates found"
         fi
@@ -103,12 +121,27 @@ tasks:
         fi
         exit "$status"
 
-  pack:update-all:
-    desc: Update all Packwiz-managed files, then refresh the index
+  pack:update:
+    desc: Update one or all Packwiz-managed files, then refresh
     dir: '{{.REPO_DIR}}'
     cmds:
-      - packwiz update --all
-      - packwiz refresh
+      - |
+        update_args="{{.CLI_ARGS}}"
+        if [ -z "$update_args" ] && [ -n "{{.MOD}}" ]; then
+          update_args="{{.MOD}}"
+        fi
+
+        if [ -z "$update_args" ]; then
+          echo "==> Updating all Packwiz-managed files"
+          packwiz update --all
+        else
+          echo "==> Updating selected Packwiz-managed files: $update_args"
+          for mod in $update_args; do
+            packwiz update "$mod"
+          done
+        fi
+
+        packwiz refresh
 
   pack:site:
     desc: Build GitHub Pages stable Packwiz site
