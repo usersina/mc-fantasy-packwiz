@@ -36,6 +36,80 @@ tasks:
     cmds:
       - packwiz refresh
 
+  pack:check-updates:
+    desc: Check Packwiz-managed files for updates without changing the repo
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - |
+        tmpdir="$(mktemp -d)"
+        trap 'rm -rf "$tmpdir"' EXIT
+        output_file="$tmpdir/packwiz-update-output.txt"
+        warnings_file="$tmpdir/packwiz-update-warnings.txt"
+        updates_file="$tmpdir/packwiz-update-updates.txt"
+
+        echo "==> Checking Packwiz updates without changing the repo"
+        rsync -a \
+          --exclude .git \
+          --exclude dist \
+          --exclude .task \
+          --exclude .direnv \
+          ./ "$tmpdir/pack/"
+        cd "$tmpdir/pack"
+
+        set +e
+        printf 'n\n' | packwiz update --all >"$output_file" 2>&1
+        status="$?"
+        set -e
+
+        if [ "$status" -ne 0 ] && ! grep -q "Cancelled!" "$output_file"; then
+          cat "$output_file"
+          exit "$status"
+        fi
+
+        awk '/^Warning: / { sub(/^Warning: /, ""); print }' "$output_file" >"$warnings_file"
+        awk '
+          /^Updates found:/ { in_updates = 1; next }
+          /^Do you want to update\?/ { in_updates = 0; next }
+          /^Cancelled!$/ { next }
+          in_updates && NF { print }
+        ' "$output_file" | sort -f >"$updates_file"
+
+        warning_count="$(wc -l <"$warnings_file" | tr -d ' ')"
+        update_count="$(wc -l <"$updates_file" | tr -d ' ')"
+
+        if [ "$warning_count" -gt 0 ]; then
+          echo
+          echo "==> Version-selection warnings ($warning_count)"
+          sed 's/^/  - /' "$warnings_file"
+        fi
+
+        echo
+        if [ "$update_count" -gt 0 ]; then
+          echo "==> Available updates ($update_count)"
+          sed 's/^/  - /' "$updates_file"
+          echo
+          echo "Next options:"
+          echo "  task pack:update-all"
+          echo "  packwiz update \"Exact Mod Name\" && task pack:refresh"
+        else
+          echo "==> No Packwiz updates found"
+        fi
+
+        echo
+        echo "==> Repo unchanged; check ran in a temporary copy"
+
+        if [ "$status" -eq 0 ] || grep -q "Cancelled!" "$output_file"; then
+          exit 0
+        fi
+        exit "$status"
+
+  pack:update-all:
+    desc: Update all Packwiz-managed files, then refresh the index
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - packwiz update --all
+      - packwiz refresh
+
   pack:site:
     desc: Build GitHub Pages stable Packwiz site
     dir: '{{.REPO_DIR}}'
