@@ -14,7 +14,7 @@ hash = "ef580b811fb717262f2c3bc35118df76c6304fc02f3935fa884d488dff22ce25"
 
 [[files]]
 file = "config/lithium.properties"
-hash = "27c5cd07b19acca041107277303621d6578f33604d4c46b9eb6936915d8b1746"
+hash = "2af9be8aa78b53c9131aa66dd032603cbdaeb90e3f873f216a7b3d92ef71dbfa"
 
 [[files]]
 file = "config/moreculling.toml"
@@ -255,7 +255,7 @@ hash = "0893e53815293867a9dd7414d9cc314ff53b823ea7c9c2c15189785e478b8883"
 
 [[files]]
 file = "kubejs/server_scripts/starter_roles.js"
-hash = "e276c998e147dd7b3afe9678f2a6dccefe0210412f8644a6a61643d3b141186d"
+hash = "8b58b972848ceea7a4c3d45947b81ffab31ebedd219991ae97d638e4a31c3021"
 
 [[files]]
 file = "kubejs/startup_scripts/main.js"

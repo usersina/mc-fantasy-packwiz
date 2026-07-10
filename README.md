@@ -242,7 +242,9 @@ Current custom behavior:
 
 ```mermaid
 flowchart TD
-  login["New player logs in"] --> chosen{"starter role saved?"}
+  login["New player joins dedicated server"] --> dedicated{"dedicated server?"}
+  dedicated -- "no" --> normal["normal singleplayer flow"]
+  dedicated -- "yes" --> chosen{"starter role saved?"}
   chosen -- "no" --> lobby["teleport to fantasy_pack:starter_lobby"]
   lobby --> pad["stand on a colored role pad"]
   pad --> grant["grant faction/gear kit"]
@@ -259,7 +261,9 @@ The starter lobby is a separate Packwiz-managed Paxi datapack dimension:
 config/paxi/datapacks/fantasy_starter_lobby/
 ```
 
-New players are sent there until they choose exactly one role. After a role is saved in player persistent data, the lobby is one-way: if that player somehow logs in or respawns there, KubeJS sends them back to overworld spawn.
+The lobby is enabled only on dedicated servers. Local singleplayer worlds keep the datapack files installed, but KubeJS does not route players through the lobby there. If an older singleplayer test save already has a player inside `fantasy_pack:starter_lobby`, KubeJS sends them back to overworld spawn and then stays out of the way.
+
+New dedicated-server players are sent there until they choose exactly one role. After a role is saved in player persistent data, the lobby is one-way: if that player somehow logs in or respawns there, KubeJS sends them back to overworld spawn.
 
 Players choose by standing on the colored floor pad directly in front of a signed visual role block for about two seconds. The visual role blocks are only anchors; the pads are the trigger so the flow does not conflict with Carry On's sneak-right-click behavior. The lobby is protected by adventure mode and KubeJS block break/place cancellation.
 

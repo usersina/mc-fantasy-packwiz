@@ -22,6 +22,8 @@ try {
 let starterLobbyBuilt = false
 let starterLobbyMissingLevelLogged = false
 let starterLoginCheckWarningLogged = false
+let starterDedicatedCheckWarningLogged = false
+let starterEnvironmentCheckWarningLogged = false
 const starterPadHolds = {}
 const starterLobbyModePlayers = {}
 const starterRoleChoicesInProgress = {}
@@ -434,9 +436,50 @@ function resetStarterLobbyState() {
   starterLobbyBuilt = false
   starterLobbyMissingLevelLogged = false
   starterLoginCheckWarningLogged = false
+  starterDedicatedCheckWarningLogged = false
+  starterEnvironmentCheckWarningLogged = false
   clearStarterObject(starterPadHolds)
   clearStarterObject(starterLobbyModePlayers)
   clearStarterObject(starterRoleChoicesInProgress)
+}
+
+function starterClientEnvironment() {
+  try {
+    return Platform.isClientEnvironment()
+  } catch (error) {
+    if (!starterEnvironmentCheckWarningLogged) {
+      starterEnvironmentCheckWarningLogged = true
+      console.warn(
+        '[Fantasy Pack] Could not detect client/dedicated environment; disabling starter lobby.'
+      )
+      console.warn(error)
+    }
+    return true
+  }
+}
+
+function starterLobbyEnabled(server) {
+  if (server == null) return false
+  if (starterClientEnvironment()) return false
+
+  try {
+    return server.isDedicatedServer()
+  } catch (error) {
+    if (!starterDedicatedCheckWarningLogged) {
+      starterDedicatedCheckWarningLogged = true
+      console.warn(
+        '[Fantasy Pack] Could not detect dedicated-server mode; keeping starter lobby enabled.'
+      )
+      console.warn(error)
+    }
+    return true
+  }
+}
+
+function starterEventServer(event) {
+  if (event.server != null) return event.server
+  if (event.player != null) return event.player.server
+  return null
 }
 
 function runStarterCommand(server, command, description) {
@@ -834,6 +877,14 @@ function isStarterLoginReady(player) {
 }
 
 function routeStarterPlayer(player, server) {
+  if (!starterLobbyEnabled(server)) {
+    if (isInStarterLobby(player)) {
+      clearStarterPadHold(player)
+      sendToOverworldSpawn(player, server)
+    }
+    return
+  }
+
   if (!isStarterLoginReady(player)) {
     return
   }
@@ -966,6 +1017,14 @@ PlayerEvents.tick((event) => {
   const player = event.player
   const server = event.server || player.server
 
+  if (!starterLobbyEnabled(server)) {
+    clearStarterPadHold(player)
+    if (isInStarterLobby(player)) {
+      sendToOverworldSpawn(player, server)
+    }
+    return
+  }
+
   if (!isInStarterLobby(player)) {
     clearStarterPadHold(player)
     if (starterLobbyModePlayers[playerTarget(player)]) {
@@ -995,6 +1054,7 @@ PlayerEvents.tick((event) => {
 })
 
 BlockEvents.rightClicked((event) => {
+  if (!starterLobbyEnabled(starterEventServer(event))) return
   if (String(event.block.dimension) != STARTER_LOBBY_DIMENSION) return
 
   event.cancel()
@@ -1007,18 +1067,21 @@ BlockEvents.rightClicked((event) => {
 })
 
 BlockEvents.leftClicked((event) => {
+  if (!starterLobbyEnabled(starterEventServer(event))) return
   if (isStarterLobbyBlock(event.block)) {
     event.cancel()
   }
 })
 
 BlockEvents.broken((event) => {
+  if (!starterLobbyEnabled(starterEventServer(event))) return
   if (isStarterLobbyBlock(event.block)) {
     event.cancel()
   }
 })
 
 BlockEvents.placed((event) => {
+  if (!starterLobbyEnabled(starterEventServer(event))) return
   if (isStarterLobbyBlock(event.block)) {
     event.cancel()
   }

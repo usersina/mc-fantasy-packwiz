@@ -200,6 +200,8 @@ Singleplayer includes:
 - global Paxi datapacks
 - default keybindings
 
+The starter role lobby is server-only. Local singleplayer worlds start normally and do not force the origin room.
+
 ## Troubleshooting
 
 Minecraft does not start:
@@ -354,12 +356,12 @@ Policy:
 
 Packwiz installs and exports the pack, but it does not fully explain a mod's default keybindings or generated configs. Use the repo inspector.
 
-| Inspection | Command |
-| --- | --- |
+| Inspection                  | Command                                                                          |
+| --------------------------- | -------------------------------------------------------------------------------- |
 | Materialized Packwiz client | `task pack:inspect INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml` |
-| Existing launcher instance | `task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft` |
-| Generated dedicated server | `task pack:inspect INSPECT=server-generated` |
-| One mod metadata file | `task pack:inspect INSPECT=mod MOD=mods/example-mod.pw.toml` |
+| Existing launcher instance  | `task pack:inspect INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft` |
+| Generated dedicated server  | `task pack:inspect INSPECT=server-generated`                                     |
+| One mod metadata file       | `task pack:inspect INSPECT=mod MOD=mods/example-mod.pw.toml`                     |
 
 Reports are written to:
 
