@@ -1,0 +1,136 @@
+{
+  "values": [
+    "#minecraft:skeletons",
+    "#minecraft:zombies",
+    "minecraft:wither",
+    "minecraft:phantom",
+    {
+      "id": "#vampirism:vampire",
+      "required": false
+    },
+    {
+      "id": "#vampiresdelight:unholy_spirits",
+      "required": false
+    },
+    {
+      "id": "vampirism:vampire_minion",
+      "required": false
+    },
+    {
+      "id": "vampirism:dracula",
+      "required": false
+    },
+    {
+      "id": "cataclysm:maledictus",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ancient_remnant",
+      "required": false
+    },
+    {
+      "id": "cataclysm:modern_remnant",
+      "required": false
+    },
+    {
+      "id": "cataclysm:koboleton",
+      "required": false
+    },
+    {
+      "id": "cataclysm:kobolediator",
+      "required": false
+    },
+    {
+      "id": "cataclysm:wadjet",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ignited_berserker",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ignited_revenant",
+      "required": false
+    },
+    {
+      "id": "cataclysm:draugr",
+      "required": false
+    },
+    {
+      "id": "cataclysm:royal_draugr",
+      "required": false
+    },
+    {
+      "id": "cataclysm:aptrgangr",
+      "required": false
+    },
+    {
+      "id": "cataclysm:elite_draugr",
+      "required": false
+    },
+    {
+      "id": "cataclysm:drowned_host",
+      "required": false
+    },
+    {
+      "id": "alexscaves:luxtructosaurus",
+      "required": false
+    },
+    {
+      "id": "alexscaves:watcher",
+      "required": false
+    },
+    {
+      "id": "alexscaves:forsaken",
+      "required": false
+    },
+    {
+      "id": "alexscaves:caniac",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:phantom_ancient_remnant",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_koboleton",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_kobolediator",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_ignited_berserker",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_ignited_revenant",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_draugr",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_royal_draugr",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_aptrgangr",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_elite_draugr",
+      "required": false
+    },
+    {
+      "id": "irons_spellbooks:necromancer",
+      "required": false
+    },
+    {
+      "id": "irons_spellbooks:dead_king",
+      "required": false
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 # Never commit downloaded mods/archives
 *.jar
 !mods/automaticsorter-1.3.1-1.21.1-neoforge.jar
+!mods/butchery-blood-grate-fix-1.0.0+mc1.21.1-neoforge.jar
 !mods/carry-on-player-sync-fix-1.0.0+mc1.21.1-neoforge.jar
 !mods/vampire-cauldron-blood-fix-1.0.0+mc1.21.1-neoforge.jar
 !mods/vampire-invisibility-aggro-fix-1.0.0+mc1.21.1-neoforge.jar

@@ -5,9 +5,9 @@ license="MIT"
 [[mods]]
 modId="vampire_cauldron_blood_fix"
 version="1.0.0"
-displayName="Vampire Cauldron Blood Fix"
+displayName="Undead Cauldron Blood Fix"
 authors="usersina"
-description='''Prevents Vampirism vampire players from bleeding into Iron's Spells blood cauldrons.'''
+description='''Prevents vampires and other undead creatures from bleeding into Iron's Spells blood cauldrons.'''
 
 [[dependencies.vampire_cauldron_blood_fix]]
 modId="minecraft"

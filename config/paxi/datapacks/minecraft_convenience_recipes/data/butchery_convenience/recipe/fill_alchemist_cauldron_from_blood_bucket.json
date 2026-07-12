@@ -1,0 +1,16 @@
+{
+  "type": "irons_spellbooks:alchemist_cauldron_fill",
+  "fluid": {
+    "amount": 1000,
+    "id": "butchery:blood"
+  },
+  "input": {
+    "item": "butchery:blood_bucket"
+  },
+  "mustFitAll": true,
+  "result": {
+    "count": 1,
+    "id": "minecraft:bucket"
+  },
+  "sound": "minecraft:item.bucket.empty"
+}

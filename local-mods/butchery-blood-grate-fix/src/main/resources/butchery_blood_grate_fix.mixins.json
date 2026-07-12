@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "io.github.usersina.mcfantasy.butcherybloodgratefix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BloodGrateChangeMixin",
+    "BloodGrateWithdrawMixin",
+    "SmallFillBloodGrateMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

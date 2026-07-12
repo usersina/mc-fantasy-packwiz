@@ -41,6 +41,18 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/benssharks/loot
 hash = "96bae82eea14eb904810caea22d1d7c1598f7410786e4ae3032e744f9bb3862b"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_blood_bucket.json"
+hash = "fcdb9426e3d414c57b763344ac54dedbc6148d2c190d6ede871360003197eafb"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_blood_bottle_from_alchemist_cauldron.json"
+hash = "1450bb0da53308d0f120b32f2495b7a43265ef189472f7b1ed066d3f29aff521"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/entity_type/cauldron_undead.json"
+hash = "da6fb572f27f8b75d417ffce036cb9c4a264365dcaadfaceadde60a231a79990"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/guardvillagers/loot_table/entities/guard.json"
 hash = "3898e1af0425db87a147b0c7b3023b343497a41ee9e8b437479afc56acb1cbcf"
 
@@ -312,6 +324,21 @@ hash = "f3d66527c4f82b44d9409f643332bc15f91b85f033afe147e3d8b421c0ea6d1e"
 metafile = true
 
 [[files]]
+file = "mods/apothic-attributes.pw.toml"
+hash = "2a9d96fe08eef2570e703eace50ec5d5d35323bf6d480404c0fc490d7a75e3b4"
+metafile = true
+
+[[files]]
+file = "mods/apothic-enchanting.pw.toml"
+hash = "c3d636a31314ef7faef5822f9f7d90f2026a319626415b51b6af78b9ecec24f1"
+metafile = true
+
+[[files]]
+file = "mods/apothic-spawners.pw.toml"
+hash = "81ab12ddbd603d88eb7b5c3b8e257d551b3612bcffe82a21439f8fe8a887fbd7"
+metafile = true
+
+[[files]]
 file = "mods/appleskin.pw.toml"
 hash = "ede3f1a1a9966ecba76bd49ecc839ca1a726fcfa5686d7aad64a46854984db99"
 metafile = true
@@ -439,6 +466,10 @@ metafile = true
 file = "mods/bow-infinity-fix.pw.toml"
 hash = "b8837889b804dacb837572fcf16032cd531b5814e1817ed0d6a35523cc9c5d86"
 metafile = true
+
+[[files]]
+file = "mods/butchery-blood-grate-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "a063a1158dd41ce404a6c1d99788b8edded8275664becbf3029893e6494f42ed"
 
 [[files]]
 file = "mods/butchery.pw.toml"
@@ -940,6 +971,11 @@ hash = "215d597764d5c5db89e700fc3495b72dc0a7f09c975de19dc8c580bde3469a5e"
 metafile = true
 
 [[files]]
+file = "mods/placebo.pw.toml"
+hash = "2ccda92b6f9f4dae045fe05e57d3a1a4965b81e983006f17d75e83b464c240c9"
+metafile = true
+
+[[files]]
 file = "mods/playeranimator.pw.toml"
 hash = "93284ca7f2f23f0bb76d42b797cabf2aea1914ee9825bec82bf6ffe4c60dda0d"
 metafile = true
@@ -1146,7 +1182,7 @@ metafile = true
 
 [[files]]
 file = "mods/vampire-cauldron-blood-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "d3818b573f94f783279186579ccc197c1906f2eabbc99e54754e4b95f9dcb299"
+hash = "0ed6f4c59f1f28c4a4c2c0644f489eee0c4f77e1ec42be27d8ea2761a9ea99b5"
 
 [[files]]
 file = "mods/vampire-invisibility-aggro-fix-1.0.0+mc1.21.1-neoforge.jar"

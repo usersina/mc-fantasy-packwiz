@@ -4,18 +4,17 @@ Tiny NeoForge compatibility mod for this pack.
 
 ## Why
 
-Iron's Spells fills `irons_spellbooks:blood_cauldron` when a living entity takes its cauldron damage. Vampirism vampire players should not be able to farm their own blood into that normal Iron's Spells blood cauldron.
+Iron's Spells fills `irons_spellbooks:blood_cauldron` when a living entity takes its cauldron damage. Vampires and other undead creatures should not produce usable blood.
 
 ## Behavior
 
-When a Vampirism vampire player would take Iron's Spells cauldron damage, this patch cancels that specific damage event.
+When an undead living entity would take Iron's Spells cauldron damage, this patch cancels that specific damage event. It checks Minecraft's native inverted-healing predicate and the pack-owned `fantasy_pack:cauldron_undead` entity-type tag. Vampirism players are checked separately because every player shares the same `minecraft:player` entity type.
 
 That means:
 
-- vampire players do not bleed into Iron's Spells blood cauldrons
-- vampire players do not take that specific cauldron damage
-- non-vampire players still behave normally
-- mobs still behave normally
+- vampire players and tagged undead mobs do not bleed into Iron's Spells blood cauldrons
+- protected undead do not take that specific cauldron damage
+- living non-vampire players and non-undead mobs still behave normally
 - other Iron's Spells damage types are unchanged
 
 ## Build
