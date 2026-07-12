@@ -1107,6 +1107,10 @@ hash = "3f552bbdc42f07fd7d5695ced1d27d774af63cff5460be45817939e5f8e4f9de"
 metafile = true
 
 [[files]]
+file = "mods/shield_surf-1.0.3-1.21.1-neoforge.jar"
+hash = "dd15918c872494ee7bb962daf8c2788b7d8419db4b729a36c797ba1288ab1253"
+
+[[files]]
 file = "mods/show-dimension-in-name.pw.toml"
 hash = "0a6b37e52fde57628f217b8179a040ec5f36eb6823bd2572e15f220da668577d"
 metafile = true
