@@ -1585,7 +1585,7 @@ cmd_inspect_server_generated() {
   (
     sleep "${SERVER_GENERATED_STOP_AFTER:-90}"
     printf "stop\n"
-  ) | timeout "${SERVER_GENERATED_TIMEOUT:-240}" env SERVER_DIR="$server_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" "$REPO_DIR/scripts/server.sh" start
+  ) | timeout "${SERVER_GENERATED_TIMEOUT:-600}" env SERVER_DIR="$server_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" "$REPO_DIR/scripts/server.sh" start
   start_status="$?"
   set -e
 
