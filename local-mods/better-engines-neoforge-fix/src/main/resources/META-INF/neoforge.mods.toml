@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="better_engines_neoforge_fix"
+version="1.0.0"
+displayName="Better Engines NeoForge Fix"
+authors="usersina"
+description='''Registers Better Engines fuel items on NeoForge.'''
+
+[[dependencies.better_engines_neoforge_fix]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.better_engines_neoforge_fix]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.better_engines_neoforge_fix]]
+modId="more_engines"
+type="required"
+versionRange="[3.0.2,3.1)"
+ordering="BEFORE"
+side="BOTH"

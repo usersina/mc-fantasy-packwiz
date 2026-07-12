@@ -1,7 +1,5 @@
 package io.github.usersina.mcfantasy.carryonplayersyncfix.mixin;
 
-import javax.swing.text.html.HTML.Tag;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import tschipp.carryon.common.carry.CarryOnData;
 import tschipp.carryon.common.scripting.CarryOnScript;
 

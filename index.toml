@@ -41,12 +41,48 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/benssharks/loot
 hash = "96bae82eea14eb904810caea22d1d7c1598f7410786e4ae3032e744f9bb3862b"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/botanypots/crop/blazing_bamboo.json"
+hash = "4b31688ab4ffe791d17b37338172c860ed85b411a06dcdaf29ba9e78ccddc2eb"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/botanypots/soil/blazing_stone.json"
+hash = "d656dd71bc5b3bdc644feb1e0aed741cef495bf0466dff79902600685ec8b9b1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/farmersdelight/cutting/blazing_bamboo_bundle.json"
+hash = "9fffffe3b108d4e7ac3ff7892517e9ddefda3af9db90cdf50071a8e2ab1b012c"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/farmersdelight/cutting/blazing_bamboo_door.json"
+hash = "7806978569062d6ba6af17ec6e4fd9c5c3c96cc31864e9023f3783216c316f3e"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/farmersdelight/cutting/blazing_bamboo_hanging_sign.json"
+hash = "9fe3d5dcb00ea8b7bcf5f3bfbbf960b045f20d0e2202ef1ec363d7e8da160cdc"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/farmersdelight/cutting/blazing_bamboo_sign.json"
+hash = "9e720765e3042a33fc6e5c447df4038045d91eaa20a723e7a64a76ba07b58a0b"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/farmersdelight/cutting/blazing_bamboo_trapdoor.json"
+hash = "5f98dfd6680e5e8bf2ad3e06536ee5424272c71ef4bcadca932043c765112741"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_blood_bucket.json"
 hash = "fcdb9426e3d414c57b763344ac54dedbc6148d2c190d6ede871360003197eafb"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_blood_bottle_from_alchemist_cauldron.json"
 hash = "1450bb0da53308d0f120b32f2495b7a43265ef189472f7b1ed066d3f29aff521"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/endersdelight/recipe/chorus_pie_slice.json"
+hash = "d4fefcb9e3defdde3ab41846115a052a9610c9f1c728f9f08fc77ef2c64fa1b9"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/coffee_berries_red_dye.json"
+hash = "d9bf547b3bad1bddcaa062ff676aece5832bbc234d7fdf2061d553260fbfea02"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/entity_type/cauldron_undead.json"
@@ -97,8 +133,24 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_
 hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/recipe/red_dye.json"
+hash = "057278f748eb392d51cb31b33b96725c711bdbadd2ac3438bd0235a1a8d4bf69"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/entity_type/undead.json"
+hash = "d05724449df528d643ac6049cd6b5c003b87f8602c9539626531e15606493961"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/terralith/function/toast.mcfunction"
 hash = "9fefa9b2803667e2d968a11decf15a6dba408449442d8ce875e4a6a1550927ba"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampiresdelight/recipe/brewing/daisy_tea.json"
+hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampiresdelight/recipe/brewing/orchid_tea.json"
+hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/entity_type/entity_blood.json"
@@ -423,6 +475,10 @@ hash = "2b979f2b49c4026956b7541a255f46373e4decf4b5613f842b8af876c1942aab"
 metafile = true
 
 [[files]]
+file = "mods/better-engines-neoforge-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "33868e7395bf54313715f4f669fd56c52dee6fd5b9eb2c26372cd9e09397ce6f"
+
+[[files]]
 file = "mods/better-modlist.pw.toml"
 hash = "b841dbd591775e39c4c04361bf56cefabbb954dc709608f0ea812a7e4db00530"
 metafile = true
@@ -468,6 +524,11 @@ hash = "b8837889b804dacb837572fcf16032cd531b5814e1817ed0d6a35523cc9c5d86"
 metafile = true
 
 [[files]]
+file = "mods/brewin-and-chewin.pw.toml"
+hash = "22d9510588b081cf9905f6549d24bc11012aa8d9c7d38a8619ab9db5ccb7b9a8"
+metafile = true
+
+[[files]]
 file = "mods/butchery-blood-grate-fix-1.0.0+mc1.21.1-neoforge.jar"
 hash = "a063a1158dd41ce404a6c1d99788b8edded8275664becbf3029893e6494f42ed"
 
@@ -488,7 +549,7 @@ metafile = true
 
 [[files]]
 file = "mods/carry-on-player-sync-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "bc1d466d0431dc97ff0f11c7e607dfcceb70ea42bf9ee867ceee6ee340d6bf0a"
+hash = "e471c6e53dd7082885385d1c1ec7cac663a373d2acfaa7fffe23e29e229e2286"
 
 [[files]]
 file = "mods/carryon-patched.pw.toml"
