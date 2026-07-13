@@ -337,7 +337,7 @@ metafile = true
 
 [[files]]
 file = "mods/aces-spell-utils.pw.toml"
-hash = "0fa8a6109ec993b9dd07c2ebdc6e98a9464a07248105c185261b1001699003ce"
+hash = "44c474b17bdd2dc94b418591ac2f66fd27f228241882b67c21342cc053b19845"
 metafile = true
 
 [[files]]
@@ -958,7 +958,7 @@ metafile = true
 
 [[files]]
 file = "mods/moonlight.pw.toml"
-hash = "018eeaa17d34a6010be48e946ad26973e24e125cfdf6f87cbd79f0cd7d5901ce"
+hash = "812506fd59ed30da2b8223f349efb6f550647e07cffcb627dd86590629ebaad4"
 metafile = true
 
 [[files]]
@@ -1122,12 +1122,12 @@ metafile = true
 
 [[files]]
 file = "mods/skills.pw.toml"
-hash = "c17ec242bcbb6cd66cfd1a5fa8005b19134bc26b0040b94bfaabab02f19db80b"
+hash = "32ce332851504fd903aa75e9d6a4a5f25f9bbd7655950e6ef2ae40b347ac0a12"
 metafile = true
 
 [[files]]
 file = "mods/skinrestorer.pw.toml"
-hash = "c3f5faaeb11e79441d4dc7b082299af9024d4cb32a06e2fb9b58de7d577cf0c5"
+hash = "b86f2920690794546b2bbd0b700add840b2be0fe2469a64e2d80a8776c68e41e"
 metafile = true
 
 [[files]]
@@ -1197,7 +1197,7 @@ metafile = true
 
 [[files]]
 file = "mods/stormies-spiders.pw.toml"
-hash = "1d7ed103bf6c4995bc1eff18fc1aac0114cfbc0f58a0810d3984d57eecb644d6"
+hash = "ffe8a3f46ce9828792bb6da001c0bd3f7ad1eb4151ef8cce89701daf83bf7fdb"
 metafile = true
 
 [[files]]
@@ -1217,7 +1217,7 @@ metafile = true
 
 [[files]]
 file = "mods/supplementaries.pw.toml"
-hash = "039a71011f455c24c9ccc7b38ef6f01561992a77a5d0c21f75dc01f70b42b1e2"
+hash = "28e1627fe3182a3b4b2cbb2a31fcbf2269192dea1d4b576f78702d8fcc199d6f"
 metafile = true
 
 [[files]]
