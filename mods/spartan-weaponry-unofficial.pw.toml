@@ -1,13 +1,13 @@
 name = "Spartan Weaponry Unofficial"
-filename = "spartan_weaponry_unofficial-1.2.1-1.21.1.jar"
+filename = "spartan_weaponry_unofficial-1.2.2-1.21.1.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/w8V2GMiK/versions/LED3KcKP/spartan_weaponry_unofficial-1.2.1-1.21.1.jar"
+url = "https://cdn.modrinth.com/data/w8V2GMiK/versions/I7KW38kf/spartan_weaponry_unofficial-1.2.2-1.21.1.jar"
 hash-format = "sha512"
-hash = "7bc5f7f63e113f509dd84ce20df0c406f3f2ba88807bf9f7421783f60f92b934e52b25c14c4e17c066ae370c2aa99f586590f8570171cd1c8a110002ac1863a8"
+hash = "624f8286b00a4f4d25903122480f69d9d15e5350b2a2babeb4a3ed978fba7bc935dc49fe553cc1301a17276a17116a15592eeaa092d2c4bbd1e6fae1fe26c6b7"
 
 [update]
 [update.modrinth]
 mod-id = "w8V2GMiK"
-version = "LED3KcKP"
+version = "I7KW38kf"

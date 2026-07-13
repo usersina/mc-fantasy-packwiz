@@ -1,13 +1,13 @@
 name = "Preloading Tricks"
-filename = "preloading-tricks-3.7.2.jar"
+filename = "preloading-tricks-3.7.3.jar"
 side = "client"
 
 [download]
-url = "https://cdn.modrinth.com/data/FFeAJNCx/versions/Lo9lUwc3/preloading-tricks-3.7.2.jar"
+url = "https://cdn.modrinth.com/data/FFeAJNCx/versions/2XxN0NBv/preloading-tricks-3.7.3.jar"
 hash-format = "sha512"
-hash = "95c2f1213667ada657da40d72cb344ad38bd6625472d3fde6d10e1868e750e7cef732d973b1addeaa503d18fe436b53b9b26f85b777886693db811033ed5abe5"
+hash = "2c6b82a25de6cb12085f3194eab5dfae3f1a3a89fa1b29d66974de1b4fc756de628c86bfcf6b5193104cdc2d1ca993a77491b0169fdca944bcb19d275539b08d"
 
 [update]
 [update.modrinth]
 mod-id = "FFeAJNCx"
-version = "Lo9lUwc3"
+version = "2XxN0NBv"

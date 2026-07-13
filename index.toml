@@ -416,7 +416,7 @@ hash = "1dad8d5b874f6b9dc5be195238c183960e31d522584b0466f5f7fe6075942905"
 
 [[files]]
 file = "mods/azurelib.pw.toml"
-hash = "f72e0f818b9788376820b02ed9d4f1b4d63453dcd65de2fc24743b03dd133664"
+hash = "f9bc54d3fb8c268bec1f0e5d75818c825a1f83eaf26a6f90061cd4097a81c96f"
 metafile = true
 
 [[files]]
@@ -431,7 +431,7 @@ metafile = true
 
 [[files]]
 file = "mods/balm.pw.toml"
-hash = "7d5659cf745f95eedf7a907184698eb950d5ef067d011da028b72a578642fe90"
+hash = "b594dc1097013a09140b354465c2a85e5082f72a8b5c166ed8e7ebd60e30d187"
 metafile = true
 
 [[files]]
@@ -471,7 +471,7 @@ metafile = true
 
 [[files]]
 file = "mods/better-clouds.pw.toml"
-hash = "2b979f2b49c4026956b7541a255f46373e4decf4b5613f842b8af876c1942aab"
+hash = "d444cf98e8139d9863bf791c3ea90f6036f6184b877a53c79f53e3ce52fe5b7d"
 metafile = true
 
 [[files]]
@@ -943,7 +943,7 @@ metafile = true
 
 [[files]]
 file = "mods/lootr.pw.toml"
-hash = "988377a2fb2346223a83b6545ec52f5b22ebd0e26b63d141427ad389bedfe4f0"
+hash = "141584f0498f59dc445d163b82e148b339a7948927e476c6183b40da19c05799"
 metafile = true
 
 [[files]]
@@ -1048,7 +1048,7 @@ metafile = true
 
 [[files]]
 file = "mods/preloading-tricks.pw.toml"
-hash = "f547ee4507a6752a7944d945ee45ed4cd70b4b5dcf3a7e007b29deaf9dfe38cd"
+hash = "e51f600a2e24c8119164655ecbe0c4693604711ad9e64094565288bdb0645f3f"
 metafile = true
 
 [[files]]
@@ -1078,7 +1078,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "ae1a00455be0edadffea3e272b43a7d8080a501fc4fe0e3e8ff91bb81903d6e6"
+hash = "0f465bf38b13f887dbde506c859c9b5439ee9151ae5f3a98078b9f6c3a2c89ad"
 metafile = true
 
 [[files]]
@@ -1147,7 +1147,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "d379a43459f5d24be47e6518a804dcf303b344b9e8a870d30213efd392c7a05e"
+hash = "c490445e40a84c9e19bd3d3a7c8e8b9709b8cea0346a307eb7fb8a32a72a9504"
 metafile = true
 
 [[files]]
@@ -1162,7 +1162,7 @@ metafile = true
 
 [[files]]
 file = "mods/sophisticated-core.pw.toml"
-hash = "636339949e3f45c2620128d5414071d91e4bdf98deb51f2bd657df157ec76d8b"
+hash = "e6ff1f816faa83ba09dd6bbc3ad72d46c77379211ff0de16b882fc758e32bbab"
 metafile = true
 
 [[files]]
@@ -1182,7 +1182,7 @@ metafile = true
 
 [[files]]
 file = "mods/spartan-weaponry-unofficial.pw.toml"
-hash = "820e6d40c78ba56e7ff38471ca157aa9133339597fd783280e8b1523538e816d"
+hash = "a9ead6b4f9f1648ffea85b731cedb0d43bc9b9ff766854fe73294d8c778ea8de"
 metafile = true
 
 [[files]]
@@ -1304,7 +1304,7 @@ metafile = true
 
 [[files]]
 file = "mods/waystones.pw.toml"
-hash = "9626d91cc40b2c3d55981a995f74a94b28a00eba641949965c79e4dd00295bfc"
+hash = "2282d643312815eac969dc7df9904d80f190a476ec487ec7d501adda9ba60a39"
 metafile = true
 
 [[files]]
