@@ -1,10 +1,16 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "vampirism:human_heart"
-  },
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vampirism:human_heart"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
   "result": {
     "id": "irons_spellbooks:blood_vial",
-    "count": 5
+    "count": 1
   }
 }

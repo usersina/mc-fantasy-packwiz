@@ -69,12 +69,20 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/r
 hash = "5f98dfd6680e5e8bf2ad3e06536ee5424272c71ef4bcadca932043c765112741"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_blood_bottle.json"
+hash = "ed3a9bed47a4ec560413a93e11c8d5476e5e305fc767ff2301e16d2981ea0251"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_blood_bucket.json"
 hash = "fcdb9426e3d414c57b763344ac54dedbc6148d2c190d6ede871360003197eafb"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_blood_bottle_from_alchemist_cauldron.json"
-hash = "1450bb0da53308d0f120b32f2495b7a43265ef189472f7b1ed066d3f29aff521"
+hash = "f95c90b8edd722f4f10889f902e087402e70055a2bdd822b85b0ddb053e82941"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_blood_bucket_from_alchemist_cauldron.json"
+hash = "27f0dcdf594a75aa06e58a9ebbaf5ec3111522f97212c6ebff8adcf17eb4977f"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/endersdelight/recipe/chorus_pie_slice.json"
@@ -209,36 +217,24 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampi
 hash = "e643a4f2a0030112ce35c1603e8590ce4840b305f4d35154d147eb00b98cffd0"
 
 [[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_3_from_vial.json"
-hash = "27c569ea9411240ec4a9e82a0f98a79ead6d6c35b04bbb171bc6eb38b1b1641d"
-
-[[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_6_from_vials.json"
-hash = "adb52062622eecc11b00ef4ba09a8488cfbe98f527343fef4228b7ee59ae9169"
-
-[[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_bottle_9_from_vials.json"
-hash = "12e9ddacf399fa6a14121316fd2d943ac1d97526ca33d1ac2019011dc0c23b2d"
-
-[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vial_from_human_heart.json"
-hash = "9dc7dc535d6698708ca50bf4f3f6db3320bd6e9084ff15779278f47448ab377a"
-
-[[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vials_from_blood_bottle.json"
-hash = "73421e0ca59870537188af779f2acda4f10ecca54240de8598a56d4ed0f69b4a"
+hash = "0b7b2e508726db8ec42990587223095fa240a99f5d90303e05b7c697cc867f15"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/butchery_heart_from_human_heart.json"
 hash = "c0c8c9e3bc02aba780e89e93bf524a749f2258d5c6f2c3fbb26e3eaf7dcc9a22"
 
 [[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/human_heart_from_butchery_heart.json"
-hash = "41829be8da74d847c94cd82fe1d61403815f6ef75411b849504676c89a4c97ec"
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_alchemist_cauldron_from_vampirism_blood_bottle.json"
+hash = "7f8f301fea4a26a666b5752c2c9ff1d53b4c06f61b0ad7ebad541be23e48b024"
 
 [[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/pure_blood_4_from_human_heart.json"
-hash = "1da7cded4d93715438ef6c03bee067327a7b192167f8385c66f9e7cd119387f9"
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_vampirism_blood_bottle_from_alchemist_cauldron.json"
+hash = "da33de1ef63a7fda5be7c4bf501f696e2957a0e55261a69d1016c0b1c0a51bd1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/vampirism_blood_bottle_3_from_butchery_bottle.json"
+hash = "49e3c5460359e633e13fc95195245285e48cf21327d92188c7748b67db8a5df1"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/blasting_gravel_to_flint.json"

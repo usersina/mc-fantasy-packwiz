@@ -3,10 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "irons_spellbooks:blood_vial"
-    },
-    {
-      "item": "minecraft:glass_bottle"
+      "item": "butchery:bottle_of_blood"
     }
   ],
   "result": {

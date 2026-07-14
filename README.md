@@ -294,6 +294,35 @@ The same feature also overrides Vampirism task JSONs in the Paxi datapack so vil
 1 village capture = 5 diamonds
 ```
 
+### Blood Economy
+
+The pack keeps four blood systems deliberately separate:
+
+| System | Purpose | Pack rule |
+| --- | --- | --- |
+| Ordinary blood | vampire food and blood magic | transferable only at exact fluid amounts |
+| Impure blood | Blood Grate output in Vampirism mode | must pass through a Blood Sieve at Vampirism's 75% rate |
+| Vampire Blood Bottles | infection, hunter progression, Bloodlines, and Ageing | never craftable from ordinary blood |
+| Pure Blood | Vampirism leveling and high-tier addon progression | remains Vampire Baron, structure-loot, and trade progression |
+
+```mermaid
+flowchart LR
+  grate["Butchery Blood Grate"] -->|"1000 mB bucket"| cauldron["Alchemist Cauldron"]
+  cauldron <-->|"300 mB"| butcherBottle["Butchery Bottle of Blood"]
+  butcherBottle -->|"exact conversion"| vamp3["Vampirism Blood Bottle: 3 units"]
+  ironVial["Iron's Blood Vial: 250 mB"] <--> ironFluid["Iron's blood in Alchemist Cauldron"]
+  ironFluid <-->|"900 mB"| vamp9["Full Vampirism Blood Bottle: 9 units"]
+  impure["Vampirism Impure Blood"] -->|"Blood Sieve: 75%"| pureFluid["Vampirism ordinary blood"]
+```
+
+Balance rules:
+
+- A human heart plus a glass bottle yields one Iron's Blood Vial. It does not yield five vials.
+- A Vampirism human heart can be downgraded to a generic Butchery heart for food recipes. Generic animal hearts cannot become human hearts.
+- Iron's Blood Vials and full Vampirism Blood Bottles convert through the Alchemist Cauldron so `250 mB` and `900 mB` quantities are preserved, including leftovers.
+- The pack does not provide a shortcut recipe for top-tier Pure Blood.
+- Vampire's Delight foods, Bloodlines abilities, and Vampiric Ageing retain their upstream recipes and rank tradeoffs.
+
 After changing `kubejs/` scripts or Paxi datapack files, refresh Packwiz:
 
 ```bash

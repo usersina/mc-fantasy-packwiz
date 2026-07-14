@@ -1,0 +1,23 @@
+{
+  "type": "irons_spellbooks:alchemist_cauldron_fill",
+  "fluid": {
+    "amount": 900,
+    "id": "irons_spellbooks:blood"
+  },
+  "input": {
+    "type": "neoforge:components",
+    "items": "vampirism:blood_bottle",
+    "components": {
+      "vampirism:bottle_blood": {
+        "blood": 9
+      }
+    },
+    "strict": false
+  },
+  "mustFitAll": true,
+  "result": {
+    "count": 1,
+    "id": "minecraft:glass_bottle"
+  },
+  "sound": "minecraft:item.bottle.empty"
+}
