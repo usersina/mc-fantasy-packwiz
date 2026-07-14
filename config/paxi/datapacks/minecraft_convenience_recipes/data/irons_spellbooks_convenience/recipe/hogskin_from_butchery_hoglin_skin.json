@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "butchery:hoglin_skin"
+    }
+  ],
+  "result": {
+    "id": "irons_spellbooks:hogskin",
+    "count": 1
+  }
+}

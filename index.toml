@@ -137,6 +137,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbook
 hash = "d8c1c7595572ed73bd561abd29a4210fd5fff76f55d676d44a2aa36e6362e1d8"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/hogskin_from_butchery_hoglin_skin.json"
+hash = "9da70dcbf56b242101edbc1580d2de2954504bdee048ec6996dc7074d8b5131a"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/illusioner.json"
 hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
 
@@ -231,6 +235,14 @@ hash = "7f8f301fea4a26a666b5752c2c9ff1d53b4c06f61b0ad7ebad541be23e48b024"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_vampirism_blood_bottle_from_alchemist_cauldron.json"
 hash = "da33de1ef63a7fda5be7c4bf501f696e2957a0e55261a69d1016c0b1c0a51bd1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/human_heart_from_butchery_heart.json"
+hash = "41829be8da74d847c94cd82fe1d61403815f6ef75411b849504676c89a4c97ec"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/pure_blood_4_from_human_heart.json"
+hash = "1da7cded4d93715438ef6c03bee067327a7b192167f8385c66f9e7cd119387f9"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/vampirism_blood_bottle_3_from_butchery_bottle.json"
