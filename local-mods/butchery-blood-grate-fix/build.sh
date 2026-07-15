@@ -2,7 +2,7 @@
 set -euo pipefail
 
 MOD_ID="butchery-blood-grate-fix"
-MOD_VERSION="1.0.0"
+MOD_VERSION="1.1.0"
 MC_VERSION="1.21.1"
 LOADER="neoforge"
 
@@ -60,7 +60,7 @@ find "$MOD_DIR/src/main/java" -type f -name '*.java' > "$BUILD_DIR/sources.txt"
 cp -R "$MOD_DIR/src/main/resources/." "$CLASSES_DIR/"
 
 mkdir -p "$(dirname "$OUTPUT_JAR")"
-rm -f "$OUTPUT_JAR"
+rm -f "$REPO_DIR/mods/${MOD_ID}-"*"+mc${MC_VERSION}-${LOADER}.jar"
 (
   cd "$CLASSES_DIR"
   mapfile -t jar_files < <(find . -type f | sort | sed 's#^\./##')

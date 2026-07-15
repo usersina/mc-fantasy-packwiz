@@ -70,19 +70,35 @@ hash = "5f98dfd6680e5e8bf2ad3e06536ee5424272c71ef4bcadca932043c765112741"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_blood_bottle.json"
-hash = "ed3a9bed47a4ec560413a93e11c8d5476e5e305fc767ff2301e16d2981ea0251"
+hash = "e1b099704d8c2d356f0e44b37dc0fd95fc52fdb812117bedb8aec5cdbad67e86"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_blood_bucket.json"
 hash = "fcdb9426e3d414c57b763344ac54dedbc6148d2c190d6ede871360003197eafb"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_infected_blood_bottle.json"
+hash = "a5498c7954087f997c715a7abf4c62ee9123f51cda48f4ba80789218059edaf7"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_alchemist_cauldron_from_infected_blood_bucket.json"
+hash = "fea571146929dfbde35769dfa6fc0459411bee64396518a19dd6586f7cb3dbc7"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_blood_bottle_from_alchemist_cauldron.json"
-hash = "f95c90b8edd722f4f10889f902e087402e70055a2bdd822b85b0ddb053e82941"
+hash = "1450bb0da53308d0f120b32f2495b7a43265ef189472f7b1ed066d3f29aff521"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_blood_bucket_from_alchemist_cauldron.json"
 hash = "27f0dcdf594a75aa06e58a9ebbaf5ec3111522f97212c6ebff8adcf17eb4977f"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_infected_blood_bottle_from_alchemist_cauldron.json"
+hash = "42178c55ac50fc5515c885e78a746791f0a1eca100962b7943ca95ac43064ff2"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_infected_blood_bucket_from_alchemist_cauldron.json"
+hash = "704780a11507f3cc6d9afeb197f2146c27e697deb6bbef5c586c862a8b38154e"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/endersdelight/recipe/chorus_pie_slice.json"
@@ -167,6 +183,10 @@ hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/entity_type/entity_blood.json"
 hash = "bc59bf8c68b40f688886751b1053ebe4383cd1344c60c8db09ec2d28e095f20b"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/fluid/fluid_blood_conversion.json"
+hash = "7ba3c3f70aea65cba592975318df5b0aa578e164081efb87a3da2dc16ba4959e"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"
@@ -537,8 +557,8 @@ hash = "22d9510588b081cf9905f6549d24bc11012aa8d9c7d38a8619ab9db5ccb7b9a8"
 metafile = true
 
 [[files]]
-file = "mods/butchery-blood-grate-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "a063a1158dd41ce404a6c1d99788b8edded8275664becbf3029893e6494f42ed"
+file = "mods/butchery-blood-grate-fix-1.1.0+mc1.21.1-neoforge.jar"
+hash = "20f0fe9f1b2079815562d46bc0bdf374c0d2418ab2fcdb84cb7327a4077fd6bf"
 
 [[files]]
 file = "mods/butchery.pw.toml"

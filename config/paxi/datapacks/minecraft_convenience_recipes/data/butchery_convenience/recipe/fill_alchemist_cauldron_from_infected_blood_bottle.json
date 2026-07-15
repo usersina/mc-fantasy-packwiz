@@ -2,10 +2,10 @@
   "type": "irons_spellbooks:alchemist_cauldron_fill",
   "fluid": {
     "amount": 333,
-    "id": "butchery:blood"
+    "id": "butchery:infected_blood"
   },
   "input": {
-    "item": "butchery:bottle_of_blood"
+    "item": "butchery:bottle_of_infected_blood"
   },
   "mustFitAll": true,
   "result": {
