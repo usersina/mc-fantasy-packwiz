@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "butchery:blood",
+    "butchery:flowing_blood",
+    "irons_spellbooks:blood",
+    "vampirism:blood"
+  ]
+}

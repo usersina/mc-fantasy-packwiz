@@ -296,30 +296,26 @@ The same feature also overrides Vampirism task JSONs in the Paxi datapack so vil
 
 ### Blood Economy
 
-The pack keeps blood collection, purification, and progression explicit:
+The pack treats ordinary blood by quality rather than by mod namespace:
 
 | System | Purpose | Pack rule |
 | --- | --- | --- |
-| Butchery blood | healthy carcass blood, food, and blood sausage | bottles hold Butchery's native `333 mB`; conversion to three Vampirism blood units loses `33 mB` |
-| Vampirism blood | finished vampire food | stored in Blood Containers, Blood Bottles, or Blood Buckets |
-| Vampirism impure blood | Blood Grate output in Vampirism mode | must pass through a Blood Sieve at `75%`; bucket extraction always stays impure |
-| Butchery infected blood | blood from undead carcasses | passes through a Blood Sieve at `50%` |
+| Clean blood | Butchery blood, Iron's blood, and Vampirism blood | interchangeable at `1:1` in the Alchemist Cauldron; foreign clean blood passes through a Blood Sieve at `100%` into Vampirism storage |
+| Impure blood | Butchery infected blood and Vampirism impure blood | cannot satisfy clean-blood brewing; both pass through a Blood Sieve at `75%` |
 | Vampire Blood Bottles | infection, hunter progression, Bloodlines, and Ageing | never craftable from ordinary blood |
 | Pure Blood | Vampirism leveling and high-tier addon progression | remains Vampire Baron, structure-loot, and trade progression |
 
 ```mermaid
 flowchart LR
   healthy["Healthy carcass"] --> butcherGrate["Blood Grate: Butchery mode"]
-  butcherGrate --> butcherBlood["Butchery blood"]
-  butcherBlood <-->|"1000 mB bucket / 333 mB bottle"| cauldron["Alchemist Cauldron"]
-  cauldron <--> butcherBottle["Butchery Bottle of Blood"]
-  butcherBottle -->|"333 mB to 3 units; 33 mB loss"| vamp3["Vampirism Blood Bottle"]
+  butcherGrate --> clean["Clean blood"]
+  iron["Iron's Blood Vials"] --> clean
+  clean <-->|"native buckets and bottles"| cauldron["Alchemist Cauldron"]
+  cauldron --> vellum["Clean-blood brewing"]
+  clean -->|"Blood Sieve: 100%"| vampBlood["Vampirism blood storage"]
   vampMode["Blood Grate: Vampirism mode"] --> impure["Vampirism impure blood"]
-  impure -->|"Blood Sieve: 75%"| vampBlood["Vampirism blood"]
-  undead["Undead carcass"] --> infected["Butchery infected blood"]
-  infected -->|"Blood Sieve: 50%"| vampBlood
-  ironVial["Iron's Blood Vial: 250 mB"] <--> ironFluid["Iron's blood in Alchemist Cauldron"]
-  ironFluid <-->|"900 mB"| vamp9["Full Vampirism Blood Bottle: 9 units"]
+  undead["Undead carcass"] --> impure
+  impure -->|"Blood Sieve: 75%"| vampBlood
 ```
 
 For direct filtration, place the fluid handler above the sieve and a Vampirism Blood Container below it:
@@ -330,16 +326,21 @@ Blood Sieve
 Vampirism Blood Container
 ```
 
-Use the Alchemist Cauldron recipes to return extracted Butchery blood or infected blood buckets and bottles to fluid form. Finished `vampirism:blood` can be bottled, bucketed, drunk from a Blood Container, or used below a Blood Pedestal.
+The Alchemist Cauldron preserves the first clean blood fluid placed in it. Additional clean blood merges into that fluid at `1:1`, and the stored identity determines which native bottle or bucket can be extracted. Any clean blood can satisfy an Iron's Spells clean-blood brew such as Bloody Vellum.
+
+Use the Blood Sieve when moving Butchery or Iron's blood into Vampirism-specific storage. The sieve outputs `vampirism:blood`, which can then be bottled, bucketed, drunk from a Blood Container, or used below a Blood Pedestal.
 
 Balance rules:
 
-- A human heart plus a glass bottle yields one Iron's Blood Vial. It does not yield five vials.
-- A Vampirism human heart can be downgraded to a generic Butchery heart for food recipes. Generic animal hearts cannot become human hearts.
-- Butchery bottles use the mod's native `333 mB` extraction amount. Their conversion to three Vampirism blood units is intentionally about 90% efficient.
-- Butchery infected blood is intentionally less efficient than ordinary impure blood: one bucket yields `500 mB` of finished Vampirism blood.
-- Iron's Blood Vials and full Vampirism Blood Bottles convert through the Alchemist Cauldron so `250 mB` and `900 mB` quantities are preserved, including leftovers.
-- The pack does not provide a shortcut recipe for top-tier Pure Blood.
+- A Butchery heart plus a glass bottle yields one Iron's Blood Vial. It does not yield five vials.
+- Butchery hearts and Vampirism human hearts convert `1:1` in either direction. Because Butchery hearts come from many carcasses, this deliberately makes human-heart recipes generous.
+- Butchery bottles remain `333 mB` and Iron's Blood Vials remain `250 mB`. A container is accepted only when its entire volume fits, so partial insertion cannot delete blood.
+- A full bucket of either impure fluid yields `750 mB` of finished Vampirism blood. A `333 mB` infected bottle yields `249 mB` and can leave `1 mB` because the sieve works in whole millibuckets.
+- Vampirism blood buckets round-trip through the Alchemist Cauldron without changing fluid identity. Fill and empty Vampirism Blood Bottles with Vampirism's Blood Container.
+- A wet Butchery Sponge discards up to `1000 mB` from a Blood Grate, Alchemist Cauldron, or Vampirism Blood Container per use. It never converts or purifies the stored fluid.
+- A Blood Grate must be empty before its mode can change. This prevents impure blood from becoming clean through a mode toggle.
+- Iron's Blood Cauldron remains a discrete vial-producing block, not a general fluid tank.
+- Pure Blood 4 has the pack's heart-and-vial recipe; higher Pure Blood tiers retain their upstream progression.
 - Vampire's Delight foods, Bloodlines abilities, and Vampiric Ageing retain their upstream recipes and rank tradeoffs.
 
 After changing `kubejs/` scripts or Paxi datapack files, refresh Packwiz:

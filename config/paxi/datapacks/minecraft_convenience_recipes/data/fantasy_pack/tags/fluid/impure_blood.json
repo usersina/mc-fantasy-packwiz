@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "butchery:infected_blood",
+    "butchery:flowing_infected_blood",
+    "vampirism:impure_blood"
+  ]
+}

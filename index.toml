@@ -113,6 +113,14 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/ta
 hash = "da6fb572f27f8b75d417ffce036cb9c4a264365dcaadfaceadde60a231a79990"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/fluid/clean_blood.json"
+hash = "04c1dcd54cfbff1769e68816728a272591281c65baf5f7e8eeeb54fa4d79e83a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/fluid/impure_blood.json"
+hash = "d1f05b4e20c5d67ce14302cb825bedb4158e2a6feb1bbb3ed46e7d664b68bdec"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/guardvillagers/loot_table/entities/guard.json"
 hash = "3898e1af0425db87a147b0c7b3023b343497a41ee9e8b437479afc56acb1cbcf"
 
@@ -135,6 +143,10 @@ hash = "9c434cb3d3c059c67df59f411f4a993c17d4f5c82811dbe30e594b4a6f508eac"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/entities/pyromancer.json"
 hash = "2517e2cf9e02e4f1c2a212704aa2e504a116085c74b012142a1eda1ae09f7083"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/recipe/alchemist_cauldron/fill_blood_vial.json"
+hash = "2eb83eddcdc8b9645dfd0a6e806bf59d28aaec3757fe9acc4af03a3f7a4d7b76"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/alchemist_cauldron.json"
@@ -186,7 +198,7 @@ hash = "bc59bf8c68b40f688886751b1053ebe4383cd1344c60c8db09ec2d28e095f20b"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/fluid/fluid_blood_conversion.json"
-hash = "7ba3c3f70aea65cba592975318df5b0aa578e164081efb87a3da2dc16ba4959e"
+hash = "faa2dc364aecca7a6774cf5c6ac3799a74b21da5bba56e54235f4ed6977e2ef0"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"
@@ -241,20 +253,28 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampi
 hash = "e643a4f2a0030112ce35c1603e8590ce4840b305f4d35154d147eb00b98cffd0"
 
 [[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vial_from_human_heart.json"
-hash = "0b7b2e508726db8ec42990587223095fa240a99f5d90303e05b7c697cc867f15"
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vial_from_butchery_heart.json"
+hash = "bcd7c71942370f012baf4369e1ff032df44a114cefa4923a39b5ce4706958cbc"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/butchery_heart_from_human_heart.json"
 hash = "c0c8c9e3bc02aba780e89e93bf524a749f2258d5c6f2c3fbb26e3eaf7dcc9a22"
 
 [[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_alchemist_cauldron_from_vampirism_blood_bottle.json"
-hash = "7f8f301fea4a26a666b5752c2c9ff1d53b4c06f61b0ad7ebad541be23e48b024"
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_alchemist_cauldron_from_vampirism_blood_bucket.json"
+hash = "47dc9d11c178b5238f06d5729221780b167d1fd5ca731edd3e91829161f120f4"
 
 [[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_vampirism_blood_bottle_from_alchemist_cauldron.json"
-hash = "da33de1ef63a7fda5be7c4bf501f696e2957a0e55261a69d1016c0b1c0a51bd1"
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_alchemist_cauldron_from_vampirism_impure_blood_bucket.json"
+hash = "df7373e7e98bb56d445d547e23705b14c5ff1c4f0b14757bcefadbcd911f3a89"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_vampirism_blood_bucket_from_alchemist_cauldron.json"
+hash = "3becb3c546fc95226898004da7054129f96192ced4afe049b51e32414586e0ce"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_vampirism_impure_blood_bucket_from_alchemist_cauldron.json"
+hash = "09e71f3510b785626af7548b153696759ae1de68428b3cb4edf7777a9dd63923"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/human_heart_from_butchery_heart.json"
@@ -263,10 +283,6 @@ hash = "41829be8da74d847c94cd82fe1d61403815f6ef75411b849504676c89a4c97ec"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/pure_blood_4_from_human_heart.json"
 hash = "1da7cded4d93715438ef6c03bee067327a7b192167f8385c66f9e7cd119387f9"
-
-[[files]]
-file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/vampirism_blood_bottle_3_from_butchery_bottle.json"
-hash = "49e3c5460359e633e13fc95195245285e48cf21327d92188c7748b67db8a5df1"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/blasting_gravel_to_flint.json"
@@ -336,6 +352,10 @@ hash = "465f3daa05831b835d6e29bc9f54d3873bc64ef4563d00df9298feb214c71c4c"
 [[files]]
 file = "defaultconfigs/waystones-common.toml"
 hash = "e0175763065467d1dc2ec34c0712d00952b1550d888a50f6a9442cd63ba06273"
+
+[[files]]
+file = "kubejs/assets/butchery/lang/en_us.json"
+hash = "9b6dd59a8f4fbb045e97df48675236868fd3f8b8f6fe21692312be3c0dacb8ea"
 
 [[files]]
 file = "kubejs/client_scripts/main.js"
@@ -562,8 +582,8 @@ hash = "22d9510588b081cf9905f6549d24bc11012aa8d9c7d38a8619ab9db5ccb7b9a8"
 metafile = true
 
 [[files]]
-file = "mods/butchery-blood-grate-fix-1.1.0+mc1.21.1-neoforge.jar"
-hash = "20f0fe9f1b2079815562d46bc0bdf374c0d2418ab2fcdb84cb7327a4077fd6bf"
+file = "mods/butchery-blood-grate-fix-1.2.0+mc1.21.1-neoforge.jar"
+hash = "12c853013ec86a7c060a4877c94673b44cbdb17301805ec2179dbf28c6822387"
 
 [[files]]
 file = "mods/butchery.pw.toml"
@@ -753,6 +773,10 @@ metafile = true
 file = "mods/entityculling.pw.toml"
 hash = "4fbe037c1ec3570be84f68e075c3e8293b15f64dda22bca4735924705fb38236"
 metafile = true
+
+[[files]]
+file = "mods/fantasy-blood-compat-1.2.1+mc1.21.1-neoforge.jar"
+hash = "34b15a701c20d56ff635b24dbfbc3640dbf821544336576754b952d4c7b7c67a"
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"

@@ -1,0 +1,12 @@
+{
+  "block.butchery.blood": "Butchery Blood",
+  "block.butchery.infected_blood": "Butchery Infected Blood",
+  "fluid.butchery.blood": "Butchery Blood",
+  "fluid.butchery.infected_blood": "Butchery Infected Blood",
+  "fluid_type.butchery.blood": "Butchery Blood",
+  "fluid_type.butchery.infected_blood": "Butchery Infected Blood",
+  "item.butchery.blood_bucket": "Bucket of Butchery Blood",
+  "item.butchery.bottle_of_blood": "Bottle of Butchery Blood",
+  "item.butchery.bottle_of_infected_blood": "Bottle of Butchery Infected Blood",
+  "item.butchery.infected_blood_bucket": "Bucket of Butchery Infected Blood"
+}

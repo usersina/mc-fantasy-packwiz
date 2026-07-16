@@ -4,10 +4,10 @@ license="MIT"
 
 [[mods]]
 modId="butchery_blood_grate_fix"
-version="1.1.0"
+version="1.2.0"
 displayName="Butchery Blood Grate Fix"
 authors="usersina"
-description='''Fixes Blood Grate mode conversion, small-carcass filling, and deterministic Vampirism extraction for this pack.'''
+description='''Fixes Blood Grate mode selection, small-carcass filling, and deterministic Vampirism extraction for this pack.'''
 
 [[mixins]]
 config="butchery_blood_grate_fix.mixins.json"

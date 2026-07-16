@@ -1,0 +1,16 @@
+{
+  "type": "irons_spellbooks:alchemist_cauldron_fill",
+  "fluid": {
+    "amount": 1000,
+    "id": "vampirism:impure_blood"
+  },
+  "input": {
+    "item": "vampirism:impure_blood_bucket"
+  },
+  "mustFitAll": true,
+  "result": {
+    "count": 1,
+    "id": "minecraft:bucket"
+  },
+  "sound": "minecraft:item.bucket.empty"
+}

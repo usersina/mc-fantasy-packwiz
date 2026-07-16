@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MOD_ID="butchery-blood-grate-fix"
-MOD_VERSION="1.2.0"
+MOD_ID="fantasy-blood-compat"
+MOD_VERSION="1.2.1"
 MC_VERSION="1.21.1"
 LOADER="neoforge"
 
@@ -17,13 +17,8 @@ CLASSES_DIR="$BUILD_DIR/classes"
 JAR_NAME="${MOD_ID}-${MOD_VERSION}+mc${MC_VERSION}-${LOADER}.jar"
 OUTPUT_JAR="$REPO_DIR/mods/$JAR_NAME"
 
-if [ ! -x "$JAVAC_BIN" ]; then
-  echo "ERROR: javac not found at $JAVAC_BIN"
-  exit 1
-fi
-
-if [ ! -x "$JAR_BIN" ]; then
-  echo "ERROR: jar not found at $JAR_BIN"
+if [ ! -x "$JAVAC_BIN" ] || [ ! -x "$JAR_BIN" ]; then
+  echo "ERROR: Java 21 compiler tools were not found beside $JAVA_BIN"
   exit 1
 fi
 
@@ -47,15 +42,12 @@ if [ -z "$patched_server_jar" ]; then
   exit 1
 fi
 
-classpath="$patched_server_jar:$(
-  {
-    find "$RUNTIME_DIR/libraries" -type f -name '*.jar'
-    find "$RUNTIME_DIR/mods" -type f -name '*.jar'
-  } | sort | paste -sd ':' -
-)"
+classpath="$patched_server_jar:$({
+  find "$RUNTIME_DIR/libraries" -type f -name '*.jar'
+  find "$RUNTIME_DIR/mods" -type f -name '*.jar'
+} | sort | paste -sd ':' -)"
 
 find "$MOD_DIR/src/main/java" -type f -name '*.java' > "$BUILD_DIR/sources.txt"
-
 "$JAVAC_BIN" --release 21 -proc:none -cp "$classpath" -d "$CLASSES_DIR" @"$BUILD_DIR/sources.txt"
 cp -R "$MOD_DIR/src/main/resources/." "$CLASSES_DIR/"
 

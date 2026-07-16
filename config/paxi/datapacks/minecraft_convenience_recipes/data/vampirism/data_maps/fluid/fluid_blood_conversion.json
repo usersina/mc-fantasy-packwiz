@@ -1,8 +1,20 @@
 {
   "replace": false,
   "values": {
+    "butchery:blood": {
+      "conversionRate": 1.0
+    },
+    "butchery:flowing_blood": {
+      "conversionRate": 1.0
+    },
     "butchery:infected_blood": {
-      "conversionRate": 0.5
+      "conversionRate": 0.75
+    },
+    "butchery:flowing_infected_blood": {
+      "conversionRate": 0.75
+    },
+    "irons_spellbooks:blood": {
+      "conversionRate": 1.0
     }
   }
 }

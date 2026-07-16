@@ -3,13 +3,10 @@ package io.github.usersina.mcfantasy.butcherybloodgratefix.mixin;
 import net.mcreator.butchery.block.BloodgrateBlock;
 import net.mcreator.butchery.block.entity.BloodgrateBlockEntity;
 import net.mcreator.butchery.init.ButcheryModBlocks;
-import net.mcreator.butchery.init.ButcheryModFluids;
 import net.mcreator.butchery.init.ButcheryModItems;
 import net.mcreator.butchery.procedures.BloodgratechangeProcedure;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -20,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.Event;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,8 +26,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = BloodgratechangeProcedure.class, remap = false)
 public abstract class BloodGrateChangeMixin {
-    private static final ResourceLocation VAMPIRISM_BLOOD = ResourceLocation.parse("vampirism:impure_blood");
-
     @Inject(
             method = "execute(Lnet/neoforged/bus/api/Event;Lnet/minecraft/world/level/LevelAccessor;DDDLnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/Entity;)V",
             at = @At("HEAD"),
@@ -68,6 +62,17 @@ public abstract class BloodGrateChangeMixin {
             return;
         }
 
+        if (grate.getFluidTank().getFluidAmount() > 0) {
+            ci.cancel();
+            if (!world.isClientSide() && entity instanceof Player player) {
+                player.displayClientMessage(
+                        Component.literal("Empty the Blood Grate before changing modes."),
+                        true
+                );
+            }
+            return;
+        }
+
         ci.cancel();
         if (world.isClientSide()) {
             return;
@@ -75,12 +80,8 @@ public abstract class BloodGrateChangeMixin {
 
         int currentMode = blockState.getValue(BloodgrateBlock.BLOCKSTATE);
         int nextMode = currentMode == 0 ? 3 : 0;
-        Fluid nextFluid = nextMode == 3
-                ? BuiltInRegistries.FLUID.get(VAMPIRISM_BLOOD)
-                : ButcheryModFluids.BLOOD.get();
 
-        int amount = grate.getFluidTank().getFluidAmount();
-        grate.getFluidTank().setFluid(amount == 0 ? FluidStack.EMPTY : new FluidStack(nextFluid, amount));
+        grate.getFluidTank().setFluid(FluidStack.EMPTY);
 
         blockEntity.getPersistentData().putBoolean("isButchery", nextMode == 0);
         blockEntity.getPersistentData().putBoolean("isVampirism", nextMode == 3);
