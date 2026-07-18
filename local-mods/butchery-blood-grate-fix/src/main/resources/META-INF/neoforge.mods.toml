@@ -36,6 +36,6 @@ side="BOTH"
 [[dependencies.butchery_blood_grate_fix]]
 modId="vampirism"
 type="required"
-versionRange="[1.10,)"
+versionRange="[1.10.12,1.11.0)"
 ordering="AFTER"
 side="BOTH"

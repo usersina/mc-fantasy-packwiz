@@ -1,0 +1,4 @@
+# Better Tridents' generated impaling data pack fails against this modded biome registry.
+# Core trident improvements remain enabled; impaling keeps vanilla aquatic behavior.
+boost_impaling = false
+trident_fragment_drop = true

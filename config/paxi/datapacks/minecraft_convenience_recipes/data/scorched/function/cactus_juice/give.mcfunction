@@ -1,0 +1,1 @@
+give @s minecraft:potion[minecraft:custom_name='{"text":"Cactus Juice","color":"white","italic":false}',minecraft:custom_data={DesertCactusJuice:1b},minecraft:potion_contents={custom_color:11202240}] 1

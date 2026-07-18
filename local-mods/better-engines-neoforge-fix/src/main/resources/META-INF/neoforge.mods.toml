@@ -19,13 +19,13 @@ side="BOTH"
 [[dependencies.better_engines_neoforge_fix]]
 modId="neoforge"
 type="required"
-versionRange="[21.1,)"
+versionRange="[21.1,21.2)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.better_engines_neoforge_fix]]
 modId="more_engines"
 type="required"
-versionRange="[3.0.2,3.1)"
+versionRange="[3.0.2]"
 ordering="BEFORE"
 side="BOTH"

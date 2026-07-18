@@ -15,6 +15,10 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  # Pin Packwiz so release artifacts stay reproducible; update after local smoke tests.
+  PACKWIZ_VERSION: v0.0.0-20260218225342-dfd8b68a4796
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,7 +48,7 @@ jobs:
 
       - name: Install packwiz
         run: |
-          go install github.com/packwiz/packwiz@latest
+          go install "github.com/packwiz/packwiz@${PACKWIZ_VERSION}"
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
       - name: Build stable Packwiz site
@@ -65,6 +69,14 @@ jobs:
 
           curl -fsS http://127.0.0.1:8081/stable/pack.toml >/dev/null
           PACK_URL=http://127.0.0.1:8081/stable/pack.toml JAVA21="$JAVA_HOME/bin/java" task pack:smoke-update
+
+      - name: Smoke-test generated server
+        run: JAVA21="$JAVA_HOME/bin/java" task pack:inspect INSPECT=server-generated
+
+      - name: Verify local patch jars match their sources
+        run: |
+          JAVA21="$JAVA_HOME/bin/java" task local-mods:build
+          git diff --exit-code -- mods/
 
       - name: Export client .mrpack
         id: export_client

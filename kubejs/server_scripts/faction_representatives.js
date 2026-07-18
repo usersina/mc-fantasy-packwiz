@@ -111,10 +111,16 @@ function summonRepresentative(event, representative) {
     return
   }
 
-  event.item.count--
-  event.server.runCommandSilent(
+  const summonResult = event.server.runCommandSilent(
     `execute in ${event.block.dimension} positioned ${x} ${y} ${z} run summon ${representative.entity} ~ ~ ~ {PersistenceRequired:1b,Invulnerable:1b,NoAI:1b,Tags:["${REPRESENTATIVE_TAG}"],CustomName:'{"text":"${representative.name}"}'}`
   )
+  if (summonResult <= 0) {
+    event.player.tell('The ritual failed; your offering was not consumed.')
+    event.cancel()
+    return
+  }
+
+  event.item.count--
   event.player.tell(representative.success)
   event.cancel()
 }

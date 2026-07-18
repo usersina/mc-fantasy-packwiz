@@ -46,6 +46,7 @@ Main entry points:
 - `unzip`
 - `python3` for local client test serving
 - `tar` with zstd support for backups
+- `flock` from `util-linux` for server runtime locking
 - Prism Launcher or Freesm Launcher for `client:test`
 
 Examples use `task`. If your binary is named `go-task`, replace `task` with `go-task`.
@@ -80,6 +81,14 @@ Run these from the repo root.
    task server:start
    ```
 
+4. From the server console, whitelist every allowed offline-mode username:
+
+   ```txt
+   whitelist add <username>
+   ```
+
+The pack intentionally retains `online-mode=false` for Basic Login, so the enforced whitelist is the outer access-control layer. Usernames are case-sensitive in offline mode.
+
 ## Server Workflow
 
 `task server:setup` does the one-time runtime setup:
@@ -110,6 +119,16 @@ task server:update
 That syncs Packwiz-managed files into the existing runtime without starting the server. It needs `task pack:serve` running unless `PACK_URL` points at another reachable `pack.toml`.
 
 `task server:start` runs the same sync first, then starts NeoForge.
+
+`server:start`, `server:update`, `server:apply-base`, and `server:backup` lock the runtime. Update, template application, and backup refuse to run while a Java server process is active in that runtime.
+
+Back up only while the server is stopped:
+
+```bash
+task server:backup
+```
+
+The archive includes the world, active config, base runtime files, Basic Login passwords, operators, whitelist, bans, and username cache when those files exist.
 
 ## Chunk Pregeneration
 
@@ -161,7 +180,7 @@ Repeat the same flow for other dimensions only if needed, for example `the_nethe
 | ---------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------ |
 | `mods/`, `defaultconfigs/`, `config/paxi/datapacks/`, Packwiz-indexed `config/...` | Packwiz                             | `task server:update` or `task server:start`            |
 | runtime `server.properties`, `user_jvm_args.txt`                                   | runtime, seeded from `server-base/` | `task server:diff-base`, then `task server:apply-base` |
-| `world/`, `logs/`, `eula.txt`, libraries, generated configs                        | runtime                             | never committed, never overwritten by normal updates   |
+| `world/`, identity JSON, logs, `eula.txt`, libraries, generated configs            | runtime                             | never committed, never overwritten by normal updates   |
 
 Rules:
 
@@ -264,6 +283,8 @@ config/paxi/datapacks/fantasy_starter_lobby/
 The lobby is enabled only on dedicated servers. Local singleplayer worlds keep the datapack files installed, but KubeJS does not route players through the lobby there. If an older singleplayer test save already has a player inside `fantasy_pack:starter_lobby`, KubeJS sends them back to overworld spawn and then stays out of the way.
 
 New dedicated-server players are sent there until they choose exactly one role. After a role is saved in player persistent data, the lobby is one-way: if that player somehow logs in or respawns there, KubeJS sends them back to overworld spawn.
+
+Role selection validates every configured item first and requires all grant commands to succeed. A failed kit is logged and is not saved as chosen, so a renamed or missing mod item cannot permanently finalize a partial starter role.
 
 Players choose by standing on the colored floor pad directly in front of a signed visual role block for about two seconds. The visual role blocks are only anchors; the pads are the trigger so the flow does not conflict with Carry On's sneak-right-click behavior. The lobby is protected by adventure mode and KubeJS block break/place cancellation.
 
@@ -571,6 +592,7 @@ dist/mc-fantasy-stable.mrpack
 ```
 
 CI publishes the exported `.mrpack` to the `client-stable` GitHub Release after smoke tests pass.
+The export task opens the archive and verifies that every expected client/shared mod jar is present before CI can publish it.
 
 ## Release Checklist
 
@@ -602,6 +624,10 @@ GitHub Actions on `main`:
 - builds `dist/site/stable/`
 - serves it locally in CI
 - runs the client smoke update
+- starts and cleanly stops a generated NeoForge server
+- verifies custom task/loot overrides against the installed upstream jars
+- rebuilds every source-backed local mod and rejects jar/source drift
+- validates the exported `.mrpack` contents
 - deploys GitHub Pages only after smoke passes
 - updates the `client-stable` release artifact after smoke passes
 
@@ -621,7 +647,7 @@ Task names use `domain:action`:
 | `task server:start`       | sync, then start NeoForge                                  |
 | `task server:diff-base`   | compare runtime base files with `server-base/`             |
 | `task server:apply-base`  | back up and overwrite runtime base files                   |
-| `task server:backup`      | back up the active world and runtime config                |
+| `task server:backup`      | back up the stopped world, config, and server identity data |
 | `task pack:refresh`       | refresh Packwiz index files                                |
 | `task pack:check-updates` | check mod updates without changing the repo                |
 | `task pack:update`        | update one or every Packwiz-managed file, then refresh     |
@@ -702,7 +728,15 @@ packwiz curseforge add configured
 
 Carry On uses the unofficial patched `carryon-neoforge-1.21.1-2.2.4.4-patched-no-slowness.jar` intentionally because the official 1.21.1 build hit server stability problems in this pack.
 
-Player pickup remains enabled, but it has an intermittent `carryon:sync_carry_data` disconnect risk. Do not update or swap Carry On casually without retesting multiplayer player pickup.
+Player pickup remains enabled through the pack-local Carry On Player Sync Fix. The patch strips unsafe payload data only for `PLAYER` carry packets and leaves block/mob serialization upstream-owned. Do not update or swap Carry On without retesting repeated multiplayer player pickup, release, and effect-bearing players.
+
+Just Enough Resources is retained with the pack-local JER Compatibility Fix. The client-only patch makes JER use the active biome registry and excludes entity types whose base class is not a living entity, avoiding failures from modded biomes and Cataclysm Spellbooks beam entities. Broken Cataclysm Spellbooks recipes that reference unregistered items remain disabled with NeoForge data-load conditions; the working spell content remains enabled.
+
+Better Tridents keeps its gameplay features, but `boost_impaling` is disabled. That option generates biome-based data which fails against this pack's modded biome registry and prevents a clean server data load.
+
+The convenience datapack also repairs upstream entity-tag and spawn-category conflicts. `task pack:inspect INSPECT=server-generated` verifies those merged overrides against the installed jars, so mod updates fail validation instead of silently dropping another mod's entries.
+
+Vampire Spells Addon 0.0.6 logs a false Iron's Spells API error because its startup diagnostic checks a removed legacy class. Its constructor does not gate addon registration on that check, so this is a known upstream logging defect rather than a missing dependency.
 
 ## Todo
 

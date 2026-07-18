@@ -115,6 +115,66 @@ toml_value() {
   awk -F'"' -v key="$key" '$1 ~ "^[[:space:]]*" key "[[:space:]]*=" { print $2; exit }' "$file"
 }
 
+expected_client_mod_paths() {
+  local metadata_file
+  local side
+  local filename
+
+  for metadata_file in "$REPO_DIR"/mods/*.pw.toml; do
+    side="$(toml_value "$metadata_file" side)"
+    if [ "$side" = "server" ]; then
+      continue
+    fi
+
+    filename="$(toml_value "$metadata_file" filename)"
+    if [ -n "$filename" ]; then
+      printf "mods/%s\n" "$filename"
+    fi
+  done
+
+  find "$REPO_DIR/mods" -maxdepth 1 -type f -name '*.jar' -printf 'mods/%f\n'
+}
+
+verify_client_export() {
+  local archive="$1"
+  local temp_dir
+  local missing
+  local expected_count
+
+  require_command jq
+  require_command unzip
+
+  if ! unzip -tq "$archive" >/dev/null; then
+    echo "ERROR: exported client archive is not a valid zip: $archive"
+    exit 1
+  fi
+
+  temp_dir="$(mktemp -d)"
+
+  expected_client_mod_paths | sort -u > "$temp_dir/expected.txt"
+  {
+    unzip -p "$archive" modrinth.index.json | jq -r '.files[].path'
+    unzip -Z1 "$archive" | awk '
+      /^(overrides|client-overrides)\/mods\/.*\.jar$/ {
+        sub(/^(overrides|client-overrides)\//, "")
+        print
+      }
+    '
+  } | sort -u > "$temp_dir/present.txt"
+
+  missing="$(comm -23 "$temp_dir/expected.txt" "$temp_dir/present.txt")"
+  if [ -n "$missing" ]; then
+    echo "ERROR: exported client archive is missing expected mod jars:"
+    printf '%s\n' "$missing" | sed 's/^/  - /'
+    rm -rf "$temp_dir"
+    exit 1
+  fi
+
+  expected_count="$(wc -l < "$temp_dir/expected.txt" | tr -d ' ')"
+  echo "==> Verified client export contains all $expected_count expected mod jars"
+  rm -rf "$temp_dir"
+}
+
 sanitize_name() {
   printf "%s\n" "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]/-/g; s/--*/-/g; s/^-//; s/-$//'
 }
@@ -229,6 +289,7 @@ cmd_export_client() {
   mkdir -p "$DIST_DIR"
   rm -f "$output"
   packwiz modrinth export -o "$output"
+  verify_client_export "$output"
 
   echo "==> Wrote $output"
 
@@ -1524,8 +1585,196 @@ write_server_generated_report() {
     echo "## Notes"
     echo
     echo "- Runtime files are under ignored \`dist/inspect/\`; nothing was copied into the live server."
-    echo "- If the exit status is non-zero because of a timeout, inspect the generated files and rerun with a larger \`SERVER_GENERATED_TIMEOUT\`."
+    echo "- This task fails unless NeoForge reaches completed startup and exits cleanly."
   } > "$report"
+}
+
+verify_generated_server_startup() {
+  local server_dir="$1"
+  local start_status="$2"
+  local log_file="$server_dir/logs/latest.log"
+  local kubejs_log="$server_dir/logs/kubejs/server.log"
+  local bad_pattern
+
+  if [ "$start_status" -ne 0 ]; then
+    echo "ERROR: temporary server exited with status $start_status"
+    return 1
+  fi
+
+  if [ ! -f "$log_file" ] || ! grep -q 'Done (' "$log_file"; then
+    echo "ERROR: temporary server did not reach completed startup"
+    return 1
+  fi
+
+  for bad_pattern in \
+    'Parsing error loading recipe' \
+    'Failed to load function' \
+    "Couldn't load advancements" \
+    "Couldn't load tag" \
+    "Couldn't parse element" \
+    'Could not detect dedicated-server mode' \
+    'Mobs should be added to biomes under the same mob category'; do
+    if grep -Fq "$bad_pattern" "$log_file"; then
+      echo "ERROR: temporary server log contains: $bad_pattern"
+      grep -F "$bad_pattern" "$log_file" | sed -n '1,5p'
+      return 1
+    fi
+  done
+
+  if [ -f "$kubejs_log" ] && grep -Eq 'Loaded [0-9]+/[0-9]+ KubeJS server scripts .* with [1-9][0-9]* errors' "$kubejs_log"; then
+    echo "ERROR: KubeJS reported server-script errors"
+    grep -E 'Loaded [0-9]+/[0-9]+ KubeJS server scripts' "$kubejs_log" | tail -n 3
+    return 1
+  fi
+
+  echo "==> Verified completed server startup and clean custom data loading"
+}
+
+verify_upstream_overrides() {
+  local server_dir="$1"
+  local data_root="$REPO_DIR/config/paxi/datapacks/minecraft_convenience_recipes/data"
+  local file
+  local relative
+  local namespace
+  local jar_pattern
+  local jar_file
+  local upstream_file
+  local entity_blood_file="$data_root/vampirism/data_maps/entity_type/entity_blood.json"
+  local vampirism_jar
+  local werewolves_jar
+  local tag_name
+  local tag_file
+  local upstream_tag_values
+  local custom_tag_values
+  local checked=0
+
+  require_command jq
+  require_command unzip
+
+  upstream_file="$(mktemp)"
+  vampirism_jar="$(find "$server_dir/mods" -maxdepth 1 -type f -name 'Vampirism-*.jar' -print -quit)"
+
+  if [ -z "$vampirism_jar" ] || ! unzip -p "$vampirism_jar" \
+    data/vampirism/data_maps/entity_type/entity_blood.json > "$upstream_file"; then
+    echo "ERROR: upstream Vampirism entity blood data map is missing"
+    rm -f "$upstream_file"
+    return 1
+  fi
+
+  if ! jq -ne \
+    --slurpfile upstream "$upstream_file" \
+    --slurpfile custom "$entity_blood_file" \
+    '$upstream[0].values as $base | $custom[0].values as $ours | all($base | keys[]; . as $key | $base[$key] == $ours[$key])' \
+    >/dev/null; then
+    echo "ERROR: duplicated upstream entries in entity_blood.json have drifted from Vampirism"
+    rm -f "$upstream_file"
+    return 1
+  fi
+  checked=$((checked + 1))
+
+  for tag_name in undead powder_snow_walkable_mobs; do
+    tag_file="$data_root/minecraft/tags/entity_type/$tag_name.json"
+    upstream_tag_values="$(mktemp)"
+    custom_tag_values="$(mktemp)"
+    for jar_file in "$server_dir"/mods/*.jar; do
+      unzip -p "$jar_file" "data/minecraft/tags/entity_type/$tag_name.json" 2>/dev/null \
+        | jq -r '.values[] | if type == "string" then . else .id end' 2>/dev/null || true
+    done | sort -u > "$upstream_tag_values"
+    jq -r '.values[] | if type == "string" then . else .id end' "$tag_file" | sort -u > "$custom_tag_values"
+    if [ -n "$(comm -23 "$upstream_tag_values" "$custom_tag_values")" ]; then
+      echo "ERROR: minecraft:$tag_name override is missing entries contributed by installed mods"
+      comm -23 "$upstream_tag_values" "$custom_tag_values" | sed -n '1,20p'
+      rm -f "$upstream_file" "$upstream_tag_values" "$custom_tag_values"
+      return 1
+    fi
+    rm -f "$upstream_tag_values" "$custom_tag_values"
+    checked=$((checked + 1))
+  done
+
+  for file in "$data_root"/vampirism/vampirism/tasks/*.json; do
+    relative="${file#"$data_root/"}"
+    jar_file="$vampirism_jar"
+    if [ -z "$jar_file" ] || ! unzip -p "$jar_file" "data/$relative" > "$upstream_file"; then
+      echo "ERROR: upstream task is missing from the installed Vampirism jar: $relative"
+      rm -f "$upstream_file"
+      return 1
+    fi
+
+    if ! diff -q \
+      <(jq -S 'del(.requirements)' "$file") \
+      <(jq -S 'del(.requirements)' "$upstream_file") >/dev/null; then
+      echo "ERROR: custom task override has drifted beyond its requirements: $relative"
+      rm -f "$upstream_file"
+      return 1
+    fi
+    checked=$((checked + 1))
+  done
+
+  while IFS= read -r file; do
+    relative="${file#"$data_root/"}"
+    namespace="${relative%%/*}"
+    case "$namespace" in
+      guardvillagers) jar_pattern='guardvillagers-*.jar' ;;
+      vampirism) jar_pattern='Vampirism-*.jar' ;;
+      benssharks) jar_pattern='benssharks-*.jar' ;;
+      irons_spellbooks) jar_pattern='irons_spellbooks-*.jar' ;;
+      wind_spellbooks) jar_pattern='wind_spellbooks-*.jar' ;;
+      *) continue ;;
+    esac
+
+    jar_file="$(find "$server_dir/mods" -maxdepth 1 -type f -name "$jar_pattern" -print -quit)"
+    if [ -z "$jar_file" ] || ! unzip -p "$jar_file" "data/$relative" > "$upstream_file"; then
+      echo "ERROR: upstream loot table is missing from its installed mod jar: $relative"
+      rm -f "$upstream_file"
+      return 1
+    fi
+
+    if ! diff -q \
+      <(jq -S 'del(.pools[-1]) | if .pools == [] then del(.pools) else . end' "$file") \
+      <(jq -S 'if .pools == [] then del(.pools) else . end' "$upstream_file") >/dev/null; then
+      echo "ERROR: custom loot override has drifted before its appended corpse pool: $relative"
+      rm -f "$upstream_file"
+      return 1
+    fi
+    checked=$((checked + 1))
+  done < <(find "$data_root" -path '*/loot_table/entities/*.json' ! -path '*/minecraft/*' | sort)
+
+  werewolves_jar="$(find "$server_dir/mods" -maxdepth 1 -type f -name 'Werewolves-*.jar' -print -quit)"
+  if [ -z "$werewolves_jar" ] || ! unzip -p "$werewolves_jar" \
+    data/werewolves/worldgen/biome/werewolf_heaven.json > "$upstream_file"; then
+    echo "ERROR: upstream Werewolves heaven biome is missing"
+    rm -f "$upstream_file"
+    return 1
+  fi
+  if ! diff -q \
+    <(jq -S . "$data_root/werewolves/worldgen/biome/werewolf_heaven.json") \
+    <(jq -S '(.spawners["werewolves:werewolf"] = .spawners.monster) | (.spawners.monster = [])' "$upstream_file") >/dev/null; then
+    echo "ERROR: Werewolves heaven biome override has drifted beyond spawn-category repair"
+    rm -f "$upstream_file"
+    return 1
+  fi
+  checked=$((checked + 1))
+
+  for relative in \
+    werewolves/neoforge/biome_modifier/spawn/human_werewolf_spawns.json \
+    werewolves/neoforge/biome_modifier/spawn/werewolf_spawns.json; do
+    if ! unzip -p "$werewolves_jar" "data/$relative" > "$upstream_file"; then
+      echo "ERROR: upstream Werewolves spawn modifier is missing: $relative"
+      rm -f "$upstream_file"
+      return 1
+    fi
+    if ! diff -q \
+      <(jq -S 'walk(if type == "object" and has("category") then del(.category) else . end)' "$data_root/$relative") \
+      <(jq -S 'walk(if type == "object" and has("category") then del(.category) else . end)' "$upstream_file") >/dev/null; then
+      echo "ERROR: Werewolves spawn override has drifted beyond category repair: $relative"
+      rm -f "$upstream_file"
+      return 1
+    fi
+    checked=$((checked + 1))
+  done
+
+  rm -f "$upstream_file"
+  echo "==> Verified $checked custom data overrides against installed upstream jars"
 }
 
 set_inspection_server_port() {
@@ -1572,7 +1821,7 @@ cmd_inspect_server_generated() {
 
   python3 -m http.server "$port" --directory "$site_root" >/tmp/mc-fantasy-pack-inspect-http.log 2>&1 &
   server_pid="$!"
-  trap 'if [ -n "$server_pid" ]; then kill "$server_pid" >/dev/null 2>&1 || true; fi' EXIT
+  trap 'if [ -n "${server_pid:-}" ]; then kill "$server_pid" >/dev/null 2>&1 || true; fi' EXIT
   wait_for_http "$local_pack_url"
 
   echo "==> Creating temporary server runtime:"
@@ -1590,6 +1839,8 @@ cmd_inspect_server_generated() {
   set -e
 
   write_server_generated_report "$server_dir" "$report" "$start_status"
+  verify_generated_server_startup "$server_dir" "$start_status"
+  verify_upstream_overrides "$server_dir"
 
   echo "==> Generated server config report:"
   echo "    $report"

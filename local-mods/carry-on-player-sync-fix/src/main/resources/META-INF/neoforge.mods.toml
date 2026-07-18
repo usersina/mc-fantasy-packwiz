@@ -22,13 +22,13 @@ side="BOTH"
 [[dependencies.carry_on_player_sync_fix]]
 modId="neoforge"
 type="required"
-versionRange="[21.1,)"
+versionRange="[21.1,21.2)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.carry_on_player_sync_fix]]
 modId="carryon"
 type="required"
-versionRange="[2.2.4,)"
+versionRange="[2.2.4,2.2.5)"
 ordering="AFTER"
 side="BOTH"

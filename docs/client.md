@@ -199,6 +199,7 @@ Singleplayer includes:
 - gameplay/worldgen mods needed by integrated-server worlds
 - global Paxi datapacks
 - default keybindings
+- server-side gameplay behavior such as sparse structures, healing campfires, leaf cleanup, despawn handling, and infinite villager trading
 
 The starter role lobby is server-only. Local singleplayer worlds start normally and do not force the origin room.
 

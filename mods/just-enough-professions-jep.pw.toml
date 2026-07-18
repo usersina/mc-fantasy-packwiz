@@ -1,6 +1,6 @@
 name = "Just Enough Professions (JEP)"
 filename = "JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/kB56GtWA/versions/Avs9oGLn/JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar"

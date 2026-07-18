@@ -5,6 +5,10 @@ file = "config/alexsmobs-common.toml"
 hash = "ecbcc34b2aefe92783466c45ba0cd262f9e5bf223632aa26dd44145bd8e03259"
 
 [[files]]
+file = "config/bettertridents-common.toml"
+hash = "91d94f06caa516ef7e254d638e66db08ca835adcb5b225f3ebdc34dcb5279480"
+
+[[files]]
 file = "config/defaultoptions/keybindings.txt"
 hash = "a188fa8430127f7bcadab682d81a357fe793e0fa505268cfdce2e9fbe2f24a6b"
 
@@ -101,6 +105,70 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_conven
 hash = "704780a11507f3cc6d9afeb197f2146c27e697deb6bbef5c586c862a8b38154e"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/abyssal_warlock_helmet_crafting.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/abyssal_warlock_mask_crafting.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/engineers_power_glove.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/excel_upgrade_cooldown.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/excel_upgrade_mana.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/excel_upgrade_resistence.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/mechanical_brace.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/murasama.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/smithing/abyssal_warloock_helmet_smithing.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/smithing/abyssal_warloock_mask_smithing.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/smithing/excelsius_power_chestplate_upgrade.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/the_berserker_upgrade.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/the_combuster_upgrade.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/the_nightstalker_upgrade.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/the_ordeal_upgrade.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/the_subjugator_upgrade.json"
+hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/endersdelight/recipe/chorus_pie_slice.json"
 hash = "d4fefcb9e3defdde3ab41846115a052a9610c9f1c728f9f08fc77ef2c64fa1b9"
 
@@ -145,6 +213,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbook
 hash = "2517e2cf9e02e4f1c2a212704aa2e504a116085c74b012142a1eda1ae09f7083"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/test/ring_gen_break_me.json"
+hash = "4ee67ce3c4778b20c41855fd87a19e6cb9af97622b0c22944abfcc624114d27c"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/recipe/alchemist_cauldron/fill_blood_vial.json"
 hash = "2eb83eddcdc8b9645dfd0a6e806bf59d28aaec3757fe9acc4af03a3f7a4d7b76"
 
@@ -169,6 +241,14 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbook
 hash = "9da70dcbf56b242101edbc1580d2de2954504bdee048ec6996dc7074d8b5131a"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/advancement/give_quest_trader_trade.json"
+hash = "460af3685700cfff9971cc10d0201347e64b7c128c9d1859bc62002d7475afb1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/advancement/wander_add_map.json"
+hash = "ed551bef8049a650ae0a227bf1c2d9ae370c11f6a76ceb0b36db2004f12794d7"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/illusioner.json"
 hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
 
@@ -177,8 +257,16 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/recip
 hash = "057278f748eb392d51cb31b33b96725c711bdbadd2ac3438bd0235a1a8d4bf69"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/entity_type/powder_snow_walkable_mobs.json"
+hash = "3638bd73c882f05ee830eaab3d968e04b5efa293655e9008c6fb696b2050902f"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/entity_type/undead.json"
-hash = "d05724449df528d643ac6049cd6b5c003b87f8602c9539626531e15606493961"
+hash = "21f277078df6ddb41ad4f691401762188dca0b21f783ea7ba33ad53876eef33f"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/scorched/function/cactus_juice/give.mcfunction"
+hash = "f2e5f5fe3fe06e5faaa9167b20ec8fea88cf51e99a0655ec22ef9d99fcd4d4a5"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/terralith/function/toast.mcfunction"
@@ -301,6 +389,18 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vanilla/recipe/
 hash = "ebd58e28a992acce5f71fcf6a4f3521abb40c11b11240bc47ac6be26de718190"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/neoforge/biome_modifier/spawn/human_werewolf_spawns.json"
+hash = "2d1ed1ebbc81fc207828db40cc0388456f6fb290250d1bee7169e87876f25e0f"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/neoforge/biome_modifier/spawn/werewolf_spawns.json"
+hash = "205cdf6cb4a8673e3f74ed57e32d695a940da9847c793b3f1ff500fb0f876de9"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/werewolves/worldgen/biome/werewolf_heaven.json"
+hash = "f8029badbfb1932248d9ca8f5b8ca1bcf02923689b67c5573ddfc5a70484d88a"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/wind_spellbooks/loot_table/entities/aeromancer.json"
 hash = "a68ddba65c3993dde0ce383004f0a5e009736f3a2040ddb883cd2e8f3c5b512d"
 
@@ -363,11 +463,11 @@ hash = "c71c0d297835cad7eeb54f91b823a21058d7cb58bda44b154051c1e770be4163"
 
 [[files]]
 file = "kubejs/server_scripts/faction_representatives.js"
-hash = "0893e53815293867a9dd7414d9cc314ff53b823ea7c9c2c15189785e478b8883"
+hash = "6b7e102a4a3aa4210c53727a2bc50eba75e1c3e6e6c5a6821c8305a92b3202e8"
 
 [[files]]
 file = "kubejs/server_scripts/starter_roles.js"
-hash = "8b58b972848ceea7a4c3d45947b81ffab31ebedd219991ae97d638e4a31c3021"
+hash = "61dc2631301ca1488006b49251d3766b77b3863e20f522006ef2f3167b64f30e"
 
 [[files]]
 file = "kubejs/startup_scripts/main.js"
@@ -415,12 +515,12 @@ metafile = true
 
 [[files]]
 file = "mods/almanac.pw.toml"
-hash = "19d6b20763edf0247e395db37d6e7e5b012ca063f5820c81a6330baff2218c4e"
+hash = "c65748ba4e13309eeba1dae2dfb348ad9b6348a093dc02a901e3e5a2a6110b0d"
 metafile = true
 
 [[files]]
 file = "mods/alternate-current.pw.toml"
-hash = "18cf2b63d293ba0738c1073690fbd2c62305b161f76d346a551a66a9bbf8af32"
+hash = "82a03261a6006cda13232610752623abf41552203e26309f4e899de8ad87ace4"
 metafile = true
 
 [[files]]
@@ -529,7 +629,7 @@ metafile = true
 
 [[files]]
 file = "mods/better-engines-neoforge-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "33868e7395bf54313715f4f669fd56c52dee6fd5b9eb2c26372cd9e09397ce6f"
+hash = "430120cfbdcb5e3ae7572bd0ebc00a523763c5de7bb59a3be66717c1b7da1712"
 
 [[files]]
 file = "mods/better-modlist.pw.toml"
@@ -583,7 +683,7 @@ metafile = true
 
 [[files]]
 file = "mods/butchery-blood-grate-fix-1.2.0+mc1.21.1-neoforge.jar"
-hash = "12c853013ec86a7c060a4877c94673b44cbdb17301805ec2179dbf28c6822387"
+hash = "58ccfe4fde52f65b752ba7c18cfe0aab2add7ea1346a852c726ebde38741d095"
 
 [[files]]
 file = "mods/butchery.pw.toml"
@@ -602,7 +702,7 @@ metafile = true
 
 [[files]]
 file = "mods/carry-on-player-sync-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "e471c6e53dd7082885385d1c1ec7cac663a373d2acfaa7fffe23e29e229e2286"
+hash = "d808110978026cfc1bcb1e6235017a0db5970acacbf72d849619a279d9f7376c"
 
 [[files]]
 file = "mods/carryon-patched.pw.toml"
@@ -686,7 +786,7 @@ metafile = true
 
 [[files]]
 file = "mods/creativecore.pw.toml"
-hash = "d1dd0981cbd7ae9601c9c4603f88826b68a0c7e76fc12ef6bc80f08188d7dfb8"
+hash = "d4336ba6995ff6b24b8f6fc93a0b93f9b72cff33bbe2a7eeb1579d97abe8b16b"
 metafile = true
 
 [[files]]
@@ -736,7 +836,7 @@ metafile = true
 
 [[files]]
 file = "mods/do-a-barrel-roll.pw.toml"
-hash = "fe88386ca7a7c34be094f10e3a012810cec23f21b580dbc1c908cf95a17bf6f8"
+hash = "e1265b44cee1a166b45768bda5271d4386a70b906b55910891f2c1d15cae1717"
 metafile = true
 
 [[files]]
@@ -761,7 +861,7 @@ metafile = true
 
 [[files]]
 file = "mods/enchantment-descriptions.pw.toml"
-hash = "ac4cbc46bfffd2dcfac4eac2f03d93418abecdf38b2a266e57579c315987ac77"
+hash = "7c9f1e63f2ff7454f388577f75dd4ccbfc6acb2f7122e85b426fe7755a2ccbae"
 metafile = true
 
 [[files]]
@@ -840,7 +940,7 @@ metafile = true
 
 [[files]]
 file = "mods/healing-campfire.pw.toml"
-hash = "89787085b795067d933d636211006b9a99e69a00f660eaa5a5debf93cfc9b612"
+hash = "54bbfb896352f95dc539979ccf3fd59ae8af74e73d2104583d9f31131608dfe4"
 metafile = true
 
 [[files]]
@@ -875,7 +975,7 @@ metafile = true
 
 [[files]]
 file = "mods/infinite-trading.pw.toml"
-hash = "0782144244f5fce35d5e752932f2d515ce18aea7939829d141ec5230c215024c"
+hash = "63ed631412d064e9f978351ad56ca6e0c729cb650401c8f523d3caee71a4a02b"
 metafile = true
 
 [[files]]
@@ -925,8 +1025,12 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "7a1cf860c2761f6ae16333f869c75bb2af1d079c61b7f94e6af3265886f4dec0"
+hash = "6c288753abaa5f8f4e5bdc3220cb84ef7fcb021c969c24832e9eb9f79de38da1"
 metafile = true
+
+[[files]]
+file = "mods/jer-compat-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "f7389773bc910469449c194115c52145e1511051d3499f001aa284966f88de26"
 
 [[files]]
 file = "mods/just-enough-effect-descriptions-jeed.pw.toml"
@@ -935,7 +1039,7 @@ metafile = true
 
 [[files]]
 file = "mods/just-enough-professions-jep.pw.toml"
-hash = "bffd4067f92d5d8ed7a8a3acfdae213e9523ba5a518196cbd0a98d05e95fe6b6"
+hash = "1933baa0a282d7298a49a519aa0d03dffff69b6dc6eee9e985c4fed54b355028"
 metafile = true
 
 [[files]]
@@ -980,7 +1084,7 @@ metafile = true
 
 [[files]]
 file = "mods/leaves-be-gone.pw.toml"
-hash = "32551cd3db88210863565b772ee47679cbf1eeff163fb93b9ef84a79fa069496"
+hash = "583a335211bc3a21bb379394344b67d64bffea421e7f7942c254903e1d607814"
 metafile = true
 
 [[files]]
@@ -1005,7 +1109,7 @@ metafile = true
 
 [[files]]
 file = "mods/lmd.pw.toml"
-hash = "edc75ace846ae34c1cb4cf4a44106e1fb035b1eee0432765a716098c9a4b5823"
+hash = "ee7786026fb270b31b018efd166afff9f91de67369a50832ca33644d2bc32722"
 metafile = true
 
 [[files]]
@@ -1244,7 +1348,7 @@ metafile = true
 
 [[files]]
 file = "mods/sparsestructures.pw.toml"
-hash = "8c71edbbb86e5d3e1c14ea6629382539d44e75b1061725df9c3abceb889a8591"
+hash = "993b4e4970e1a5ef2fe7c6712212f57a84dcf8b31d4b6863540b6395c4f9ce09"
 metafile = true
 
 [[files]]
@@ -1319,15 +1423,15 @@ metafile = true
 
 [[files]]
 file = "mods/vampire-cauldron-blood-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "0ed6f4c59f1f28c4a4c2c0644f489eee0c4f77e1ec42be27d8ea2761a9ea99b5"
+hash = "ddcabd3d7071356ad55a7e306e9815a6e9d85ee3fdcbcc3f2db2fd7f547b0165"
 
 [[files]]
 file = "mods/vampire-invisibility-aggro-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "0cce6504fc938887609e2821ab873d5c26562bfd73a7bb26c39419c5f1af22b9"
+hash = "a1e1c29981fb678f78ac0506f814a9919c247cccdb3e79a0aae0b0283323f3d9"
 
 [[files]]
 file = "mods/vampire-player-bite-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "7210354cf89096faaed63235318271c7da8264480bedb640235af24623e1f1c8"
+hash = "5cde4cd6f27ae625406000a3a48a40cd419c0dec421f6097ed72f61545713b46"
 
 [[files]]
 file = "mods/vampires-delight.pw.toml"
@@ -1401,7 +1505,7 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "3d282394e31d1144cffcaa864903da227847c59184f3b508e8e3b594f2bdd083"
+hash = "b07417d612d5d206f063089211c70936e84a4f815e7e20b881c37ebea1b1c2c5"
 metafile = true
 
 [[files]]

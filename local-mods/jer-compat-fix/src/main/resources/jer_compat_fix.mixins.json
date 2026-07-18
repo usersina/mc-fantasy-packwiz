@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "io.github.usersina.mcfantasy.jercompatfix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "BiomeHelperMixin",
+    "MobTableBuilderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

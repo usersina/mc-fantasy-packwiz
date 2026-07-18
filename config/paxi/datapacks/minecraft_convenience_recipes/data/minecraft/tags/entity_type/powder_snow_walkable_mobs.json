@@ -1,0 +1,41 @@
+{
+  "replace": true,
+  "values": [
+    "minecraft:rabbit",
+    "minecraft:endermite",
+    "minecraft:silverfish",
+    "minecraft:fox",
+    "cataclysm:ender_golem",
+    "cataclysm:ender_guardian",
+    "cataclysm:ignis",
+    "cataclysm:ancient_remnant",
+    "cataclysm:netherite_monstrosity",
+    "cataclysm:the_harbinger",
+    "cataclysm:the_leviathan",
+    "cataclysm:maledictus",
+    "cataclysm:draugr",
+    "cataclysm:elite_draugr",
+    "cataclysm:royal_draugr",
+    "cataclysm:aptrgangr",
+    "cataclysm:scylla",
+    "cataclysm:clawdian",
+    "#vampirism:hunter",
+    "werewolves:werewolf_survivalist",
+    "aether:aerbunny",
+    "cataclysm_spellbooks:phantom_ancient_remnant",
+    "cataclysm_spellbooks:summoned_aptrgangr",
+    {
+      "id": "cataclysm_spellbooks:summoned_draugr",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_elite_draugr",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:summoned_royal_draugr",
+      "required": false
+    },
+    "mowziesmobs:frostmaw"
+  ]
+}

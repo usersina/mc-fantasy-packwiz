@@ -14,4 +14,4 @@ scripts/**
 local-mods/**
 dist/**
 tmp/**
-test/**
+/test/**

@@ -19,20 +19,20 @@ side="BOTH"
 [[dependencies.vampire_cauldron_blood_fix]]
 modId="neoforge"
 type="required"
-versionRange="[21.1,)"
+versionRange="[21.1,21.2)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.vampire_cauldron_blood_fix]]
 modId="irons_spellbooks"
 type="required"
-versionRange="[1.21.1-3.16.1,)"
+versionRange="[1.21.1-3.16.2,1.21.1-3.17.0)"
 ordering="AFTER"
 side="BOTH"
 
 [[dependencies.vampire_cauldron_blood_fix]]
 modId="vampirism"
 type="required"
-versionRange="[1.10,)"
+versionRange="[1.10.12,1.11.0)"
 ordering="AFTER"
 side="BOTH"

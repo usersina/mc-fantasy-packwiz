@@ -7,12 +7,14 @@ SERVER_DIR="${SERVER_DIR:-/data/games/servers/minecraft/fantasy-lan}"
 PACK_URL="${PACK_URL:-http://127.0.0.1:8080/pack.toml}"
 JAVA21="${JAVA21:-/usr/lib/jvm/java-21-openjdk/bin/java}"
 NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.234}"
+NEOFORGE_INSTALLER_CACHE="${NEOFORGE_INSTALLER_CACHE:-$REPO_DIR/.cache/neoforge-${NEOFORGE_VERSION}-installer.jar}"
 PACKWIZ_INSTALLER_VERSION="${PACKWIZ_INSTALLER_VERSION:-v0.0.3}"
 PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/${PACKWIZ_INSTALLER_VERSION}/packwiz-installer-bootstrap.jar}"
 FORCE="${FORCE:-false}"
 ACCEPT_EULA="${ACCEPT_EULA:-false}"
 BACKUP_DIR="${BACKUP_DIR:-/data/games/servers/minecraft/backups/fantasy-lan}"
 ACTION="${1:-}"
+LOCK_FILE="${LOCK_FILE:-$SERVER_DIR/.fantasy-pack-server.lock}"
 
 BASE_FILES=(
   server.properties
@@ -89,6 +91,42 @@ require_java21() {
   fi
 }
 
+acquire_runtime_lock() {
+  local process_dir
+  local process_cwd
+  local process_command
+
+  require_runtime_dir
+
+  for process_dir in /proc/[0-9]*; do
+    process_cwd="$(readlink "$process_dir/cwd" 2>/dev/null || true)"
+    if [ "$process_cwd" != "$SERVER_DIR" ]; then
+      continue
+    fi
+
+    process_command="$(tr '\0' ' ' < "$process_dir/cmdline" 2>/dev/null || true)"
+    case "$process_command" in
+      *java*)
+        echo "ERROR: a Java process is already running from $SERVER_DIR"
+        echo "Stop the server before updating, applying templates, or backing it up."
+        exit 1
+        ;;
+    esac
+  done
+
+  if ! command -v flock >/dev/null 2>&1; then
+    echo "ERROR: flock is required to protect the server runtime"
+    exit 1
+  fi
+
+  exec 9>"$LOCK_FILE"
+  if ! flock -n 9; then
+    echo "ERROR: server runtime is already in use: $SERVER_DIR"
+    echo "Stop the running server before updating, applying templates, or backing it up."
+    exit 1
+  fi
+}
+
 copy_base_file() {
   local file="$1"
   local source="$SERVER_BASE_DIR/$file"
@@ -161,15 +199,17 @@ setup_server() {
 install_neoforge_if_needed() {
   local target_args="libraries/net/neoforged/neoforge/${NEOFORGE_VERSION}/unix_args.txt"
 
-  echo "==> Downloading NeoForge installer if needed"
-  download_if_missing "$NEOFORGE_INSTALLER" "$NEOFORGE_URL"
-
-  echo "==> Installing NeoForge server if needed"
-  if [ ! -f "$target_args" ]; then
-    "$JAVA21" -jar "$NEOFORGE_INSTALLER" --installServer
-  else
+  if [ -f "$target_args" ]; then
     echo "NeoForge $NEOFORGE_VERSION already installed; skipping NeoForge install"
+    return 0
   fi
+
+  echo "==> Downloading NeoForge installer if needed"
+  download_if_missing "$NEOFORGE_INSTALLER_CACHE" "$NEOFORGE_URL"
+  cp -p "$NEOFORGE_INSTALLER_CACHE" "$NEOFORGE_INSTALLER"
+
+  echo "==> Installing NeoForge server"
+  "$JAVA21" -jar "$NEOFORGE_INSTALLER" --installServer
 }
 
 find_neoforge_args() {
@@ -206,6 +246,7 @@ sync_packwiz() {
 start_server() {
   local neoforge_args
 
+  acquire_runtime_lock
   sync_packwiz
   install_neoforge_if_needed
   neoforge_args="$(find_neoforge_args)"
@@ -254,7 +295,7 @@ apply_base() {
   local stamp
 
   require_base_dir
-  require_runtime_dir
+  acquire_runtime_lock
 
   stamp="$(date +%Y-%m-%d_%H-%M-%S)"
   backup_dir="$SERVER_DIR/base-template-backups/$stamp"
@@ -282,8 +323,9 @@ backup_server() {
   local world_name
   local world_dir
   local backup_items
+  local identity_file
 
-  require_runtime_dir
+  acquire_runtime_lock
 
   stamp="$(date +%Y-%m-%d_%H-%M-%S)"
   world_name="$(sed -n 's/^level-name=//p' "$SERVER_DIR/server.properties" 2>/dev/null | tail -n 1)"
@@ -302,6 +344,18 @@ backup_server() {
     backup_items+=(config)
   fi
 
+  for identity_file in \
+    passwords.json \
+    ops.json \
+    whitelist.json \
+    banned-ips.json \
+    banned-players.json \
+    usercache.json; do
+    if [ -f "$SERVER_DIR/$identity_file" ]; then
+      backup_items+=("$identity_file")
+    fi
+  done
+
   tar --zstd -cf "$BACKUP_DIR/${world_name}-$stamp.tar.zst" \
     -C "$SERVER_DIR" \
     "${backup_items[@]}"
@@ -315,6 +369,7 @@ case "$ACTION" in
     setup_server
     ;;
   update)
+    acquire_runtime_lock
     sync_packwiz
     ;;
   start)

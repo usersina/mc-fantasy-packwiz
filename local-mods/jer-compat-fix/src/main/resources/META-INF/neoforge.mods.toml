@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="jer_compat_fix"
+version="1.0.0"
+displayName="JER Compatibility Fix"
+authors="usersina"
+description='''Uses active biome registries and filters non-living mob entries in Just Enough Resources.'''
+
+[[mixins]]
+config="jer_compat_fix.mixins.json"
+
+[[dependencies.jer_compat_fix]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.jer_compat_fix]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,21.2)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.jer_compat_fix]]
+modId="jeresources"
+type="required"
+versionRange="[1.6.0.17]"
+ordering="AFTER"
+side="CLIENT"

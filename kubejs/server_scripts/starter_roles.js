@@ -22,8 +22,8 @@ try {
 let starterLobbyBuilt = false
 let starterLobbyMissingLevelLogged = false
 let starterLoginCheckWarningLogged = false
-let starterDedicatedCheckWarningLogged = false
 let starterEnvironmentCheckWarningLogged = false
+let starterGrantDryRun = false
 const starterPadHolds = {}
 const starterLobbyModePlayers = {}
 const starterRoleChoicesInProgress = {}
@@ -251,7 +251,9 @@ function playerTarget(player) {
 }
 
 function runForPlayer(server, player, commandPrefix) {
-  runStarterCommand(
+  if (starterGrantDryRun) return
+
+  runRequiredStarterCommand(
     server,
     `${commandPrefix} ${playerTarget(player)}`,
     commandPrefix
@@ -288,15 +290,15 @@ function starterLine(extra) {
 
 function giveAll(player, entries) {
   for (const entry of entries) {
-    if (
-      !validateStarterItem(
-        entry[0],
-        `give starter item to ${playerTarget(player)}`
-      )
-    ) {
-      continue
-    }
+    requireStarterItem(
+      entry[0],
+      `give starter item to ${playerTarget(player)}`
+    )
+  }
 
+  if (starterGrantDryRun) return
+
+  for (const entry of entries) {
     try {
       player.give(Item.of(entry[0], entry[1]))
     } catch (error) {
@@ -304,21 +306,16 @@ function giveAll(player, entries) {
         `[Fantasy Pack] Failed to give starter item ${entry[0]} x${entry[1]} to ${playerTarget(player)}.`
       )
       console.error(error)
+      throw error
     }
   }
 }
 
 function giveItem(server, player, itemSpec, count) {
-  if (
-    !validateStarterItem(
-      itemSpec,
-      `give ${itemSpec} to ${playerTarget(player)}`
-    )
-  ) {
-    return
-  }
+  requireStarterItem(itemSpec, `give ${itemSpec} to ${playerTarget(player)}`)
+  if (starterGrantDryRun) return
 
-  runStarterCommand(
+  runRequiredStarterCommand(
     server,
     `give ${playerTarget(player)} ${itemSpec} ${count}`,
     `give ${itemSpec}`
@@ -328,13 +325,13 @@ function giveItem(server, player, itemSpec, count) {
 function equipArmor(server, player, armor) {
   const target = playerTarget(player)
   for (const slot in armor) {
-    if (
-      !validateStarterItem(armor[slot], `equip armor.${slot} for ${target}`)
-    ) {
-      continue
-    }
+    requireStarterItem(armor[slot], `equip armor.${slot} for ${target}`)
+  }
 
-    runStarterCommand(
+  if (starterGrantDryRun) return
+
+  for (const slot in armor) {
+    runRequiredStarterCommand(
       server,
       `item replace entity ${target} armor.${slot} with ${armor[slot]}`,
       `equip armor.${slot}`
@@ -343,13 +340,10 @@ function equipArmor(server, player, armor) {
 }
 
 function equipOffhand(server, player, itemId) {
-  if (
-    !validateStarterItem(itemId, `equip offhand for ${playerTarget(player)}`)
-  ) {
-    return
-  }
+  requireStarterItem(itemId, `equip offhand for ${playerTarget(player)}`)
+  if (starterGrantDryRun) return
 
-  runStarterCommand(
+  runRequiredStarterCommand(
     server,
     `item replace entity ${playerTarget(player)} weapon.offhand with ${itemId}`,
     'equip offhand'
@@ -359,11 +353,13 @@ function equipOffhand(server, player, itemId) {
 function equipHotbar(server, player, itemIds) {
   const target = playerTarget(player)
   for (let i = 0; i < itemIds.length; i++) {
-    if (!validateStarterItem(itemIds[i], `equip hotbar.${i} for ${target}`)) {
-      continue
-    }
+    requireStarterItem(itemIds[i], `equip hotbar.${i} for ${target}`)
+  }
 
-    runStarterCommand(
+  if (starterGrantDryRun) return
+
+  for (let i = 0; i < itemIds.length; i++) {
+    runRequiredStarterCommand(
       server,
       `item replace entity ${target} hotbar.${i} with ${itemIds[i]}`,
       `equip hotbar.${i}`
@@ -383,13 +379,10 @@ function spellbookComponent(maxSpells, spells) {
 }
 
 function equipSpellbook(server, player, itemId, maxSpells, spells) {
-  if (
-    !validateStarterItem(itemId, `equip spellbook for ${playerTarget(player)}`)
-  ) {
-    return
-  }
+  requireStarterItem(itemId, `equip spellbook for ${playerTarget(player)}`)
+  if (starterGrantDryRun) return
 
-  runStarterCommand(
+  runRequiredStarterCommand(
     server,
     `curios replace spellbook 0 ${playerTarget(player)} with ${itemId}[irons_spellbooks:spell_container=${spellbookComponent(maxSpells, spells)}] 1`,
     `equip spellbook ${itemId}`
@@ -400,18 +393,17 @@ function itemIdFromSpec(itemSpec) {
   return String(itemSpec).split('[')[0]
 }
 
-function validateStarterItem(itemSpec, context) {
+function requireStarterItem(itemSpec, context) {
   const itemId = itemIdFromSpec(itemSpec)
   const id = StarterLobbyResourceLocation.parse(itemId)
 
   if (StarterLobbyBuiltInRegistries.ITEM.containsKey(id)) {
-    return true
+    return
   }
 
-  console.error(
-    `[Fantasy Pack] Missing starter item ${itemId}; skipped ${context}.`
+  throw new Error(
+    `[Fantasy Pack] Missing starter item ${itemId}; cannot ${context}.`
   )
-  return false
 }
 
 function hasChosenStarterRole(player) {
@@ -436,8 +428,8 @@ function resetStarterLobbyState() {
   starterLobbyBuilt = false
   starterLobbyMissingLevelLogged = false
   starterLoginCheckWarningLogged = false
-  starterDedicatedCheckWarningLogged = false
   starterEnvironmentCheckWarningLogged = false
+  starterGrantDryRun = false
   clearStarterObject(starterPadHolds)
   clearStarterObject(starterLobbyModePlayers)
   clearStarterObject(starterRoleChoicesInProgress)
@@ -460,20 +452,7 @@ function starterClientEnvironment() {
 
 function starterLobbyEnabled(server) {
   if (server == null) return false
-  if (starterClientEnvironment()) return false
-
-  try {
-    return server.isDedicatedServer()
-  } catch (error) {
-    if (!starterDedicatedCheckWarningLogged) {
-      starterDedicatedCheckWarningLogged = true
-      console.warn(
-        '[Fantasy Pack] Could not detect dedicated-server mode; keeping starter lobby enabled.'
-      )
-      console.warn(error)
-    }
-    return true
-  }
+  return !starterClientEnvironment()
 }
 
 function starterEventServer(event) {
@@ -492,6 +471,16 @@ function runStarterCommand(server, command, description) {
     console.error(error)
     return 0
   }
+}
+
+function runRequiredStarterCommand(server, command, description) {
+  const result = runStarterCommand(server, command, description)
+  if (result <= 0) {
+    throw new Error(
+      `[Fantasy Pack] Required starter command made no changes (${description}): ${command}`
+    )
+  }
+  return result
 }
 
 function runInStarterLobby(server, command) {
@@ -931,25 +920,12 @@ function chooseStarterRole(player, server, role) {
   starterRoleChoicesInProgress[key] = true
   clearStarterPadHold(player)
   try {
+    starterGrantDryRun = true
     role.data.grant(player, server)
-  } catch (error) {
-    console.error(
-      `[Fantasy Pack] Starter role grant failed for ${key}: ${role.id}`
-    )
-    console.error(error)
-    tellraw(
-      player,
-      starterLine([
-        {
-          text: 'Some starter gear failed to apply; check the log.',
-          color: 'red',
-        },
-      ])
-    )
-  }
+    starterGrantDryRun = false
+    role.data.grant(player, server)
 
-  setChosenStarterRole(player, role.id)
-  try {
+    setChosenStarterRole(player, role.id)
     tellraw(
       player,
       starterLine([
@@ -959,6 +935,22 @@ function chooseStarterRole(player, server, role) {
       ])
     )
     sendToOverworldSpawn(player, server)
+  } catch (error) {
+    starterGrantDryRun = false
+    starterPadHolds[key] = { roleId: role.id, ticks: 0, failed: true }
+    console.error(
+      `[Fantasy Pack] Starter role grant failed for ${key}: ${role.id}`
+    )
+    console.error(error)
+    tellraw(
+      player,
+      starterLine([
+        {
+          text: 'That path was not finalized. Step off the pad and ask the server owner to check the log.',
+          color: 'red',
+        },
+      ])
+    )
   } finally {
     delete starterRoleChoicesInProgress[key]
   }
@@ -986,6 +978,8 @@ function handleStarterPadTick(player, server) {
     )
     return
   }
+
+  if (hold.failed) return
 
   hold.ticks += 1
   if (hold.ticks >= STARTER_PAD_HOLD_TICKS) {
