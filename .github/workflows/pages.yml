@@ -68,14 +68,14 @@ jobs:
           done
 
           curl -fsS http://127.0.0.1:8081/stable/pack.toml >/dev/null
-          PACK_URL=http://127.0.0.1:8081/stable/pack.toml JAVA21="$JAVA_HOME/bin/java" task pack:smoke-update
+          task pack:smoke-update PACK_URL=http://127.0.0.1:8081/stable/pack.toml JAVA21="$JAVA_HOME/bin/java"
 
       - name: Smoke-test generated server
-        run: JAVA21="$JAVA_HOME/bin/java" task pack:inspect INSPECT=server-generated
+        run: task pack:inspect INSPECT=server-generated JAVA21="$JAVA_HOME/bin/java"
 
       - name: Verify local patch jars match their sources
         run: |
-          JAVA21="$JAVA_HOME/bin/java" task local-mods:build
+          task local-mods:build JAVA21="$JAVA_HOME/bin/java"
           git diff --exit-code -- mods/
 
       - name: Export client .mrpack

@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_DIR="${REPO_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 SERVER_BASE_DIR="${SERVER_BASE_DIR:-$REPO_DIR/server-base}"
 SERVER_DIR="${SERVER_DIR:-/data/games/servers/minecraft/fantasy-lan}"
-PACK_URL="${PACK_URL:-http://127.0.0.1:8080/pack.toml}"
+PACK_URL="${PACK_URL:-http://127.0.0.1:8888/pack.toml}"
 JAVA21="${JAVA21:-/usr/lib/jvm/java-21-openjdk/bin/java}"
 NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.234}"
 NEOFORGE_INSTALLER_CACHE="${NEOFORGE_INSTALLER_CACHE:-$REPO_DIR/.cache/neoforge-${NEOFORGE_VERSION}-installer.jar}"

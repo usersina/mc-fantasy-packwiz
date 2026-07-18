@@ -319,12 +319,12 @@ The same feature also overrides Vampirism task JSONs in the Paxi datapack so vil
 
 The pack treats ordinary blood by quality rather than by mod namespace:
 
-| System | Purpose | Pack rule |
-| --- | --- | --- |
-| Clean blood | Butchery blood, Iron's blood, and Vampirism blood | interchangeable at `1:1` in the Alchemist Cauldron; foreign clean blood passes through a Blood Sieve at `100%` into Vampirism storage |
-| Impure blood | Butchery infected blood and Vampirism impure blood | cannot satisfy clean-blood brewing; both pass through a Blood Sieve at `75%` |
-| Vampire Blood Bottles | infection, hunter progression, Bloodlines, and Ageing | never craftable from ordinary blood |
-| Pure Blood | Vampirism leveling and high-tier addon progression | remains Vampire Baron, structure-loot, and trade progression |
+| System                | Purpose                                               | Pack rule                                                                                                                             |
+| --------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Clean blood           | Butchery blood, Iron's blood, and Vampirism blood     | interchangeable at `1:1` in the Alchemist Cauldron; foreign clean blood passes through a Blood Sieve at `100%` into Vampirism storage |
+| Impure blood          | Butchery infected blood and Vampirism impure blood    | cannot satisfy clean-blood brewing; both pass through a Blood Sieve at `75%`                                                          |
+| Vampire Blood Bottles | infection, hunter progression, Bloodlines, and Ageing | never craftable from ordinary blood                                                                                                   |
+| Pure Blood            | Vampirism leveling and high-tier addon progression    | remains Vampire Baron, structure-loot, and trade progression                                                                          |
 
 ```mermaid
 flowchart LR
@@ -639,23 +639,23 @@ Task names use `domain:action`:
 - `client:*` for maintainer local client testing
 - `server:*` for runtime work
 
-| Task                      | Purpose                                                    |
-| ------------------------- | ---------------------------------------------------------- |
-| `task server:setup`       | create/install the runtime once                            |
-| `task pack:serve`         | serve local `pack.toml` on port 8080                       |
-| `task server:update`      | sync Packwiz-managed files without starting                |
-| `task server:start`       | sync, then start NeoForge                                  |
-| `task server:diff-base`   | compare runtime base files with `server-base/`             |
-| `task server:apply-base`  | back up and overwrite runtime base files                   |
+| Task                      | Purpose                                                     |
+| ------------------------- | ----------------------------------------------------------- |
+| `task server:setup`       | create/install the runtime once                             |
+| `task pack:serve`         | serve local `pack.toml` on port 8888                        |
+| `task server:update`      | sync Packwiz-managed files without starting                 |
+| `task server:start`       | sync, then start NeoForge                                   |
+| `task server:diff-base`   | compare runtime base files with `server-base/`              |
+| `task server:apply-base`  | back up and overwrite runtime base files                    |
 | `task server:backup`      | back up the stopped world, config, and server identity data |
-| `task pack:refresh`       | refresh Packwiz index files                                |
-| `task pack:check-updates` | check mod updates without changing the repo                |
-| `task pack:update`        | update one or every Packwiz-managed file, then refresh     |
-| `task pack:site`          | build `dist/site/stable` for GitHub Pages                  |
-| `task pack:smoke-update`  | verify client updater installs successfully                |
-| `task pack:export-client` | export the Prism/Freesm `.mrpack` bootstrap                |
-| `task pack:inspect`       | inspect mods, packs, instances, or generated server config |
-| `task client:test`        | bootstrap, sync, or launch the maintainer test client      |
+| `task pack:refresh`       | refresh Packwiz index files                                 |
+| `task pack:check-updates` | check mod updates without changing the repo                 |
+| `task pack:update`        | update one or every Packwiz-managed file, then refresh      |
+| `task pack:site`          | build `dist/site/stable` for GitHub Pages                   |
+| `task pack:smoke-update`  | verify client updater installs successfully                 |
+| `task pack:export-client` | export the Prism/Freesm `.mrpack` bootstrap                 |
+| `task pack:inspect`       | inspect mods, packs, instances, or generated server config  |
+| `task client:test`        | bootstrap, sync, or launch the maintainer test client       |
 
 ## Overrides
 

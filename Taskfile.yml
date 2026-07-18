@@ -4,7 +4,7 @@ silent: true
 vars:
   REPO_DIR: '{{.TASKFILE_DIR}}'
   SERVER_DIR: /data/games/servers/minecraft/fantasy-lan
-  PACK_URL: http://127.0.0.1:8080/pack.toml
+  PACK_URL: http://127.0.0.1:8888/pack.toml
   PUBLIC_PACK_URL: https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
   SITE_DIR: dist/site/stable
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
@@ -28,7 +28,7 @@ tasks:
     desc: Create/install the server runtime
     dir: '{{.REPO_DIR}}'
     cmds:
-      - SERVER_DIR="{{.SERVER_DIR}}" JAVA21="{{.JAVA21}}" ACCEPT_EULA=true ./scripts/server.sh setup
+      - SERVER_DIR="{{.SERVER_DIR}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ACCEPT_EULA=true ./scripts/server.sh setup
 
   pack:refresh:
     desc: Refresh packwiz index
@@ -155,7 +155,7 @@ tasks:
     cmds:
       - |
         pack_url="${PACK_URL:-{{.PUBLIC_PACK_URL}}}"
-        if [ "{{.PACK_URL}}" != "http://127.0.0.1:8080/pack.toml" ]; then
+        if [ "{{.PACK_URL}}" != "http://127.0.0.1:8888/pack.toml" ]; then
           pack_url="{{.PACK_URL}}"
         fi
         PACK_URL="$pack_url" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/pack.sh smoke-update
@@ -170,13 +170,13 @@ tasks:
     desc: Inspect a mod, materialized pack, launcher instance, or generated server configs
     dir: '{{.REPO_DIR}}'
     cmds:
-      - INSPECT="{{.INSPECT}}" MOD="{{.MOD}}" INSTANCE_MC_DIR="{{.INSTANCE_MC_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./scripts/pack.sh inspect
+      - INSPECT="{{.INSPECT}}" MOD="{{.MOD}}" INSTANCE_MC_DIR="{{.INSTANCE_MC_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/pack.sh inspect
 
   pack:serve:
     desc: Serve packwiz locally
     dir: '{{.REPO_DIR}}'
     cmds:
-      - packwiz serve -p 8080
+      - packwiz serve -p 8888
 
   local-mods:build:
     desc: Build tiny repo-local compatibility mods
@@ -184,28 +184,28 @@ tasks:
     cmds:
       - |
         for build_script in ./local-mods/*/build.sh; do
-          JAVA21="{{.JAVA21}}" "$build_script"
+          JAVA21="${JAVA21:-{{.JAVA21}}}" "$build_script"
         done
 
   client:test:
     desc: Bootstrap, sync, or launch a Prism/Freesm maintainer test client
     dir: '{{.REPO_DIR}}'
     cmds:
-      - CLIENT_PACK_SLUG="{{.CLIENT_PACK_SLUG}}" CLIENT_TEST_DIR="{{.CLIENT_TEST_DIR}}" CLIENT_TEST_IMPORT_SLUG="{{.CLIENT_TEST_IMPORT_SLUG}}" CLIENT_TEST_PORT="{{.CLIENT_TEST_PORT}}" CLIENT_INSTANCE_ID="{{.CLIENT_INSTANCE_ID}}" CLIENT_LAUNCHER="{{.CLIENT_LAUNCHER}}" CLIENT_LAUNCHER_ROOT="{{.CLIENT_LAUNCHER_ROOT}}" CLIENT_SERVER="{{.CLIENT_SERVER}}" CLIENT_TEST_DISABLE_PRELAUNCH="{{.CLIENT_TEST_DISABLE_PRELAUNCH}}" INSTANCE_MC_DIR="{{.INSTANCE_MC_DIR}}" JAVA21="{{.JAVA21}}" LAUNCH="{{.LAUNCH}}" RESET="{{.RESET}}" ./scripts/pack.sh client-test
+      - CLIENT_PACK_SLUG="{{.CLIENT_PACK_SLUG}}" CLIENT_TEST_DIR="{{.CLIENT_TEST_DIR}}" CLIENT_TEST_IMPORT_SLUG="{{.CLIENT_TEST_IMPORT_SLUG}}" CLIENT_TEST_PORT="{{.CLIENT_TEST_PORT}}" CLIENT_INSTANCE_ID="{{.CLIENT_INSTANCE_ID}}" CLIENT_LAUNCHER="{{.CLIENT_LAUNCHER}}" CLIENT_LAUNCHER_ROOT="{{.CLIENT_LAUNCHER_ROOT}}" CLIENT_SERVER="{{.CLIENT_SERVER}}" CLIENT_TEST_DISABLE_PRELAUNCH="{{.CLIENT_TEST_DISABLE_PRELAUNCH}}" INSTANCE_MC_DIR="{{.INSTANCE_MC_DIR}}" JAVA21="${JAVA21:-{{.JAVA21}}}" LAUNCH="{{.LAUNCH}}" RESET="{{.RESET}}" ./scripts/pack.sh client-test
 
   server:update:
     desc: Sync Packwiz-managed server files without starting
     dir: '{{.REPO_DIR}}'
     cmds:
       - packwiz refresh
-      - SERVER_DIR="{{.SERVER_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./scripts/server.sh update
+      - SERVER_DIR="{{.SERVER_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/server.sh update
 
   server:start:
     desc: Sync server then start NeoForge
     dir: '{{.REPO_DIR}}'
     cmds:
       - packwiz refresh
-      - SERVER_DIR="{{.SERVER_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="{{.JAVA21}}" ./scripts/server.sh start
+      - SERVER_DIR="{{.SERVER_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/server.sh start
 
   server:diff-base:
     desc: Compare server-base templates with runtime copies
