@@ -48,7 +48,7 @@ classpath="$(
   } | sort | paste -sd ':' -
 )"
 
-find "$MOD_DIR/src/main/java" -type f -name '*.java' > "$BUILD_DIR/sources.txt"
+find "$MOD_DIR/src/main/java" -type f -name '*.java' | sort > "$BUILD_DIR/sources.txt"
 
 "$JAVAC_BIN" --release 21 -proc:none -cp "$classpath" -d "$CLASSES_DIR" @"$BUILD_DIR/sources.txt"
 cp -R "$MOD_DIR/src/main/resources/." "$CLASSES_DIR/"
@@ -58,7 +58,7 @@ rm -f "$OUTPUT_JAR"
 (
   cd "$CLASSES_DIR"
   mapfile -t jar_files < <(find . -type f | sort | sed 's#^\./##')
-  "$JAR_BIN" --create --file "$OUTPUT_JAR" --date=2024-01-01T00:00:00+00:00 "${jar_files[@]}"
+  "$JAR_BIN" --create --file "$OUTPUT_JAR" --date=2024-01-01T00:00:00+00:00 --no-manifest --no-compress "${jar_files[@]}"
 )
 
 echo "==> Built $OUTPUT_JAR"

@@ -629,7 +629,7 @@ metafile = true
 
 [[files]]
 file = "mods/better-engines-neoforge-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "430120cfbdcb5e3ae7572bd0ebc00a523763c5de7bb59a3be66717c1b7da1712"
+hash = "0bc4dbced9c31f933a0f522d9a681f36677f1dcb6852b7bf6dd5280dab217d85"
 
 [[files]]
 file = "mods/better-modlist.pw.toml"
@@ -683,7 +683,7 @@ metafile = true
 
 [[files]]
 file = "mods/butchery-blood-grate-fix-1.2.0+mc1.21.1-neoforge.jar"
-hash = "58ccfe4fde52f65b752ba7c18cfe0aab2add7ea1346a852c726ebde38741d095"
+hash = "70b9c84a0929fac5570fb840196217e475ebbe65aa658e8decaf94dd8070a7c0"
 
 [[files]]
 file = "mods/butchery.pw.toml"
@@ -702,7 +702,7 @@ metafile = true
 
 [[files]]
 file = "mods/carry-on-player-sync-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "d808110978026cfc1bcb1e6235017a0db5970acacbf72d849619a279d9f7376c"
+hash = "62b475f183ff3957441a718da19ef144db1905999b923f9410e2315aae2160d4"
 
 [[files]]
 file = "mods/carryon-patched.pw.toml"
@@ -876,7 +876,7 @@ metafile = true
 
 [[files]]
 file = "mods/fantasy-blood-compat-1.2.1+mc1.21.1-neoforge.jar"
-hash = "34b15a701c20d56ff635b24dbfbc3640dbf821544336576754b952d4c7b7c67a"
+hash = "26216e5e008780506c772ca5bb6cbefe2b405f3eaa2dab6c60bebd212507d8d4"
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"
@@ -1030,7 +1030,7 @@ metafile = true
 
 [[files]]
 file = "mods/jer-compat-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "f7389773bc910469449c194115c52145e1511051d3499f001aa284966f88de26"
+hash = "bcaae61e7a6a9bdf99e3aace8d05c74bf8970df4a968406babdebf989fa90b80"
 
 [[files]]
 file = "mods/just-enough-effect-descriptions-jeed.pw.toml"
@@ -1423,15 +1423,15 @@ metafile = true
 
 [[files]]
 file = "mods/vampire-cauldron-blood-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "ddcabd3d7071356ad55a7e306e9815a6e9d85ee3fdcbcc3f2db2fd7f547b0165"
+hash = "8dbe9260820312503d08077df78cd450af099493e2eac74d67028d426e7dd861"
 
 [[files]]
 file = "mods/vampire-invisibility-aggro-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "a1e1c29981fb678f78ac0506f814a9919c247cccdb3e79a0aae0b0283323f3d9"
+hash = "b25da2f0cb4e8596b944b905932c3d4097bd521d4d60c9ac15fcbc1a2676b997"
 
 [[files]]
 file = "mods/vampire-player-bite-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "5cde4cd6f27ae625406000a3a48a40cd419c0dec421f6097ed72f61545713b46"
+hash = "75e6faeda70c101abfc95034ce58acd46c2a130b0f3e02f52e8ffdbe37437f7f"
 
 [[files]]
 file = "mods/vampires-delight.pw.toml"
