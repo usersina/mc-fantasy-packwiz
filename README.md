@@ -356,8 +356,10 @@ Use the Blood Sieve when moving Butchery or Iron's blood into Vampirism-specific
 Balance rules:
 
 - A Butchery heart plus a glass bottle yields one Iron's Blood Vial. It does not yield five vials.
-- Butchery hearts and Vampirism human hearts convert `1:1` in either direction. Because Butchery hearts come from many carcasses, this deliberately makes human-heart recipes generous.
+- Four Butchery hearts craft one Vampirism human heart. A human heart converts back into one Butchery heart, deliberately making the reverse conversion lossy and preventing Blood Vial multiplication.
 - Butchery eyes and Vampire's Delight human eyes convert `1:1` in either direction.
+- Vampire players can directly consume Butchery hearts, eyes, humanoid flesh, and blood sausages for blood. A Butchery heart restores `5` blood or yields `50 mB` in the Blood Grinder, so four equal one Vampirism human heart. Ordinary animal cuts and organs remain Blood Grinder inputs rather than direct vampire food.
+- Rotten and magical Butchery organs do not produce Blood Grinder blood. Butchery blood bottles continue through the fluid workflow so their containers and special effects remain intact.
 - Butchery bottles remain `333 mB` and Iron's Blood Vials remain `250 mB`. A container is accepted only when its entire volume fits, so partial insertion cannot delete blood.
 - A full bucket of either impure fluid yields `750 mB` of finished Vampirism blood. A `333 mB` infected bottle yields `249 mB` and can leave `1 mB` because the sieve works in whole millibuckets.
 - Vampirism blood buckets round-trip through the Alchemist Cauldron without changing fluid identity. Fill and empty Vampirism Blood Bottles with Vampirism's Blood Container.

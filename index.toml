@@ -289,6 +289,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_
 hash = "faa2dc364aecca7a6774cf5c6ac3799a74b21da5bba56e54235f4ed6977e2ef0"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/item/item_blood.json"
+hash = "3c4ce206af0cfd2edec7650a0ecf8aa06c816dabf6ce873050beeb58080d94a6"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"
 hash = "7a3916d217fb3521f0f70880688d1d10fc7f9bb400bb7773a2d6810b6e9cb592"
 
@@ -374,7 +378,7 @@ hash = "9263162ac669a721233563628623aaa96fc0a7dcbbf29cda6d6640d7a43ea03d"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/human_heart_from_butchery_heart.json"
-hash = "41829be8da74d847c94cd82fe1d61403815f6ef75411b849504676c89a4c97ec"
+hash = "2c9415c05dc5edcf10d2b29db49984ab8695757bc8de9c4d3eed5eda1bd13501"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/pure_blood_4_from_human_heart.json"
@@ -888,8 +892,8 @@ hash = "4fbe037c1ec3570be84f68e075c3e8293b15f64dda22bca4735924705fb38236"
 metafile = true
 
 [[files]]
-file = "mods/fantasy-blood-compat-1.2.1+mc1.21.1-neoforge.jar"
-hash = "26216e5e008780506c772ca5bb6cbefe2b405f3eaa2dab6c60bebd212507d8d4"
+file = "mods/fantasy-blood-compat-1.3.1+mc1.21.1-neoforge.jar"
+hash = "3d8da8f855754559cfbf640354792e6ebdaedeb80821dad7afdc4697a6fba02d"
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"

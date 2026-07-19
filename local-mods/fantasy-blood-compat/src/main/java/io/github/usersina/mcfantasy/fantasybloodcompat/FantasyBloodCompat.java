@@ -3,6 +3,7 @@ package io.github.usersina.mcfantasy.fantasybloodcompat;
 import de.teamlapen.vampirism.blockentity.BloodContainerBlockEntity;
 import io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile;
 import io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.BrewAlchemistCauldronRecipe;
+import net.grid.vampiresdelight.common.registry.VDDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -10,6 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
@@ -19,6 +22,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -36,7 +40,33 @@ public final class FantasyBloodCompat {
         verifyMixinTarget(BrewAlchemistCauldronRecipe.class);
         verifyMixinTarget(BloodgrateBlockEntity.class);
         verifyMixinTarget(BloodContainerBlockEntity.class);
+        modEventBus.addListener(this::onModifyDefaultComponents);
         NeoForge.EVENT_BUS.register(this);
+    }
+
+    private void onModifyDefaultComponents(ModifyDefaultComponentsEvent event) {
+        addVampireFood(event, "heart", 5);
+        addVampireFood(event, "eye", 2);
+        addVampireFood(event, "flesh", 5);
+        addVampireFood(event, "rawhumanmeat", 4);
+        addVampireFood(event, "raw_villager_steak", 4);
+        addVampireFood(event, "raw_evoker_meat", 3);
+        addVampireFood(event, "raw_pillager_meat", 3);
+        addVampireFood(event, "raw_vindicator_meat", 3);
+        addVampireFood(event, "raw_witch_meat", 5);
+        addVampireFood(event, "raw_blood_sausage", 4);
+        addVampireFood(event, "cooked_blood_sausage", 4);
+    }
+
+    private static void addVampireFood(ModifyDefaultComponentsEvent event, String path, int blood) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath("butchery", path);
+        Item item = BuiltInRegistries.ITEM.getOptional(id)
+                .orElseThrow(() -> new IllegalStateException("Missing required Butchery item: " + id));
+        FoodProperties properties = new FoodProperties.Builder()
+                .nutrition(blood)
+                .saturationModifier(0.1F)
+                .build();
+        event.modify(item, components -> components.set(VDDataComponents.VAMPIRE_FOOD.value(), properties));
     }
 
     @SubscribeEvent

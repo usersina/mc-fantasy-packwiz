@@ -1,0 +1,64 @@
+{
+  "values": {
+    "butchery:cooked_blood_sausage": {
+      "blood": 0
+    },
+    "butchery:elder_guardian_eye": {
+      "blood": 0
+    },
+    "butchery:enderman_heart": {
+      "blood": 0
+    },
+    "butchery:enderman_intestines": {
+      "blood": 0
+    },
+    "butchery:enderman_kidney": {
+      "blood": 0
+    },
+    "butchery:enderman_liver": {
+      "blood": 0
+    },
+    "butchery:enderman_lungs": {
+      "blood": 0
+    },
+    "butchery:enderman_stomach": {
+      "blood": 0
+    },
+    "butchery:frog_heart": {
+      "blood": 0
+    },
+    "butchery:heart": {
+      "blood": 50
+    },
+    "butchery:honey_stomach": {
+      "blood": 0
+    },
+    "butchery:raw_blood_sausage": {
+      "blood": 0
+    },
+    "butchery:raw_enderman_steak": {
+      "blood": 0
+    },
+    "butchery:rotten_heart": {
+      "blood": 0
+    },
+    "butchery:rotten_intestines": {
+      "blood": 0
+    },
+    "butchery:rotten_kidney": {
+      "blood": 0
+    },
+    "butchery:rotten_liver": {
+      "blood": 0
+    },
+    "butchery:rotten_lungs": {
+      "blood": 0
+    },
+    "butchery:rotten_stomach": {
+      "blood": 0
+    },
+    "butchery:withered_heart": {
+      "blood": 0
+    }
+  }
+}
