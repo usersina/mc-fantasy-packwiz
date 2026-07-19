@@ -750,6 +750,11 @@ hash = "2acaff560bbda5741538528a2967355ec86a8f7564adba0b2316989c66892374"
 metafile = true
 
 [[files]]
+file = "mods/cobweb.pw.toml"
+hash = "23f681379a3e647a59f0749d25f2ce0725d4afafeed41871c5c87f2658d13a72"
+metafile = true
+
+[[files]]
 file = "mods/collective.pw.toml"
 hash = "e37aafe5cd58c8289c3b8929393cba2a5c7f2cdd5bbe01e9c6ada1f3f5b86436"
 metafile = true
@@ -936,6 +941,11 @@ metafile = true
 [[files]]
 file = "mods/guide-api.pw.toml"
 hash = "d973a76275a2ed58cda27e322b6bebe217144f1083f5a3eb41074dd2785a4fd5"
+metafile = true
+
+[[files]]
+file = "mods/harvest-with-ease.pw.toml"
+hash = "1e5b320ad839b14df9754644d36a10bc745bf165da797b9b195136ee6b1f06a7"
 metafile = true
 
 [[files]]
