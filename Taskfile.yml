@@ -8,6 +8,7 @@ vars:
   PUBLIC_PACK_URL: https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
   SITE_DIR: dist/site/stable
   JAVA21: /usr/lib/jvm/java-21-openjdk/bin/java
+  JAVA17_HOME: /usr/lib/jvm/java-17-openjdk
   CLIENT_PACK_SLUG: mc-fantasy
   CLIENT_TEST_DIR: dist/client-test
   CLIENT_TEST_IMPORT_SLUG: mc-fantasy-dev
@@ -148,6 +149,12 @@ tasks:
     dir: '{{.REPO_DIR}}'
     cmds:
       - SITE_DIR="{{.SITE_DIR}}" ./scripts/pack.sh site
+
+  pack:build-auth-tools:
+    desc: Build pinned Packwiz tools with CurseForge environment-key support
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - JAVA17_HOME="${JAVA17_HOME:-{{.JAVA17_HOME}}}" ./scripts/pack.sh build-auth-tools
 
   pack:smoke-update:
     desc: Smoke-test client auto-update install

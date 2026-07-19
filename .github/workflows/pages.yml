@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # Pin Packwiz so release artifacts stay reproducible; update after local smoke tests.
-  PACKWIZ_VERSION: v0.0.0-20260218225342-dfd8b68a4796
+  PACKWIZ_SOURCE_COMMIT: dfd8b68a4796c763e25bad50265ea1f1233e24f1
 
 jobs:
   build:
@@ -36,26 +36,41 @@ jobs:
           go-version: stable
           cache: false
 
-      - name: Set up Java 21
+      - name: Set up Java 17 for Packwiz Installer build
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '17'
 
       - name: Install Task
         uses: go-task/setup-task@v2
         with:
           repo-token: ${{ github.token }}
 
-      - name: Install packwiz
+      - name: Build pinned Packwiz tools
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
         run: |
-          go install "github.com/packwiz/packwiz@${PACKWIZ_VERSION}"
-          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          if [ -z "$CURSEFORGE_API_KEY" ]; then
+            echo "ERROR: CURSEFORGE_API_KEY GitHub Actions secret is not configured"
+            exit 1
+          fi
+          task pack:build-auth-tools JAVA17_HOME="$JAVA_HOME"
+          cp dist/tools/packwiz-installer.jar dist/packwiz-installer.jar
+          echo "$GITHUB_WORKSPACE/dist/tools" >> "$GITHUB_PATH"
+
+      - name: Set up Java 21 for Minecraft
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
 
       - name: Build stable Packwiz site
         run: task pack:site
 
       - name: Smoke-test client updater
+        env:
+          PACKWIZ_INSTALLER_MAIN_JAR: ${{ github.workspace }}/dist/tools/packwiz-installer.jar
         run: |
           python3 -m http.server 8081 --directory dist/site &
           server_pid="$!"
@@ -72,6 +87,8 @@ jobs:
           task pack:smoke-update PACK_URL=http://127.0.0.1:8081/stable/pack.toml JAVA21="$JAVA_HOME/bin/java"
 
       - name: Smoke-test generated server
+        env:
+          PACKWIZ_INSTALLER_MAIN_JAR: ${{ github.workspace }}/dist/tools/packwiz-installer.jar
         run: task pack:inspect INSPECT=server-generated JAVA21="$JAVA_HOME/bin/java"
 
       - name: Verify local patch jars match their sources
@@ -81,13 +98,38 @@ jobs:
 
       - name: Export client .mrpack
         id: export_client
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
         run: task pack:export-client
+
+      - name: Verify API key containment
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+          CLIENT_PACK: ${{ steps.export_client.outputs.asset_path }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          key = os.environ["CURSEFORGE_API_KEY"].encode()
+          for path in Path("dist/site").rglob("*"):
+              if path.is_file() and key in path.read_bytes():
+                  raise SystemExit(f"ERROR: API key leaked into hosted file: {path}")
+
+          with ZipFile(os.environ["CLIENT_PACK"]) as archive:
+              for name in archive.namelist():
+                  if key in archive.read(name):
+                      raise SystemExit(f"ERROR: API key leaked into client pack entry: {name}")
+          PY
 
       - name: Upload client pack artifact
         uses: actions/upload-artifact@v4
         with:
           name: client-pack
-          path: ${{ steps.export_client.outputs.asset_path }}
+          path: |
+            ${{ steps.export_client.outputs.asset_path }}
+            dist/packwiz-installer.jar
           if-no-files-found: error
 
       - name: Configure Pages
@@ -133,8 +175,13 @@ jobs:
           MC_VERSION: ${{ needs.build.outputs.minecraft_version }}
         run: |
           asset_path="dist/release/$ASSET_NAME"
+          installer_path="dist/release/packwiz-installer.jar"
           if [ ! -f "$asset_path" ]; then
             echo "ERROR: missing downloaded client pack artifact: $asset_path"
+            exit 1
+          fi
+          if [ -z "$installer_path" ] || [ ! -f "$installer_path" ]; then
+            echo "ERROR: missing authenticated Packwiz Installer artifact"
             exit 1
           fi
 
@@ -150,6 +197,8 @@ jobs:
           Preferred live updater URL:
           https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml
 
+          The Packwiz bootstrapper obtains the CurseForge-compatible installer from this release.
+
           Pack version: $PACK_VERSION
           Minecraft: $MC_VERSION
           Commit: $GITHUB_SHA
@@ -159,19 +208,19 @@ jobs:
           git push origin "refs/tags/$RELEASE_TAG" --force
 
           if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
-            asset_ids="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}" --jq '.assets[] | select(.name | endswith(".mrpack")) | .id')"
+            asset_ids="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}" --jq '.assets[] | select((.name | endswith(".mrpack")) or .name == "packwiz-installer.jar") | .id')"
             for asset_id in $asset_ids; do
               gh api -X DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${asset_id}"
             done
 
-            gh release upload "$RELEASE_TAG" "$asset_path"
+            gh release upload "$RELEASE_TAG" "$asset_path" "$installer_path"
             gh release edit "$RELEASE_TAG" \
               --title "Fantasy Pack Client Bootstrap" \
               --notes-file "$notes_file" \
               --target "$GITHUB_SHA" \
               --latest
           else
-            gh release create "$RELEASE_TAG" "$asset_path" \
+            gh release create "$RELEASE_TAG" "$asset_path" "$installer_path" \
               --title "Fantasy Pack Client Bootstrap" \
               --notes-file "$notes_file" \
               --target "$GITHUB_SHA" \

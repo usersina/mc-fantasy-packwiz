@@ -107,10 +107,14 @@ Steps:
 8. Add this pre-launch command:
 
    ```bash
-   "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+   "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" --bootstrap-update-url "https://api.github.com/repos/usersina/mc-fantasy-packwiz/releases/tags/client-stable" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
    ```
 
    ![Freesm Launcher pre-launch command field configured for Packwiz Installer](../media/pre-launch-command.png)
+
+   Existing instances must also use this full command. The
+   `--bootstrap-update-url` option selects the pack's CurseForge-compatible
+   installer from the stable release.
 
 9. Save the instance settings.
 10. Launch the same instance.
@@ -222,7 +226,7 @@ Automatic updater does not run:
 - check that the pre-launch command is exactly:
 
   ```bash
-  "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+  "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" --bootstrap-update-url "https://api.github.com/repos/usersina/mc-fantasy-packwiz/releases/tags/client-stable" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
   ```
 
 Freesm import refuses the pack:
@@ -252,7 +256,7 @@ Build it like this:
 4. Add the pre-launch command:
 
    ```bash
-   "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
+   "$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" --bootstrap-update-url "https://api.github.com/repos/usersina/mc-fantasy-packwiz/releases/tags/client-stable" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"
    ```
 
 5. Export that configured launcher instance as a zip if desired.
@@ -426,11 +430,18 @@ Smoke test checks:
 
 CI does the same high-level flow:
 
+- builds pinned Packwiz tools with private CurseForge header authentication
 - rebuilds `dist/site/stable/`
 - serves it locally
 - runs the smoke update
 - deploys GitHub Pages only after smoke passes
 - updates the `client-stable` release asset only after smoke passes
+
+The CurseForge key is stored as the repository Actions secret
+`CURSEFORGE_API_KEY`. CI uses it to build the stable integration-specific
+`packwiz-installer.jar`, which sends it only through the `X-API-Key` request
+header. The key is never written into source, hosted Packwiz files, command
+lines, or the `.mrpack`.
 
 ## Maintainer: Pack Contents
 

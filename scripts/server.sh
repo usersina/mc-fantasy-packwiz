@@ -10,6 +10,8 @@ NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.234}"
 NEOFORGE_INSTALLER_CACHE="${NEOFORGE_INSTALLER_CACHE:-$REPO_DIR/.cache/neoforge-${NEOFORGE_VERSION}-installer.jar}"
 PACKWIZ_INSTALLER_VERSION="${PACKWIZ_INSTALLER_VERSION:-v0.0.3}"
 PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/${PACKWIZ_INSTALLER_VERSION}/packwiz-installer-bootstrap.jar}"
+PACKWIZ_INSTALLER_MAIN_JAR="${PACKWIZ_INSTALLER_MAIN_JAR:-}"
+PACKWIZ_INSTALLER_UPDATE_URL="${PACKWIZ_INSTALLER_UPDATE_URL:-https://api.github.com/repos/usersina/mc-fantasy-packwiz/releases/tags/client-stable}"
 FORCE="${FORCE:-false}"
 ACCEPT_EULA="${ACCEPT_EULA:-false}"
 BACKUP_DIR="${BACKUP_DIR:-/data/games/servers/minecraft/backups/fantasy-lan}"
@@ -226,6 +228,8 @@ find_neoforge_args() {
 }
 
 sync_packwiz() {
+  local -a installer_args=(-g -s server "$PACK_URL")
+
   require_runtime_dir
   require_java21
 
@@ -239,8 +243,18 @@ sync_packwiz() {
   echo "==> Java version"
   "$JAVA21" -version
 
+  if [ -n "$PACKWIZ_INSTALLER_MAIN_JAR" ]; then
+    if [ ! -f "$PACKWIZ_INSTALLER_MAIN_JAR" ]; then
+      echo "ERROR: Packwiz Installer main jar not found: $PACKWIZ_INSTALLER_MAIN_JAR"
+      exit 1
+    fi
+    installer_args=(--bootstrap-no-update --bootstrap-main-jar "$PACKWIZ_INSTALLER_MAIN_JAR" "${installer_args[@]}")
+  else
+    installer_args=(--bootstrap-update-url "$PACKWIZ_INSTALLER_UPDATE_URL" "${installer_args[@]}")
+  fi
+
   echo "==> Syncing server-side Packwiz files"
-  "$JAVA21" -jar packwiz-installer-bootstrap.jar -g -s server "$PACK_URL"
+  "$JAVA21" -jar packwiz-installer-bootstrap.jar "${installer_args[@]}"
 }
 
 start_server() {

@@ -416,11 +416,12 @@
                 paste this as the pre-launch command:
               </p>
               <div class="endpoint">
-                <pre><code>"$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"</code></pre>
+                <pre><code>"$INST_JAVA" -jar "$INST_MC_DIR/packwiz-installer-bootstrap.jar" --bootstrap-update-url "https://api.github.com/repos/usersina/mc-fantasy-packwiz/releases/tags/client-stable" -g -s client "https://usersina.github.io/mc-fantasy-packwiz/stable/pack.toml"</code></pre>
               </div>
               <p>
                 This makes the instance check for pack updates before Minecraft
-                starts.
+                starts. The release URL also selects the pack's
+                CurseForge-compatible installer automatically.
               </p>
             </div>
             <button

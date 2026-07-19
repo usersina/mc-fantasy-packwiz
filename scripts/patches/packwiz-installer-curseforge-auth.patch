@@ -1,0 +1,65 @@
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 2d07423..7ac721b 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -48,7 +48,7 @@ application {
+ }
+ 
+ val gitVersion: groovy.lang.Closure<*> by extra
+-version = gitVersion()
++version = findProperty("fantasyPackVersion") ?: gitVersion()
+ 
+ tasks.jar {
+ 	manifest {
+diff --git a/src/main/kotlin/link/infra/packwiz/installer/metadata/curseforge/CurseForgeSourcer.kt b/src/main/kotlin/link/infra/packwiz/installer/metadata/curseforge/CurseForgeSourcer.kt
+index 4ac827f..df570ca 100644
+--- a/src/main/kotlin/link/infra/packwiz/installer/metadata/curseforge/CurseForgeSourcer.kt
++++ b/src/main/kotlin/link/infra/packwiz/installer/metadata/curseforge/CurseForgeSourcer.kt
+@@ -13,8 +13,6 @@ import okhttp3.MediaType.Companion.toMediaType
+ import okhttp3.Request
+ import okhttp3.RequestBody.Companion.toRequestBody
+ import okhttp3.internal.closeQuietly
+-import okio.ByteString.Companion.decodeBase64
+-import java.nio.charset.StandardCharsets
+ import kotlin.io.path.absolute
+ 
+ private class GetFilesRequest(val fileIds: List<Int>)
+@@ -43,8 +41,7 @@ private class GetModsResponse {
+ 
+ private const val APIServer = "api.curseforge.com"
+ // If you fork/derive from packwiz, I request that you obtain your own API key.
+-private val APIKey = "JDJhJDEwJHNBWVhqblU1N0EzSmpzcmJYM3JVdk92UWk2NHBLS3BnQ2VpbGc1TUM1UGNKL0RYTmlGWWxh".decodeBase64()!!
+-	.string(StandardCharsets.UTF_8)
++private val APIKey = CurseForgeApiKey.value
+ 
+ @Throws(JsonSyntaxException::class, JsonIOException::class)
+ fun resolveCfMetadata(mods: List<IndexFile.File>, packFolder: PackwizFilePath, clientHolder: ClientHolder): List<ExceptionDetails> {
+diff --git a/src/main/kotlin/link/infra/packwiz/installer/target/path/HttpUrlPath.kt b/src/main/kotlin/link/infra/packwiz/installer/target/path/HttpUrlPath.kt
+index f5d95d9..978b6ea 100644
+--- a/src/main/kotlin/link/infra/packwiz/installer/target/path/HttpUrlPath.kt
++++ b/src/main/kotlin/link/infra/packwiz/installer/target/path/HttpUrlPath.kt
+@@ -1,5 +1,6 @@
+ package link.infra.packwiz.installer.target.path
+ 
++import link.infra.packwiz.installer.metadata.curseforge.CurseForgeApiKey
+ import link.infra.packwiz.installer.request.RequestException
+ import link.infra.packwiz.installer.target.ClientHolder
+ import okhttp3.HttpUrl
+@@ -12,10 +13,15 @@ class HttpUrlPath(private val url: HttpUrl, path: String? = null): PackwizPath<H
+ 
+ 	@Throws(RequestException::class)
+ 	override fun source(clientHolder: ClientHolder): BufferedSource {
+-		val req = Request.Builder()
+-			.url(build())
++		val resolvedUrl = build()
++		val reqBuilder = Request.Builder()
++			.url(resolvedUrl)
+ 			.header("Accept", "application/octet-stream")
+ 			.header("User-Agent", "packwiz-installer")
++		if (resolvedUrl.host == "edge.forgecdn.net") {
++			reqBuilder.header("X-API-Key", CurseForgeApiKey.value)
++		}
++		val req = reqBuilder
+ 			.get()
+ 			.build()
+ 		try {

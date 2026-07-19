@@ -39,7 +39,9 @@ Main entry points:
 ## Prerequisites
 
 - Java 21 JDK at `/usr/lib/jvm/java-21-openjdk/bin/java`
+- Java 17 JDK for `task pack:build-auth-tools`
 - `packwiz`
+- Go for `task pack:build-auth-tools`
 - Go Task, exposed as `task` or `go-task`
 - `curl`
 - `jq`
@@ -631,6 +633,39 @@ GitHub Actions on `main`:
 - deploys GitHub Pages only after smoke passes
 - updates the `client-stable` release artifact after smoke passes
 
+### CurseForge API Authentication
+
+[CurseForge CDN downloads](https://blog.curseforge.com/introducing-api-key-authentication-for-curseforge-file-downloads/)
+require an API key. The repository keeps it in the GitHub Actions secret named
+`CURSEFORGE_API_KEY` and sends it only in the recommended `X-API-Key` request
+header.
+
+The workflow builds pinned Packwiz CLI and Installer binaries with a small
+CurseForge-header compatibility patch. Packwiz CLI reads the key from the CI
+environment. The client Installer receives the integration key during its CI
+build and is published as `packwiz-installer.jar` in the stable release so the
+official bootstrapper can update clients without exposing the key in source,
+Pages metadata, command lines, or the `.mrpack`.
+
+Configure or rotate the secret with:
+
+```bash
+gh secret set CURSEFORGE_API_KEY
+```
+
+For a local authenticated smoke test, provide `CURSEFORGE_API_KEY` in the
+environment and run:
+
+```bash
+task pack:build-auth-tools
+PATH="$PWD/dist/tools:$PATH" \
+  PACKWIZ_INSTALLER_MAIN_JAR="$PWD/dist/tools/packwiz-installer.jar" \
+  task pack:smoke-update
+```
+
+Keep the key in the environment or a secret manager. Do not add it to the
+Taskfile, Packwiz metadata, command arguments, or committed files.
+
 ## Useful Tasks
 
 Task names use `domain:action`:
@@ -651,6 +686,7 @@ Task names use `domain:action`:
 | `task pack:refresh`       | refresh Packwiz index files                                 |
 | `task pack:check-updates` | check mod updates without changing the repo                 |
 | `task pack:update`        | update one or every Packwiz-managed file, then refresh      |
+| `task pack:build-auth-tools` | build pinned Packwiz tools with CurseForge key support   |
 | `task pack:site`          | build `dist/site/stable` for GitHub Pages                   |
 | `task pack:smoke-update`  | verify client updater installs successfully                 |
 | `task pack:export-client` | export the Prism/Freesm `.mrpack` bootstrap                 |

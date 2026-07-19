@@ -11,12 +11,18 @@ JAVA21="${JAVA21:-/usr/lib/jvm/java-21-openjdk/bin/java}"
 PACKWIZ_INSTALLER_VERSION="${PACKWIZ_INSTALLER_VERSION:-v0.0.3}"
 PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/${PACKWIZ_INSTALLER_VERSION}/packwiz-installer-bootstrap.jar}"
 PACKWIZ_INSTALLER_CACHE="${PACKWIZ_INSTALLER_CACHE:-$REPO_DIR/.cache/packwiz-installer-bootstrap-${PACKWIZ_INSTALLER_VERSION}.jar}"
+PACKWIZ_INSTALLER_MAIN_JAR="${PACKWIZ_INSTALLER_MAIN_JAR:-}"
+PACKWIZ_INSTALLER_UPDATE_URL="${PACKWIZ_INSTALLER_UPDATE_URL:-https://api.github.com/repos/usersina/mc-fantasy-packwiz/releases/tags/client-stable}"
+PACKWIZ_SOURCE_COMMIT="${PACKWIZ_SOURCE_COMMIT:-dfd8b68a4796c763e25bad50265ea1f1233e24f1}"
+PACKWIZ_INSTALLER_SOURCE_COMMIT="${PACKWIZ_INSTALLER_SOURCE_COMMIT:-7420866dfc6ae1f68079a166e9804b7ec31a59ca}"
+AUTH_TOOLS_DIR="${AUTH_TOOLS_DIR:-$REPO_DIR/dist/tools}"
+JAVA17_HOME="${JAVA17_HOME:-/usr/lib/jvm/java-17-openjdk}"
 REPORT_DIR="${REPORT_DIR:-$REPO_DIR/dist/inspect}"
 ACTION="${1:-}"
 
 usage() {
   cat <<EOF
-Usage: $(basename "$0") <site|export-client|smoke-update|inspect|client-test>
+Usage: $(basename "$0") <site|export-client|smoke-update|inspect|client-test|build-auth-tools>
 
 Actions:
   site                Refresh Packwiz and build the hosted stable Packwiz site.
@@ -24,6 +30,7 @@ Actions:
   smoke-update        Install the client pack into a temp folder and verify basics.
   inspect             Inspect mods, materialized packs, launcher instances, or generated server configs.
   client-test         Bootstrap, sync, or launch a Prism/Freesm maintainer test client.
+  build-auth-tools    Build pinned Packwiz tools with CurseForge environment-key support.
 
 Inspect examples:
   INSPECT=mod MOD=mods/beltborne-lanterns.pw.toml $(basename "$0") inspect
@@ -50,6 +57,73 @@ require_command() {
     echo "ERROR: required command not found: $command_name"
     exit 1
   fi
+}
+
+cmd_build_auth_tools() {
+  local work_dir
+  local packwiz_dir
+  local installer_dir
+  local encoded_key
+  local key_source
+
+  require_command git
+  require_command go
+  require_command base64
+
+  if [ -z "${CURSEFORGE_API_KEY:-}" ]; then
+    echo "ERROR: CURSEFORGE_API_KEY is required to build authenticated Packwiz tools"
+    exit 1
+  fi
+
+  if [ ! -x "$JAVA17_HOME/bin/java" ]; then
+    echo "ERROR: Packwiz Installer build requires Java 17 at: $JAVA17_HOME/bin/java"
+    exit 1
+  fi
+
+  work_dir="$(mktemp -d)"
+  packwiz_dir="$work_dir/packwiz"
+  installer_dir="$work_dir/packwiz-installer"
+  trap 'rm -rf "${work_dir:-}"' EXIT
+
+  mkdir -p "$AUTH_TOOLS_DIR"
+
+  echo "==> Building Packwiz CLI from pinned commit"
+  git clone --quiet --filter=blob:none --no-checkout https://github.com/packwiz/packwiz.git "$packwiz_dir"
+  git -C "$packwiz_dir" checkout --quiet --detach "$PACKWIZ_SOURCE_COMMIT"
+  git -C "$packwiz_dir" apply "$REPO_DIR/scripts/patches/packwiz-curseforge-auth.patch"
+  (
+    cd "$packwiz_dir"
+    go build -trimpath -o "$AUTH_TOOLS_DIR/packwiz" .
+  )
+
+  echo "==> Building Packwiz Installer from pinned commit"
+  git clone --quiet --filter=blob:none --no-checkout https://github.com/packwiz/packwiz-installer.git "$installer_dir"
+  git -C "$installer_dir" checkout --quiet --detach "$PACKWIZ_INSTALLER_SOURCE_COMMIT"
+  git -C "$installer_dir" apply "$REPO_DIR/scripts/patches/packwiz-installer-curseforge-auth.patch"
+  encoded_key="$(printf '%s' "$CURSEFORGE_API_KEY" | base64 | tr -d '\n')"
+  key_source="$installer_dir/src/main/kotlin/link/infra/packwiz/installer/metadata/curseforge/CurseForgeApiKey.kt"
+  {
+    printf '%s\n' 'package link.infra.packwiz.installer.metadata.curseforge'
+    printf '\n'
+    printf '%s\n' 'import java.nio.charset.StandardCharsets'
+    printf '%s\n' 'import java.util.Base64'
+    printf '\n'
+    printf '%s\n' 'internal object CurseForgeApiKey {'
+    printf '\tval value = String(Base64.getDecoder().decode("%s"), StandardCharsets.UTF_8)\n' "$encoded_key"
+    printf '%s\n' '}'
+  } > "$key_source"
+  (
+    cd "$installer_dir"
+    JAVA_HOME="$JAVA17_HOME" ./gradlew copyJar -PfantasyPackVersion=client-stable --no-daemon
+  )
+  cp -p "$installer_dir/build/dist/packwiz-installer.jar" "$AUTH_TOOLS_DIR/packwiz-installer.jar"
+
+  echo "==> Built authenticated Packwiz tools:"
+  echo "    $AUTH_TOOLS_DIR/packwiz"
+  echo "    $AUTH_TOOLS_DIR/packwiz-installer.jar"
+
+  trap - EXIT
+  rm -rf "$work_dir"
 }
 
 download_if_missing() {
@@ -739,14 +813,25 @@ cmd_client_test() {
 install_packwiz_client() {
   local target_dir="$1"
   local pack_url="$2"
+  local -a installer_args=(-g -s client "$pack_url")
 
   require_java21
   download_if_missing "$PACKWIZ_INSTALLER_CACHE" "$PACKWIZ_INSTALLER_URL"
   mkdir -p "$target_dir"
 
+  if [ -n "$PACKWIZ_INSTALLER_MAIN_JAR" ]; then
+    if [ ! -f "$PACKWIZ_INSTALLER_MAIN_JAR" ]; then
+      echo "ERROR: Packwiz Installer main jar not found: $PACKWIZ_INSTALLER_MAIN_JAR"
+      exit 1
+    fi
+    installer_args=(--bootstrap-no-update --bootstrap-main-jar "$PACKWIZ_INSTALLER_MAIN_JAR" "${installer_args[@]}")
+  else
+    installer_args=(--bootstrap-update-url "$PACKWIZ_INSTALLER_UPDATE_URL" "${installer_args[@]}")
+  fi
+
   (
     cd "$target_dir"
-    "$JAVA21" -jar "$PACKWIZ_INSTALLER_CACHE" -g -s client "$pack_url"
+    "$JAVA21" -jar "$PACKWIZ_INSTALLER_CACHE" "${installer_args[@]}"
   )
 }
 
@@ -1895,6 +1980,9 @@ case "$ACTION" in
     ;;
   client-test)
     cmd_client_test
+    ;;
+  build-auth-tools)
+    cmd_build_auth_tools
     ;;
   -h|--help|help|"")
     usage
