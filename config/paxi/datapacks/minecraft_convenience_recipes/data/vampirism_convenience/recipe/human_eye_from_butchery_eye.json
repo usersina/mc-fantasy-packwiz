@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "butchery:eye"
+    }
+  ],
+  "result": {
+    "id": "vampiresdelight:human_eye",
+    "count": 1
+  }
+}

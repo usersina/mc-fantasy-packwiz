@@ -357,6 +357,7 @@ Balance rules:
 
 - A Butchery heart plus a glass bottle yields one Iron's Blood Vial. It does not yield five vials.
 - Butchery hearts and Vampirism human hearts convert `1:1` in either direction. Because Butchery hearts come from many carcasses, this deliberately makes human-heart recipes generous.
+- Butchery eyes and Vampire's Delight human eyes convert `1:1` in either direction.
 - Butchery bottles remain `333 mB` and Iron's Blood Vials remain `250 mB`. A container is accepted only when its entire volume fits, so partial insertion cannot delete blood.
 - A full bucket of either impure fluid yields `750 mB` of finished Vampirism blood. A `333 mB` infected bottle yields `249 mB` and can leave `1 mB` because the sieve works in whole millibuckets.
 - Vampirism blood buckets round-trip through the Alchemist Cauldron without changing fluid identity. Fill and empty Vampirism Blood Bottles with Vampirism's Blood Container.
@@ -674,24 +675,24 @@ Task names use `domain:action`:
 - `client:*` for maintainer local client testing
 - `server:*` for runtime work
 
-| Task                      | Purpose                                                     |
-| ------------------------- | ----------------------------------------------------------- |
-| `task server:setup`       | create/install the runtime once                             |
-| `task pack:serve`         | serve local `pack.toml` on port 8888                        |
-| `task server:update`      | sync Packwiz-managed files without starting                 |
-| `task server:start`       | sync, then start NeoForge                                   |
-| `task server:diff-base`   | compare runtime base files with `server-base/`              |
-| `task server:apply-base`  | back up and overwrite runtime base files                    |
-| `task server:backup`      | back up the stopped world, config, and server identity data |
-| `task pack:refresh`       | refresh Packwiz index files                                 |
-| `task pack:check-updates` | check mod updates without changing the repo                 |
-| `task pack:update`        | update one or every Packwiz-managed file, then refresh      |
-| `task pack:build-auth-tools` | build pinned Packwiz tools with CurseForge key support   |
-| `task pack:site`          | build `dist/site/stable` for GitHub Pages                   |
-| `task pack:smoke-update`  | verify client updater installs successfully                 |
-| `task pack:export-client` | export the Prism/Freesm `.mrpack` bootstrap                 |
-| `task pack:inspect`       | inspect mods, packs, instances, or generated server config  |
-| `task client:test`        | bootstrap, sync, or launch the maintainer test client       |
+| Task                         | Purpose                                                     |
+| ---------------------------- | ----------------------------------------------------------- |
+| `task server:setup`          | create/install the runtime once                             |
+| `task pack:serve`            | serve local `pack.toml` on port 8888                        |
+| `task server:update`         | sync Packwiz-managed files without starting                 |
+| `task server:start`          | sync, then start NeoForge                                   |
+| `task server:diff-base`      | compare runtime base files with `server-base/`              |
+| `task server:apply-base`     | back up and overwrite runtime base files                    |
+| `task server:backup`         | back up the stopped world, config, and server identity data |
+| `task pack:refresh`          | refresh Packwiz index files                                 |
+| `task pack:check-updates`    | check mod updates without changing the repo                 |
+| `task pack:update`           | update one or every Packwiz-managed file, then refresh      |
+| `task pack:build-auth-tools` | build pinned Packwiz tools with CurseForge key support      |
+| `task pack:site`             | build `dist/site/stable` for GitHub Pages                   |
+| `task pack:smoke-update`     | verify client updater installs successfully                 |
+| `task pack:export-client`    | export the Prism/Freesm `.mrpack` bootstrap                 |
+| `task pack:inspect`          | inspect mods, packs, instances, or generated server config  |
+| `task client:test`           | bootstrap, sync, or launch the maintainer test client       |
 
 ## Overrides
 

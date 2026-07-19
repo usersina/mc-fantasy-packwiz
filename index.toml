@@ -345,6 +345,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_conve
 hash = "bcd7c71942370f012baf4369e1ff032df44a114cefa4923a39b5ce4706958cbc"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/butchery_eye_from_human_eye.json"
+hash = "ec5b1b47deeda41a8b88ccaca40f5b8512f11b734071dab49577cb6172283024"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/butchery_heart_from_human_heart.json"
 hash = "c0c8c9e3bc02aba780e89e93bf524a749f2258d5c6f2c3fbb26e3eaf7dcc9a22"
 
@@ -363,6 +367,10 @@ hash = "3becb3c546fc95226898004da7054129f96192ced4afe049b51e32414586e0ce"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_vampirism_impure_blood_bucket_from_alchemist_cauldron.json"
 hash = "09e71f3510b785626af7548b153696759ae1de68428b3cb4edf7777a9dd63923"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/human_eye_from_butchery_eye.json"
+hash = "9263162ac669a721233563628623aaa96fc0a7dcbbf29cda6d6640d7a43ea03d"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/human_heart_from_butchery_heart.json"
