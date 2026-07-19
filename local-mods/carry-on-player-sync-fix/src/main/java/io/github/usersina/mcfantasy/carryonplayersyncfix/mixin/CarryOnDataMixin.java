@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import tschipp.carryon.common.carry.CarryOnData;
 import tschipp.carryon.common.scripting.CarryOnScript;
 
@@ -34,25 +36,26 @@ public abstract class CarryOnDataMixin {
     }
 
     @Inject(method = "getNbt", at = @At("HEAD"), cancellable = true, remap = false)
-    private void fantasyPack$sanitizeBeforeEncoding(CallbackInfoReturnable<CompoundTag> cir) {
-        if (type != CarryOnData.CarryType.PLAYER) {
-            return;
+    private void fantasyPack$createDetachedSnapshot(CallbackInfoReturnable<CompoundTag> cir) {
+        CompoundTag snapshot = nbt.copy();
+        snapshot.putString("type", type.toString());
+        snapshot.putBoolean("keyPressed", keyPressed);
+
+        if (activeScript != null) {
+            Tag encodedScript = CarryOnScript.CODEC
+                    .encodeStart(NbtOps.INSTANCE, activeScript)
+                    .getOrThrow(message -> new RuntimeException("Failed encoding Carry On script: " + message));
+            snapshot.put("activeScript", encodedScript);
+        } else {
+            snapshot.remove("activeScript");
         }
 
-        fantasyPack$sanitizePlayerCarryData();
-        cir.setReturnValue(fantasyPack$metadataOnlyTag());
+        snapshot.putInt("selected", selectedSlot);
+        cir.setReturnValue(snapshot);
     }
 
     private void fantasyPack$sanitizePlayerCarryData() {
         nbt = new CompoundTag();
         activeScript = null;
-    }
-
-    private CompoundTag fantasyPack$metadataOnlyTag() {
-        CompoundTag tag = new CompoundTag();
-        tag.putString("type", CarryOnData.CarryType.PLAYER.toString());
-        tag.putBoolean("keyPressed", keyPressed);
-        tag.putInt("selected", selectedSlot);
-        return tag;
     }
 }

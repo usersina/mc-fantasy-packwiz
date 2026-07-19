@@ -713,8 +713,8 @@ hash = "76e936055c31e852765b178c7754bd370f8c637337c250976e759868d5e838f5"
 metafile = true
 
 [[files]]
-file = "mods/carry-on-player-sync-fix-1.0.0+mc1.21.1-neoforge.jar"
-hash = "62b475f183ff3957441a718da19ef144db1905999b923f9410e2315aae2160d4"
+file = "mods/carry-on-player-sync-fix-1.1.0+mc1.21.1-neoforge.jar"
+hash = "a0ecc9209384c53617f0495c4ed64c0f8a3418716d96a31044d0b09a7573d5ff"
 
 [[files]]
 file = "mods/carryon-patched.pw.toml"

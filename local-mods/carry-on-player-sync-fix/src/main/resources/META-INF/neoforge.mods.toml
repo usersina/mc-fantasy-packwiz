@@ -4,10 +4,10 @@ license="MIT"
 
 [[mods]]
 modId="carry_on_player_sync_fix"
-version="1.0.0"
+version="1.1.0"
 displayName="Carry On Player Sync Fix"
 authors="usersina"
-description='''Prevents Carry On player pickup from syncing stale player-carry NBT.'''
+description='''Prevents Carry On carry-data packets from sharing mutable NBT across connections.'''
 
 [[mixins]]
 config="carry_on_player_sync_fix.mixins.json"

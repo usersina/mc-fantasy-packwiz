@@ -2,7 +2,7 @@
 set -euo pipefail
 
 MOD_ID="carry-on-player-sync-fix"
-MOD_VERSION="1.0.0"
+MOD_VERSION="1.1.0"
 MC_VERSION="1.21.1"
 LOADER="neoforge"
 
