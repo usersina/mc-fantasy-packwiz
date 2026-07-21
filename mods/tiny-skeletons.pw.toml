@@ -1,0 +1,13 @@
+name = "Tiny Skeletons"
+filename = "TinySkeletons-v21.1.0-1.21.1-NeoForge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/A2xcMSUn/versions/QO99Qp79/TinySkeletons-v21.1.0-1.21.1-NeoForge.jar"
+hash-format = "sha512"
+hash = "ad24cd31317983155ecd03ea5b7939ca7f03712de9175002589ef304d6915dbc51965d236db4a8fedeea8293c9512d065b5f2883e30293d8345301902fa684a8"
+
+[update]
+[update.modrinth]
+mod-id = "A2xcMSUn"
+version = "QO99Qp79"
