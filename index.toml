@@ -266,7 +266,7 @@ hash = "3638bd73c882f05ee830eaab3d968e04b5efa293655e9008c6fb696b2050902f"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/entity_type/undead.json"
-hash = "21f277078df6ddb41ad4f691401762188dca0b21f783ea7ba33ad53876eef33f"
+hash = "fd7b4d2ab31736dd60d8d7fd60e1884f7eca5b6d4b4e81da9f7562d6855de140"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/scorched/function/cactus_juice/give.mcfunction"
