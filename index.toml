@@ -442,6 +442,22 @@ file = "config/vampirism-client.toml"
 hash = "2dcfb4512d41be46c970be16433c3a1ebe41af93c5d54d9e0246de3b561f7770"
 
 [[files]]
+file = "config/xaero/minimap/common.cfg"
+hash = "2b49df024c03a369c62a303c72755e7fedeb4f4653ff53a12fd37bd83ccd4ed0"
+
+[[files]]
+file = "config/xaero/minimap/server_profiles/default.cfg"
+hash = "18553cd76a2a75af37091da1505d257408275444961bcac7c7fbd314e203255e"
+
+[[files]]
+file = "config/xaero/world-map/common.cfg"
+hash = "0c229eb0daf85bd09af51f21eeeb99497a3bd50a825d5ab1ca695fb21bf6cf9d"
+
+[[files]]
+file = "config/xaero/world-map/server_profiles/default.cfg"
+hash = "1236f0ca0981e1b224642aa16ec0479de22b6f0dea1b8825f54c0779b5984341"
+
+[[files]]
 file = "defaultconfigs/guideapi_vp-common.toml"
 hash = "5b6dc986adcb2dcd07c6d3acf37ee697ba8c5706018f20346a43c7d5885efcbe"
 
@@ -506,7 +522,7 @@ metafile = true
 
 [[files]]
 file = "mods/aces-spell-utils.pw.toml"
-hash = "44c474b17bdd2dc94b418591ac2f66fd27f228241882b67c21342cc053b19845"
+hash = "3b03175ed1dc7f0810f7f7b10c463aec657c6243153efae59fe77b744f6cd830"
 metafile = true
 
 [[files]]
@@ -610,7 +626,7 @@ metafile = true
 
 [[files]]
 file = "mods/balm.pw.toml"
-hash = "b594dc1097013a09140b354465c2a85e5082f72a8b5c166ed8e7ebd60e30d187"
+hash = "5906ab9415bb5d894dc41bc4b0035d3c22e261877cf8578c2c4c45af8b4bb159"
 metafile = true
 
 [[files]]
@@ -640,7 +656,7 @@ metafile = true
 
 [[files]]
 file = "mods/better-archeology.pw.toml"
-hash = "eca8266d3037451685da7d3aacc0fc4d17f9caafad60d7671fecf14880f46335"
+hash = "b3c09f5948d5ce7b121b3191d124a7a9fc6c482ad98af673e29f1554c9b64705"
 metafile = true
 
 [[files]]
@@ -747,7 +763,7 @@ metafile = true
 
 [[files]]
 file = "mods/chat-heads.pw.toml"
-hash = "3c58cdbfe61c7ecec7068fd066b4c375457631e370a64c032c9f8a8666d4f27b"
+hash = "a85080c785e75b0bcddae3e14d7644d57e8eee0cf7ce4b670ee9e2bd2db6b886"
 metafile = true
 
 [[files]]
@@ -961,7 +977,7 @@ metafile = true
 
 [[files]]
 file = "mods/forgified-fabric-api.pw.toml"
-hash = "a830f9e0393be04dd0a8a3a845b27e90cd34961887403c800e296182283d9c3e"
+hash = "a0b3083a1577130adb77867a6f8b6cf0c5bdd3c0c8b2995fa8b5fca323ed09a0"
 metafile = true
 
 [[files]]
@@ -1091,7 +1107,7 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "7a1cf860c2761f6ae16333f869c75bb2af1d079c61b7f94e6af3265886f4dec0"
+hash = "d306891d79c1bf2e11521faf875747ae875dede848e7968ae33db1ea873e42aa"
 metafile = true
 
 [[files]]
@@ -1120,7 +1136,7 @@ metafile = true
 
 [[files]]
 file = "mods/kotlin-lang-forge.pw.toml"
-hash = "f22b9b2717d5c14f4d1f43329e1a9afc71806a1c311108b4ae0db858e9d90569"
+hash = "6d211d9120c2f1938908f8163b75105d1540ee7ea5e11538728653883e021f30"
 metafile = true
 
 [[files]]
@@ -1180,7 +1196,7 @@ metafile = true
 
 [[files]]
 file = "mods/lootr.pw.toml"
-hash = "141584f0498f59dc445d163b82e148b339a7948927e476c6183b40da19c05799"
+hash = "a0a2036a901c1d61589768d62bc92d0cd630a40e9dfe92f45aefdc835c0c808d"
 metafile = true
 
 [[files]]
@@ -1200,7 +1216,7 @@ metafile = true
 
 [[files]]
 file = "mods/modernfix.pw.toml"
-hash = "25fc0896358f8f3e642d1a335085e2aa39ebb4f4f56e28a84546fbd526837e64"
+hash = "6d3ff3b7bbcc97fa06bdddcf2b3b7646168497ba6d7104bdea376f1bc65f9a93"
 metafile = true
 
 [[files]]
@@ -1210,7 +1226,7 @@ metafile = true
 
 [[files]]
 file = "mods/moonlight.pw.toml"
-hash = "812506fd59ed30da2b8223f349efb6f550647e07cffcb627dd86590629ebaad4"
+hash = "b6d7448e14c747318b083d7903baa4801ad524853f34205aa19f0cfa18ec0a92"
 metafile = true
 
 [[files]]
@@ -1295,7 +1311,7 @@ metafile = true
 
 [[files]]
 file = "mods/placebo.pw.toml"
-hash = "2ccda92b6f9f4dae045fe05e57d3a1a4965b81e983006f17d75e83b464c240c9"
+hash = "2f9f0f8c05ce7e410a70cfed595e623fe8031df89a8a9ba9a8aaaa419eb4d18b"
 metafile = true
 
 [[files]]
@@ -1419,12 +1435,12 @@ metafile = true
 
 [[files]]
 file = "mods/sophisticated-backpacks.pw.toml"
-hash = "8d0f5b702b813c816f9197444f59e81c72a01c47ff186f6c771dd5fae2b37190"
+hash = "93eb371e35e0446ec4c3c65d4fa5384e8495496b0a52c3f70ea21cbc4dcf3fac"
 metafile = true
 
 [[files]]
 file = "mods/sophisticated-core.pw.toml"
-hash = "e6ff1f816faa83ba09dd6bbc3ad72d46c77379211ff0de16b882fc758e32bbab"
+hash = "f15ec49c02ca24f1a112082c7be5dc1457673d5afddf987d85a437253cea4051"
 metafile = true
 
 [[files]]
@@ -1479,7 +1495,7 @@ metafile = true
 
 [[files]]
 file = "mods/supplementaries.pw.toml"
-hash = "28e1627fe3182a3b4b2cbb2a31fcbf2269192dea1d4b576f78702d8fcc199d6f"
+hash = "edda5333279b06528e2d1128d69bdeb5f55c0b446b95f1d766bf12938ad91039"
 metafile = true
 
 [[files]]
@@ -1586,7 +1602,7 @@ metafile = true
 
 [[files]]
 file = "mods/waystones.pw.toml"
-hash = "2282d643312815eac969dc7df9904d80f190a476ec487ec7d501adda9ba60a39"
+hash = "45410ca31e2d040ce31412b9bd699feb0866e0a782e73ac6ab985eddcf92ec81"
 metafile = true
 
 [[files]]
@@ -1610,18 +1626,13 @@ hash = "e174ded612bdae826523460c671f0486e68b769007c41cb892fab4b22809ac02"
 metafile = true
 
 [[files]]
-file = "mods/xaeros-minimap-world-map-waystones-compatibility-forge.pw.toml"
-hash = "637bc567eb5260d55ce89e6471c31e4369d454607f3d6f40139f7f7bdef90af9"
-metafile = true
-
-[[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "b07417d612d5d206f063089211c70936e84a4f815e7e20b881c37ebea1b1c2c5"
+hash = "4c336c9a00838ff5b5bbf6cd8ae35927186fdfa42258ca15513835e1b12ced2f"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "e9f440f93a22d6c3ea29d2d496ba6b7dc85b9ec40cc994c86e52626ec697d9b1"
+hash = "7481488cc878ce36f7cd69acfff4ffcdc24470916692a54798239331934c9a58"
 metafile = true
 
 [[files]]
