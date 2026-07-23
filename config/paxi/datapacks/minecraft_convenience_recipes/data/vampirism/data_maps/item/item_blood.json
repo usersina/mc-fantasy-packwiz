@@ -1,5 +1,8 @@
 {
   "values": {
+    "butchery:brain": {
+      "blood": 40
+    },
     "butchery:cooked_blood_sausage": {
       "blood": 0
     },
@@ -33,6 +36,18 @@
     "butchery:honey_stomach": {
       "blood": 0
     },
+    "butchery:intestines": {
+      "blood": 40
+    },
+    "butchery:kidney": {
+      "blood": 30
+    },
+    "butchery:liver": {
+      "blood": 40
+    },
+    "butchery:lungs": {
+      "blood": 40
+    },
     "butchery:raw_blood_sausage": {
       "blood": 0
     },
@@ -56,6 +71,9 @@
     },
     "butchery:rotten_stomach": {
       "blood": 0
+    },
+    "butchery:stomach": {
+      "blood": 40
     },
     "butchery:withered_heart": {
       "blood": 0

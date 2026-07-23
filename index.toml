@@ -294,7 +294,7 @@ hash = "faa2dc364aecca7a6774cf5c6ac3799a74b21da5bba56e54235f4ed6977e2ef0"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/data_maps/item/item_blood.json"
-hash = "3c4ce206af0cfd2edec7650a0ecf8aa06c816dabf6ce873050beeb58080d94a6"
+hash = "5f1ef41daaca3ad2a41ba4b6a7129a4e5a0d63d1f555fdca3e4459049d75aa65"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"
@@ -927,7 +927,7 @@ metafile = true
 
 [[files]]
 file = "mods/fantasy-blood-compat-1.3.1+mc1.21.1-neoforge.jar"
-hash = "3d8da8f855754559cfbf640354792e6ebdaedeb80821dad7afdc4697a6fba02d"
+hash = "5495484dc6410d81a3f062428d513481e9523683da954abd068d1478b79771fa"
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"

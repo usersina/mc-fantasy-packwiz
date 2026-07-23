@@ -47,6 +47,11 @@ public final class FantasyBloodCompat {
     private void onModifyDefaultComponents(ModifyDefaultComponentsEvent event) {
         addVampireFood(event, "heart", 5);
         addVampireFood(event, "eye", 2);
+        addVampireFood(event, "intestines", 4);
+        addVampireFood(event, "kidney", 3);
+        addVampireFood(event, "liver", 4);
+        addVampireFood(event, "lungs", 4);
+        addVampireFood(event, "stomach", 4);
         addVampireFood(event, "flesh", 5);
         addVampireFood(event, "rawhumanmeat", 4);
         addVampireFood(event, "raw_villager_steak", 4);
