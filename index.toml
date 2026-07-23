@@ -262,11 +262,11 @@ hash = "057278f748eb392d51cb31b33b96725c711bdbadd2ac3438bd0235a1a8d4bf69"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/entity_type/powder_snow_walkable_mobs.json"
-hash = "3638bd73c882f05ee830eaab3d968e04b5efa293655e9008c6fb696b2050902f"
+hash = "df4b64a0d511b3dd9814a26ac3645d1dd4fc1d3febd8376eb110e3bf09538d12"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/entity_type/undead.json"
-hash = "fd7b4d2ab31736dd60d8d7fd60e1884f7eca5b6d4b4e81da9f7562d6855de140"
+hash = "eba642565d32bd837169b601902924ac4bf7ef6ef572d523a5e098a3af6d585f"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/scorched/function/cactus_juice/give.mcfunction"
@@ -575,6 +575,11 @@ hash = "ea336d25c3e21ef168aec20e1ea470c96949ad29632646ee8e8ab0d74b4bbfc9"
 metafile = true
 
 [[files]]
+file = "mods/astikorcarts-redux.pw.toml"
+hash = "e0b4e457d410103f164b0c6940d83a280df48e572495f3ec445cfce19e836886"
+metafile = true
+
+[[files]]
 file = "mods/attributes.pw.toml"
 hash = "7b8b82bf778a7930edbf2ea63c177f07202c519b6982306eee2fe7c9acbd9dc6"
 metafile = true
@@ -833,6 +838,16 @@ metafile = true
 [[files]]
 file = "mods/dark-doppelganger.pw.toml"
 hash = "07e28f0e32a1922a181060c37a65f7290c5b5a02116c1678340e4140ab90750e"
+metafile = true
+
+[[files]]
+file = "mods/dark-paintings.pw.toml"
+hash = "976d09beb4dcab7b2364091459735d425226c6c309fbc3b1c929b308b99476c7"
+metafile = true
+
+[[files]]
+file = "mods/deep-aether.pw.toml"
+hash = "e3211d7d54a7203a183ed3b453be5dd52d27f389dbef26dd7e769f20e1dea81f"
 metafile = true
 
 [[files]]
@@ -1174,6 +1189,11 @@ hash = "87366a5d82152829103539d930ad9c0e8edbd5a917f65657db76f718f5296927"
 metafile = true
 
 [[files]]
+file = "mods/mermod.pw.toml"
+hash = "62b2e4a4dfcf32e46484938534b7ef72af75054ec2b566984230710f822b8b07"
+metafile = true
+
+[[files]]
 file = "mods/midnightlib.pw.toml"
 hash = "73aba17132f267dd76ff682aa84abfb7c09d25a93b9220ee261a1e25337bebc7"
 metafile = true
@@ -1468,8 +1488,18 @@ hash = "5b9f71bc9ae06fe7736cc500086ce29f87bf4414134133626e2b89462ee35767"
 metafile = true
 
 [[files]]
+file = "mods/terrablender.pw.toml"
+hash = "15962183bec2468058c70e87aa32e902a08489b0f86741088cdc9aa958ba4931"
+metafile = true
+
+[[files]]
 file = "mods/terralith.pw.toml"
 hash = "7a94d48dc640239a65b9cb089d8a188308c5a418ac644de60c9437b5c93ca4a9"
+metafile = true
+
+[[files]]
+file = "mods/the-undergarden.pw.toml"
+hash = "cf08653612ce37b29ebabf07c5dfce80c493927d4cb7760d68a361738fb54d1d"
 metafile = true
 
 [[files]]
