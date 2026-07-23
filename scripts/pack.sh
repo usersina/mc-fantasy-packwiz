@@ -1889,6 +1889,9 @@ cmd_inspect_server_generated() {
   local port="${INSPECT_SITE_PORT:-8091}"
   local local_pack_url="http://127.0.0.1:${port}/stable/pack.toml"
   local server_pid=""
+  local minecraft_pid=""
+  local stop_pid=""
+  local console_fifo="$root/server-console.fifo"
   local start_status=0
 
   require_command python3
@@ -1906,7 +1909,12 @@ cmd_inspect_server_generated() {
 
   python3 -m http.server "$port" --directory "$site_root" >/tmp/mc-fantasy-pack-inspect-http.log 2>&1 &
   server_pid="$!"
-  trap 'if [ -n "${server_pid:-}" ]; then kill "$server_pid" >/dev/null 2>&1 || true; fi' EXIT
+  trap '
+    if [ -n "${stop_pid:-}" ]; then kill "$stop_pid" >/dev/null 2>&1 || true; fi
+    if [ -n "${minecraft_pid:-}" ]; then kill "$minecraft_pid" >/dev/null 2>&1 || true; fi
+    if [ -n "${server_pid:-}" ]; then kill "$server_pid" >/dev/null 2>&1 || true; fi
+    rm -f "${console_fifo:-}"
+  ' EXIT
   wait_for_http "$local_pack_url"
 
   echo "==> Creating temporary server runtime:"
@@ -1915,13 +1923,29 @@ cmd_inspect_server_generated() {
   set_inspection_server_port "$server_dir"
 
   echo "==> Starting temporary server to generate configs"
-  set +e
+  mkfifo "$console_fifo"
+  exec 3<> "$console_fifo"
   (
-    sleep "${SERVER_GENERATED_STOP_AFTER:-90}"
-    printf "stop\n"
-  ) | timeout "${SERVER_GENERATED_TIMEOUT:-600}" env SERVER_DIR="$server_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" "$REPO_DIR/scripts/server.sh" start
+    while ! grep -q 'Done (' "$server_dir/logs/latest.log" 2>/dev/null; do
+      sleep 1
+    done
+    sleep "${SERVER_GENERATED_STOP_AFTER:-3}"
+    printf "stop\n" >&3
+  ) &
+  stop_pid="$!"
+
+  set +e
+  timeout "${SERVER_GENERATED_TIMEOUT:-1200}" env SERVER_DIR="$server_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" "$REPO_DIR/scripts/server.sh" start <&3 &
+  minecraft_pid="$!"
+  wait "$minecraft_pid"
   start_status="$?"
   set -e
+  minecraft_pid=""
+  kill "$stop_pid" >/dev/null 2>&1 || true
+  wait "$stop_pid" >/dev/null 2>&1 || true
+  stop_pid=""
+  exec 3>&-
+  rm -f "$console_fifo"
 
   write_server_generated_report "$server_dir" "$report" "$start_status"
   verify_generated_server_startup "$server_dir" "$start_status"

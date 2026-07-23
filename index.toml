@@ -181,6 +181,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/endersdelight/r
 hash = "d4fefcb9e3defdde3ab41846115a052a9610c9f1c728f9f08fc77ef2c64fa1b9"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/expandeddelight/loot_modifiers/add_loot_sniffer_digging.json"
+hash = "bc695d52bf500dfe8a7c5286ecfc17b8d524bb22a6a7a4b69dfdc481404a074e"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/coffee_berries_red_dye.json"
 hash = "d9bf547b3bad1bddcaa062ff676aece5832bbc234d7fdf2061d553260fbfea02"
 
@@ -195,6 +199,14 @@ hash = "04c1dcd54cfbff1769e68816728a272591281c65baf5f7e8eeeb54fa4d79e83a"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/fluid/impure_blood.json"
 hash = "d1f05b4e20c5d67ce14302cb825bedb4158e2a6feb1bbb3ed46e7d664b68bdec"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/farmersdelight/recipe/melon_juice.json"
+hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/farmersrespite/recipe/brewing/melon_juice_from_water.json"
+hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/guardvillagers/loot_table/entities/guard.json"

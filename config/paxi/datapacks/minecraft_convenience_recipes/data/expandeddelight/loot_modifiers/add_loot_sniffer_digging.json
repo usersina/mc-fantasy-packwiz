@@ -1,0 +1,10 @@
+{
+  "type": "farmersdelight:add_loot_table",
+  "conditions": [
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.0
+    }
+  ],
+  "lootTable": "minecraft:empty"
+}
