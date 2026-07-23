@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/accessories.json5"
+hash = "02219a0c065437310f2b1fd5f92924c4d1c1da2f3874bce1fc3ad2504d05479e"
+
+[[files]]
 file = "config/alexsmobs-common.toml"
 hash = "ecbcc34b2aefe92783466c45ba0cd262f9e5bf223632aa26dd44145bd8e03259"
 
