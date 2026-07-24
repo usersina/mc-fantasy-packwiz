@@ -1693,6 +1693,7 @@ verify_generated_server_startup() {
 
   for bad_pattern in \
     'Parsing error loading recipe' \
+    'Could not decode GlobalLootModifier' \
     'Failed to load function' \
     "Couldn't load advancements" \
     "Couldn't load tag" \

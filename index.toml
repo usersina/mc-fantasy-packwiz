@@ -177,6 +177,42 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spell
 hash = "d47211528bc5f9a0b8992520b7046cadfe1db7300ac885ca8bfc664ec6d94945"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_modifiers/drops/drops_brined_flesh.json"
+hash = "9c704244655e94fc49e1a9c20f97586e01a969af9b82675824eb7728e50a76c1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_modifiers/drops/drops_cooked_sniffer_shank.json"
+hash = "8234d15770285ee2a0fc689e017d984f071f71c998c3d941fde2d65ca91fdf96"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_modifiers/drops/drops_gritty_flesh.json"
+hash = "c463f8036f58ecc70b06149ed69615bfb22d2216b8ac7ac1452aa5654c4ab8c1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_modifiers/drops/drops_sniffer_shank.json"
+hash = "9c95552e241e0be0af770b3415768e20b44a544aed0183ab2ad1898d7f899a77"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_modifiers/scavenging/scavenging_gunk.json"
+hash = "5a7a7099519e3d0af8e52cdb4ceeead2614faa1dd8cfecc4137c5dc59a55c50e"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_modifiers/scavenging/scavenging_rotten_tripe.json"
+hash = "2f8f9b231dfcd513405bd279b776bbf6afb0a5941468db33eed63b3d383003e3"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_modifiers/scavenging/scavenging_slime_noodles.json"
+hash = "c35a15b55ef8e49efd48e2e96182f979f8a1cdebe5c3a4a917e89e33bc6107f6"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/loot_table/entities/monster_yam.json"
+hash = "47aa891f6405c8cf739c8f1ddd784276d65702d110e0eb0d925702cd359e7e4c"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/recipe/integration/aether/smoker/ae_cooked_marbled_meat_from_smoking.json"
+hash = "eab7d219172bac9b1daca22744bd5755cbdc6d0c27dcac9a92319b9d35e2e20b"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/endersdelight/recipe/chorus_pie_slice.json"
 hash = "d4fefcb9e3defdde3ab41846115a052a9610c9f1c728f9f08fc77ef2c64fa1b9"
 
@@ -282,7 +318,7 @@ hash = "df4b64a0d511b3dd9814a26ac3645d1dd4fc1d3febd8376eb110e3bf09538d12"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/entity_type/undead.json"
-hash = "eba642565d32bd837169b601902924ac4bf7ef6ef572d523a5e098a3af6d585f"
+hash = "d750c9a4e2247bcdd58958583e22c4dc43cc705cecfbb6b6bffce97c4ee25126"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/scorched/function/cactus_juice/give.mcfunction"
@@ -291,6 +327,10 @@ hash = "f2e5f5fe3fe06e5faaa9167b20ec8fea88cf51e99a0655ec22ef9d99fcd4d4a5"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/terralith/function/toast.mcfunction"
 hash = "9fefa9b2803667e2d968a11decf15a6dba408449442d8ce875e4a6a1550927ba"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/undergardendelight/recipe/gloomgourd_from_slices.json"
+hash = "29f06ea112d37f52fac3151819606aaf42d2bd69f67ba5bbab946dd0de24313b"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampiresdelight/recipe/brewing/daisy_tea.json"
@@ -547,6 +587,11 @@ hash = "732787f222641ecfed68d2cbf6e498324061b51ebb8ee08af322cefd9c4a91ed"
 metafile = true
 
 [[files]]
+file = "mods/aether-enhanced-extinguishing.pw.toml"
+hash = "3ab0e784d15c52edda001697336bc3d7bceb1d016c89b166c77b10f6fb689737"
+metafile = true
+
+[[files]]
 file = "mods/aether.pw.toml"
 hash = "cc3f6e6e8f1838d16e47cce9241e32176279673efb1438ff4451ccffa9579b14"
 metafile = true
@@ -629,6 +674,11 @@ metafile = true
 [[files]]
 file = "mods/automaticsorter-1.3.1-1.21.1-neoforge.jar"
 hash = "1dad8d5b874f6b9dc5be195238c183960e31d522584b0466f5f7fe6075942905"
+
+[[files]]
+file = "mods/axes-are-weapons.pw.toml"
+hash = "a64f4667220f39cef98e182b6926188ed6a29b5b3a17888e16ed77af736e9470"
+metafile = true
 
 [[files]]
 file = "mods/azurelib.pw.toml"
@@ -863,6 +913,11 @@ hash = "08a334ae5565e122d26b819cba16ce784776a10fe100ab2b22de72a5a2bac653"
 metafile = true
 
 [[files]]
+file = "mods/crops-love-rain.pw.toml"
+hash = "c52ebaf376db469f11508fbe4bb30017525d5210c7d72e9c59306044662d8ea8"
+metafile = true
+
+[[files]]
 file = "mods/cull-leaves.pw.toml"
 hash = "a9b9623c952949837c1c6827b94b5969241c44825483a901cad12fcda12d40e9"
 metafile = true
@@ -928,6 +983,11 @@ hash = "b9244dca740d333c22f3425991fdd2fd40d3ae12384079a40a6fb7d4bca18a18"
 metafile = true
 
 [[files]]
+file = "mods/dungeons_delight.pw.toml"
+hash = "633da82d88437f80abcc0aed54eda0a6a7d89e1f3289d3fdc85a529d1ec0b0ee"
+metafile = true
+
+[[files]]
 file = "mods/easy-anvils.pw.toml"
 hash = "9f511e824978b45d8d90244e921dafcbb9bc01d1e4aced66afac71740ffa5ff6"
 metafile = true
@@ -965,6 +1025,11 @@ metafile = true
 [[files]]
 file = "mods/entityculling.pw.toml"
 hash = "4fbe037c1ec3570be84f68e075c3e8293b15f64dda22bca4735924705fb38236"
+metafile = true
+
+[[files]]
+file = "mods/equipment-compare.pw.toml"
+hash = "5aada9e6769a55353ac1217b5288eff8a2e07944c87a5ebe31fd1046ae95b653"
 metafile = true
 
 [[files]]
@@ -1079,6 +1144,11 @@ metafile = true
 [[files]]
 file = "mods/immersive-aircraft.pw.toml"
 hash = "306c6a05c47046994a065bd8a461bd1ba1a7a8187f267c35ddf81c0a3041ed98"
+metafile = true
+
+[[files]]
+file = "mods/immersive-machinery.pw.toml"
+hash = "1868276bbd47cc2f4634dcabf58a022f4f51853257a93dd91f260a38e0e32aa2"
 metafile = true
 
 [[files]]
@@ -1203,6 +1273,11 @@ metafile = true
 [[files]]
 file = "mods/legendary-tooltips.pw.toml"
 hash = "9ca14134538c66b6d8ef74107f6b15ba9487ec632d984427e84ad38aa47afa60"
+metafile = true
+
+[[files]]
+file = "mods/lets-do-camping.pw.toml"
+hash = "cae22ec478fcb3c27c3092cf76508e6d631089301ef606c92850682a889b915f"
 metafile = true
 
 [[files]]
@@ -1401,13 +1476,33 @@ hash = "e55ca32b338a0e0540f4fec5170675d860566255ae0f45692a00cb4ebf2eb535"
 metafile = true
 
 [[files]]
+file = "mods/runiclib.pw.toml"
+hash = "ea53e1f266236ded756baa6ae49292583fa5f21c5c3134dfef821b11a7f169fb"
+metafile = true
+
+[[files]]
+file = "mods/scholar.pw.toml"
+hash = "9236aaac552861f727a9a3baaf2d535eb45ccb5103a6f87a6c56653039f83c6c"
+metafile = true
+
+[[files]]
 file = "mods/scorched.pw.toml"
 hash = "ee9f80e2894babfd878d8188697b99fc13a3c5220d5b630cec1f32c8e3aadd36"
 metafile = true
 
 [[files]]
+file = "mods/seamless.pw.toml"
+hash = "9d6127eef738ef427935b2011e08618184ec6d197d25e3a999ac772c0a0733b4"
+metafile = true
+
+[[files]]
 file = "mods/searchables.pw.toml"
 hash = "ce9ddada6ffd55a512149cc474c6a453281a997a5fdf1b7b4a2cc73f875e704a"
+metafile = true
+
+[[files]]
+file = "mods/seasonhud.pw.toml"
+hash = "8125cbc1c2daf19c172cb5afd7fe81e1769d9f0b725b7fefab905c258dfe932f"
 metafile = true
 
 [[files]]
@@ -1570,6 +1665,11 @@ hash = "5518dd2f6a5d88e4affb9df628604737893025206d7149579e4c24f909b130a3"
 metafile = true
 
 [[files]]
+file = "mods/undergarden-delight.pw.toml"
+hash = "04ba521820da4849cc5a3a60ae29b7ab677afa2cff4dddb7bad451fbb46ef073"
+metafile = true
+
+[[files]]
 file = "mods/underwater-village.pw.toml"
 hash = "183b6911813421c59df2de77ae810a0c188ea8d6b5d4e465ff19859b900ebbf5"
 metafile = true
@@ -1684,6 +1784,11 @@ metafile = true
 [[files]]
 file = "mods/yeetus-experimentus.pw.toml"
 hash = "5e25dccab496945a5f19bb82383e0ebf98452ffc14cd25c7e0259cc44312281a"
+metafile = true
+
+[[files]]
+file = "mods/youkaishomecoming-unofficial-port.pw.toml"
+hash = "87f50b46e9fb3b5844f71591d83a0295d64fd8a3257130d52345e8d808cf34f8"
 metafile = true
 
 [[files]]

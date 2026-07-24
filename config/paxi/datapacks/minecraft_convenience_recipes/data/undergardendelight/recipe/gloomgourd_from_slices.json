@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "GG",
+    "GG"
+  ],
+  "key": {
+    "G": {
+      "item": "undergardendelight:gloomgourd_slice"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "undergarden:gloomgourd"
+  }
+}

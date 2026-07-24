@@ -1,0 +1,13 @@
+name = "[NoCube's] Undergarden Delight"
+filename = "undergardendelight-2.0.2-neoforge-1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/H340jsJv/versions/mGgpu6et/undergardendelight-2.0.2-neoforge-1.21.1.jar"
+hash-format = "sha512"
+hash = "b2516ea3cb1ff8adae695d2870810eb8dd670200cf58a7719aa4c1551cfa8c5322f6a963cd7a25c819b696462921383cdac243a5d9122adcaa60230973d9fef9"
+
+[update]
+[update.modrinth]
+mod-id = "H340jsJv"
+version = "mGgpu6et"
