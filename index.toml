@@ -486,6 +486,14 @@ hash = "c0a24c2c3e847e15acd99774581aad9ffb06cc1f4db5ffcf02c4c9e50be0c189"
 metafile = true
 
 [[files]]
+file = "config/paxi/datapacks/youkai_homecoming_fixes/data/youkaishomecoming/structure/cirno_nest.nbt"
+hash = "2f18e65093a921045751fe2b9261bcf1e4fa88ff10f5aaee9c72e7f4c9034214"
+
+[[files]]
+file = "config/paxi/datapacks/youkai_homecoming_fixes/pack.mcmeta"
+hash = "106457e181362b931e5ea3ed412bf54b3a124d78794d0fa4febd671c23b1bf3f"
+
+[[files]]
 file = "config/reviveme/reviveme-common.toml"
 hash = "f08059dad921a935998cc42ac636c88fbcbc515f25f0d88665c69613d29a1160"
 

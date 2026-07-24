@@ -1726,8 +1726,10 @@ verify_upstream_overrides() {
   local jar_file
   local upstream_file
   local entity_blood_file="$data_root/vampirism/data_maps/entity_type/entity_blood.json"
+  local cirno_nest_file="$REPO_DIR/config/paxi/datapacks/youkai_homecoming_fixes/data/youkaishomecoming/structure/cirno_nest.nbt"
   local vampirism_jar
   local werewolves_jar
+  local youkai_jar
   local tag_name
   local tag_file
   local upstream_tag_values
@@ -1735,6 +1737,8 @@ verify_upstream_overrides() {
   local checked=0
 
   require_command jq
+  require_command gzip
+  require_command perl
   require_command unzip
 
   upstream_file="$(mktemp)"
@@ -1753,6 +1757,24 @@ verify_upstream_overrides() {
     '$upstream[0].values as $base | $custom[0].values as $ours | all($base | keys[]; . as $key | $base[$key] == $ours[$key])' \
     >/dev/null; then
     echo "ERROR: duplicated upstream entries in entity_blood.json have drifted from Vampirism"
+    rm -f "$upstream_file"
+    return 1
+  fi
+  checked=$((checked + 1))
+
+  youkai_jar="$(find "$server_dir/mods" -maxdepth 1 -type f -name 'youkaishomecoming-*.jar' -print -quit)"
+  if [ -z "$youkai_jar" ] || ! unzip -l "$youkai_jar" \
+    data/youkaishomecoming/structure/cirno_nest.nbt >/dev/null; then
+    echo "ERROR: upstream Youkai's Homecoming Cirno Nest structure is missing"
+    rm -f "$upstream_file"
+    return 1
+  fi
+  if ! diff -q \
+    <(unzip -p "$youkai_jar" data/youkaishomecoming/structure/cirno_nest.nbt \
+      | gzip -dc \
+      | perl -0pe 's/dev\.xkmc\.youkaishomecoming\.content\.spell\.game\.CirnoSpell/dev.xkmc.youkaishomecoming.content.spell.card.CirnoSpell/g') \
+    <(gzip -dc "$cirno_nest_file") >/dev/null; then
+    echo "ERROR: corrected Cirno Nest structure has drifted from Youkai's Homecoming"
     rm -f "$upstream_file"
     return 1
   fi
