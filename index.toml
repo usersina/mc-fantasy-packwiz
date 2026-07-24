@@ -1504,11 +1504,6 @@ hash = "ce9ddada6ffd55a512149cc474c6a453281a997a5fdf1b7b4a2cc73f875e704a"
 metafile = true
 
 [[files]]
-file = "mods/seasonhud.pw.toml"
-hash = "8125cbc1c2daf19c172cb5afd7fe81e1769d9f0b725b7fefab905c258dfe932f"
-metafile = true
-
-[[files]]
 file = "mods/shatterbyte-lib.pw.toml"
 hash = "3f552bbdc42f07fd7d5695ced1d27d774af63cff5460be45817939e5f8e4f9de"
 metafile = true
