@@ -758,6 +758,11 @@ hash = "b841dbd591775e39c4c04361bf56cefabbb954dc709608f0ea812a7e4db00530"
 metafile = true
 
 [[files]]
+file = "mods/better-ping-display.pw.toml"
+hash = "cc2e6dda94a7a6f5487843cafe569d8044bf9482cbf03f062cf4595f1fb05281"
+metafile = true
+
+[[files]]
 file = "mods/better-than-mending.pw.toml"
 hash = "12b0b7e34d631a5f2b6a544bb0a549d48201671feac81a9ce0766db091adbd6e"
 metafile = true
