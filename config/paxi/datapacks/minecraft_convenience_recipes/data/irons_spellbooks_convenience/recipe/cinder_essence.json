@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ASA",
+    "SFS",
+    "ASA"
+  ],
+  "key": {
+    "A": {
+      "item": "irons_spellbooks:arcane_essence"
+    },
+    "F": {
+      "item": "irons_spellbooks:fire_rune"
+    },
+    "S": {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "result": {
+    "id": "irons_spellbooks:cinder_essence",
+    "count": 4
+  }
+}
