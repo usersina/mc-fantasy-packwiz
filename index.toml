@@ -1143,6 +1143,11 @@ hash = "f3935636357eb78086ff6ba4e8ed68ea0d63411dadbaaf97f25727cfbc6399e3"
 metafile = true
 
 [[files]]
+file = "mods/fastsuite.pw.toml"
+hash = "336456ba2dae48ef86917e5777d8ca24a174dd6def2a8631853afe7c1b468baa"
+metafile = true
+
+[[files]]
 file = "mods/ferrite-core.pw.toml"
 hash = "73360e397134d238ee8fd21d33fd7f9275e9441f74f8f1b6ed92278877c0b9f1"
 metafile = true
@@ -1775,6 +1780,11 @@ hash = "3c4da8a221086153d491104bba4fd8796dac92d5c3e0b2dc111a6c5d53b65484"
 metafile = true
 
 [[files]]
+file = "mods/structure-layout-optimizer.pw.toml"
+hash = "20d767f7f803fd43e7b539046878bf97a27458595a1beff0b28002aca1b671de"
+metafile = true
+
+[[files]]
 file = "mods/supplementaries-squared.pw.toml"
 hash = "46280c9487633e3bd1dd7bb24ccc4076058b2602d7dc2906f96509527346cf24"
 metafile = true
@@ -1989,6 +1999,11 @@ metafile = true
 [[files]]
 file = "mods/yungs-extras.pw.toml"
 hash = "cfb7ce4c2b00cedd2e61f7d345b824d6bcc1471021668d2319ee2e4079108639"
+metafile = true
+
+[[files]]
+file = "mods/zfastnoise.pw.toml"
+hash = "b24c213b8727e80ca559670e97971c735c4dc4be1d1a4bd637c41450e7654c1e"
 metafile = true
 
 [[files]]
