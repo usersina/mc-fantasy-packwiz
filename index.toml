@@ -812,11 +812,6 @@ hash = "a284f59acb65e06f1fea88f8a44e31ea8deba9feb4f17e00fab35a6498a641f1"
 metafile = true
 
 [[files]]
-file = "mods/blasting-plus.pw.toml"
-hash = "87ed2057345b0e7dca5613149e1677274dccd9e153dc309cb0214a5f97649d72"
-metafile = true
-
-[[files]]
 file = "mods/blazing-bamboo-continued.pw.toml"
 hash = "413364f900b3ae67d8ad06171c19553c9da5ba94d1244d7a096364617d0a841d"
 metafile = true
@@ -1324,11 +1319,6 @@ hash = "d306891d79c1bf2e11521faf875747ae875dede848e7968ae33db1ea873e42aa"
 metafile = true
 
 [[files]]
-file = "mods/jeioptimizer.pw.toml"
-hash = "f07c235e6228c21e5100c4853a2ed407657dcce1f541f0a5ad7bf2688f218520"
-metafile = true
-
-[[files]]
 file = "mods/jer-compat-fix-1.0.0+mc1.21.1-neoforge.jar"
 hash = "bcaae61e7a6a9bdf99e3aace8d05c74bf8970df4a968406babdebf989fa90b80"
 
@@ -1694,11 +1684,6 @@ metafile = true
 [[files]]
 file = "mods/smarter-farmers-farmers-replant.pw.toml"
 hash = "2a1c96733de8dbafbb978e396d971b71d3a4d1068e2467b16275b6a91cf265a1"
-metafile = true
-
-[[files]]
-file = "mods/smoking-plus.pw.toml"
-hash = "1c70e3d0da7a2943855f0d6698ec8bea259fe041c286be284a12ef7fa7867ec8"
 metafile = true
 
 [[files]]
