@@ -1,0 +1,13 @@
+name = "BedTime"
+filename = "BedTime 1.21.1 Neoforge.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/8xjFllMF/versions/r1XKukQK/BedTime%201.21.1%20Neoforge.jar"
+hash-format = "sha512"
+hash = "a3ebbc99d71e2663af8096ea6d2fc05046d993372f904eba19d3f08bd917a4092b58db19835e9db17d6ac4bb96706a1c11629ee6f49b6666583db8ceb3d563de"
+
+[update]
+[update.modrinth]
+mod-id = "8xjFllMF"
+version = "r1XKukQK"

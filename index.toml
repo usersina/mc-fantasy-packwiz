@@ -748,6 +748,11 @@ hash = "7057d5d342a6fffba43bf3452f0f47f919f9e363c868f72787a8e3d770fdbfde"
 metafile = true
 
 [[files]]
+file = "mods/bedtime.pw.toml"
+hash = "f7352950c7d5c8853d6c76cc21677d525da187c8d5d72ee6ea915a813065516b"
+metafile = true
+
+[[files]]
 file = "mods/beltborne-lanterns-accessories-layer.pw.toml"
 hash = "d4b7f6cf00243e6963d28933424141debda012dbfc4e41d4954defac67b2156b"
 metafile = true
@@ -807,6 +812,11 @@ hash = "a284f59acb65e06f1fea88f8a44e31ea8deba9feb4f17e00fab35a6498a641f1"
 metafile = true
 
 [[files]]
+file = "mods/blasting-plus.pw.toml"
+hash = "87ed2057345b0e7dca5613149e1677274dccd9e153dc309cb0214a5f97649d72"
+metafile = true
+
+[[files]]
 file = "mods/blazing-bamboo-continued.pw.toml"
 hash = "413364f900b3ae67d8ad06171c19553c9da5ba94d1244d7a096364617d0a841d"
 metafile = true
@@ -844,6 +854,11 @@ metafile = true
 [[files]]
 file = "mods/brewin-and-chewin.pw.toml"
 hash = "22d9510588b081cf9905f6549d24bc11012aa8d9c7d38a8619ab9db5ccb7b9a8"
+metafile = true
+
+[[files]]
+file = "mods/bullets-boats.pw.toml"
+hash = "c3c3404d95a1d308becbd6f3bc79a8551d88187e059d6922475654c1992d1d70"
 metafile = true
 
 [[files]]
@@ -995,6 +1010,11 @@ hash = "4c16ee75d3b04443e96d854eec79344293963e9f4beaaf8e7215023e8ef53b88"
 metafile = true
 
 [[files]]
+file = "mods/darcenos-minecarts.pw.toml"
+hash = "cdb20a3f1ebe1014d65b19d33357a9ac5f93e06b497b62a1ee7978e3e517cc7a"
+metafile = true
+
+[[files]]
 file = "mods/dark-doppelganger.pw.toml"
 hash = "07e28f0e32a1922a181060c37a65f7290c5b5a02116c1678340e4140ab90750e"
 metafile = true
@@ -1110,8 +1130,8 @@ hash = "e0ad7cb6cf33d7958b7c9b7af321807190adf45ada89d65892fe2d437fe3024d"
 metafile = true
 
 [[files]]
-file = "mods/fantasy-blood-compat-1.3.2+mc1.21.1-neoforge.jar"
-hash = "2cae3a37ab96875c697cece7d00f77d583a0a8966b10ea5890cb8ec8e0d79c1d"
+file = "mods/fantasy-blood-compat-1.3.3+mc1.21.1-neoforge.jar"
+hash = "2bf38e48cdbbed20405b36725b440ff161eae2e19ad33fa28cd02dd09894ce6e"
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"
@@ -1301,6 +1321,11 @@ metafile = true
 [[files]]
 file = "mods/jei.pw.toml"
 hash = "d306891d79c1bf2e11521faf875747ae875dede848e7968ae33db1ea873e42aa"
+metafile = true
+
+[[files]]
+file = "mods/jeioptimizer.pw.toml"
+hash = "f07c235e6228c21e5100c4853a2ed407657dcce1f541f0a5ad7bf2688f218520"
 metafile = true
 
 [[files]]
@@ -1642,6 +1667,11 @@ hash = "0a6b37e52fde57628f217b8179a040ec5f36eb6823bd2572e15f220da668577d"
 metafile = true
 
 [[files]]
+file = "mods/skeleton-ai-fix.pw.toml"
+hash = "8939b1e09998a35e06ad499a0b9c34f1240379e7343976cbfc1985068cde8850"
+metafile = true
+
+[[files]]
 file = "mods/skeleton-horse-spawn.pw.toml"
 hash = "11a400b0a7a71773fa573f52266780bc815a16272497e90da9794a986890ad2e"
 metafile = true
@@ -1664,6 +1694,11 @@ metafile = true
 [[files]]
 file = "mods/smarter-farmers-farmers-replant.pw.toml"
 hash = "2a1c96733de8dbafbb978e396d971b71d3a4d1068e2467b16275b6a91cf265a1"
+metafile = true
+
+[[files]]
+file = "mods/smoking-plus.pw.toml"
+hash = "1c70e3d0da7a2943855f0d6698ec8bea259fe041c286be284a12ef7fa7867ec8"
 metafile = true
 
 [[files]]

@@ -91,6 +91,11 @@ jobs:
           PACKWIZ_INSTALLER_MAIN_JAR: ${{ github.workspace }}/dist/tools/packwiz-installer.jar
         run: task pack:inspect INSPECT=server-generated JAVA21="$JAVA_HOME/bin/java"
 
+      - name: Run pack integration tests
+        env:
+          PACKWIZ_INSTALLER_MAIN_JAR: ${{ github.workspace }}/dist/tools/packwiz-installer.jar
+        run: task pack:test JAVA21="$JAVA_HOME/bin/java"
+
       - name: Verify local patch jars match their sources
         run: |
           task local-mods:build JAVA21="$JAVA_HOME/bin/java"

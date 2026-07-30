@@ -22,13 +22,14 @@ ACTION="${1:-}"
 
 usage() {
   cat <<EOF
-Usage: $(basename "$0") <site|export-client|smoke-update|inspect|client-test|build-auth-tools>
+Usage: $(basename "$0") <site|export-client|smoke-update|inspect|test|client-test|build-auth-tools>
 
 Actions:
   site                Refresh Packwiz and build the hosted stable Packwiz site.
   export-client       Refresh Packwiz and export the stable Prism/Freesm .mrpack.
   smoke-update        Install the client pack into a temp folder and verify basics.
   inspect             Inspect mods, materialized packs, launcher instances, or generated server configs.
+  test                Run headless integration suites against the real server pack.
   client-test         Bootstrap, sync, or launch a Prism/Freesm maintainer test client.
   build-auth-tools    Build pinned Packwiz tools with CurseForge environment-key support.
 
@@ -37,6 +38,10 @@ Inspect examples:
   INSPECT=instance INSTANCE_MC_DIR=/path/to/instance/minecraft $(basename "$0") inspect
   INSPECT=pack PACK_URL=http://127.0.0.1:8081/stable/pack.toml $(basename "$0") inspect
   INSPECT=server-generated $(basename "$0") inspect
+
+Test examples:
+  $(basename "$0") test
+  TEST=butchery $(basename "$0") test
 
 Client test examples:
   $(basename "$0") client-test
@@ -2012,6 +2017,206 @@ cmd_inspect() {
   esac
 }
 
+build_butchery_test_mod() {
+  local runtime_dir="$1"
+  local output_jar="$2"
+  local source_dir="$REPO_DIR/tests/butchery"
+  local build_dir="$(dirname "$output_jar")/build"
+  local classes_dir="$build_dir/classes"
+  local patched_server_jar
+  local classpath
+  local javac_bin="$(dirname "$JAVA21")/javac"
+  local jar_bin="$(dirname "$JAVA21")/jar"
+
+  if [ ! -x "$javac_bin" ] || [ ! -x "$jar_bin" ]; then
+    echo "ERROR: Java 21 compiler tools were not found beside $JAVA21"
+    return 1
+  fi
+
+  if [ ! -d "$source_dir/src/main/java" ] || [ ! -d "$source_dir/src/main/resources" ]; then
+    echo "ERROR: Butchery test verifier sources are missing: $source_dir"
+    return 1
+  fi
+
+  patched_server_jar="$(find "$runtime_dir/libraries/net/neoforged/neoforge" -type f -name 'neoforge-*-server.jar' | sort | tail -n 1)"
+  if [ -z "$patched_server_jar" ]; then
+    echo "ERROR: NeoForge patched server jar not found under $runtime_dir/libraries"
+    return 1
+  fi
+
+  safe_rm_rf "$build_dir"
+  mkdir -p "$classes_dir"
+  classpath="$patched_server_jar:$({
+    find "$runtime_dir/libraries" -type f -name '*.jar'
+    find "$runtime_dir/mods" -type f -name '*.jar'
+  } | sort | paste -sd ':' -)"
+
+  find "$source_dir/src/main/java" -type f -name '*.java' | sort > "$build_dir/sources.txt"
+  "$javac_bin" --release 21 -proc:none -cp "$classpath" -d "$classes_dir" @"$build_dir/sources.txt"
+  cp -R "$source_dir/src/main/resources/." "$classes_dir/"
+
+  rm -f "$output_jar"
+  (
+    cd "$classes_dir"
+    mapfile -t jar_files < <(find . -type f | sort | sed 's#^\./##')
+    "$jar_bin" --create --file "$output_jar" --date=2024-01-01T00:00:00+00:00 \
+      --no-manifest --no-compress "${jar_files[@]}"
+  )
+}
+
+set_test_server_properties() {
+  local server_dir="$1"
+  local properties="$server_dir/server.properties"
+
+  if [ ! -f "$properties" ]; then
+    echo "ERROR: test runtime has no server.properties: $properties"
+    return 1
+  fi
+
+  for entry in \
+    'server-port=0' \
+    'online-mode=false' \
+    'level-name=fantasy-pack-butchery-tests'; do
+    local key="${entry%%=*}"
+    if grep -q "^${key}=" "$properties"; then
+      sed -i "s#^${key}=.*#${entry}#" "$properties"
+    else
+      printf '%s\n' "$entry" >> "$properties"
+    fi
+  done
+}
+
+cmd_test_butchery() {
+  local root="$REPO_DIR/dist/test/butchery"
+  local site_dir="$root/site/stable"
+  local site_root="$root/site"
+  local generated_runtime="$REPORT_DIR/server-generated/runtime"
+  local runtime_dir="$root/runtime"
+  local port="${TEST_SITE_PORT:-8092}"
+  local local_pack_url="http://127.0.0.1:${port}/stable/pack.toml"
+  local verifier_jar="$root/fantasy-pack-butchery-tests.jar"
+  local installed_verifier=""
+  local runtime_result
+  local report="$root/result.txt"
+  local server_log="$root/server.log"
+  local neoforge_version
+  local neoforge_args
+  local server_pid=""
+  local start_status=0
+
+  require_command python3
+  require_command timeout
+  require_java21
+
+  mkdir -p "$root"
+  if [ -d "$generated_runtime/libraries" ] && [ -d "$generated_runtime/mods" ]; then
+    runtime_dir="$generated_runtime"
+    echo "==> Reusing generated server runtime"
+  else
+    echo "==> Creating reusable Butchery test runtime"
+  fi
+  echo "    $runtime_dir"
+
+  echo "==> Building current Packwiz site for the test runtime"
+  (
+    SITE_DIR="$site_dir" cmd_site
+  )
+  if rg -q 'file = "tests/|fantasy-pack-butchery-tests' "$site_dir/index.toml"; then
+    echo "ERROR: test-only verifier files leaked into the Packwiz index"
+    return 1
+  fi
+
+  python3 -m http.server "$port" --directory "$site_root" >"$root/http.log" 2>&1 &
+  server_pid="$!"
+  trap '
+    if [ -n "${server_pid:-}" ]; then kill "$server_pid" >/dev/null 2>&1 || true; fi
+    if [ -n "${installed_verifier:-}" ]; then rm -f "$installed_verifier"; fi
+  ' EXIT
+  wait_for_http "$local_pack_url"
+
+  SERVER_DIR="$runtime_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" ACCEPT_EULA=true \
+    "$REPO_DIR/scripts/server.sh" setup
+  SERVER_DIR="$runtime_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" \
+    "$REPO_DIR/scripts/server.sh" update
+  set_test_server_properties "$runtime_dir"
+
+  safe_rm_rf "$runtime_dir/fantasy-pack-butchery-tests"
+  runtime_result="$runtime_dir/fantasy-pack-tests/butchery.txt"
+  rm -f "$report" "$server_log" "$runtime_result"
+  build_butchery_test_mod "$runtime_dir" "$verifier_jar"
+  installed_verifier="$runtime_dir/mods/$(basename "$verifier_jar")"
+  cp -p "$verifier_jar" "$installed_verifier"
+
+  neoforge_version="$(pack_value neoforge)"
+  neoforge_args="libraries/net/neoforged/neoforge/${neoforge_version}/unix_args.txt"
+  if [ ! -f "$runtime_dir/$neoforge_args" ]; then
+    echo "ERROR: NeoForge argfile is missing: $runtime_dir/$neoforge_args"
+    return 1
+  fi
+
+  echo "==> Running Butchery integration suite in the full dedicated-server pack"
+  set +e
+  (
+    cd "$runtime_dir"
+    timeout "${PACK_TEST_TIMEOUT:-1200}" "$JAVA21" @user_jvm_args.txt "@$neoforge_args" nogui
+  ) >"$server_log" 2>&1
+  start_status="$?"
+  set -e
+
+  rm -f "$installed_verifier"
+  installed_verifier=""
+  if [ ! -f "$runtime_result" ]; then
+    echo "ERROR: Butchery verifier did not write a result (server status $start_status)"
+    tail -n 80 "$server_log"
+    return 1
+  fi
+  cp -p "$runtime_result" "$report"
+
+  if ! head -n 1 "$report" | grep -Fqx 'PASS butchery'; then
+    echo "ERROR: Butchery integration suite failed"
+    cat "$report"
+    echo
+    echo "Server log: $server_log"
+    return 1
+  fi
+  if [ "$start_status" -ne 0 ]; then
+    echo "ERROR: test server exited with status $start_status despite a passing verifier result"
+    tail -n 80 "$server_log"
+    return 1
+  fi
+
+  cat "$report"
+  echo "==> Butchery integration suite passed"
+  echo "    Report: $report"
+  echo "    Server log: $server_log"
+
+  kill "$server_pid" >/dev/null 2>&1 || true
+  wait "$server_pid" >/dev/null 2>&1 || true
+  server_pid=""
+  trap - EXIT
+}
+
+cmd_test_all() {
+  echo "==> Running all pack integration suites"
+  cmd_test_butchery
+}
+
+cmd_test() {
+  case "${TEST:-}" in
+    ""|all)
+      cmd_test_all
+      ;;
+    butchery)
+      cmd_test_butchery
+      ;;
+    *)
+      echo "ERROR: unknown test suite: $TEST"
+      usage
+      exit 1
+      ;;
+  esac
+}
+
 case "$ACTION" in
   site)
     cmd_site
@@ -2024,6 +2229,9 @@ case "$ACTION" in
     ;;
   inspect)
     cmd_inspect
+    ;;
+  test)
+    cmd_test
     ;;
   client-test)
     cmd_client_test

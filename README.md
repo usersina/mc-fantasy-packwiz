@@ -415,6 +415,38 @@ They are read-only reports. After reviewing them, update only intentional files 
 - `defaultconfigs/`
 - `config/defaultoptions/keybindings.txt`
 
+## Headless Pack Tests
+
+Run the Butchery and blood-integration suite after changing Butchery, Vampirism,
+Iron's Spells, Vampire's Delight, their recipes/tags, or either related local mod:
+
+```bash
+task pack:test
+```
+
+This runs every registered suite. During development, rerun only this suite with
+`task pack:test TEST=butchery`.
+
+The task builds a test-only verifier, loads it into a disposable copy of the real
+dedicated-server pack, and removes it after the run. Its report and full server log
+stay under ignored `dist/test/butchery/`.
+
+Automated checks cover:
+
+- clean recipe/datapack loading and required registry entries
+- the repaired Butchery enchantable-weapon tag
+- Blood Grate mode switching, fill routing, extraction, and persistence
+- wet-sponge draining
+- equivalent clean-blood merging in the Alchemist Cauldron
+- Butchery items' Vampire's Delight blood-food values
+
+Still check the small client-facing surface in-game after behavior changes:
+
+- Blood Grate counter/tooltips render correctly
+- a real hanging carcass triggers its animation and fill procedure
+- JEI displays the intended recipes and fluids
+- multiplayer clients see the resulting block/fluid updates
+
 ## Maintainer Client Test Loop
 
 This is the Packwiz-pack equivalent of a mod repo's Gradle `runClient`.
@@ -694,6 +726,7 @@ Task names use `domain:action`:
 | `task pack:smoke-update`     | verify client updater installs successfully                 |
 | `task pack:export-client`    | export the Prism/Freesm `.mrpack` bootstrap                 |
 | `task pack:inspect`          | inspect mods, packs, instances, or generated server config  |
+| `task pack:test`             | run all headless integration suites in the real server pack |
 | `task client:test`           | bootstrap, sync, or launch the maintainer test client       |
 
 ## Overrides

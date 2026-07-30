@@ -21,6 +21,7 @@ vars:
   LAUNCH: 'true'
   RESET: 'false'
   INSPECT: ''
+  TEST: ''
   MOD: ''
   INSTANCE_MC_DIR: ''
 
@@ -178,6 +179,12 @@ tasks:
     dir: '{{.REPO_DIR}}'
     cmds:
       - INSPECT="{{.INSPECT}}" MOD="{{.MOD}}" INSTANCE_MC_DIR="{{.INSTANCE_MC_DIR}}" PACK_URL="{{.PACK_URL}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/pack.sh inspect
+
+  pack:test:
+    desc: Run all headless integration suites, or one selected with TEST
+    dir: '{{.REPO_DIR}}'
+    cmds:
+      - TEST="{{.TEST}}" JAVA21="${JAVA21:-{{.JAVA21}}}" ./scripts/pack.sh test
 
   pack:serve:
     desc: Serve packwiz locally

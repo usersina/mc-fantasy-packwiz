@@ -19,6 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.mcreator.butchery.block.entity.BloodgrateBlockEntity;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -74,7 +75,7 @@ public final class FantasyBloodCompat {
         event.modify(item, components -> components.set(VDDataComponents.VAMPIRE_FOOD.value(), properties));
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         ItemStack sponge = event.getItemStack();
         if (!BuiltInRegistries.ITEM.getKey(sponge.getItem()).equals(BUTCHERY_SPONGE)) {
