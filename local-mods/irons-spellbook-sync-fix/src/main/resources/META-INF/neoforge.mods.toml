@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="irons_spellbook_sync_fix"
+version="1.0.0"
+displayName="Iron's Spellbook Sync Fix"
+authors="usersina"
+description='''Refreshes Iron's client spell-selection cache when the equipped spellbook changes.'''
+
+[[dependencies.irons_spellbook_sync_fix]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.irons_spellbook_sync_fix]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,21.2)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.irons_spellbook_sync_fix]]
+modId="irons_spellbooks"
+type="required"
+versionRange="[1.21.1-3.16.2,1.21.1-3.17.0)"
+ordering="AFTER"
+side="CLIENT"

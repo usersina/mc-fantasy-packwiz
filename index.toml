@@ -29,6 +29,10 @@ file = "config/fml.toml"
 hash = "ae54768733410adc27681c133e6879af43482b3e05dabd9ef25a13ed13ceb994"
 
 [[files]]
+file = "config/immediatelyfast.json"
+hash = "ec75acf4d8b7da7c4083d5a32b6cb18f513b1bc5e792d257ccc6a43506fdccae"
+
+[[files]]
 file = "config/irons_spellbooks-client.toml"
 hash = "ef580b811fb717262f2c3bc35118df76c6304fc02f3935fa884d488dff22ce25"
 
@@ -852,11 +856,6 @@ hash = "22d9510588b081cf9905f6549d24bc11012aa8d9c7d38a8619ab9db5ccb7b9a8"
 metafile = true
 
 [[files]]
-file = "mods/bullets-boats.pw.toml"
-hash = "c3c3404d95a1d308becbd6f3bc79a8551d88187e059d6922475654c1992d1d70"
-metafile = true
-
-[[files]]
 file = "mods/butchery-blood-grate-fix-1.2.1+mc1.21.1-neoforge.jar"
 hash = "75fbba06eca2f00b9e4fa93412a2b1b6498da212ae554442f8255db914877f77"
 
@@ -1287,6 +1286,10 @@ metafile = true
 file = "mods/irons-lib.pw.toml"
 hash = "1b84f2dda2014252ffb0b792f4850fa3b3b396a49f39cac7b11c8cb88bf1a1e4"
 metafile = true
+
+[[files]]
+file = "mods/irons-spellbook-sync-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "46c737b850059dd351f253b9e69f0e7b199149482208b28e276e9f5bb8bddd23"
 
 [[files]]
 file = "mods/irons-spellbooks-arcane-essence-blocks.pw.toml"
