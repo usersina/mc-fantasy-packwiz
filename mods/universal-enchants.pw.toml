@@ -1,0 +1,13 @@
+name = "Universal Enchants"
+filename = "UniversalEnchants-v21.1.6-1.21.1-NeoForge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/DT56YDir/versions/pllSFipO/UniversalEnchants-v21.1.6-1.21.1-NeoForge.jar"
+hash-format = "sha512"
+hash = "0490aab912ada58649a7edf7c9a704a30080537cdc8e8ea718883f124eb486674b29d890b9fd1933e43a49fe50c404903e6ad436f6f016c249811d6d639ad348"
+
+[update]
+[update.modrinth]
+mod-id = "DT56YDir"
+version = "pllSFipO"

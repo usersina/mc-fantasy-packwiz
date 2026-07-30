@@ -1,0 +1,8 @@
+{
+  "enabled": false,
+  "useCompatRecipe": true,
+  "useCompatLootTable": true,
+  "useCompatDataType": true,
+  "useCompatDimensionType": true,
+  "useCompatTagGroup": true
+}

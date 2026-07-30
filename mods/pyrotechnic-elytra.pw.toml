@@ -1,0 +1,13 @@
+name = "Pyrotechnic Elytra"
+filename = "pyrotechnic-elytra-neoforge-1.21.1-1.0.0.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/SomUrE3g/versions/ZRiIcLCh/pyrotechnic-elytra-neoforge-1.21.1-1.0.0.jar"
+hash-format = "sha512"
+hash = "ea84ff9c4ffde27587d6519b22609c229dd59f357af81b4e368a530190be7ea250dc8be8bc1fc5f18dda7c56c1c6fa7da304a39a395ef8c11bcf68be82463add"
+
+[update]
+[update.modrinth]
+mod-id = "SomUrE3g"
+version = "ZRiIcLCh"

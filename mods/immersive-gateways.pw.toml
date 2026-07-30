@@ -1,0 +1,13 @@
+name = "Immersive Gateways"
+filename = "immersive_gateways-neoforge-0.0.6.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/3hZmBMYA/versions/2732EpKG/immersive_gateways-neoforge-0.0.6.jar"
+hash-format = "sha512"
+hash = "861e422e8ca3b9fa4ab269fba3055dee7bf8e3089ae42e617b22098a912ee349bdd42af57f5e447b728f8b5929ada9a7640982046b76812a1163ce41d530b022"
+
+[update]
+[update.modrinth]
+mod-id = "3hZmBMYA"
+version = "2732EpKG"

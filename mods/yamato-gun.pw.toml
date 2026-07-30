@@ -1,0 +1,13 @@
+name = "Yamato Gun"
+filename = "YamatoGunMod-neoforge-0.0.16.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/WZoCbc26/versions/SbSg0bUq/YamatoGunMod-neoforge-0.0.16.jar"
+hash-format = "sha512"
+hash = "750ce57c718cd57bc5beaa61647dfbbd58a634e0c4412f8a9d3b0020bc30afa2567aef819828dac5f0e48ca80a3d458fa1be48e7a6b1729f5474437ad7c6ad32"
+
+[update]
+[update.modrinth]
+mod-id = "WZoCbc26"
+version = "SbSg0bUq"

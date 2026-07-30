@@ -1,13 +1,13 @@
 name = "Vampirism Iron's Spells Compatibility"
-filename = "vampire_spells_addon-1.21.1-0.0.6.jar"
+filename = "vampire_spells_addon-neoforge-1.21.1-0.0.9.jar"
 side = "both"
 
 [download]
 hash-format = "sha1"
-hash = "521cc5104d4f878d08064b5b17282b52627e9785"
+hash = "004eec424ea7ba808b020d012932bdee4cdf3756"
 mode = "metadata:curseforge"
 
 [update]
 [update.curseforge]
-file-id = 7012837
+file-id = 8525676
 project-id = 1350048

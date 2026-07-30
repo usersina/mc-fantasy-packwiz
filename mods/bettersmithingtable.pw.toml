@@ -1,0 +1,13 @@
+name = "Better Smithing Table"
+filename = "better_smithing_table-2.1.0+1.21-neoforge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/Vt8TI045/versions/6p5bt7QM/better_smithing_table-2.1.0%2B1.21-neoforge.jar"
+hash-format = "sha512"
+hash = "594509bffca0ec53756c9ccdf3ee87452a51db3379e37192e61e70480c8e542195c4c708c3cfed496f44137eb96d04ff54e9990e352df0adbb84bf657047e19a"
+
+[update]
+[update.modrinth]
+mod-id = "Vt8TI045"
+version = "6p5bt7QM"
