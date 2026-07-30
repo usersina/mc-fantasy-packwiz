@@ -2,7 +2,7 @@
 set -euo pipefail
 
 MOD_ID="butchery-blood-grate-fix"
-MOD_VERSION="1.2.0"
+MOD_VERSION="1.2.1"
 MC_VERSION="1.21.1"
 LOADER="neoforge"
 

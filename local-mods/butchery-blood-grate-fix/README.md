@@ -1,6 +1,6 @@
 # Butchery Blood Grate Fix
 
-Tiny pack-local compatibility mod for Butchery 5.1 Blood Grate behavior on NeoForge 1.21.1:
+Tiny pack-local compatibility mod for Butchery 5.1-5.2 Blood Grate behavior on NeoForge 1.21.1:
 
 - Butcher's Papers writes the obsolete `fluidTank.FluidName` NBT field, so changing modes does not update the live tank selection and later fills are rejected.
 - Small carcasses only fill a Blood Grate in Butchery mode; the other generated mode branches are empty.

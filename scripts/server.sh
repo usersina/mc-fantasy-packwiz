@@ -6,7 +6,13 @@ SERVER_BASE_DIR="${SERVER_BASE_DIR:-$REPO_DIR/server-base}"
 SERVER_DIR="${SERVER_DIR:-/data/games/servers/minecraft/fantasy-lan}"
 PACK_URL="${PACK_URL:-http://127.0.0.1:8888/pack.toml}"
 JAVA21="${JAVA21:-/usr/lib/jvm/java-21-openjdk/bin/java}"
-NEOFORGE_VERSION="${NEOFORGE_VERSION:-21.1.234}"
+if [ -z "${NEOFORGE_VERSION:-}" ]; then
+  NEOFORGE_VERSION="$(awk -F'"' '$1 ~ "^[[:space:]]*neoforge[[:space:]]*=" { print $2; exit }' "$REPO_DIR/pack.toml")"
+fi
+if [ -z "$NEOFORGE_VERSION" ]; then
+  echo "ERROR: could not read the NeoForge version from $REPO_DIR/pack.toml" >&2
+  exit 1
+fi
 NEOFORGE_INSTALLER_CACHE="${NEOFORGE_INSTALLER_CACHE:-$REPO_DIR/.cache/neoforge-${NEOFORGE_VERSION}-installer.jar}"
 PACKWIZ_INSTALLER_VERSION="${PACKWIZ_INSTALLER_VERSION:-v0.0.3}"
 PACKWIZ_INSTALLER_URL="${PACKWIZ_INSTALLER_URL:-https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/${PACKWIZ_INSTALLER_VERSION}/packwiz-installer-bootstrap.jar}"
