@@ -1,0 +1,13 @@
+name = "Rob's Craftable XP"
+filename = "robs_craftable_xp.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/DVG3rBGG/versions/mlSCYz6l/robs_craftable_xp.jar"
+hash-format = "sha512"
+hash = "fe664070bd310e4df7110c549b08803193242da7448a9d3d29fbb3c228e0edc80ddb7e575223aa7bf492e955e70d60c8042921e3a27afa9ab2de4302005f5c35"
+
+[update]
+[update.modrinth]
+mod-id = "DVG3rBGG"
+version = "mlSCYz6l"

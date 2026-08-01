@@ -1625,6 +1625,11 @@ hash = "e55ca32b338a0e0540f4fec5170675d860566255ae0f45692a00cb4ebf2eb535"
 metafile = true
 
 [[files]]
+file = "mods/robs-craftable-xp.pw.toml"
+hash = "988b9e79a3573db3e8f746837fb04608c6f0a05f7dcd4788638674d5444b8a98"
+metafile = true
+
+[[files]]
 file = "mods/runiclib.pw.toml"
 hash = "ea53e1f266236ded756baa6ae49292583fa5f21c5c3134dfef821b11a7f169fb"
 metafile = true
