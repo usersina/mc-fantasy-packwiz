@@ -441,6 +441,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_conve
 hash = "c0c8c9e3bc02aba780e89e93bf524a749f2258d5c6f2c3fbb26e3eaf7dcc9a22"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/empty_blood_bottle_from_glass_bottle.json"
+hash = "f5ee5bc2855c7400991de569ef62f2a94f2ca211895f72dfc8a699dc0318bc00"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/fill_alchemist_cauldron_from_vampirism_blood_bucket.json"
 hash = "47dc9d11c178b5238f06d5729221780b167d1fd5ca731edd3e91829161f120f4"
 
