@@ -30,6 +30,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -87,6 +88,7 @@ public final class ButcheryIntegrationTests {
 
         runCase("recipes and registries", () -> testRecipesAndRegistries(server));
         runCase("Butchery Delight compatibility", this::testDelightCompatibility);
+        runCase("Butchery balance policy", () -> testBalancePolicy(server));
         runCase("Butchery weapon tag", this::testWeaponTag);
         runCase("blood-grate mode switching", () -> testModeSwitching(level, origin));
         runCase("filled grate blocks mode switching", () -> testFilledModeSwitch(level, origin));
@@ -195,10 +197,61 @@ public final class ButcheryIntegrationTests {
         assertItemInTag("butchery:raw_strider_meat", "c:foods/raw_strider");
 
         assertItemInTag("butchery:iron_cleaver", "c:tools/knife");
+        for (String knife : List.of(
+                "dungeonsdelight:fiery_knife",
+                "dungeonsdelight:gravitite_knife",
+                "dungeonsdelight:ironwood_knife",
+                "dungeonsdelight:knightmetal_knife",
+                "dungeonsdelight:steeleaf_knife",
+                "dungeonsdelight:zanite_knife",
+                "aethersdelight:arkenium_knife",
+                "undergardendelight:regalium_knife"
+        )) {
+            assertItemInTag(knife, "c:tools/knife");
+            assertItemInTag(knife, "farmersdelight:tools/knives");
+            assertItemInTag(knife, "c:cleaver");
+            assertItemInTag(knife, "c:skinning_knives");
+        }
+        assertItemNotInTag("butchery:iron_skinning_knife", "c:cleaver");
         assertItemInTag("butchery:raw_ham", "fantasy_pack:foods/raw_ham");
         assertItemInTag("butchery:cooked_ham", "fantasy_pack:foods/smoked_ham");
         assertItemInTag("butchery:rotten_heart", "dungeonsdelight:fleshes");
         assertItemInTag("butchery:rotten_stomach", "dungeonsdelight:fleshes");
+    }
+
+    private void testBalancePolicy(MinecraftServer server) {
+        assertFalse(ButcheryconfigConfiguration.MAGIC_WISHBONE.get(), "magic wishbone jackpots must remain disabled");
+        assertFalse(ButcheryconfigConfiguration.BLOOD_SPREAD.get(), "blood puddle spreading must remain disabled");
+
+        var recipeHolder = server.getRecipeManager()
+                .byKey(id("vampirism_convenience:blood_vial_from_butchery_heart"))
+                .orElseThrow(() -> new AssertionError("missing Butchery Heart blood-vial recipe"));
+        assertTrue(recipeHolder.value() instanceof ShapelessRecipe, "blood-vial recipe is not shapeless");
+        ShapelessRecipe recipe = (ShapelessRecipe) recipeHolder.value();
+        ItemStack heart = new ItemStack(requireItem("butchery:heart"));
+        ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
+        assertEquals(
+                5,
+                recipe.getIngredients().stream().filter(ingredient -> ingredient.test(heart)).count(),
+                "blood vial must cost five Butchery Hearts"
+        );
+        assertEquals(
+                1,
+                recipe.getIngredients().stream().filter(ingredient -> ingredient.test(bottle)).count(),
+                "blood vial must cost one glass bottle"
+        );
+
+        List<ItemStack> witherHeadDrops = lootTableDrops(server, "butchery:blocks/wither_head_drop");
+        assertEquals(
+                1,
+                countItem(witherHeadDrops, "minecraft:wither_skeleton_skull"),
+                "Wither processing did not return a Wither Skeleton Skull"
+        );
+        assertEquals(
+                0,
+                countItem(witherHeadDrops, "butchery:warden_head"),
+                "Wither processing still returned the upstream Warden Head typo"
+        );
     }
 
     private void testWeaponTag() {
@@ -424,11 +477,32 @@ public final class ButcheryIntegrationTests {
         trader.setPos(Vec3.atCenterOf(origin));
 
         FakePlayer player = preparePlayer(level, origin);
-        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(requireItem("butchery:iron_skinning_knife")));
+        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(requireItem("butchery:iron_cleaver")));
         assertEquals(
                 1,
                 countItem(entityLootDrops(table, level, trader, player), "butchery:villager_corpse"),
-                "Butchery knife did not produce Wandering Trader corpse"
+                "Butchery cleaver did not produce Wandering Trader corpse"
+        );
+
+        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(requireItem("butchery:iron_skinning_knife")));
+        assertEquals(
+                0,
+                countItem(entityLootDrops(table, level, trader, player), "butchery:villager_corpse"),
+                "skinning knife produced Wandering Trader corpse"
+        );
+
+        ItemStack enchantedSword = new ItemStack(Items.IRON_SWORD);
+        enchantedSword.enchant(
+                level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(
+                        ResourceKey.create(Registries.ENCHANTMENT, id("butchery:butcherstouch"))
+                ),
+                1
+        );
+        player.setItemInHand(InteractionHand.MAIN_HAND, enchantedSword);
+        assertEquals(
+                1,
+                countItem(entityLootDrops(table, level, trader, player), "butchery:villager_corpse"),
+                "Butcher's Touch did not produce Wandering Trader corpse"
         );
 
         player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);

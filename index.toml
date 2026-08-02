@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/Butchery.toml"
-hash = "21c2d8c97c8e8eb2c30e0c60595e170dbc23cee6b157161a464e6da3bd326c0c"
+hash = "877c625b2d887c062760ecc34bab2462c99982777ba92b1d647f41f4476916d5"
 
 [[files]]
 file = "config/accessories.json5"
@@ -82,7 +82,7 @@ hash = "e63ebc03308d1949b88b876ba4af3f579beee6cce2a8cab8bf72456c02c0b6d1"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/benssharks/loot_table/entities/thalassoger.json"
-hash = "96bae82eea14eb904810caea22d1d7c1598f7410786e4ae3032e744f9bb3862b"
+hash = "92c4acf31747a136e1c7b74b301d80410650b60d5ba6e0b5c039b9cd47cdf42b"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/botanypots/crop/blazing_bamboo.json"
@@ -119,6 +119,10 @@ hash = "ca36ae91ea711abb169aa8e8af13af1cce645c0032110579bb2146c57411f575"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/brewinandchewin/recipe/ham_and_cheese_sandwich.json"
 hash = "db373ab540710b1b8d64921b325bfce5359d56cb78676211a2e8e84f71a8c363"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery/loot_table/blocks/wither_head_drop.json"
+hash = "25222dd32e1db8d61c2f405e7eab484bcc0b84b232396fe9233a5dba689536a0"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery/tags/item/enchantable/weapon.json"
@@ -234,7 +238,7 @@ hash = "9a4e7a57705addf779362de6302b3ee26c9d598317636db0b2ed9a4ace2cb8c4"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/tools/knife.json"
-hash = "402bd6ccc22fb0d32edfd67ad231b26f3a3f85dcd5aba914ba953da4d69a8731"
+hash = "4e5cb52db161c15e8d5db8be8251082eb40a0ea5d721b25668ecfd9fa1d3d0fe"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/abyssal_warlock_helmet_crafting.json"
@@ -426,27 +430,27 @@ hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/guardvillagers/loot_table/entities/guard.json"
-hash = "3898e1af0425db87a147b0c7b3023b343497a41ee9e8b437479afc56acb1cbcf"
+hash = "ddcf2a4180341fe5a85a57a335495f86a2d7ca8cfa67ee86c7b4a7a3af5ce390"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/entities/apothecarist.json"
-hash = "ba7975b1bb8d73a6c8729a7b5cec40a9da5834776aadddab1af6a55e8e93ead0"
+hash = "e84c1816f75d4a5e5202c345a2e933d9950a8eb0243889baeb41c30c205dcead"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/entities/archevoker.json"
-hash = "88182b6d4b37dc16f0e2c69c2daa6fbc0b356cac55efd319a94c2f5b9ac10deb"
+hash = "c21b444d9a7b82799651756dfde3bd5eb07404bbaf14bf4bbc84dfe7fefed77a"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/entities/cryomancer.json"
-hash = "f850e1e9b1da6ad460a2ead45455e0a7855b3d97d81a03dbd3c8b91f90901f75"
+hash = "b70d9bd0c98b21d35baf6ee0f521eeea65f4055208b012487aded9d44a7517ba"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/entities/priest.json"
-hash = "9c434cb3d3c059c67df59f411f4a993c17d4f5c82811dbe30e594b4a6f508eac"
+hash = "0ad4dd6e23eaad3c526bfdea32136c742bc0df7d003deea27908e19e56d89c0e"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/entities/pyromancer.json"
-hash = "2517e2cf9e02e4f1c2a212704aa2e504a116085c74b012142a1eda1ae09f7083"
+hash = "316fda50f8c2f9b316f2627dd378af93875352311ff85aaf8f9eebe4ad39c5b4"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks/loot_table/test/ring_gen_break_me.json"
@@ -494,11 +498,11 @@ hash = "ed551bef8049a650ae0a227bf1c2d9ae370c11f6a76ceb0b36db2004f12794d7"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/illusioner.json"
-hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
+hash = "6955cadf0c1315be17b004e8f7529c9223ceb0b14ce5cbd1c209d6076d95d297"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/wandering_trader.json"
-hash = "3094f08f67e9879446e73e9d97941d3d64071adf64cc4436cf50926efc81fc81"
+hash = "c6eeb749faf8f89e8c79ea583dc9393908de24d000b7d45c0735d2aa482173a8"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/recipe/red_dye.json"
@@ -546,27 +550,27 @@ hash = "5f1ef41daaca3ad2a41ba4b6a7129a4e5a0d63d1f555fdca3e4459049d75aa65"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter.json"
-hash = "7a3916d217fb3521f0f70880688d1d10fc7f9bb400bb7773a2d6810b6e9cb592"
+hash = "436821cfebb8033d1213ed704a18723201d3c04371bddf242bf813cf40ff404d"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/advanced_hunter_imob.json"
-hash = "1e3bf3be833feb6e89e839c25ac20571bd26af29e1734bd65323bde8c9808e1e"
+hash = "b2f35cd8ed712b25e1f14333678a6c3a424cd5f3f3d254d899fb9cdd006051a5"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/hunter.json"
-hash = "75efa29be883da318d2dd32b8b4ef79e51e6ba270fdb5230cd22108816fb423d"
+hash = "a4a2a8c7abe2a9dacfc5fd34965439790f4d4c32c86ab55fbb7b1308e5f187f1"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/hunter_imob.json"
-hash = "dc4e1e81d7754bb5b9cf9bc6f3c33e860c810654a5c380599d075128ce56616e"
+hash = "4ac1c938f16ecb1cbaebb611a83397abf8fd18ebe5f1535d1aeb4b17b2de9d1c"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/hunter_trainer.json"
-hash = "7e212f981fe1548c2bc5d5735ecd3ff5ff8c5a02e80b6e9a1647271e471ecfb8"
+hash = "a1783fc6f3516f7be121296ae973bb16410f6c7230bbef0a01eeb3cfe99d3b57"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/loot_table/entities/task_master_hunter.json"
-hash = "0589a8c556e9ff7817484f89159bf2f98a2699337d37e9e3f3e08ca0ae653fff"
+hash = "5aff4df64f3804aa00aea0794cd40c7575dcc38fcf388795463ac12832378c8b"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism/vampirism/tasks/h_capture1.json"
@@ -598,7 +602,7 @@ hash = "e643a4f2a0030112ce35c1603e8590ce4840b305f4d35154d147eb00b98cffd0"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/blood_vial_from_butchery_heart.json"
-hash = "bcd7c71942370f012baf4369e1ff032df44a114cefa4923a39b5ce4706958cbc"
+hash = "31fa6a0f67f6eb96afcf00d9777abb08b34c152a6feb1070019d9af670499598"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/vampirism_convenience/recipe/butchery_eye_from_human_eye.json"
@@ -670,7 +674,7 @@ hash = "f8029badbfb1932248d9ca8f5b8ca1bcf02923689b67c5573ddfc5a70484d88a"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/wind_spellbooks/loot_table/entities/aeromancer.json"
-hash = "a68ddba65c3993dde0ce383004f0a5e009736f3a2040ddb883cd2e8f3c5b512d"
+hash = "bf84fb0313d21898ee24a7025a3fb33c3b044f668396b075b9d91e508f3a81fb"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/pack.mcmeta"

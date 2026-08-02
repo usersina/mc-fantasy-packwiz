@@ -20,9 +20,9 @@
 	#Enables blood puddles dropping when no blood grate is below a carcass.
 	"Blood Puddle" = true
 	#Enable blood spread
-	"Blood Spread" = true
+	"Blood Spread" = false
 	#Enable random events caused by breaking magic wishbones.
-	"Magic Wishbone" = true
+	"Magic Wishbone" = false
 	#The chance of receiving a wishbone from a chicken carcass. (Range: 0 - 1)
 	"Wishbone Chance" = 0.25
 

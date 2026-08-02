@@ -6,6 +6,14 @@
     "butchery:gold_cleaver",
     "butchery:iron_cleaver",
     "butchery:diamond_cleaver",
-    "butchery:netherite_cleaver"
+    "butchery:netherite_cleaver",
+    "dungeonsdelight:fiery_knife",
+    "dungeonsdelight:gravitite_knife",
+    "dungeonsdelight:ironwood_knife",
+    "dungeonsdelight:knightmetal_knife",
+    "dungeonsdelight:steeleaf_knife",
+    "dungeonsdelight:zanite_knife",
+    "aethersdelight:arkenium_knife",
+    "undergardendelight:regalium_knife"
   ]
 }

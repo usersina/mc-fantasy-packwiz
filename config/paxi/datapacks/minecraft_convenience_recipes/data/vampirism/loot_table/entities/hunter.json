@@ -92,7 +92,7 @@
               "predicate": {
                 "equipment": {
                   "mainhand": {
-                    "items": "#butchery:knives"
+                    "items": "#c:cleaver"
                   }
                 }
               }
