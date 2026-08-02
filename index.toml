@@ -333,6 +333,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_
 hash = "bda1f6f5e19388c351abd7e62e885b64df71ad53cef67b40bdec0b5ba622cf2a"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/loot_table/entities/wandering_trader.json"
+hash = "3094f08f67e9879446e73e9d97941d3d64071adf64cc4436cf50926efc81fc81"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/recipe/red_dye.json"
 hash = "057278f748eb392d51cb31b33b96725c711bdbadd2ac3438bd0235a1a8d4bf69"
 
@@ -1133,8 +1137,8 @@ hash = "e0ad7cb6cf33d7958b7c9b7af321807190adf45ada89d65892fe2d437fe3024d"
 metafile = true
 
 [[files]]
-file = "mods/fantasy-blood-compat-1.3.3+mc1.21.1-neoforge.jar"
-hash = "2bf38e48cdbbed20405b36725b440ff161eae2e19ad33fa28cd02dd09894ce6e"
+file = "mods/fantasy-blood-compat-1.3.5+mc1.21.1-neoforge.jar"
+hash = "31930d021888c2d2acbefd05a9989daed99289b2fa9facb0812232a8f110eb9f"
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"

@@ -10,6 +10,8 @@ Tiny pack-local compatibility mod for clean blood stored in Iron's Spells' Alche
 - Existing cauldrons with several clean blood tanks are consolidated without changing the total amount.
 - A wet Butchery Sponge drains and discards up to `1000 mB` per use from a Blood Grate, Alchemist Cauldron, or Vampirism Blood Container.
 - Butchery humanoid flesh, ordinary raw organs, eyes, and blood sausages restore balanced amounts of blood when eaten by vampire players.
+- Cutting player, villager, pillager, vindicator, evoker, and witch carcasses yields a Vampirism Human Heart instead of a generic Butchery Heart. Both floor and hanging carcasses are covered; animals, piglins, undead mobs, and other non-human humanoids keep their original drops.
+- Player carcasses retain their distinct two-kidney yield; only the heart is replaced.
 - A Butchery Heart restores `5` blood and yields `50 mB` in the Blood Grinder; four hearts therefore equal one Vampirism Human Heart.
 - Raw intestine, liver, lung, and stomach items restore `4` blood; kidneys restore `3`; eyes restore `2`.
 - The placeable Butchery Brain is not edible, but yields `40 mB` in the Blood Grinder.

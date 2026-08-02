@@ -6,7 +6,9 @@
   "mixins": [
     "AlchemistCauldronFluidHandlerMixin",
     "AlchemistCauldronTileMixin",
-    "BrewAlchemistCauldronRecipeMixin"
+    "BrewAlchemistCauldronRecipeMixin",
+    "HumanoidOrgansLootMixin",
+    "PlayerOrgansLootMixin"
   ],
   "injectors": {
     "defaultRequire": 1

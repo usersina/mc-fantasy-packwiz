@@ -17,9 +17,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -31,6 +34,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
@@ -88,6 +95,9 @@ public final class ButcheryIntegrationTests {
         runCase("wet sponge draining", () -> testSpongeDrain(level, origin));
         runCase("clean-blood cauldron merging", () -> testCleanBloodMerge(level, origin));
         runCase("Butchery vampire foods", this::testVampireFoods);
+        runCase("humanoid organ loot", () -> testHumanoidOrganLoot(server));
+        runCase("player organ loot", () -> testPlayerOrganLoot(server));
+        runCase("Wandering Trader corpse loot", () -> testWanderingTraderCorpseLoot(level, origin));
 
         writeResult();
         server.halt(false);
@@ -128,6 +138,11 @@ public final class ButcheryIntegrationTests {
         )) {
             assertTrue(server.getRecipeManager().byKey(id(recipe)).isPresent(), "missing recipe " + recipe);
         }
+
+        LootTable wanderingTrader = server.reloadableRegistries().getLootTable(
+                ResourceKey.create(Registries.LOOT_TABLE, id("minecraft:entities/wandering_trader"))
+        );
+        assertTrue(wanderingTrader != LootTable.EMPTY, "missing Wandering Trader corpse loot override");
     }
 
     private void testWeaponTag() {
@@ -318,6 +333,87 @@ public final class ButcheryIntegrationTests {
             assertTrue(food != null, "missing vampire food component on butchery:" + path);
             assertEquals(blood.intValue(), food.nutrition(), "wrong vampire blood value on butchery:" + path);
         });
+    }
+
+    private void testHumanoidOrganLoot(MinecraftServer server) {
+        List<ItemStack> humanoidDrops = lootTableDrops(
+                server,
+                "fantasy_blood_compat:blocks/humanoid_organs_drop_1"
+        );
+        assertEquals(1, countItem(humanoidDrops, "vampirism:human_heart"), "humanoid loot missing Human Heart");
+        assertEquals(0, countItem(humanoidDrops, "butchery:heart"), "humanoid loot retained Butchery Heart");
+        assertEquals(1, countItem(humanoidDrops, "butchery:lungs"), "humanoid loot changed the lungs drop");
+
+        List<ItemStack> ordinaryDrops = lootTableDrops(server, "butchery:blocks/organs_drop_1");
+        assertEquals(1, countItem(ordinaryDrops, "butchery:heart"), "ordinary organ loot lost Butchery Heart");
+        assertEquals(0, countItem(ordinaryDrops, "vampirism:human_heart"), "ordinary organ loot gained Human Heart");
+    }
+
+    private void testPlayerOrganLoot(MinecraftServer server) {
+        List<ItemStack> playerDrops = lootTableDrops(
+                server,
+                "fantasy_blood_compat:blocks/player_human_organs"
+        );
+        assertEquals(1, countItem(playerDrops, "vampirism:human_heart"), "player loot missing Human Heart");
+        assertEquals(0, countItem(playerDrops, "butchery:heart"), "player loot retained Butchery Heart");
+        assertEquals(2, countItem(playerDrops, "butchery:kidney"), "player loot changed the kidney yield");
+    }
+
+    private void testWanderingTraderCorpseLoot(ServerLevel level, BlockPos origin) {
+        LootTable table = level.getServer().reloadableRegistries().getLootTable(
+                ResourceKey.create(Registries.LOOT_TABLE, id("minecraft:entities/wandering_trader"))
+        );
+        WanderingTrader trader = EntityType.WANDERING_TRADER.create(level);
+        assertTrue(trader != null, "could not create Wandering Trader test entity");
+        trader.setPos(Vec3.atCenterOf(origin));
+
+        FakePlayer player = preparePlayer(level, origin);
+        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(requireItem("butchery:iron_skinning_knife")));
+        assertEquals(
+                1,
+                countItem(entityLootDrops(table, level, trader, player), "butchery:villager_corpse"),
+                "Butchery knife did not produce Wandering Trader corpse"
+        );
+
+        player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+        assertEquals(
+                0,
+                countItem(entityLootDrops(table, level, trader, player), "butchery:villager_corpse"),
+                "empty hand produced Wandering Trader corpse"
+        );
+        trader.discard();
+    }
+
+    private static List<ItemStack> entityLootDrops(
+            LootTable table,
+            ServerLevel level,
+            net.minecraft.world.entity.Entity victim,
+            FakePlayer attacker
+    ) {
+        LootParams params = new LootParams.Builder(level)
+                .withParameter(LootContextParams.THIS_ENTITY, victim)
+                .withParameter(LootContextParams.ORIGIN, victim.position())
+                .withParameter(LootContextParams.DAMAGE_SOURCE, level.damageSources().playerAttack(attacker))
+                .withOptionalParameter(LootContextParams.ATTACKING_ENTITY, attacker)
+                .withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, attacker)
+                .withOptionalParameter(LootContextParams.LAST_DAMAGE_PLAYER, attacker)
+                .create(LootContextParamSets.ENTITY);
+        return table.getRandomItems(params);
+    }
+
+    private static List<ItemStack> lootTableDrops(MinecraftServer server, String tableId) {
+        ResourceKey<LootTable> key = ResourceKey.create(Registries.LOOT_TABLE, id(tableId));
+        LootTable table = server.reloadableRegistries().getLootTable(key);
+        LootParams params = new LootParams.Builder(server.overworld()).create(LootContextParamSets.EMPTY);
+        return table.getRandomItems(params);
+    }
+
+    private static int countItem(List<ItemStack> stacks, String itemId) {
+        Item expected = requireItem(itemId);
+        return stacks.stream()
+                .filter(stack -> stack.is(expected))
+                .mapToInt(ItemStack::getCount)
+                .sum();
     }
 
     private BloodgrateBlockEntity placeGrate(ServerLevel level, BlockPos pos, int mode) {
