@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "butchery:raw_silverfish_chunks"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "dungeonsdelight:silverfish_abdomen"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

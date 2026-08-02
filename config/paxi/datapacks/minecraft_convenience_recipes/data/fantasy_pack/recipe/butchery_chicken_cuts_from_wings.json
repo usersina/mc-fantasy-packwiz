@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    {
+      "item": "butchery:raw_chicken_wing"
+    },
+    {
+      "item": "butchery:raw_chicken_wing"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "farmersdelight:chicken_cuts"
+  }
+}

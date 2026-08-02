@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "butchery:raw_endermite_chunks"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "endersdelight:mite_crust"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

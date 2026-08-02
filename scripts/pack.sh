@@ -2158,7 +2158,7 @@ cmd_test_butchery() {
   set +e
   (
     cd "$runtime_dir"
-    timeout "${PACK_TEST_TIMEOUT:-1200}" "$JAVA21" @user_jvm_args.txt "@$neoforge_args" nogui
+    timeout "${PACK_TEST_TIMEOUT:-1200}" "$JAVA21" @user_jvm_args.txt "@$neoforge_args" nogui </dev/null
   ) >"$server_log" 2>&1
   start_status="$?"
   set -e

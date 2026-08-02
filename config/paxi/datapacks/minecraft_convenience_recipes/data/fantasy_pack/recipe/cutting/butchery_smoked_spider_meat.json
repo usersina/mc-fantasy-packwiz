@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "tag": "fantasy_pack:foods/cooked_spider_leg"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "dungeonsdelight:smoked_spider_meat"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

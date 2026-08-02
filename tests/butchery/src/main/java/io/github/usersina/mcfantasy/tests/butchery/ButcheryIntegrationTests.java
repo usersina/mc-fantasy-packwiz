@@ -4,6 +4,7 @@ import io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTil
 import net.grid.vampiresdelight.common.registry.VDDataComponents;
 import net.mcreator.butchery.block.BloodgrateBlock;
 import net.mcreator.butchery.block.entity.BloodgrateBlockEntity;
+import net.mcreator.butchery.configuration.ButcheryconfigConfiguration;
 import net.mcreator.butchery.init.ButcheryModBlocks;
 import net.mcreator.butchery.init.ButcheryModFluids;
 import net.mcreator.butchery.init.ButcheryModItems;
@@ -85,6 +86,7 @@ public final class ButcheryIntegrationTests {
         BlockPos origin = new BlockPos(0, 200, 0);
 
         runCase("recipes and registries", () -> testRecipesAndRegistries(server));
+        runCase("Butchery Delight compatibility", this::testDelightCompatibility);
         runCase("Butchery weapon tag", this::testWeaponTag);
         runCase("blood-grate mode switching", () -> testModeSwitching(level, origin));
         runCase("filled grate blocks mode switching", () -> testFilledModeSwitch(level, origin));
@@ -106,6 +108,9 @@ public final class ButcheryIntegrationTests {
     private void testRecipesAndRegistries(MinecraftServer server) {
         requireItem("butchery:butchers_papers");
         requireItem("butchery:sponge");
+        requireItem("aethersdelight:aechor_ice_cream");
+        requireItem("alexsdelight:bison_burger");
+        requireItem("aquaculturedelight:catfish_barbecue");
         requireItem("vampirism:impure_blood_bucket");
         requireFluid("butchery:blood");
         requireFluid("butchery:infected_blood");
@@ -134,7 +139,21 @@ public final class ButcheryIntegrationTests {
                 "vampirism_convenience:fill_vampirism_blood_bucket_from_alchemist_cauldron",
                 "vampirism_convenience:fill_vampirism_impure_blood_bucket_from_alchemist_cauldron",
                 "irons_spellbooks:alchemist_cauldron/fill_blood_vial",
-                "irons_spellbooks_convenience:hogskin_from_butchery_hoglin_skin"
+                "irons_spellbooks_convenience:hogskin_from_butchery_hoglin_skin",
+                "aethersdelight:aechor_ice_cream_base",
+                "alexsdelight:bison_burger",
+                "aquaculturedelight:catfish_barbecue_stick",
+                "fantasy_pack:butchery_chicken_cuts_from_wings",
+                "fantasy_pack:cutting/butchery_beef_mince",
+                "fantasy_pack:cutting/butchery_cooked_sniffer_shank",
+                "fantasy_pack:cutting/butchery_mite_crust",
+                "fantasy_pack:cutting/butchery_shulker_mollusk",
+                "fantasy_pack:cutting/butchery_silverfish_abdomen",
+                "fantasy_pack:cutting/butchery_smoked_spider_meat",
+                "fantasy_pack:cutting/butchery_sniffer_shank",
+                "fantasy_pack:cutting/butchery_spider_meat",
+                "brewinandchewin:cooking/fiery_fondue_pot",
+                "brewinandchewin:ham_and_cheese_sandwich"
         )) {
             assertTrue(server.getRecipeManager().byKey(id(recipe)).isPresent(), "missing recipe " + recipe);
         }
@@ -143,6 +162,43 @@ public final class ButcheryIntegrationTests {
                 ResourceKey.create(Registries.LOOT_TABLE, id("minecraft:entities/wandering_trader"))
         );
         assertTrue(wanderingTrader != LootTable.EMPTY, "missing Wandering Trader corpse loot override");
+    }
+
+    private void testDelightCompatibility() {
+        assertFalse(
+                ButcheryconfigConfiguration.FARMERS_DELIGHT.get(),
+                "Butchery replacement mode must remain disabled"
+        );
+
+        assertItemInTag("butchery:raw_rump_steak", "c:foods/raw_beef");
+        assertItemInTag("butchery:cooked_rump_steak", "c:foods/cooked_beef");
+        assertItemInTag("butchery:raw_ham", "c:foods/raw_pork");
+        assertItemInTag("butchery:cooked_ham", "c:foods/cooked_pork");
+        assertItemInTag("butchery:raw_lamb_loin", "c:foods/raw_mutton");
+        assertItemInTag("butchery:cooked_lamb_loin", "c:foods/cooked_mutton");
+        assertItemInTag("butchery:raw_chicken_leg", "c:foods/raw_chicken");
+        assertItemInTag("butchery:cooked_chicken_leg", "c:foods/cooked_chicken");
+        assertItemNotInTag("butchery:raw_chicken_wing", "c:foods/raw_chicken");
+        assertItemNotInTag("butchery:cooked_chicken_wing", "c:foods/cooked_chicken");
+
+        assertItemInTag("butchery:raw_pork_belly", "c:foods/raw_bacon");
+        assertItemInTag("butchery:cooked_pork_belly", "c:foods/cooked_bacon");
+        assertItemInTag("butchery:raw_cod_fillet", "c:foods/raw_cod");
+        assertItemInTag("butchery:cooked_cod_fillet", "c:foods/cooked_cod");
+        assertItemInTag("butchery:raw_salmon", "c:foods/raw_salmon");
+        assertItemInTag("butchery:cooked_salmon", "c:foods/cooked_salmon");
+
+        assertItemInTag("butchery:raw_sausage", "c:foods/raw_sausage");
+        assertItemInTag("butchery:cooked_sausage", "c:foods/cooked_sausage");
+        assertItemInTag("butchery:raw_hoglin_chunk", "c:foods/raw_hoglin");
+        assertItemInTag("butchery:cooked_hoglin_chunk", "c:foods/cooked_hoglin");
+        assertItemInTag("butchery:raw_strider_meat", "c:foods/raw_strider");
+
+        assertItemInTag("butchery:iron_cleaver", "c:tools/knife");
+        assertItemInTag("butchery:raw_ham", "fantasy_pack:foods/raw_ham");
+        assertItemInTag("butchery:cooked_ham", "fantasy_pack:foods/smoked_ham");
+        assertItemInTag("butchery:rotten_heart", "dungeonsdelight:fleshes");
+        assertItemInTag("butchery:rotten_stomach", "dungeonsdelight:fleshes");
     }
 
     private void testWeaponTag() {
@@ -414,6 +470,18 @@ public final class ButcheryIntegrationTests {
                 .filter(stack -> stack.is(expected))
                 .mapToInt(ItemStack::getCount)
                 .sum();
+    }
+
+    private static void assertItemInTag(String itemId, String tagId) {
+        ItemStack stack = new ItemStack(requireItem(itemId));
+        TagKey<Item> tag = TagKey.create(Registries.ITEM, id(tagId));
+        assertTrue(stack.is(tag), itemId + " missing from #" + tagId);
+    }
+
+    private static void assertItemNotInTag(String itemId, String tagId) {
+        ItemStack stack = new ItemStack(requireItem(itemId));
+        TagKey<Item> tag = TagKey.create(Registries.ITEM, id(tagId));
+        assertFalse(stack.is(tag), itemId + " unexpectedly present in #" + tagId);
     }
 
     private BloodgrateBlockEntity placeGrate(ServerLevel level, BlockPos pos, int mode) {

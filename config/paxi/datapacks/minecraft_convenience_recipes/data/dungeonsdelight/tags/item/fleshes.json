@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "butchery:rotten_heart",
+    "butchery:rotten_intestines",
+    "butchery:rotten_kidney",
+    "butchery:rotten_liver",
+    "butchery:rotten_lungs",
+    "butchery:rotten_stomach"
+  ]
+}

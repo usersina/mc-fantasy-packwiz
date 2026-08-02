@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "butchery:raw_sniffer_steak"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "dungeonsdelight:sniffer_shank"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

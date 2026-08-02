@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/Butchery.toml"
+hash = "21c2d8c97c8e8eb2c30e0c60595e170dbc23cee6b157161a464e6da3bd326c0c"
+
+[[files]]
 file = "config/accessories.json5"
 hash = "02219a0c065437310f2b1fd5f92924c4d1c1da2f3874bce1fc3ad2504d05479e"
 
@@ -61,6 +65,22 @@ file = "config/paxi/datapacks/fantasy_starter_lobby/pack.mcmeta"
 hash = "9da7443a9b8acabb72c0a5ad2d1aeb88d0728ac8445cd503a30902482455d4b0"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/aethersdelight/loot_modifiers/scavenging_cooked_wings_from_flying_cow.json"
+hash = "2a63745fca46ad13b160d95904e2f05ae40fa499ad342632c99407c7f650928d"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/aethersdelight/loot_modifiers/scavenging_cooked_wings_from_phyg.json"
+hash = "b201fa90e891fe43789c7fbd69d17666e0ef397c494bf5d5c248ec8ff8b070bd"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/aethersdelight/loot_modifiers/scavenging_wings_from_flying_cow.json"
+hash = "911d2230e5013d24c756cb85aaf4bb2431886a52344c7fe0b1d0f51870c4b1b3"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/aethersdelight/loot_modifiers/scavenging_wings_from_phyg.json"
+hash = "e63ebc03308d1949b88b876ba4af3f579beee6cce2a8cab8bf72456c02c0b6d1"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/benssharks/loot_table/entities/thalassoger.json"
 hash = "96bae82eea14eb904810caea22d1d7c1598f7410786e4ae3032e744f9bb3862b"
 
@@ -91,6 +111,14 @@ hash = "9e720765e3042a33fc6e5c447df4038045d91eaa20a723e7a64a76ba07b58a0b"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/blazingbamboo/recipe/farmersdelight/cutting/blazing_bamboo_trapdoor.json"
 hash = "5f98dfd6680e5e8bf2ad3e06536ee5424272c71ef4bcadca932043c765112741"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/brewinandchewin/recipe/cooking/fiery_fondue_pot.json"
+hash = "ca36ae91ea711abb169aa8e8af13af1cce645c0032110579bb2146c57411f575"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/brewinandchewin/recipe/ham_and_cheese_sandwich.json"
+hash = "db373ab540710b1b8d64921b325bfce5359d56cb78676211a2e8e84f71a8c363"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery/tags/item/enchantable/weapon.json"
@@ -127,6 +155,86 @@ hash = "42178c55ac50fc5515c885e78a746791f0a1eca100962b7943ca95ac43064ff2"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/butchery_convenience/recipe/fill_infected_blood_bucket_from_alchemist_cauldron.json"
 hash = "704780a11507f3cc6d9afeb197f2146c27e697deb6bbef5c586c862a8b38154e"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_bacon.json"
+hash = "48f40d5fd187669b486610670de032c6902de5d6063b5fe9b141e0003d60fbde"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_beef.json"
+hash = "44632f493e458e19b47dfe3fe969d77abdee0e658150ee6fe4a3ee599316872b"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_chicken.json"
+hash = "18ee3c1b6fd412e99a27adf510b0ce90bbcf491885ae3b20ed85dbacc62b7eae"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_cod.json"
+hash = "f4fe429574c2093d5fb2ed3b0f02cb72448546e9ef22ed736c7712af8c4c9ef4"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_hoglin.json"
+hash = "a3281f31405d836bf375f67b23b92f8f3de52fea71a05f4846915e231f237968"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_mutton.json"
+hash = "d6a87b1e5b366b5d2d6486102261821992dcdfc2fb82f9eccecfb23d766e9b28"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_pork.json"
+hash = "fd04862742668ac9df0bf2eb789051a602982806c762d383394a2e4f119bde8c"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_salmon.json"
+hash = "f598ed5a8d993025fa7c0161d23f1156fc885ec9f7299f30e3fcecba37dcccae"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/cooked_sausage.json"
+hash = "fe113ff96f86b250710caacaaa61a864a02536f108328c55f9d17a013cb61719"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_bacon.json"
+hash = "53d8e7b23ab1e0f7746998b7c4a267c8f13edb9ca61d4b8d20723c47e16d8e56"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_beef.json"
+hash = "7036a146e7e2f7a514dafe4cfa31d0c47efc6e017286f1762750b66deea754d4"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_chicken.json"
+hash = "9705dc23c835f6f5377610d6332146cf6d1f29e8d0b73f8a723be100b1887a58"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_cod.json"
+hash = "e37122441f9b8ea2f3732bb85034709cdbc2df7992fbcc7ce336d33db4cb4a43"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_hoglin.json"
+hash = "a8e4be92bff6cac758bb95337791e5f34593e4a014dcd37c629160d213d93bed"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_mutton.json"
+hash = "5484ad113b1b85b19c14cf7be8c7c53aae8dc762cd4fb148a2159b1d2bf9d3ae"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_pork.json"
+hash = "86e17046983323651b94d88914b4df7155603211cd6214ad60aed87280a857ad"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_salmon.json"
+hash = "3859856d363371cf0c2f5f8c311170e92e217eb3e859c9a644663a58b8ffca73"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_sausage.json"
+hash = "bcb462d2fd1c19f1460296291aad3b032774cf9e7eb06d5f4fd5a9469f5c37d1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foods/raw_strider.json"
+hash = "9a4e7a57705addf779362de6302b3ee26c9d598317636db0b2ed9a4ace2cb8c4"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/tools/knife.json"
+hash = "402bd6ccc22fb0d32edfd67ad231b26f3a3f85dcd5aba914ba953da4d69a8731"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/cataclysm_spellbooks/recipe/abyssal_warlock_helmet_crafting.json"
@@ -229,6 +337,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight
 hash = "eab7d219172bac9b1daca22744bd5755cbdc6d0c27dcac9a92319b9d35e2e20b"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/dungeonsdelight/tags/item/fleshes.json"
+hash = "0d9ac67e38510d1a894b72e9f0b24db9f3b96a3b688b618ffed12297237b8ecc"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/endersdelight/recipe/chorus_pie_slice.json"
 hash = "d4fefcb9e3defdde3ab41846115a052a9610c9f1c728f9f08fc77ef2c64fa1b9"
 
@@ -237,8 +349,44 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/expandeddelight
 hash = "bc695d52bf500dfe8a7c5286ecfc17b8d524bb22a6a7a4b69dfdc481404a074e"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/butchery_chicken_cuts_from_wings.json"
+hash = "6b35a64330148c957767caaf414f3cf105d0ba0ae96f5ee83df126a0ccb96045"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/coffee_berries_red_dye.json"
 hash = "d9bf547b3bad1bddcaa062ff676aece5832bbc234d7fdf2061d553260fbfea02"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_beef_mince.json"
+hash = "827096af91e92550924c28a21828efa850de6a0a1c1e7a35f502943b8c83e7ab"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_cooked_sniffer_shank.json"
+hash = "8ed48fe1d48a2dc422a758aebe9c635c2f6d33a8e01b28439eec03962c3f6e3e"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_mite_crust.json"
+hash = "f94d04e3d2d34489e1e9e29ab404d3645985af0ac2da7101c4631112c2fcfdfd"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_shulker_mollusk.json"
+hash = "ad096be831a038a458ec8f3a77a6ad68aaa640822471f0726524f645dab23de6"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_silverfish_abdomen.json"
+hash = "8d161bbe2205de7159e59a7d9a2136f387e8f1e546fbd33bb29884d7f6063b60"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_smoked_spider_meat.json"
+hash = "355d7d1344c3d513dd5a021d383d6d4bdbd08da484f1c1768b09356c370fadf1"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_sniffer_shank.json"
+hash = "534071f4046d4b310b86e5e35f879ec60cb28737efbef5ca24c612774de2e0ca"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/recipe/cutting/butchery_spider_meat.json"
+hash = "c802efe0b752e8751c7dea1740ca2fe77436e4f3dff91f871291d1f846dbb044"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/entity_type/cauldron_undead.json"
@@ -251,6 +399,22 @@ hash = "04c1dcd54cfbff1769e68816728a272591281c65baf5f7e8eeeb54fa4d79e83a"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/fluid/impure_blood.json"
 hash = "d1f05b4e20c5d67ce14302cb825bedb4158e2a6feb1bbb3ed46e7d664b68bdec"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/item/foods/cooked_spider_leg.json"
+hash = "ebeb454f1782f964ba1eca764f6c01415b84e7bb2db99c7fcf2a7e46be97f27a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/item/foods/raw_ham.json"
+hash = "c54ac6d3c63ad59ac146a4dfb75bf79867f2f3a9017607dbb6d80c46faa8c767"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/item/foods/raw_spider_leg.json"
+hash = "355e753af2882c775214a0d3e89d7b4e9e2bd0bb5c2989dd5816026e7b82e48f"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/fantasy_pack/tags/item/foods/smoked_ham.json"
+hash = "aefc0fd6318fd3e7a2c85d6a97c99d0bce14b2c2a5f5434780bc45ba7e0ab942"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/farmersdelight/recipe/melon_juice.json"
@@ -651,6 +815,11 @@ hash = "e3ea6c1ae49cfdb68008b673687d013a8b75d53fc2cc66ba2d1677dc51b929b0"
 metafile = true
 
 [[files]]
+file = "mods/alexs-delight.pw.toml"
+hash = "516e0ce480882c6a73773d685dfc00b2228e1be6f2108488a614063d0dca261e"
+metafile = true
+
+[[files]]
 file = "mods/alexs-mobs(1.21.1).pw.toml"
 hash = "fb53bc6c0d543cd7e88a5faba1e3235dca6c556e0cf8c1a534bbdec581c3c2f8"
 metafile = true
@@ -693,6 +862,11 @@ metafile = true
 [[files]]
 file = "mods/appleskin.pw.toml"
 hash = "ede3f1a1a9966ecba76bd49ecc839ca1a726fcfa5686d7aad64a46854984db99"
+metafile = true
+
+[[files]]
+file = "mods/aquaculture-delight.pw.toml"
+hash = "aa3a2b60567657cf093c5ec9d384df99c8ba94f7907305c18d8f50c784957a90"
 metafile = true
 
 [[files]]
@@ -1825,6 +1999,11 @@ metafile = true
 [[files]]
 file = "mods/terralith.pw.toml"
 hash = "7a94d48dc640239a65b9cb089d8a188308c5a418ac644de60c9437b5c93ca4a9"
+metafile = true
+
+[[files]]
+file = "mods/the-aethers-delight.pw.toml"
+hash = "055283aa7790b335df36917fd72eb9f35f4d5cbe3a1e66d53efba4fe79ec1266"
 metafile = true
 
 [[files]]
