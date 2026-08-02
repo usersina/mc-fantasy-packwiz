@@ -702,6 +702,14 @@ file = "config/sneakpush-common.toml"
 hash = "fb627518c3711c871be6aee5419dc2661320c4c5412206459658e13d3b2f3511"
 
 [[files]]
+file = "config/spartan_weaponry_unofficial-common.toml"
+hash = "b9f5a356d2044edab8cebc6c6c0c81270b21b3013ffd2a3132d4dbf8781e62e1"
+
+[[files]]
+file = "config/spartanshieldsunofficial-common.toml"
+hash = "e841b5df5d0bce4e9275a2248a39244e5d6cf77f46f87cb8e0785f5b2e201d85"
+
+[[files]]
 file = "config/universalenchants-server.toml"
 hash = "9fb3bd59929d50e5c6d1bd66eb4f204f715accca2921c143271aaccb8481c18f"
 

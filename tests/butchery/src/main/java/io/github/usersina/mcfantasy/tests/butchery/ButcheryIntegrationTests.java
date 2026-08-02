@@ -31,6 +31,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -73,6 +74,20 @@ public final class ButcheryIntegrationTests {
             Registries.ITEM,
             id("butchery:enchantable/weapon")
     );
+    private static final ResourceKey<Enchantment> BUTCHERS_TOUCH = ResourceKey.create(
+            Registries.ENCHANTMENT,
+            id("butchery:butcherstouch")
+    );
+    private static final List<String> NORMALIZED_KNIVES = List.of(
+            "dungeonsdelight:fiery_knife",
+            "dungeonsdelight:gravitite_knife",
+            "dungeonsdelight:ironwood_knife",
+            "dungeonsdelight:knightmetal_knife",
+            "dungeonsdelight:steeleaf_knife",
+            "dungeonsdelight:zanite_knife",
+            "aethersdelight:arkenium_knife",
+            "undergardendelight:regalium_knife"
+    );
 
     private final List<String> results = new ArrayList<>();
     private int failures;
@@ -89,7 +104,7 @@ public final class ButcheryIntegrationTests {
         runCase("recipes and registries", () -> testRecipesAndRegistries(server));
         runCase("Butchery Delight compatibility", this::testDelightCompatibility);
         runCase("Butchery balance policy", () -> testBalancePolicy(server));
-        runCase("Butchery weapon tag", this::testWeaponTag);
+        runCase("Butcher's Touch weapon support", () -> testButchersTouchSupport(server));
         runCase("blood-grate mode switching", () -> testModeSwitching(level, origin));
         runCase("filled grate blocks mode switching", () -> testFilledModeSwitch(level, origin));
         runCase("small carcass blood routing", () -> testSmallFillModes(level, origin));
@@ -197,16 +212,7 @@ public final class ButcheryIntegrationTests {
         assertItemInTag("butchery:raw_strider_meat", "c:foods/raw_strider");
 
         assertItemInTag("butchery:iron_cleaver", "c:tools/knife");
-        for (String knife : List.of(
-                "dungeonsdelight:fiery_knife",
-                "dungeonsdelight:gravitite_knife",
-                "dungeonsdelight:ironwood_knife",
-                "dungeonsdelight:knightmetal_knife",
-                "dungeonsdelight:steeleaf_knife",
-                "dungeonsdelight:zanite_knife",
-                "aethersdelight:arkenium_knife",
-                "undergardendelight:regalium_knife"
-        )) {
+        for (String knife : NORMALIZED_KNIVES) {
             assertItemInTag(knife, "c:tools/knife");
             assertItemInTag(knife, "farmersdelight:tools/knives");
             assertItemInTag(knife, "c:cleaver");
@@ -254,10 +260,21 @@ public final class ButcheryIntegrationTests {
         );
     }
 
-    private void testWeaponTag() {
+    private void testButchersTouchSupport(MinecraftServer server) {
         assertTrue(new ItemStack(Items.IRON_SWORD).is(BUTCHERY_WEAPONS), "iron sword missing from tag");
         assertTrue(new ItemStack(Items.BOW).is(BUTCHERY_WEAPONS), "bow missing from tag");
         assertTrue(new ItemStack(Items.CROSSBOW).is(BUTCHERY_WEAPONS), "crossbow missing from tag");
+
+        Enchantment butchersTouch = server.registryAccess()
+                .registryOrThrow(Registries.ENCHANTMENT)
+                .getOrThrow(BUTCHERS_TOUCH);
+        for (String knife : NORMALIZED_KNIVES) {
+            ItemStack stack = new ItemStack(requireItem(knife));
+            assertTrue(
+                    butchersTouch.isSupportedItem(stack),
+                    knife + " cannot accept Butcher's Touch"
+            );
+        }
     }
 
     private void testModeSwitching(ServerLevel level, BlockPos origin) {
