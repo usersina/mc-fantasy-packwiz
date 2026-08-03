@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "irons_spellbooks:uncommon_ink"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "irons_spellbooks:arcane_essence"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "printingpress:magic_ink_bottle"
+  }
+}

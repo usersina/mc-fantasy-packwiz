@@ -517,6 +517,18 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/minecraft/tags/
 hash = "d750c9a4e2247bcdd58958583e22c4dc43cc705cecfbb6b6bffce97c4ee25126"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/printingpress/recipe/ink_bottle.json"
+hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/printingpress/recipe/magic_ink_bottle.json"
+hash = "280cf270e07e6af26dbfbabd3099e6c37467da7aca864aadc96838b045f2339a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/printingpress/recipe/magic_ink_bottle_alt.json"
+hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/scorched/function/cactus_juice/give.mcfunction"
 hash = "f2e5f5fe3fe06e5faaa9167b20ec8fea88cf51e99a0655ec22ef9d99fcd4d4a5"
 
@@ -1419,6 +1431,11 @@ metafile = true
 [[files]]
 file = "mods/geckolib.pw.toml"
 hash = "5a26489b734991c0511abfe43bf9143c935b8483d854a78fecd2e84993fb09cc"
+metafile = true
+
+[[files]]
+file = "mods/glowbricks-printing-press-mod.pw.toml"
+hash = "ec885a71e14f843bc16fa7c8c08abe9456f690a109cbb7ade4c152c0b00e8e62"
 metafile = true
 
 [[files]]
