@@ -703,11 +703,11 @@ hash = "fb627518c3711c871be6aee5419dc2661320c4c5412206459658e13d3b2f3511"
 
 [[files]]
 file = "config/spartan_weaponry_unofficial-common.toml"
-hash = "b9f5a356d2044edab8cebc6c6c0c81270b21b3013ffd2a3132d4dbf8781e62e1"
+hash = "bbb8b896fed2a93057f5a7b369c8cbaefffbc9334c2a2a6071a3e1a24662f9fd"
 
 [[files]]
 file = "config/spartanshieldsunofficial-common.toml"
-hash = "e841b5df5d0bce4e9275a2248a39244e5d6cf77f46f87cb8e0785f5b2e201d85"
+hash = "725b8c66e3f092949822977b480b0056e7c326b7635aa3c1435557dc0550c1d1"
 
 [[files]]
 file = "config/universalenchants-server.toml"
@@ -799,6 +799,11 @@ metafile = true
 [[files]]
 file = "mods/aces-spell-utils.pw.toml"
 hash = "3b03175ed1dc7f0810f7f7b10c463aec657c6243153efae59fe77b744f6cd830"
+metafile = true
+
+[[files]]
+file = "mods/achievements-optimizer.pw.toml"
+hash = "e30ba5c8e77e4e5381e4deed8f047788d04c37af5671b7e691f530901890cdaf"
 metafile = true
 
 [[files]]
@@ -938,6 +943,11 @@ metafile = true
 [[files]]
 file = "mods/basic-login.pw.toml"
 hash = "93243befcb29f885b1a8da81c3f0376d81831f7f24f96d33a5d7bedfa679dc3a"
+metafile = true
+
+[[files]]
+file = "mods/beautiful-enchanted-books-mod-edition.pw.toml"
+hash = "af113c3d96796fd82f3b6232daab13d9a53c6d5ffdf750bd424be482468f4474"
 metafile = true
 
 [[files]]
@@ -1238,6 +1248,16 @@ hash = "18219006cd971209a7630c5704c2ca92d5631f3d6ee6cb1c43975656c249ba0f"
 metafile = true
 
 [[files]]
+file = "mods/displaycase.pw.toml"
+hash = "f466176613569fa62d77533c3bdf7d522a04fcf77375a38c9277403c2d3f15c6"
+metafile = true
+
+[[files]]
+file = "mods/distinct-potions.pw.toml"
+hash = "51fbc5796d2e324d0e9dd39b31efbbe4849e9a6d1e609861f835fbf69fa42044"
+metafile = true
+
+[[files]]
 file = "mods/dmr-craftable-eggs.pw.toml"
 hash = "ef213947658e96047a1c766fb2c4298f21c80d23ad6d7f5cc54933fe0a939975"
 metafile = true
@@ -1323,6 +1343,11 @@ hash = "e0ad7cb6cf33d7958b7c9b7af321807190adf45ada89d65892fe2d437fe3024d"
 metafile = true
 
 [[files]]
+file = "mods/explosive-enhancement-forge.pw.toml"
+hash = "fc8948d1a8837b7a89a3b754335fd53086ba89c78af9c3d07fa899761c6a9e50"
+metafile = true
+
+[[files]]
 file = "mods/fantasy-blood-compat-1.3.5+mc1.21.1-neoforge.jar"
 hash = "31930d021888c2d2acbefd05a9989daed99289b2fa9facb0812232a8f110eb9f"
 
@@ -1387,6 +1412,11 @@ hash = "bd54b25ed6127a176979f89d56ebee73856ff5023c575232ee707571fcdb2c1c"
 metafile = true
 
 [[files]]
+file = "mods/future-villager-trades-visible.pw.toml"
+hash = "0d810b6f5533ae6b71d11e8fba5f986308a87b4107740ca2b7af741c72d4bf06"
+metafile = true
+
+[[files]]
 file = "mods/geckolib.pw.toml"
 hash = "5a26489b734991c0511abfe43bf9143c935b8483d854a78fecd2e84993fb09cc"
 metafile = true
@@ -1409,6 +1439,11 @@ metafile = true
 [[files]]
 file = "mods/guide-api.pw.toml"
 hash = "d973a76275a2ed58cda27e322b6bebe217144f1083f5a3eb41074dd2785a4fd5"
+metafile = true
+
+[[files]]
+file = "mods/happy-ghast.pw.toml"
+hash = "d7a124610ae81e7e196d95807aa0f929fdc2c3ed358ae8f4f285088b1f01a792"
 metafile = true
 
 [[files]]
@@ -1439,6 +1474,11 @@ metafile = true
 [[files]]
 file = "mods/iceberg.pw.toml"
 hash = "a2fbecad69fcbff54919864ea8b95e54d140a1a2c637d73307fb366e76066fe6"
+metafile = true
+
+[[files]]
+file = "mods/im-fast.pw.toml"
+hash = "474d64dba26d80c32a84ccdefc66d06dbf18503c17fe48927040fdf9026c5860"
 metafile = true
 
 [[files]]
@@ -1577,6 +1617,11 @@ metafile = true
 [[files]]
 file = "mods/lan-server-properties.pw.toml"
 hash = "5ff304981d07360fcd58c96803d990886f48a6041af628f75ec65798d440ee79"
+metafile = true
+
+[[files]]
+file = "mods/leaf-me-alone.pw.toml"
+hash = "c6fdcaa3992278d5edcab405da4a4bdef7a18c76fa57e7f9b4357ebe26842d3e"
 metafile = true
 
 [[files]]
@@ -1929,6 +1974,11 @@ hash = "f1ac2f9ecce242d0f193db475dba673da2bd5ee04b59d3e750699e7b7c4d1f39"
 metafile = true
 
 [[files]]
+file = "mods/sorted-enchantments.pw.toml"
+hash = "77e7596ceaf31a688ac602aa1cbc0feec5d56ecb15dd6f10993be1cc261ec4fa"
+metafile = true
+
+[[files]]
 file = "mods/soul-fire-d.pw.toml"
 hash = "aa7a2c186bf1ce65441be06d1c9a5af18b054098e4bdc37273fb4e75f0d27fc5"
 metafile = true
@@ -2039,6 +2089,11 @@ hash = "5518dd2f6a5d88e4affb9df628604737893025206d7149579e4c24f909b130a3"
 metafile = true
 
 [[files]]
+file = "mods/trade-refresh.pw.toml"
+hash = "820a6d3b5c9fc7a0f7a97c6675fdfcaae64239b567ad5b2eeb976b5bce50b346"
+metafile = true
+
+[[files]]
 file = "mods/undergarden-delight.pw.toml"
 hash = "04ba521820da4849cc5a3a60ae29b7ab677afa2cff4dddb7bad451fbb46ef073"
 metafile = true
@@ -2113,11 +2168,6 @@ metafile = true
 [[files]]
 file = "mods/veinminer.pw.toml"
 hash = "03a9564d7cdb16578f46c6f58dcc261968bb440c243ad90229d8ce58aaccc0d3"
-metafile = true
-
-[[files]]
-file = "mods/visible-traders.pw.toml"
-hash = "bbcb54d5fbdd84fbd3ff55557c754c820b07d97ca33fa3dfc632d954d602ee46"
 metafile = true
 
 [[files]]
