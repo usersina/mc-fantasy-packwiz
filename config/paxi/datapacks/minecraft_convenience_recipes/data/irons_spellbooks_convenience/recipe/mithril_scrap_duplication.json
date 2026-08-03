@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GAG",
+    "ASA",
+    "GAG"
+  ],
+  "key": {
+    "A": {
+      "item": "irons_spellbooks:arcane_essence"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "irons_spellbooks:mithril_scrap"
+    }
+  },
+  "result": {
+    "id": "irons_spellbooks:mithril_scrap",
+    "count": 2
+  }
+}

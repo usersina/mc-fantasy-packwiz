@@ -469,6 +469,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbook
 hash = "37c51f9b7421fc07ce61b1210fc72246760f2793d9083ae1df1e1e02d1be62f6"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/blank_rune_duplication.json"
+hash = "a25f8597283ae44a5e0e868934c1d5dc1d4f86f444c06c0ddd62a7fd865b5bb1"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/cinder_essence.json"
 hash = "ef865627cb2691743f5d50580ae53d04cdc64e4a137260f6b49cc793f02342a3"
 
@@ -483,6 +487,10 @@ hash = "d8c1c7595572ed73bd561abd29a4210fd5fff76f55d676d44a2aa36e6362e1d8"
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/hogskin_from_butchery_hoglin_skin.json"
 hash = "9da70dcbf56b242101edbc1580d2de2954504bdee048ec6996dc7074d8b5131a"
+
+[[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/mithril_scrap_duplication.json"
+hash = "f81f5cdc3219591008b03b66e49a4f60392f5c1e9cefdfadd65c0c8f890947bc"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/netherite_scrap_duplication.json"
