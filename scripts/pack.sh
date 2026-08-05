@@ -1831,6 +1831,7 @@ verify_upstream_overrides() {
       vampirism) jar_pattern='Vampirism-*.jar' ;;
       benssharks) jar_pattern='benssharks-*.jar' ;;
       irons_spellbooks) jar_pattern='irons_spellbooks-*.jar' ;;
+      werewolves) jar_pattern='Werewolves-*.jar' ;;
       wind_spellbooks) jar_pattern='wind_spellbooks-*.jar' ;;
       *) continue ;;
     esac

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 MOD_ID="fantasy-blood-compat"
-MOD_VERSION="1.3.5"
+MOD_VERSION="1.3.6"
 MC_VERSION="1.21.1"
 LOADER="neoforge"
 

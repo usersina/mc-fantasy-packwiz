@@ -11,7 +11,10 @@ import net.mcreator.butchery.init.ButcheryModItems;
 import net.mcreator.butchery.procedures.BloodgratechangeProcedure;
 import net.mcreator.butchery.procedures.BloodgratewithdrawbloodProcedure;
 import net.mcreator.butchery.procedures.FillbloodgrateProcedure;
+import net.mcreator.butchery.procedures.PillagercorpsedropProcedure;
 import net.mcreator.butchery.procedures.SmallfillbloodgrateProcedure;
+import net.mcreator.butchery.procedures.VillagercorpsedropProcedure;
+import net.mcreator.butchery.procedures.ZombieVillagercorpsedropProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,9 +25,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -41,6 +46,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
@@ -117,6 +123,8 @@ public final class ButcheryIntegrationTests {
         runCase("humanoid organ loot", () -> testHumanoidOrganLoot(server));
         runCase("player organ loot", () -> testPlayerOrganLoot(server));
         runCase("Wandering Trader corpse loot", () -> testWanderingTraderCorpseLoot(level, origin));
+        runCase("tagged corpse classifications", () -> testTaggedCorpseClassifications(level, origin));
+        runCase("custom humanoid corpse loot", () -> testCustomHumanoidCorpseLoot(level, origin));
 
         writeResult();
         server.halt(false);
@@ -531,6 +539,85 @@ public final class ButcheryIntegrationTests {
         trader.discard();
     }
 
+    private void testTaggedCorpseClassifications(ServerLevel level, BlockPos origin) {
+        assertEntityInTag("supplementaries:red_merchant", "c:villager");
+        assertEntityInTag("supplementaries:plunderer", "c:pillager");
+        assertEntityInTag("vampirism:villager_converted", "c:zombie_villager");
+
+        FakePlayer player = preparePlayer(level, origin);
+        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(requireItem("butchery:iron_cleaver")));
+
+        Entity redMerchant = createEntity(level, "supplementaries:red_merchant");
+        clearDroppedItems(level, origin);
+        VillagercorpsedropProcedure.execute(
+                level, origin.getX(), origin.getY(), origin.getZ(), redMerchant, player
+        );
+        assertEquals(
+                1,
+                countItem(droppedItems(level, origin), "butchery:villager_corpse"),
+                "Red Merchant did not use the Villager corpse path"
+        );
+
+        Entity plunderer = createEntity(level, "supplementaries:plunderer");
+        clearDroppedItems(level, origin);
+        PillagercorpsedropProcedure.execute(
+                level, origin.getX(), origin.getY(), origin.getZ(), plunderer, player
+        );
+        assertEquals(
+                1,
+                countItem(droppedItems(level, origin), "butchery:pillager_corpse"),
+                "Plunderer did not use the Pillager corpse path"
+        );
+
+        Entity vampireVillager = createEntity(level, "vampirism:villager_converted");
+        clearDroppedItems(level, origin);
+        VillagercorpsedropProcedure.execute(
+                level, origin.getX(), origin.getY(), origin.getZ(), vampireVillager, player
+        );
+        assertEquals(
+                0,
+                countItem(droppedItems(level, origin), "butchery:villager_corpse"),
+                "Vampire Villager still used the living Villager corpse path"
+        );
+
+        clearDroppedItems(level, origin);
+        ZombieVillagercorpsedropProcedure.execute(
+                level, origin.getX(), origin.getY(), origin.getZ(), vampireVillager, player
+        );
+        assertEquals(
+                1,
+                countItem(droppedItems(level, origin), "butchery:zombie_villager_corpse"),
+                "Vampire Villager did not use the Zombie Villager corpse path"
+        );
+
+        clearDroppedItems(level, origin);
+        redMerchant.discard();
+        plunderer.discard();
+        vampireVillager.discard();
+    }
+
+    private void testCustomHumanoidCorpseLoot(ServerLevel level, BlockPos origin) {
+        FakePlayer player = preparePlayer(level, origin);
+        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(requireItem("butchery:iron_cleaver")));
+
+        for (String entityId : List.of(
+                "irons_spellbooks:cultist",
+                "vampirism:hunter_minion",
+                "werewolves:human_werewolf"
+        )) {
+            Entity victim = createEntity(level, entityId);
+            LootTable table = level.getServer().reloadableRegistries().getLootTable(
+                    ResourceKey.create(Registries.LOOT_TABLE, entityLootTableId(entityId))
+            );
+            assertEquals(
+                    1,
+                    countItem(entityLootDrops(table, level, victim, player), "butchery:villager_corpse"),
+                    entityId + " did not yield a Villager corpse"
+            );
+            victim.discard();
+        }
+    }
+
     private static List<ItemStack> entityLootDrops(
             LootTable table,
             ServerLevel level,
@@ -561,6 +648,37 @@ public final class ButcheryIntegrationTests {
                 .filter(stack -> stack.is(expected))
                 .mapToInt(ItemStack::getCount)
                 .sum();
+    }
+
+    private static Entity createEntity(ServerLevel level, String entityId) {
+        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.getOptional(id(entityId))
+                .orElseThrow(() -> new AssertionError("missing entity type " + entityId));
+        Entity entity = type.create(level);
+        assertTrue(entity != null, "could not create entity " + entityId);
+        return entity;
+    }
+
+    private static ResourceLocation entityLootTableId(String entityId) {
+        ResourceLocation entity = id(entityId);
+        return ResourceLocation.fromNamespaceAndPath(entity.getNamespace(), "entities/" + entity.getPath());
+    }
+
+    private static void assertEntityInTag(String entityId, String tagId) {
+        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.getOptional(id(entityId))
+                .orElseThrow(() -> new AssertionError("missing entity type " + entityId));
+        TagKey<EntityType<?>> tag = TagKey.create(Registries.ENTITY_TYPE, id(tagId));
+        assertTrue(type.is(tag), entityId + " missing from #" + tagId);
+    }
+
+    private static List<ItemStack> droppedItems(ServerLevel level, BlockPos origin) {
+        return level.getEntitiesOfClass(ItemEntity.class, new AABB(origin).inflate(3.0)).stream()
+                .map(ItemEntity::getItem)
+                .toList();
+    }
+
+    private static void clearDroppedItems(ServerLevel level, BlockPos origin) {
+        level.getEntitiesOfClass(ItemEntity.class, new AABB(origin).inflate(3.0))
+                .forEach(Entity::discard);
     }
 
     private static void assertItemInTag(String itemId, String tagId) {
