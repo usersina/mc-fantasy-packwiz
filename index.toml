@@ -714,10 +714,6 @@ file = "config/paxi/datapacks/youkai_homecoming_fixes/pack.mcmeta"
 hash = "106457e181362b931e5ea3ed412bf54b3a124d78794d0fa4febd671c23b1bf3f"
 
 [[files]]
-file = "config/reviveme/reviveme-common.toml"
-hash = "f08059dad921a935998cc42ac636c88fbcbc515f25f0d88665c69613d29a1160"
-
-[[files]]
 file = "config/sneakpush-common.toml"
 hash = "fb627518c3711c871be6aee5419dc2661320c4c5412206459658e13d3b2f3511"
 
@@ -1204,7 +1200,7 @@ metafile = true
 
 [[files]]
 file = "mods/creativecore.pw.toml"
-hash = "d4336ba6995ff6b24b8f6fc93a0b93f9b72cff33bbe2a7eeb1579d97abe8b16b"
+hash = "d1dd0981cbd7ae9601c9c4603f88826b68a0c7e76fc12ef6bc80f08188d7dfb8"
 metafile = true
 
 [[files]]
@@ -1822,6 +1818,11 @@ metafile = true
 [[files]]
 file = "mods/playeranimator.pw.toml"
 hash = "93284ca7f2f23f0bb76d42b797cabf2aea1914ee9825bec82bf6ffe4c60dda0d"
+metafile = true
+
+[[files]]
+file = "mods/playerrevive.pw.toml"
+hash = "2fce8261a3f3f1c97232926429dfc4aa7ba871a04ce4fde8d87f21404a6ac857"
 metafile = true
 
 [[files]]
