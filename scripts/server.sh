@@ -46,6 +46,15 @@ Actions:
 EOF
 }
 
+require_command() {
+  local command_name="$1"
+
+  if ! command -v "$command_name" >/dev/null 2>&1; then
+    echo "ERROR: required command not found: $command_name"
+    exit 1
+  fi
+}
+
 download_if_missing() {
   local output="$1"
   local url="$2"
@@ -233,6 +242,98 @@ find_neoforge_args() {
   printf "%s\n" "$args"
 }
 
+packwiz_metadata_value() {
+  local metadata_file="$1"
+  local key="$2"
+
+  awk -F'"' -v key="$key" '$1 ~ "^[[:space:]]*" key "[[:space:]]*=" { print $2; exit }' "$metadata_file"
+}
+
+repair_packwiz_side_cache() {
+  local state_file="$SERVER_DIR/packwiz.json"
+  local metadata_file
+  local relative_path
+  local side
+  local stale_file
+  local stale_json
+  local temp_file
+  local backup_file
+
+  if [ ! -f "$state_file" ]; then
+    return 0
+  fi
+
+  require_command jq
+  stale_file="$(mktemp)"
+
+  for metadata_file in "$REPO_DIR"/mods/*.pw.toml; do
+    side="$(packwiz_metadata_value "$metadata_file" side)"
+    if [ "$side" = "client" ]; then
+      continue
+    fi
+
+    relative_path="${metadata_file#"$REPO_DIR"/}"
+    if jq -e --arg path "$relative_path" '.cachedFiles[$path].onlyOtherSide == true' "$state_file" >/dev/null; then
+      printf "%s\n" "$relative_path" >> "$stale_file"
+    fi
+  done
+
+  if [ ! -s "$stale_file" ]; then
+    rm -f "$stale_file"
+    return 0
+  fi
+
+  echo "==> Repairing stale Packwiz side decisions"
+  sed 's/^/    /' "$stale_file"
+
+  stale_json="$(jq -Rsc 'split("\n") | map(select(length > 0))' "$stale_file")"
+  temp_file="$(mktemp "$SERVER_DIR/.packwiz-state.XXXXXX")"
+  jq --argjson paths "$stale_json" \
+    'reduce $paths[] as $path (. ; del(.cachedFiles[$path])) | del(.packFileHash, .indexFileHash)' \
+    "$state_file" > "$temp_file"
+
+  chmod --reference="$state_file" "$temp_file"
+  backup_file="$SERVER_DIR/packwiz.json.bak-side-repair-$(date +%Y%m%d-%H%M%S)"
+  cp -p "$state_file" "$backup_file"
+  mv "$temp_file" "$state_file"
+  rm -f "$stale_file"
+
+  echo "==> Backed up previous Packwiz state:"
+  echo "    $backup_file"
+}
+
+verify_server_mod_files() {
+  local metadata_file
+  local side
+  local filename
+  local missing=false
+  local expected_count=0
+
+  for metadata_file in "$REPO_DIR"/mods/*.pw.toml; do
+    side="$(packwiz_metadata_value "$metadata_file" side)"
+    if [ "$side" = "client" ]; then
+      continue
+    fi
+
+    filename="$(packwiz_metadata_value "$metadata_file" filename)"
+    if [ -z "$filename" ]; then
+      continue
+    fi
+
+    expected_count=$((expected_count + 1))
+    if [ ! -f "$SERVER_DIR/mods/$filename" ]; then
+      echo "ERROR: Packwiz did not install expected server mod: $filename"
+      missing=true
+    fi
+  done
+
+  if [ "$missing" = "true" ]; then
+    return 1
+  fi
+
+  echo "==> Verified $expected_count server mod files"
+}
+
 sync_packwiz() {
   local -a installer_args=(-g -s server "$PACK_URL")
 
@@ -259,8 +360,11 @@ sync_packwiz() {
     installer_args=(--bootstrap-update-url "$PACKWIZ_INSTALLER_UPDATE_URL" "${installer_args[@]}")
   fi
 
+  repair_packwiz_side_cache
+
   echo "==> Syncing server-side Packwiz files"
   "$JAVA21" -jar packwiz-installer-bootstrap.jar "${installer_args[@]}"
+  verify_server_mod_files
 }
 
 start_server() {
