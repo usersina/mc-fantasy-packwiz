@@ -738,6 +738,10 @@ file = "config/spartanshieldsunofficial-common.toml"
 hash = "725b8c66e3f092949822977b480b0056e7c326b7635aa3c1435557dc0550c1d1"
 
 [[files]]
+file = "config/tide/tide_server.json"
+hash = "a252e14f324d11c51d9463bcf823026c47708f995d9bc6ee72f9a055fa14b223"
+
+[[files]]
 file = "config/universalenchants-server.toml"
 hash = "9fb3bd59929d50e5c6d1bd66eb4f204f715accca2921c143271aaccb8481c18f"
 
@@ -877,6 +881,11 @@ metafile = true
 [[files]]
 file = "mods/alternate-current.pw.toml"
 hash = "82a03261a6006cda13232610752623abf41552203e26309f4e899de8ad87ace4"
+metafile = true
+
+[[files]]
+file = "mods/always-eat.pw.toml"
+hash = "747d696d13d346ecc53ce28d90f3c85f5be78b90a16ed8e0f5943255c220bf9c"
 metafile = true
 
 [[files]]
@@ -1410,6 +1419,11 @@ hash = "7657737473cc95153147c8b191fd1c74d154f0e23e692c28a717d8dab9e71032"
 metafile = true
 
 [[files]]
+file = "mods/fish-of-thieves.pw.toml"
+hash = "5f24c41c3c24bb964efe348aefc99b739c9c11553251a56bcaf8d526c326c4d5"
+metafile = true
+
+[[files]]
 file = "mods/fishermens-trap.pw.toml"
 hash = "80d3da8d125dd58618b954632c285d1c310c61059b2193cc1c5a8c3ecf68af0d"
 metafile = true
@@ -1783,6 +1797,11 @@ hash = "f4e01222594116f7ebe3bd3908ae066550172eafb9a1ef383b277be569c38e45"
 metafile = true
 
 [[files]]
+file = "mods/nether-depths-upgrade.pw.toml"
+hash = "2104f30f90dbd5ff5eae8295f71f47227c9b1c96b4b5bb2ae196cd67d11e138a"
+metafile = true
+
+[[files]]
 file = "mods/no-chat-reports.pw.toml"
 hash = "5da18814472be5dc93a21886983646da3a7236413800075ac75229be82d114fa"
 metafile = true
@@ -2109,6 +2128,11 @@ metafile = true
 [[files]]
 file = "mods/the-undergarden.pw.toml"
 hash = "cf08653612ce37b29ebabf07c5dfce80c493927d4cb7760d68a361738fb54d1d"
+metafile = true
+
+[[files]]
+file = "mods/tide.pw.toml"
+hash = "7b4d98d9a07495eb4c8e7181a6fbff38ffed9cec7995104937cd17b764dcd9e0"
 metafile = true
 
 [[files]]
