@@ -44,6 +44,7 @@ Test examples:
   TEST=butchery $(basename "$0") test
   TEST=fish-of-thieves $(basename "$0") test
   TEST=printing-press $(basename "$0") test
+  TEST=umbrella-infuser $(basename "$0") test
 
 Client test examples:
   $(basename "$0") client-test
@@ -2235,11 +2236,16 @@ cmd_test_fish_of_thieves() {
   cmd_test_suite "fish-of-thieves" "Fish of Thieves" "8094"
 }
 
+cmd_test_umbrella_infuser() {
+  cmd_test_suite "umbrella-infuser" "Umbrella Infuser" "8095"
+}
+
 cmd_test_all() {
   echo "==> Running all pack integration suites"
   cmd_test_butchery
   cmd_test_fish_of_thieves
   cmd_test_printing_press
+  cmd_test_umbrella_infuser
 }
 
 cmd_test() {
@@ -2255,6 +2261,9 @@ cmd_test() {
       ;;
     printing-press)
       cmd_test_printing_press
+      ;;
+    umbrella-infuser)
+      cmd_test_umbrella_infuser
       ;;
     *)
       echo "ERROR: unknown test suite: $TEST"

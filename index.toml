@@ -237,6 +237,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/foo
 hash = "9a4e7a57705addf779362de6302b3ee26c9d598317636db0b2ed9a4ace2cb8c4"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/tools.json"
+hash = "7fdf8d22eccd7281f951e04cdb4b6be1299d8f991650e541c046d366b0db42e2"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/c/tags/item/tools/knife.json"
 hash = "4e5cb52db161c15e8d5db8be8251082eb40a0ea5d721b25668ecfd9fa1d3d0fe"
 

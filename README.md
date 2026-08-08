@@ -429,6 +429,7 @@ During development, select one suite:
 task pack:test TEST=butchery
 task pack:test TEST=fish-of-thieves
 task pack:test TEST=printing-press
+task pack:test TEST=umbrella-infuser
 ```
 
 The task builds a test-only verifier, loads it into a disposable copy of the real
