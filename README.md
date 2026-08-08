@@ -417,21 +417,25 @@ They are read-only reports. After reviewing them, update only intentional files 
 
 ## Headless Pack Tests
 
-Run the Butchery and blood-integration suite after changing Butchery, Vampirism,
-Iron's Spells, Vampire's Delight, their recipes/tags, or either related local mod:
+Run every registered full-pack integration suite:
 
 ```bash
 task pack:test
 ```
 
-This runs every registered suite. During development, rerun only this suite with
-`task pack:test TEST=butchery`.
+During development, select one suite:
+
+```bash
+task pack:test TEST=butchery
+task pack:test TEST=fish-of-thieves
+task pack:test TEST=printing-press
+```
 
 The task builds a test-only verifier, loads it into a disposable copy of the real
 dedicated-server pack, and removes it after the run. Its report and full server log
-stay under ignored `dist/test/butchery/`.
+stay under ignored `dist/test/<suite>/`.
 
-Automated checks cover:
+The Butchery suite covers:
 
 - clean recipe/datapack loading and required registry entries
 - the repaired Butchery enchantable-weapon tag
@@ -440,12 +444,28 @@ Automated checks cover:
 - equivalent clean-blood merging in the Alchemist Cauldron
 - Butchery items' Vampire's Delight blood-food values
 
+The Printing Press suite covers:
+
+- the explicit custom-book allowlist
+- Printing Press and Typesetter workstation durability
+- lossless Vampire Book typesetting and printing
+- the five-bottle custom-book ink cost
+- the original enchanted-book workflow
+- exact normal and magic ink recovery when the press is broken
+
+The Fish of Thieves suite covers:
+
+- unbaited hooks never enter preserved-bait world data
+- valid bait still survives hook serialization
+- malformed empty bait is removed during load and before world saves
+
 Still check the small client-facing surface in-game after behavior changes:
 
 - Blood Grate counter/tooltips render correctly
 - a real hanging carcass triggers its animation and fill procedure
 - JEI displays the intended recipes and fluids
 - multiplayer clients see the resulting block/fluid updates
+- custom Type Block names and Printing Press slots render correctly
 
 ## Maintainer Client Test Loop
 

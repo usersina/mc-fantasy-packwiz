@@ -1419,6 +1419,10 @@ hash = "7657737473cc95153147c8b191fd1c74d154f0e23e692c28a717d8dab9e71032"
 metafile = true
 
 [[files]]
+file = "mods/fish-of-thieves-bait-fix-1.0.0+mc1.21.1-neoforge.jar"
+hash = "af1ed18cf77cd59392dfdb8659b22392c7531d4c3b50304d988f5ce891d226d3"
+
+[[files]]
 file = "mods/fish-of-thieves.pw.toml"
 hash = "5f24c41c3c24bb964efe348aefc99b739c9c11553251a56bcaf8d526c326c4d5"
 metafile = true
@@ -1870,6 +1874,10 @@ metafile = true
 file = "mods/prickle.pw.toml"
 hash = "c99c5bac469e8d6ece5aae80f08635e3bbb8367f0c586b6288573c725faefe69"
 metafile = true
+
+[[files]]
+file = "mods/printing-press-compat-1.0.0+mc1.21.1-neoforge.jar"
+hash = "384e0285ec106b1c22769a3240503a78ffa5758602237134f705379a3bc5b7fe"
 
 [[files]]
 file = "mods/prism-lib.pw.toml"

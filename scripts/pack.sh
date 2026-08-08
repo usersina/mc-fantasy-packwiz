@@ -42,6 +42,8 @@ Inspect examples:
 Test examples:
   $(basename "$0") test
   TEST=butchery $(basename "$0") test
+  TEST=fish-of-thieves $(basename "$0") test
+  TEST=printing-press $(basename "$0") test
 
 Client test examples:
   $(basename "$0") client-test
@@ -2018,10 +2020,11 @@ cmd_inspect() {
   esac
 }
 
-build_butchery_test_mod() {
+build_test_mod() {
   local runtime_dir="$1"
   local output_jar="$2"
-  local source_dir="$REPO_DIR/tests/butchery"
+  local suite="$3"
+  local source_dir="$REPO_DIR/tests/$suite"
   local build_dir="$(dirname "$output_jar")/build"
   local classes_dir="$build_dir/classes"
   local patched_server_jar
@@ -2035,7 +2038,7 @@ build_butchery_test_mod() {
   fi
 
   if [ ! -d "$source_dir/src/main/java" ] || [ ! -d "$source_dir/src/main/resources" ]; then
-    echo "ERROR: Butchery test verifier sources are missing: $source_dir"
+    echo "ERROR: test verifier sources are missing: $source_dir"
     return 1
   fi
 
@@ -2067,6 +2070,7 @@ build_butchery_test_mod() {
 
 set_test_server_properties() {
   local server_dir="$1"
+  local level_name="$2"
   local properties="$server_dir/server.properties"
 
   if [ ! -f "$properties" ]; then
@@ -2077,7 +2081,7 @@ set_test_server_properties() {
   for entry in \
     'server-port=0' \
     'online-mode=false' \
-    'level-name=fantasy-pack-butchery-tests'; do
+    "level-name=$level_name"; do
     local key="${entry%%=*}"
     if grep -q "^${key}=" "$properties"; then
       sed -i "s#^${key}=.*#${entry}#" "$properties"
@@ -2087,26 +2091,31 @@ set_test_server_properties() {
   done
 }
 
-cmd_test_butchery() {
-  local root="$REPO_DIR/dist/test/butchery"
+cmd_test_suite() {
+  local suite="$1"
+  local label="$2"
+  local port="$3"
+  local root="$REPO_DIR/dist/test/$suite"
   local site_dir="$root/site/stable"
   local site_root="$root/site"
   local generated_runtime="$REPORT_DIR/server-generated/runtime"
   local runtime_dir="$root/runtime"
-  local port="${TEST_SITE_PORT:-8092}"
+  port="${TEST_SITE_PORT:-$port}"
   local local_pack_url="http://127.0.0.1:${port}/stable/pack.toml"
-  local verifier_jar="$root/fantasy-pack-butchery-tests.jar"
+  local verifier_jar="$root/fantasy-pack-${suite}-tests.jar"
   local installed_verifier=""
   local runtime_result
   local report="$root/result.txt"
   local server_log="$root/server.log"
   local neoforge_version
   local neoforge_args
-  local server_pid=""
+  local http_pid=""
+  local game_pid=""
   local start_status=0
+  local game_status=0
+  local test_deadline
 
   require_command python3
-  require_command timeout
   require_java21
 
   mkdir -p "$root"
@@ -2114,7 +2123,7 @@ cmd_test_butchery() {
     runtime_dir="$generated_runtime"
     echo "==> Reusing generated server runtime"
   else
-    echo "==> Creating reusable Butchery test runtime"
+    echo "==> Creating reusable $label test runtime"
   fi
   echo "    $runtime_dir"
 
@@ -2122,15 +2131,16 @@ cmd_test_butchery() {
   (
     SITE_DIR="$site_dir" cmd_site
   )
-  if rg -q 'file = "tests/|fantasy-pack-butchery-tests' "$site_dir/index.toml"; then
+  if rg -q 'file = "tests/|fantasy-pack-[^"/]+-tests' "$site_dir/index.toml"; then
     echo "ERROR: test-only verifier files leaked into the Packwiz index"
     return 1
   fi
 
   python3 -m http.server "$port" --directory "$site_root" >"$root/http.log" 2>&1 &
-  server_pid="$!"
+  http_pid="$!"
   trap '
-    if [ -n "${server_pid:-}" ]; then kill "$server_pid" >/dev/null 2>&1 || true; fi
+    if [ -n "${game_pid:-}" ]; then kill "$game_pid" >/dev/null 2>&1 || true; fi
+    if [ -n "${http_pid:-}" ]; then kill "$http_pid" >/dev/null 2>&1 || true; fi
     if [ -n "${installed_verifier:-}" ]; then rm -f "$installed_verifier"; fi
   ' EXIT
   wait_for_http "$local_pack_url"
@@ -2139,12 +2149,12 @@ cmd_test_butchery() {
     "$REPO_DIR/scripts/server.sh" setup
   SERVER_DIR="$runtime_dir" PACK_URL="$local_pack_url" JAVA21="$JAVA21" \
     "$REPO_DIR/scripts/server.sh" update
-  set_test_server_properties "$runtime_dir"
+  set_test_server_properties "$runtime_dir" "fantasy-pack-${suite}-tests"
 
-  safe_rm_rf "$runtime_dir/fantasy-pack-butchery-tests"
-  runtime_result="$runtime_dir/fantasy-pack-tests/butchery.txt"
+  safe_rm_rf "$runtime_dir/fantasy-pack-${suite}-tests"
+  runtime_result="$runtime_dir/fantasy-pack-tests/${suite}.txt"
   rm -f "$report" "$server_log" "$runtime_result"
-  build_butchery_test_mod "$runtime_dir" "$verifier_jar"
+  build_test_mod "$runtime_dir" "$verifier_jar" "$suite"
   installed_verifier="$runtime_dir/mods/$(basename "$verifier_jar")"
   cp -p "$verifier_jar" "$installed_verifier"
 
@@ -2155,26 +2165,42 @@ cmd_test_butchery() {
     return 1
   fi
 
-  echo "==> Running Butchery integration suite in the full dedicated-server pack"
-  set +e
+  echo "==> Running $label integration suite in the full dedicated-server pack"
   (
     cd "$runtime_dir"
-    timeout "${PACK_TEST_TIMEOUT:-1200}" "$JAVA21" @user_jvm_args.txt "@$neoforge_args" nogui </dev/null
-  ) >"$server_log" 2>&1
-  start_status="$?"
+    exec "$JAVA21" @user_jvm_args.txt "@$neoforge_args" nogui </dev/null
+  ) >"$server_log" 2>&1 &
+  game_pid="$!"
+  test_deadline=$((SECONDS + ${PACK_TEST_TIMEOUT:-1200}))
+  while kill -0 "$game_pid" >/dev/null 2>&1; do
+    if [ "$SECONDS" -ge "$test_deadline" ]; then
+      echo "ERROR: $label test server exceeded ${PACK_TEST_TIMEOUT:-1200} seconds"
+      kill "$game_pid" >/dev/null 2>&1 || true
+      start_status=124
+      break
+    fi
+    sleep 1
+  done
+  set +e
+  wait "$game_pid" >/dev/null 2>&1
+  game_status="$?"
+  if [ "$start_status" -eq 0 ]; then
+    start_status="$game_status"
+  fi
   set -e
+  game_pid=""
 
   rm -f "$installed_verifier"
   installed_verifier=""
   if [ ! -f "$runtime_result" ]; then
-    echo "ERROR: Butchery verifier did not write a result (server status $start_status)"
+    echo "ERROR: $label verifier did not write a result (server status $start_status)"
     tail -n 80 "$server_log"
     return 1
   fi
   cp -p "$runtime_result" "$report"
 
-  if ! head -n 1 "$report" | grep -Fqx 'PASS butchery'; then
-    echo "ERROR: Butchery integration suite failed"
+  if ! head -n 1 "$report" | grep -Fqx "PASS $suite"; then
+    echo "ERROR: $label integration suite failed"
     cat "$report"
     echo
     echo "Server log: $server_log"
@@ -2187,19 +2213,33 @@ cmd_test_butchery() {
   fi
 
   cat "$report"
-  echo "==> Butchery integration suite passed"
+  echo "==> $label integration suite passed"
   echo "    Report: $report"
   echo "    Server log: $server_log"
 
-  kill "$server_pid" >/dev/null 2>&1 || true
-  wait "$server_pid" >/dev/null 2>&1 || true
-  server_pid=""
+  kill "$http_pid" >/dev/null 2>&1 || true
+  wait "$http_pid" >/dev/null 2>&1 || true
+  http_pid=""
   trap - EXIT
+}
+
+cmd_test_butchery() {
+  cmd_test_suite "butchery" "Butchery" "8092"
+}
+
+cmd_test_printing_press() {
+  cmd_test_suite "printing-press" "Printing Press" "8093"
+}
+
+cmd_test_fish_of_thieves() {
+  cmd_test_suite "fish-of-thieves" "Fish of Thieves" "8094"
 }
 
 cmd_test_all() {
   echo "==> Running all pack integration suites"
   cmd_test_butchery
+  cmd_test_fish_of_thieves
+  cmd_test_printing_press
 }
 
 cmd_test() {
@@ -2209,6 +2249,12 @@ cmd_test() {
       ;;
     butchery)
       cmd_test_butchery
+      ;;
+    fish-of-thieves)
+      cmd_test_fish_of_thieves
+      ;;
+    printing-press)
+      cmd_test_printing_press
       ;;
     *)
       echo "ERROR: unknown test suite: $TEST"

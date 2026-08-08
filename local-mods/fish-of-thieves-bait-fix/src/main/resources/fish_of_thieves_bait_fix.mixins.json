@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "io.github.usersina.mcfantasy.fishofthievesbaitfix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BaitPreserveSavedDataMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

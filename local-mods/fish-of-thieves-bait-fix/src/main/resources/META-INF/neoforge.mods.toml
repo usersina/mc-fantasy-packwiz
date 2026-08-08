@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="fish_of_thieves_bait_fix"
+version="1.0.0"
+displayName="Fish of Thieves Bait Save Fix"
+authors="usersina"
+description='''Prevents empty fishing-hook bait from crashing Fish of Thieves world saves.'''
+
+[[mixins]]
+config="fish_of_thieves_bait_fix.mixins.json"
+
+[[dependencies.fish_of_thieves_bait_fix]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.fish_of_thieves_bait_fix]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.fish_of_thieves_bait_fix]]
+modId="fishofthieves"
+type="required"
+versionRange="[21.1.2.1,21.1.2.2)"
+ordering="AFTER"
+side="BOTH"
