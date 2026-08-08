@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "io.github.usersina.mcfantasy.printingpresscompat.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ModBlocksMixin",
+    "PrintingPressBlockEntityMixin",
+    "TypesetterBlockEntityMixin",
+    "TypesetterItemHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
