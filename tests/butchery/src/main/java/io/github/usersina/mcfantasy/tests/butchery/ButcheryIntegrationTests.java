@@ -54,6 +54,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -96,10 +97,19 @@ public final class ButcheryIntegrationTests {
     );
 
     private final List<String> results = new ArrayList<>();
+    private final List<ItemStack> capturedDrops = new ArrayList<>();
+    private boolean capturingDrops;
     private int failures;
 
     public ButcheryIntegrationTests(IEventBus modEventBus) {
         NeoForge.EVENT_BUS.addListener(this::onServerStarted);
+        NeoForge.EVENT_BUS.addListener(this::onEntityJoinLevel);
+    }
+
+    private void onEntityJoinLevel(EntityJoinLevelEvent event) {
+        if (capturingDrops && event.getEntity() instanceof ItemEntity itemEntity) {
+            capturedDrops.add(itemEntity.getItem().copy());
+        }
     }
 
     private void onServerStarted(ServerStartedEvent event) {
@@ -549,44 +559,52 @@ public final class ButcheryIntegrationTests {
 
         Entity redMerchant = createEntity(level, "supplementaries:red_merchant");
         clearDroppedItems(level, origin);
-        VillagercorpsedropProcedure.execute(
-                level, origin.getX(), origin.getY(), origin.getZ(), redMerchant, player
+        List<ItemStack> redMerchantDrops = captureDrops(() ->
+                VillagercorpsedropProcedure.execute(
+                        level, origin.getX(), origin.getY(), origin.getZ(), redMerchant, player
+                )
         );
         assertEquals(
                 1,
-                countItem(droppedItems(level, origin), "butchery:villager_corpse"),
+                countItem(redMerchantDrops, "butchery:villager_corpse"),
                 "Red Merchant did not use the Villager corpse path"
         );
 
         Entity plunderer = createEntity(level, "supplementaries:plunderer");
         clearDroppedItems(level, origin);
-        PillagercorpsedropProcedure.execute(
-                level, origin.getX(), origin.getY(), origin.getZ(), plunderer, player
+        List<ItemStack> plundererDrops = captureDrops(() ->
+                PillagercorpsedropProcedure.execute(
+                        level, origin.getX(), origin.getY(), origin.getZ(), plunderer, player
+                )
         );
         assertEquals(
                 1,
-                countItem(droppedItems(level, origin), "butchery:pillager_corpse"),
+                countItem(plundererDrops, "butchery:pillager_corpse"),
                 "Plunderer did not use the Pillager corpse path"
         );
 
         Entity vampireVillager = createEntity(level, "vampirism:villager_converted");
         clearDroppedItems(level, origin);
-        VillagercorpsedropProcedure.execute(
-                level, origin.getX(), origin.getY(), origin.getZ(), vampireVillager, player
+        List<ItemStack> livingVampireDrops = captureDrops(() ->
+                VillagercorpsedropProcedure.execute(
+                        level, origin.getX(), origin.getY(), origin.getZ(), vampireVillager, player
+                )
         );
         assertEquals(
                 0,
-                countItem(droppedItems(level, origin), "butchery:villager_corpse"),
+                countItem(livingVampireDrops, "butchery:villager_corpse"),
                 "Vampire Villager still used the living Villager corpse path"
         );
 
         clearDroppedItems(level, origin);
-        ZombieVillagercorpsedropProcedure.execute(
-                level, origin.getX(), origin.getY(), origin.getZ(), vampireVillager, player
+        List<ItemStack> zombieVampireDrops = captureDrops(() ->
+                ZombieVillagercorpsedropProcedure.execute(
+                        level, origin.getX(), origin.getY(), origin.getZ(), vampireVillager, player
+                )
         );
         assertEquals(
                 1,
-                countItem(droppedItems(level, origin), "butchery:zombie_villager_corpse"),
+                countItem(zombieVampireDrops, "butchery:zombie_villager_corpse"),
                 "Vampire Villager did not use the Zombie Villager corpse path"
         );
 
@@ -670,10 +688,15 @@ public final class ButcheryIntegrationTests {
         assertTrue(type.is(tag), entityId + " missing from #" + tagId);
     }
 
-    private static List<ItemStack> droppedItems(ServerLevel level, BlockPos origin) {
-        return level.getEntitiesOfClass(ItemEntity.class, new AABB(origin).inflate(3.0)).stream()
-                .map(ItemEntity::getItem)
-                .toList();
+    private List<ItemStack> captureDrops(Runnable action) {
+        capturedDrops.clear();
+        capturingDrops = true;
+        try {
+            action.run();
+            return capturedDrops.stream().map(ItemStack::copy).toList();
+        } finally {
+            capturingDrops = false;
+        }
     }
 
     private static void clearDroppedItems(ServerLevel level, BlockPos origin) {
