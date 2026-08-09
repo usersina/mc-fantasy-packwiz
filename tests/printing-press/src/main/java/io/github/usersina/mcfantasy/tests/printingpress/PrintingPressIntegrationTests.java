@@ -9,6 +9,7 @@ import de.teamlapen.vampirism.items.component.VampireBookContents;
 import io.github.usersina.mcfantasy.printingpresscompat.PrintingPressBookData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.server.MinecraftServer;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.AABB;
@@ -48,15 +50,17 @@ public final class PrintingPressIntegrationTests {
     private void onServerStarted(ServerStartedEvent event) {
         MinecraftServer server = event.getServer();
         ServerLevel level = server.overworld();
-        BlockPos origin = new BlockPos(0, 200, 0);
+        BlockPos origin = new BlockPos(4, 200, 4);
 
         runCase("copyable-book allowlist", this::testCopyableBookAllowlist);
-        runCase("workstation durability", () -> testWorkstationDurability(level, origin.offset(-10, 0, 0)));
+        runCase("Magic Ink recipe", () -> testMagicInkRecipe(server));
+        runCase("workstation durability", () -> testWorkstationDurability(level, origin));
         runCase("Vampire Book typesetting", () -> testVampireBookTypesetting(level, origin));
-        runCase("Vampire Book full-tank printing", () -> testVampireBookPrinting(level, origin.offset(10, 0, 0)));
-        runCase("vanilla enchanted-book regression", () -> testVanillaPrinting(level, origin.offset(20, 0, 0)));
-        runCase("Magic Ink recovery", () -> testInkRecovery(level, origin.offset(30, 0, 0), true, 3));
-        runCase("normal Ink recovery", () -> testInkRecovery(level, origin.offset(40, 0, 0), false, 2));
+        runCase("Vampire Book full-tank printing", () -> testVampireBookPrinting(level, origin.offset(4, 0, 0)));
+        runCase("Hunter Intel tier round-trip", () -> testHunterIntelRoundTrip(level, origin.offset(8, 0, 0)));
+        runCase("vanilla enchanted-book regression", () -> testVanillaPrinting(level, origin.offset(0, 0, 4)));
+        runCase("Magic Ink recovery", () -> testInkRecovery(level, origin.offset(4, 0, 4), true, 3));
+        runCase("normal Ink recovery", () -> testInkRecovery(level, origin.offset(8, 0, 4), false, 2));
 
         writeResult();
         server.halt(false);
@@ -64,8 +68,40 @@ public final class PrintingPressIntegrationTests {
 
     private void testCopyableBookAllowlist() {
         assertTrue(vampireBook().is(PrintingPressBookData.COPYABLE_BOOKS), "Vampire Book missing from allowlist");
+        for (int tier = 0; tier <= 9; tier++) {
+            assertTrue(
+                    hunterIntel(tier).is(PrintingPressBookData.COPYABLE_BOOKS),
+                    "Hunter Intel tier " + tier + " missing from allowlist"
+            );
+        }
         assertFalse(new ItemStack(Items.WRITTEN_BOOK).is(PrintingPressBookData.COPYABLE_BOOKS), "Written Book was broadly allowlisted");
         assertFalse(new ItemStack(requireItem("irons_spellbooks:iron_spell_book")).is(PrintingPressBookData.COPYABLE_BOOKS), "Iron spellbook was broadly allowlisted");
+    }
+
+    private void testMagicInkRecipe(MinecraftServer server) {
+        var recipeHolder = server.getRecipeManager()
+                .byKey(ResourceLocation.fromNamespaceAndPath("printingpress", "magic_ink_bottle"))
+                .orElseThrow(() -> new AssertionError("Magic Ink Bottle recipe is missing"));
+        assertTrue(recipeHolder.value() instanceof ShapelessRecipe, "Magic Ink Bottle recipe is not shapeless");
+
+        ShapelessRecipe recipe = (ShapelessRecipe) recipeHolder.value();
+        ItemStack commonInk = new ItemStack(requireItem("irons_spellbooks:common_ink"));
+        ItemStack arcaneEssence = new ItemStack(requireItem("irons_spellbooks:arcane_essence"));
+        ItemStack lapis = new ItemStack(Items.LAPIS_LAZULI);
+        assertEquals(3, recipe.getIngredients().size(), "Magic Ink Bottle recipe ingredient count");
+        assertEquals(1, countMatchingIngredients(recipe, commonInk), "Magic Ink Bottle Common Ink cost");
+        assertEquals(1, countMatchingIngredients(recipe, arcaneEssence), "Magic Ink Bottle Arcane Essence cost");
+        assertEquals(1, countMatchingIngredients(recipe, lapis), "Magic Ink Bottle lapis cost");
+        assertTrue(
+                recipe.getResultItem(server.registryAccess()).is(ModItems.MAGIC_INK_BOTTLE.get()),
+                "Magic Ink Bottle recipe has the wrong output"
+        );
+        assertTrue(
+                server.getRecipeManager()
+                        .byKey(ResourceLocation.fromNamespaceAndPath("printingpress", "magic_ink_bottle_alt"))
+                        .isEmpty(),
+                "upstream enchanted-book Magic Ink shortcut is still enabled"
+        );
     }
 
     private void testWorkstationDurability(ServerLevel level, BlockPos pos) {
@@ -135,6 +171,43 @@ public final class PrintingPressIntegrationTests {
         clearNearbyItems(level, pos);
     }
 
+    private void testHunterIntelRoundTrip(ServerLevel level, BlockPos pos) {
+        for (int tier = 0; tier <= 9; tier++) {
+            ItemStack source = hunterIntel(tier);
+            TypesetterBlockEntity typesetter = placeTypesetter(level, pos);
+
+            assertTrue(typesetter.itemHandler.isItemValid(0, source), "Typesetter rejected Hunter Intel tier " + tier);
+            typesetter.itemHandler.setStackInSlot(0, source.copy());
+            typesetter.itemHandler.setStackInSlot(1, new ItemStack(ModItems.MOVABLE_TYPE.get()));
+            tickTypesetter(level, pos, typesetter, 72);
+
+            ItemStack typeBlock = typesetter.itemHandler.getStackInSlot(2).copy();
+            assertTrue(PrintingPressBookData.hasCopiedBook(typeBlock), "Hunter Intel tier " + tier + " was not captured");
+            assertTrue(
+                    ItemStack.isSameItemSameComponents(
+                            source,
+                            PrintingPressBookData.readCopiedBook(typeBlock, level.registryAccess())
+                    ),
+                    "Type Block changed Hunter Intel tier " + tier
+            );
+            clearTestBlock(level, pos);
+
+            PrintingPressBlockEntity press = placePress(level, pos);
+            press.itemHandler.setStackInSlot(2, new ItemStack(ModItems.MAGIC_INK_BOTTLE.get(), 5));
+            tickPress(level, pos, press, 5);
+            press.itemHandler.setStackInSlot(0, new ItemStack(Items.BOOK));
+            press.itemHandler.setStackInSlot(1, typeBlock);
+            tickPress(level, pos, press, 220);
+
+            assertTrue(
+                    ItemStack.isSameItemSameComponents(source, press.itemHandler.getStackInSlot(3)),
+                    "Printing changed Hunter Intel tier " + tier
+            );
+            clearTestBlock(level, pos);
+            clearNearbyItems(level, pos);
+        }
+    }
+
     private void testVanillaPrinting(ServerLevel level, BlockPos pos) {
         TypesetterBlockEntity typesetter = placeTypesetter(level, pos);
         typesetter.itemHandler.setStackInSlot(0, new ItemStack(Items.ENCHANTED_BOOK));
@@ -162,14 +235,18 @@ public final class PrintingPressIntegrationTests {
         press.itemHandler.setStackInSlot(2, new ItemStack(ink, bottles));
         tickPress(level, pos, press, bottles);
         assertTrue(press.itemHandler.getStackInSlot(2).isEmpty(), "press did not absorb ink bottles");
+        CompoundTag stored = press.saveWithoutMetadata(level.registryAccess());
+        assertEquals(bottles * 200, stored.getInt("printing_press.ink_level"), "press stored the wrong ink amount");
+        assertEquals(magic ? 2 : 1, stored.getInt("printing_press.current_ink_mode"), "press stored the wrong ink type");
 
-        clearNearbyItems(level, pos);
         press.drops();
-        assertEquals(bottles, countNearbyItem(level, pos, ink), "press returned the wrong amount of stored ink");
+        CompoundTag drained = press.saveWithoutMetadata(level.registryAccess());
+        assertEquals(0, drained.getInt("printing_press.ink_level"), "press did not drain recovered ink");
+        assertEquals(0, drained.getInt("printing_press.current_ink_mode"), "press did not clear its recovered ink type");
 
-        clearNearbyItems(level, pos);
         press.drops();
-        assertEquals(0, countNearbyItem(level, pos, ink), "stored ink was dropped more than once");
+        CompoundTag drainedAgain = press.saveWithoutMetadata(level.registryAccess());
+        assertEquals(0, drainedAgain.getInt("printing_press.ink_level"), "press recovered stored ink more than once");
         clearTestBlock(level, pos);
         clearNearbyItems(level, pos);
     }
@@ -181,6 +258,14 @@ public final class PrintingPressIntegrationTests {
                 new VampireBookContents("fantasy_pack_test", "Fantasy Pack", "A Test of Blood")
         );
         return stack;
+    }
+
+    private static ItemStack hunterIntel(int tier) {
+        return new ItemStack(requireItem("vampirism:hunter_intel_" + tier));
+    }
+
+    private static int countMatchingIngredients(ShapelessRecipe recipe, ItemStack stack) {
+        return (int) recipe.getIngredients().stream().filter(ingredient -> ingredient.test(stack)).count();
     }
 
     private static TypesetterBlockEntity placeTypesetter(ServerLevel level, BlockPos pos) {
@@ -211,13 +296,6 @@ public final class PrintingPressIntegrationTests {
         for (int i = 0; i < count; i++) {
             press.tick(level, pos, level.getBlockState(pos));
         }
-    }
-
-    private static int countNearbyItem(ServerLevel level, BlockPos pos, Item item) {
-        return level.getEntitiesOfClass(ItemEntity.class, new AABB(pos).inflate(2.0)).stream()
-                .filter(entity -> entity.getItem().is(item))
-                .mapToInt(entity -> entity.getItem().getCount())
-                .sum();
     }
 
     private static void clearNearbyItems(ServerLevel level, BlockPos pos) {

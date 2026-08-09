@@ -3,22 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "irons_spellbooks:uncommon_ink"
-    },
-    {
-      "item": "minecraft:lapis_lazuli"
-    },
-    {
-      "item": "minecraft:lapis_lazuli"
-    },
-    {
-      "item": "minecraft:lapis_lazuli"
-    },
-    {
-      "item": "minecraft:lapis_lazuli"
+      "item": "irons_spellbooks:common_ink"
     },
     {
       "item": "irons_spellbooks:arcane_essence"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
     }
   ],
   "result": {

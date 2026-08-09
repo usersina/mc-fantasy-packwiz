@@ -16,13 +16,15 @@ Supported custom books are controlled by the item tag:
 printing_press_compat:copyable_books
 ```
 
-The pack initially includes only `vampirism:vampire_book`. The allowlist is
-deliberately narrow so equipment such as Iron's spellbooks cannot be duplicated.
+The pack includes `vampirism:vampire_book` and every item in Vampirism's
+`vampirism:hunter_intel` tag. The allowlist is deliberately narrow so equipment
+such as Iron's spellbooks cannot be duplicated.
 
 The Typesetter stores an exact one-item copy inside the resulting Type Block.
 Printing consumes one vanilla Book and a full 1000-unit tank, equal to five Magic
 Ink Bottles. The source book and Type Block are retained, matching the upstream
-enchanted-book workflow.
+enchanted-book workflow. Hunter Intel keeps its exact tier when captured and
+printed.
 
 Vanilla enchanted books retain the upstream 200-unit ink cost.
 

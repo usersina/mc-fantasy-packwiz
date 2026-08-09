@@ -542,7 +542,7 @@ hash = "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/printingpress/recipe/magic_ink_bottle.json"
-hash = "280cf270e07e6af26dbfbabd3099e6c37467da7aca864aadc96838b045f2339a"
+hash = "e771f8d41823ffd6a8e05c38ae6198b67445a5a7c84a69b51ad700499e2c0e55"
 
 [[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/printingpress/recipe/magic_ink_bottle_alt.json"
@@ -1885,7 +1885,7 @@ metafile = true
 
 [[files]]
 file = "mods/printing-press-compat-1.0.0+mc1.21.1-neoforge.jar"
-hash = "1c6fc01308a1d1877b4f37275f96f71cdf6560b18c172313238e97e071e95da1"
+hash = "dbe502fdbdc96c959c9993ca83d40ed2b83a6560a0be729d2b8ddcbc028fcafe"
 
 [[files]]
 file = "mods/prism-lib.pw.toml"
