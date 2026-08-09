@@ -2132,7 +2132,7 @@ cmd_test_suite() {
   (
     SITE_DIR="$site_dir" cmd_site
   )
-  if rg -q 'file = "tests/|fantasy-pack-[^"/]+-tests' "$site_dir/index.toml"; then
+  if grep -Eq 'file = "tests/|fantasy-pack-[^"/]+-tests' "$site_dir/index.toml"; then
     echo "ERROR: test-only verifier files leaked into the Packwiz index"
     return 1
   fi
