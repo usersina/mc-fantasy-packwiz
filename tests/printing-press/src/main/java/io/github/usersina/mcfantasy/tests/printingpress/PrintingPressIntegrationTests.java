@@ -10,6 +10,7 @@ import io.github.usersina.mcfantasy.printingpresscompat.PrintingPressBookData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -68,6 +69,14 @@ public final class PrintingPressIntegrationTests {
     }
 
     private void testWorkstationDurability(ServerLevel level, BlockPos pos) {
+        assertTrue(
+                ModBlocks.PRINTINGPRESS.get().defaultBlockState().is(BlockTags.MINEABLE_WITH_AXE),
+                "Printing Press is not axe-mineable"
+        );
+        assertTrue(
+                ModBlocks.TYPESETTER.get().defaultBlockState().is(BlockTags.MINEABLE_WITH_AXE),
+                "Typesetter is not axe-mineable"
+        );
         assertFloatEquals(
                 2.5F,
                 ModBlocks.PRINTINGPRESS.get().defaultBlockState().getDestroySpeed(level, pos),

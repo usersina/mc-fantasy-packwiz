@@ -6,7 +6,7 @@ Tiny pack-local compatibility mod for Glowbrick's Printing Press 1.0.1:
   reproduced by the Printing Press without losing their data components.
 - Returns the press's internal ink as bottles when the block is destroyed.
 - Gives the Printing Press and Typesetter normal workstation durability instead
-  of the upstream instant-break hardness.
+  of the upstream instant-break hardness, with axes as their effective tool.
 
 ## Custom books
 
@@ -35,4 +35,5 @@ internal tank to prevent duplicate drops.
 ## Workstation durability
 
 The Printing Press and Typesetter use hardness `2.5` and blast resistance `6`.
-They do not require a particular tool, so breaking either block still returns it.
+Axes break them faster, like other wooden workstations. They do not require a
+particular tool, so breaking either block by hand still returns it.

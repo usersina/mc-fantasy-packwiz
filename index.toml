@@ -1885,7 +1885,7 @@ metafile = true
 
 [[files]]
 file = "mods/printing-press-compat-1.0.0+mc1.21.1-neoforge.jar"
-hash = "384e0285ec106b1c22769a3240503a78ffa5758602237134f705379a3bc5b7fe"
+hash = "1c6fc01308a1d1877b4f37275f96f71cdf6560b18c172313238e97e071e95da1"
 
 [[files]]
 file = "mods/prism-lib.pw.toml"
