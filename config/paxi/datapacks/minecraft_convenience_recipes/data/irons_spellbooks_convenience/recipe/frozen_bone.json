@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " I ",
+    "IBI",
+    " I "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "I": {
+      "item": "minecraft:packed_ice"
+    }
+  },
+  "result": {
+    "id": "irons_spellbooks:frozen_bone",
+    "count": 1
+  }
+}

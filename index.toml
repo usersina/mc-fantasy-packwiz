@@ -493,6 +493,10 @@ file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbook
 hash = "d8c1c7595572ed73bd561abd29a4210fd5fff76f55d676d44a2aa36e6362e1d8"
 
 [[files]]
+file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/frozen_bone.json"
+hash = "a2144ee59e6cc01e5191f56ac7b29338d681fec7ef07791f3303f94a15cfaf34"
+
+[[files]]
 file = "config/paxi/datapacks/minecraft_convenience_recipes/data/irons_spellbooks_convenience/recipe/hogskin_from_butchery_hoglin_skin.json"
 hash = "9da70dcbf56b242101edbc1580d2de2954504bdee048ec6996dc7074d8b5131a"
 
