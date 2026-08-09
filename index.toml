@@ -814,6 +814,10 @@ file = "kubejs/server_scripts/faction_representatives.js"
 hash = "6b7e102a4a3aa4210c53727a2bc50eba75e1c3e6e6c5a6821c8305a92b3202e8"
 
 [[files]]
+file = "kubejs/server_scripts/squid_ink_milking.js"
+hash = "f963b9c122fd5e65cb145a411d59fb2526d943c4196eeea2e0ef8aed4f6b4a50"
+
+[[files]]
 file = "kubejs/server_scripts/starter_roles.js"
 hash = "61dc2631301ca1488006b49251d3766b77b3863e20f522006ef2f3167b64f30e"
 

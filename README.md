@@ -303,6 +303,17 @@ Role choices:
 
 Role kits are intentionally KubeJS-only. Do not add a token item or manual command flow unless the one-time lobby model changes.
 
+### Squid Ink Milking
+
+- Keep a squid or glow squid in an aquarium and use a Name Tag so it cannot despawn.
+- Right-click it with an empty bucket; the bucket is a reusable harvesting tool and is not consumed.
+- A normal squid produces four Ink Sacs.
+- A glow squid produces two Glow Ink Sacs.
+- Each individual squid needs five minutes of server game time to replenish its ink.
+- The cooldown is stored on the squid and survives chunk unloading and server restarts.
+
+Squids remain non-breedable. A small aquarium of named squids is therefore a renewable ink source without creating an uncontrolled mob farm.
+
 ### Faction Representatives
 
 - Place a Vampirism Village Totem Base with a crafted Vampirism Village Totem Top directly above it.
