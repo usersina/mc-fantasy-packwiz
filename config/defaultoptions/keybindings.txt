@@ -41,3 +41,4 @@ key_key.butchery.pillagernosepress:key.keyboard.h
 key_key.butchery.vindicatornosepress:key.keyboard.h
 key_accessories.key.open_accessories_screen:key.keyboard.unknown
 key_key.crawl:key.keyboard.x:SHIFT
+key_key.simplytooltips.capture_gif:key.keyboard.unknown:

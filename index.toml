@@ -22,7 +22,7 @@ hash = "ee22a280e99768fffebbb69d58e3f5089dd5d77a4ee47a3a526e55d91b846199"
 
 [[files]]
 file = "config/defaultoptions/keybindings.txt"
-hash = "a188fa8430127f7bcadab682d81a357fe793e0fa505268cfdce2e9fbe2f24a6b"
+hash = "834024598b8ab20fe0f6b823c93d488f0a9772b008923b8b7bbc385b4409eef1"
 
 [[files]]
 file = "config/effectdescriptions-client.toml"
@@ -1040,6 +1040,11 @@ hash = "d444cf98e8139d9863bf791c3ea90f6036f6184b877a53c79f53e3ce52fe5b7d"
 metafile = true
 
 [[files]]
+file = "mods/better-combat.pw.toml"
+hash = "438170e7e704a1b8ed67bf0521dc5d77cdeeaabf6f729dba9f8dfdad75330acf"
+metafile = true
+
+[[files]]
 file = "mods/better-engines-neoforge-fix-1.0.0+mc1.21.1-neoforge.jar"
 hash = "0bc4dbced9c31f933a0f522d9a681f36677f1dcb6852b7bf6dd5280dab217d85"
 
@@ -1475,6 +1480,11 @@ hash = "0d810b6f5533ae6b71d11e8fba5f986308a87b4107740ca2b7af741c72d4bf06"
 metafile = true
 
 [[files]]
+file = "mods/fzzy-config.pw.toml"
+hash = "f9c118b7a66238a7f9e052705e82402e57c7a5b753d62d679b94701ede479752"
+metafile = true
+
+[[files]]
 file = "mods/geckolib.pw.toml"
 hash = "5a26489b734991c0511abfe43bf9143c935b8483d854a78fecd2e84993fb09cc"
 metafile = true
@@ -1650,6 +1660,11 @@ metafile = true
 [[files]]
 file = "mods/justenoughbreeding.pw.toml"
 hash = "97bfd3ab26e1336b77e9f78daf3f82dce9ad03a1adf9dc4f563f620e91d5fd6a"
+metafile = true
+
+[[files]]
+file = "mods/kotlin-for-forge.pw.toml"
+hash = "712a69b3569a8055979de6eea262068535fe182dffb3833e53e5833e9cbf9766"
 metafile = true
 
 [[files]]
@@ -1988,6 +2003,21 @@ hash = "dd15918c872494ee7bb962daf8c2788b7d8419db4b729a36c797ba1288ab1253"
 [[files]]
 file = "mods/show-dimension-in-name.pw.toml"
 hash = "0a6b37e52fde57628f217b8179a040ec5f36eb6823bd2572e15f220da668577d"
+metafile = true
+
+[[files]]
+file = "mods/simply-swords.pw.toml"
+hash = "1d37ac39109aa15d03a3a7ddf6402d63f72277acafca53f61830046acfe6edb0"
+metafile = true
+
+[[files]]
+file = "mods/simply-tooltips.pw.toml"
+hash = "320d755339086e8fb35709328ad7b094ecbf7c500d61c08c535ec7d277fe1053"
+metafile = true
+
+[[files]]
+file = "mods/simplycataclysm.pw.toml"
+hash = "4fd1283e3f2e8dad4c3023f8a77cb071086e5ebcc83f022a1cb060f41b18695a"
 metafile = true
 
 [[files]]
